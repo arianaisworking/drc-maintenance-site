@@ -5,8 +5,11 @@
 - `about.html` — about page
 - `privacy.html` — privacy policy
 - `terms.html` — terms of service
-- `functions/api/contact.js` — Cloudflare Pages Function that sends form
-  submissions to your inbox via Resend
+- `vendors.html` — **unlisted** vendor signup page (link-only, not in the nav)
+- `functions/api/contact.js` — Cloudflare Pages Function that sends quote-request
+  form submissions to your inbox via Resend
+- `functions/api/vendor.js` — same thing for the vendor application form
+- `_headers` — tells Cloudflare to add a `noindex` header on `vendors.html`
 
 ---
 
@@ -75,8 +78,42 @@ so the function picks up the new variables.
 2. Scroll to the contact form, fill it out with a test name/email, and submit
 3. You should see "Request Received" on the site, and an email should land
    in `TO_EMAIL` within a few seconds
+4. Then visit `/vendors.html`, submit the vendor application, and confirm a
+   "New Vendor Application" email arrives in the same inbox
 4. Check the Cloudflare Pages → Functions logs if something doesn't arrive —
    it'll show any errors from the function
+
+---
+
+## The unlisted vendor page
+
+`vendors.html` is the vendor signup page. It is **not linked from anywhere** on
+the site — no nav item, no footer link — so the only way to reach it is to be
+given the URL:
+
+```
+https://drcmaintenance.com/vendors.html
+```
+
+Two things keep it out of search results:
+
+1. A `<meta name="robots" content="noindex,nofollow,...">` tag in the page itself
+2. An `X-Robots-Tag: noindex` header set in `_headers`
+
+It is deliberately **not** listed in a `robots.txt` file — a `Disallow` line there
+would publish the URL to anyone who looks at `robots.txt`.
+
+Keep in mind this is "unlisted," not "private." Anyone you send the link to can
+forward it, and the page has no password. That's usually the right trade-off for
+a vendor application, but if you ever want it locked down, Cloudflare Access can
+put a one-time email code in front of the page.
+
+Submissions go to the same `TO_EMAIL` inbox via the same Resend key — no extra
+setup needed beyond Step 5. The subject line is
+`New Vendor Application — [Business Name] (trades)`, so it's easy to filter into
+its own folder. The form has a hidden honeypot field to absorb bot spam, and it
+asks vendors **not** to send EIN, SSN, or banking details — collect those during
+onboarding through a secure channel, not email.
 
 ---
 

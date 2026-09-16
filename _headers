@@ -1,0 +1,3 @@
+# Keep the vendor signup page out of search engines — it is link-only.
+/vendors.html
+  X-Robots-Tag: noindex, nofollow, noarchive

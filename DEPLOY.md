@@ -87,6 +87,49 @@ so the function picks up the new variables.
 
 ---
 
+## DRC Gear (merch section)
+
+The homepage has a merch section that sits just above the footer. **It is
+switched off right now**, so nothing appears on the live site until you turn
+it on. Nobody sees placeholder products in the meantime.
+
+Everything you edit lives in one block near the bottom of `index.html`.
+Search the file for `const MERCH` and you'll land on it.
+
+### Turning it on
+
+1. **Create the store.** In Printify, go to **My Stores** -> **Add store** ->
+   **Pop-Up Store**. Printify hosts it, handles checkout, payment, shipping,
+   and returns, and takes its cut per sale. There is no monthly fee. It gives
+   you a URL that looks like `https://your-name.printify.me`.
+2. **Add your products** in Printify and publish them to that Pop-Up Store.
+3. **Paste the store URL** into `storeUrl` in the `MERCH` block.
+4. **Replace the products.** The list ships with six placeholders so you can
+   see the layout. For each real product, fill in:
+   - `name` and `price` as you want them shown
+   - `blurb`, one short line
+   - `image` — open the product in your Pop-Up Store, right-click the mockup,
+     **Copy Image Address**, paste it here
+   - `url` — the product's page link in your Pop-Up Store
+5. **Set `enabled: true`** and commit. The section and a "DRC Gear" footer
+   link both appear.
+
+### Notes
+
+- Prices in the `MERCH` block are display only. The price a customer actually
+  pays is whatever Printify has set, so keep the two in sync or leave `price`
+  empty to avoid the mismatch.
+- A product with no `image` shows a "DRC" tile instead, and a broken image
+  link falls back to the same tile, so a half-finished list still looks
+  deliberate.
+- Buy buttons open the store in a new tab. Your site never touches card
+  details, which keeps payment handling entirely on Printify's side.
+- The grid is four across on desktop, three on tablet, two on phones.
+- If you outgrow the Pop-Up Store, Shopify plus Printify (about $39/month)
+  would let a real cart live on the page itself. That is a bigger change.
+
+---
+
 ## The unlisted vendor page
 
 `vendors.html` is the vendor signup page. It is **not linked from anywhere** on

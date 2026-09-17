@@ -234,6 +234,51 @@ textarea.fi{min-height:108px;resize:vertical}
 .c-tx .l{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:2px}
 .c-tx .v{font-size:14px;font-weight:500;color:var(--n)}
 
+/* ── MERCH / DRC GEAR ── */
+.merch{background:var(--cream);padding:96px 48px;border-top:1px solid var(--border)}
+.merch .ey{
+  font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--g);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.merch .ey::before{content:'';width:28px;height:2px;background:var(--g);flex-shrink:0}
+.merch h2{
+  font-family:'Oswald',system-ui,sans-serif;font-size:clamp(34px,5.5vw,52px);font-weight:700;
+  line-height:1.05;text-transform:uppercase;color:var(--n);margin-bottom:16px;
+}
+.merch h2 span{color:var(--g)}
+.merch .sd{font-size:16px;color:var(--gray);line-height:1.78;max-width:560px;margin-bottom:44px}
+.merch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(min-width:700px){.merch-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1040px){.merch-grid{grid-template-columns:repeat(4,1fr)}}
+.mcard{
+  background:var(--w);border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s;
+}
+.mcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(14,34,64,.10)}
+.mthumb{
+  aspect-ratio:1/1;background:var(--off);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid var(--border);
+}
+.mthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.mthumb .mph{
+  font-family:'Oswald',system-ui,sans-serif;font-size:34px;font-weight:700;
+  color:var(--g);opacity:.22;letter-spacing:.1em;
+}
+.mbody{padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.mname{font-family:'Oswald',system-ui,sans-serif;font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--n);line-height:1.25}
+.mprice{font-size:14px;font-weight:700;color:var(--g)}
+.mblurb{font-size:12.5px;color:var(--gray);line-height:1.6;flex:1}
+.mbtn{
+  margin-top:12px;display:block;text-align:center;padding:12px;border-radius:6px;
+  background:var(--n);color:var(--cream);
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;transition:background .2s;
+}
+.mbtn:hover{background:var(--g)}
+.merch-foot{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:36px}
+.merch-note{font-size:12px;color:var(--gray);line-height:1.7;margin-top:18px;max-width:640px}
+
 /* ── FOOTER ── */
 footer{background:var(--n);padding:56px 48px 28px}
 .fg{display:grid;grid-template-columns:1fr;gap:36px;margin-bottom:44px}
@@ -276,6 +321,15 @@ footer{background:var(--n);padding:56px 48px 28px}
   .contact-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:639px){
+  .merch{padding:56px 20px}
+  .merch .sd{margin-bottom:28px;font-size:15px}
+  .merch-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .mbody{padding:12px 12px 14px;gap:4px}
+  .mname{font-size:12.5px}
+  .mprice{font-size:13px}
+  .mblurb{font-size:11.5px;line-height:1.5}
+  .mbtn{padding:11px 8px;font-size:10px;margin-top:9px}
+  .merch-foot{margin-top:26px}
   nav{padding:0 20px;height:72px}
   .logo img{height:48px}
   footer{padding:48px 20px 24px}
@@ -456,6 +510,18 @@ footer{background:var(--n);padding:56px 48px 28px}
   </div>
 </section>
 
+<!-- MERCH / DRC GEAR -->
+<section class="merch" id="merch" hidden>
+  <p class="ey rv">DRC Gear</p>
+  <h2 class="rv">Rep The Crew. <span>Wear The Brand.</span></h2>
+  <p class="sd rv">Shirts, hoodies, and hats for our vendors, our crews, and anyone who wants to represent. Printed on demand and shipped straight to your door.</p>
+  <div class="merch-grid rv" id="merchGrid"></div>
+  <div class="merch-foot rv">
+    <a class="btn btn-g" id="merchShopAll" href="#">Shop All Gear →</a>
+  </div>
+  <p class="merch-note rv">Gear is printed and shipped by our print-on-demand partner. Checkout, shipping, and returns are handled on our store page. Orders are separate from maintenance work orders and invoices.</p>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="fg">
@@ -476,6 +542,7 @@ footer{background:var(--n);padding:56px 48px 28px}
       <li><a href="#approach">About Us</a></li>
       <li><a href="#industries">Industries</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li id="footMerch" hidden><a href="#merch">DRC Gear</a></li>
     </ul></div>
   </div>
   <div class="fbot">
@@ -495,6 +562,136 @@ const obs = new IntersectionObserver(entries => {
 },{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 setTimeout(()=>document.querySelectorAll('.hero .rv').forEach(el=>el.classList.add('in')),150);
+
+/* =====================================================================
+   DRC GEAR / MERCH
+   ---------------------------------------------------------------------
+   EDIT THIS BLOCK ONLY. Everything below it renders from these values.
+
+   1. Create your Printify Pop-Up Store (Printify dashboard, My Stores,
+      Add store, Pop-Up Store). Printify gives you a URL.
+   2. Paste that URL into storeUrl below.
+   3. Replace the products with your real ones. For each product, open it
+      in your Pop-Up Store, copy its page link into "url", and copy the
+      mockup image address into "image" (right-click the image, Copy
+      Image Address).
+   4. Set enabled to true.
+
+   Until enabled is true the whole section stays hidden, so nothing
+   placeholder ever shows on the live site.
+
+   A product with no image shows a "DRC" tile instead, so a half-filled
+   list still looks deliberate.
+   ===================================================================== */
+const MERCH = {
+  enabled: false,
+  storeUrl: '',   // e.g. 'https://drc-maintenance.printify.me'
+  products: [
+    // --- PLACEHOLDERS. Replace names, prices, blurbs, images and urls. ---
+    { name: 'DRC Logo Tee',        price: '$24', blurb: 'Soft cotton tee with the DRC mark on the chest.',        image: '', url: '' },
+    { name: 'DRC Hoodie',          price: '$45', blurb: 'Midweight fleece hoodie for cold-morning calls.',         image: '', url: '' },
+    { name: 'DRC Cap',             price: '$22', blurb: 'Structured cap with an embroidered logo.',                image: '', url: '' },
+    { name: 'Crew Long Sleeve',    price: '$28', blurb: 'Long sleeve work shirt, front and back print.',           image: '', url: '' },
+    { name: 'DRC Beanie',          price: '$20', blurb: 'Cuffed knit beanie for winter turns.',                    image: '', url: '' },
+    { name: 'Insulated Tumbler',   price: '$26', blurb: 'Keeps coffee hot through a full morning route.',          image: '', url: '' }
+  ]
+};
+
+(function renderMerch(){
+  const section = document.getElementById('merch');
+  const grid = document.getElementById('merchGrid');
+  const shopAll = document.getElementById('merchShopAll');
+  const footLink = document.getElementById('footMerch');
+  if(!section || !grid) return;
+
+  const items = (MERCH.products || []).filter(p => p && p.name);
+  if(!MERCH.enabled || !items.length){
+    section.remove();
+    if(footLink) footLink.remove();
+    return;
+  }
+
+  const store = (MERCH.storeUrl || '').trim();
+
+  items.forEach(p => {
+    const card = document.createElement('article');
+    card.className = 'mcard';
+
+    const thumb = document.createElement('div');
+    thumb.className = 'mthumb';
+    if(p.image){
+      const img = document.createElement('img');
+      img.src = p.image;
+      img.alt = p.name;
+      img.loading = 'lazy';
+      // A dead mockup link should not leave an empty box.
+      img.addEventListener('error', () => {
+        thumb.innerHTML = '';
+        const ph = document.createElement('span');
+        ph.className = 'mph';
+        ph.textContent = 'DRC';
+        thumb.appendChild(ph);
+      });
+      thumb.appendChild(img);
+    } else {
+      const ph = document.createElement('span');
+      ph.className = 'mph';
+      ph.textContent = 'DRC';
+      thumb.appendChild(ph);
+    }
+
+    const bodyEl = document.createElement('div');
+    bodyEl.className = 'mbody';
+
+    const name = document.createElement('div');
+    name.className = 'mname';
+    name.textContent = p.name;
+    bodyEl.appendChild(name);
+
+    if(p.price){
+      const price = document.createElement('div');
+      price.className = 'mprice';
+      price.textContent = p.price;
+      bodyEl.appendChild(price);
+    }
+    if(p.blurb){
+      const blurb = document.createElement('p');
+      blurb.className = 'mblurb';
+      blurb.textContent = p.blurb;
+      bodyEl.appendChild(blurb);
+    }
+
+    const link = p.url || store;
+    if(link){
+      const a = document.createElement('a');
+      a.className = 'mbtn';
+      a.href = link;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.textContent = 'View';
+      bodyEl.appendChild(a);
+    }
+
+    card.appendChild(thumb);
+    card.appendChild(bodyEl);
+    grid.appendChild(card);
+  });
+
+  if(shopAll){
+    if(store){
+      shopAll.href = store;
+      shopAll.target = '_blank';
+      shopAll.rel = 'noopener noreferrer';
+    } else {
+      shopAll.remove();
+    }
+  }
+
+  section.hidden = false;
+  if(footLink) footLink.hidden = false;
+  // The section was hidden when the reveal observer first ran, so hook it up now.
+  section.querySelectorAll('.rv').forEach(el => obs.observe(el));
+})();
 
 async function submitForm(){
   const first = document.getElementById('f1').value.trim();

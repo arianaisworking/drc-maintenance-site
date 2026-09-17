@@ -40,8 +40,30 @@ nav{
   transition:background .2s,transform .15s;
 }
 .nav-cta:hover{background:var(--gd);transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.hamburger span{width:24px;height:2px;background:var(--n);border-radius:2px}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px 4px}
+.hamburger span{width:24px;height:2px;background:var(--n);border-radius:2px;transition:transform .22s,opacity .18s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* MOBILE MENU */
+.mobile-menu{
+  position:fixed;top:72px;left:0;right:0;z-index:190;
+  background:var(--cream);border-bottom:1px solid var(--border);
+  box-shadow:0 14px 28px rgba(14,34,64,.12);
+  display:none;flex-direction:column;padding:6px 20px 16px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  padding:15px 2px;font-size:13px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--n);text-decoration:none;
+  border-bottom:1px solid var(--border);
+}
+.mobile-menu a:active{color:var(--g)}
+.mobile-menu .mm-cta{
+  margin-top:12px;background:var(--g);color:var(--cream);
+  text-align:center;border-radius:6px;padding:15px;border-bottom:none;font-weight:700;
+}
 
 /* HERO */
 .hero{
@@ -84,6 +106,7 @@ h2.st{font-family:'Oswald',system-ui,sans-serif;font-size:clamp(34px,5.5vw,52px)
 .pay .paysub{font-size:15px;color:rgba(242,236,220,.72);line-height:1.7;max-width:560px;margin:0 auto 36px}
 .pay-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:760px;margin:0 auto}
 .pay-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:26px 18px;border:1.5px solid rgba(242,236,220,.25);border-radius:8px}
+.pay-item .pt{display:flex;flex-direction:column;gap:6px}
 .pay-item .pi{font-size:28px}
 .pay-item .pname{font-family:'Oswald',system-ui,sans-serif;font-size:19px;font-weight:700;color:var(--cream);letter-spacing:.04em;text-transform:uppercase}
 .pay-item .pnote{font-size:12px;color:rgba(242,236,220,.66);line-height:1.55}
@@ -171,10 +194,11 @@ textarea.fi{min-height:108px;resize:vertical}
 .area-box{border:1.5px solid var(--border);border-radius:8px;padding:20px 18px;background:var(--off)}
 .ac-wrap{position:relative}
 .ac-list{
-  position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:60;
+  position:absolute;top:0;left:0;right:0;z-index:60;
   background:var(--w);border:1.5px solid var(--g);border-radius:6px;
-  max-height:260px;overflow-y:auto;box-shadow:0 10px 26px rgba(14,34,64,.12);
-  display:none;
+  max-height:260px;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  box-shadow:0 10px 26px rgba(14,34,64,.12);
+  display:none;overscroll-behavior:contain;
 }
 .ac-list.open{display:block}
 .ac-item{padding:11px 14px;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid var(--border)}
@@ -196,9 +220,17 @@ textarea.fi{min-height:108px;resize:vertical}
 
 .near-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:16px 0 10px}
 .near-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--n)}
-.linkbtn{background:none;border:none;font-family:inherit;font-size:12px;font-weight:700;color:var(--g);cursor:pointer;text-decoration:underline;padding:0;letter-spacing:.02em}
+.linkbtn{
+  background:none;border:none;font-family:inherit;font-size:12px;font-weight:700;
+  color:var(--g);cursor:pointer;text-decoration:underline;letter-spacing:.02em;
+  padding:8px 6px;margin:-8px -2px;
+}
 .linkbtn:hover{color:var(--gd)}
-.near-grid{display:flex;flex-wrap:wrap;gap:7px;max-height:210px;overflow-y:auto;padding:2px}
+.near-grid{
+  display:flex;flex-wrap:wrap;gap:7px;max-height:210px;overflow-y:auto;
+  overscroll-behavior:contain;
+  padding:9px;border:1px solid var(--border);border-radius:6px;background:var(--w);
+}
 .ncity{
   border:1.5px solid var(--border);background:var(--w);border-radius:999px;
   padding:7px 13px;font-family:inherit;font-size:12.5px;color:var(--text);
@@ -208,7 +240,11 @@ textarea.fi{min-height:108px;resize:vertical}
 .ncity.on{background:var(--g);border-color:var(--g);color:var(--cream)}
 .ncity .nd{font-size:10.5px;opacity:.65}
 
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;min-height:4px}
+.chips{
+  display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;min-height:4px;
+  max-height:250px;overflow-y:auto;overscroll-behavior:contain;
+  padding:9px;border:1px solid var(--border);border-radius:6px;background:var(--w);
+}
 .chip{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--n);color:var(--cream);border-radius:999px;
@@ -217,8 +253,8 @@ textarea.fi{min-height:108px;resize:vertical}
 .chip.county{background:var(--w);color:var(--n);border:1.5px solid var(--g)}
 .chip .x{
   background:rgba(242,236,220,.18);border:none;color:inherit;
-  width:18px;height:18px;border-radius:50%;cursor:pointer;
-  font-size:13px;line-height:1;display:flex;align-items:center;justify-content:center;
+  width:24px;height:24px;border-radius:50%;cursor:pointer;
+  font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;
   font-family:inherit;padding:0;flex-shrink:0;
 }
 .chip.county .x{background:rgba(46,107,62,.14)}
@@ -273,10 +309,11 @@ footer{background:var(--n);padding:56px 48px 28px}
 .fb p{font-size:13px;color:rgba(242,236,220,.4);line-height:1.7;max-width:260px;margin-top:14px}
 .fc h5{font-family:'Oswald',system-ui,sans-serif;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,236,220,.3);margin-bottom:14px}
 .fc ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fc a{display:inline-block;padding:3px 0}
 .fc a{font-size:13px;color:rgba(242,236,220,.5);text-decoration:none;transition:color .2s}
 .fc a:hover{color:var(--gl)}
 .fbot{border-top:1px solid rgba(242,236,220,.08);padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:11px;color:rgba(242,236,220,.3);letter-spacing:.04em}
-.fbot a{color:rgba(242,236,220,.3);text-decoration:none}
+.fbot a{color:rgba(242,236,220,.3);text-decoration:none;display:inline-block;padding:5px 2px}
 .fbot a:hover{color:var(--gl)}
 
 /* REVEAL */
@@ -299,16 +336,91 @@ footer{background:var(--n);padding:56px 48px 28px}
   .contact-grid{grid-template-columns:.8fr 1.2fr}
   .coi-box ul{display:grid;grid-template-columns:1fr 1fr;gap:14px 34px}
 }
+
+/* ---- PHONES ----
+   Everything below fights one problem: a single-column stack on a 390px
+   screen turns this page into an endless scroll. Short items go two-up and
+   padding tightens, which roughly halves the page height while keeping tap
+   targets around 44px. */
 @media(max-width:639px){
   nav{padding:0 20px;height:72px}
   .logo img{height:48px}
-  footer{padding:48px 20px 24px}
-  .hero,.sec,.pay,.coverage,.reqs,.steps,.contact{padding-left:20px;padding-right:20px}
-  .hero{margin-top:72px;padding-top:60px;padding-bottom:50px}
   .navlinks,.nav-cta{display:none}
   .hamburger{display:flex}
-  .cform{padding:26px 20px}
-  .area-box{padding:16px 14px}
+  footer{padding:44px 20px 24px}
+  .fg{gap:28px;margin-bottom:32px}
+
+  .hero,.sec,.pay,.coverage,.reqs,.steps,.contact{padding-left:20px;padding-right:20px}
+  .sec,.pay,.coverage,.reqs,.steps,.contact{padding-top:54px;padding-bottom:54px}
+  .hero{margin-top:72px;padding-top:50px;padding-bottom:44px}
+  .hero p{font-size:15px;margin-top:18px}
+  .hero .btn{margin-top:26px}
+  h2.st{margin-bottom:14px}
+  .sd{font-size:15px;line-height:1.7}
+  .btn{padding:15px 26px}
+
+  /* why: 6 stacked cards become 3 rows of 2 */
+  .caps-grid{grid-template-columns:1fr 1fr;margin-top:30px}
+  .cap{padding:18px 14px}
+  .cap-i{width:34px;height:34px;font-size:16px;margin-bottom:10px}
+  .cap h3{font-size:12.5px;line-height:1.3;margin-bottom:6px}
+  .cap p{font-size:11.5px;line-height:1.55}
+
+  /* pay: cards lie down instead of stacking tall */
+  .pay h2{margin-bottom:10px}
+  .pay .paysub{font-size:14px;margin-bottom:24px}
+  .pay-grid{gap:10px}
+  .pay-item{flex-direction:row;align-items:center;text-align:left;gap:14px;padding:16px}
+  .pay-item .pi{font-size:24px;flex-shrink:0}
+  .pay-item .pname{font-size:16px}
+  .pay-item .pnote{font-size:11.5px}
+
+  .coverage p{font-size:15px;line-height:1.7}
+
+  .req-list{gap:10px;margin-top:28px}
+  .req-list li{padding:14px 15px;font-size:12.5px;gap:10px;line-height:1.55}
+  .req-list li::before{width:21px;height:21px;font-size:11px}
+  .coi-box{padding:22px 18px;margin-top:22px}
+  .coi-box h3{font-size:15px;margin-bottom:12px}
+  .coi-box ul{gap:9px}
+  .coi-box li{font-size:12.5px;line-height:1.55}
+  .coi-box .coi-note{font-size:11.5px;margin-top:14px;padding-top:12px}
+
+  .step-grid{gap:12px;margin-top:30px}
+  .step{padding:20px 18px}
+  .step h3{font-size:16px}
+  .step p{font-size:12.5px}
+
+  .contact-grid{gap:32px}
+  .cform{padding:22px 16px}
+  .c-meta{gap:12px;margin-top:24px}
+  .c-ic{width:36px;height:36px;font-size:15px}
+  .fsecl{margin:20px 0 12px;padding-top:16px}
+
+  /* 16 trades in one column was 16 rows of scrolling */
+  .chk-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .chk{padding:10px 9px;font-size:11.5px;gap:7px;align-items:flex-start;line-height:1.35}
+  .chk input{width:16px;height:16px;margin-top:1px}
+
+  /* name pairs are short enough to sit side by side */
+  .frow.tight{grid-template-columns:1fr 1fr;gap:10px}
+
+  .area-box{padding:14px 12px}
+  .near-grid{max-height:190px}
+  .chips{max-height:168px}
+  .ncity{padding:8px 12px;font-size:12px}
+  .chip{font-size:12px;padding:6px 6px 6px 13px}
+  .rad{padding:8px 14px}
+  .fc ul{gap:6px}
+  .fc a{padding:7px 0}
+  .fbot{gap:10px;line-height:1.7}
+  .chips,.near-grid{padding:8px}
+}
+
+/* very narrow phones: two-up gets cramped, so fall back to one column */
+@media(max-width:359px){
+  .chk-grid{grid-template-columns:1fr}
+  .caps-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -325,8 +437,14 @@ footer{background:var(--n);padding:56px 48px 28px}
     <li><a href="about.html">About</a></li>
     <li><a href="#apply" class="nav-cta">Apply Now</a></li>
   </ul>
-  <button class="hamburger"><span></span><span></span><span></span></button>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#services">Services</a>
+  <a href="index.html#industries">Industries</a>
+  <a href="about.html">About</a>
+  <a href="#apply" class="mm-cta">Apply Now</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -357,9 +475,9 @@ footer{background:var(--n);padding:56px 48px 28px}
   <h2 class="rv">Three Ways.<br>Your Choice.</h2>
   <p class="paysub rv">Tell us how you want to be paid during onboarding and that's how every invoice goes out. No lockbox, no waiting on a paper check in the mail.</p>
   <div class="pay-grid">
-    <div class="pay-item rv"><div class="pi">📲</div><div class="pname">Zelle</div><div class="pnote">Straight to your business bank account</div></div>
-    <div class="pay-item rv"><div class="pi">💸</div><div class="pname">Cash App</div><div class="pnote">Fast turnaround for smaller invoices</div></div>
-    <div class="pay-item rv"><div class="pi">🏦</div><div class="pname">Wire Transfer</div><div class="pnote">Best for larger jobs and rehab draws</div></div>
+    <div class="pay-item rv"><div class="pi">📲</div><div class="pt"><div class="pname">Zelle</div><div class="pnote">Straight to your business bank account</div></div></div>
+    <div class="pay-item rv"><div class="pi">💸</div><div class="pt"><div class="pname">Cash App</div><div class="pnote">Fast turnaround for smaller invoices</div></div></div>
+    <div class="pay-item rv"><div class="pi">🏦</div><div class="pt"><div class="pname">Wire Transfer</div><div class="pnote">Best for larger jobs and rehab draws</div></div></div>
   </div>
 </section>
 
@@ -713,6 +831,28 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 setTimeout(()=>document.querySelectorAll('.hero .rv').forEach(el=>el.classList.add('in')),150);
 
 const $ = id => document.getElementById(id);
+
+/* ---------- mobile menu ---------- */
+(function(){
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  if(!btn || !menu) return;
+  const setOpen = on => {
+    menu.classList.toggle('open', on);
+    btn.classList.toggle('open', on);
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+  };
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    setOpen(!menu.classList.contains('open'));
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('click', e => {
+    if(menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') setOpen(false); });
+  window.addEventListener('resize', () => { if(window.innerWidth >= 640) setOpen(false); });
+})();
 const val = id => ($(id).value || '').trim();
 
 /* ---------- trades ---------- */
@@ -927,6 +1067,24 @@ function buildAutocomplete(inputId, listId, getPool, onPick){
 
   const close = () => { list.classList.remove('open'); idx = -1; };
 
+  // Size and place the dropdown against the live viewport. On a phone the
+  // field often sits low enough that a fixed 260px panel runs off-screen, so
+  // flip above the input when there is more room up there.
+  const place = () => {
+    if(!list.classList.contains('open')) return;
+    const ir = input.getBoundingClientRect();
+    const wrap = list.offsetParent || list.parentElement;
+    const wr = wrap.getBoundingClientRect();
+    const GAP = 4, PAD = 10;
+    const below = window.innerHeight - ir.bottom - PAD;
+    const above = ir.top - PAD;
+    const flip = below < 190 && above > below;
+    const avail = Math.max(120, Math.min(280, flip ? above : below));
+    list.style.maxHeight = avail + 'px';
+    const h = Math.min(list.scrollHeight, avail);
+    list.style.top = (flip ? ir.top - wr.top - h - GAP : ir.bottom - wr.top + GAP) + 'px';
+  };
+
   const render = () => {
     const q = input.value.trim().toLowerCase();
     if(q.length < 2 || !CITIES){ close(); return; }
@@ -940,6 +1098,7 @@ function buildAutocomplete(inputId, listId, getPool, onPick){
     if(!items.length){
       list.innerHTML = '<div class="ac-empty">No match. Check the spelling, or use the description box below.</div>';
       list.classList.add('open');
+      place();
       return;
     }
     items.forEach((c, i) => {
@@ -957,6 +1116,7 @@ function buildAutocomplete(inputId, listId, getPool, onPick){
       list.appendChild(d);
     });
     list.classList.add('open');
+    place();
   };
 
   const pick = i => {
@@ -968,6 +1128,8 @@ function buildAutocomplete(inputId, listId, getPool, onPick){
 
   input.addEventListener('input', render);
   input.addEventListener('focus', render);
+  window.addEventListener('resize', place);
+  window.addEventListener('scroll', place, {passive:true});
   input.addEventListener('blur', () => setTimeout(close, 120));
   input.addEventListener('keydown', e => {
     if(!list.classList.contains('open')) return;

@@ -6,6 +6,8 @@
 - `privacy.html` — privacy policy
 - `terms.html` — terms of service
 - `vendors.html` — **unlisted** vendor signup page (link-only, not in the nav)
+- `cities.json` — US city/county lookup that powers the service-area picker on
+  that page (loaded only when a vendor scrolls to the form)
 - `functions/api/contact.js` — Cloudflare Pages Function that sends quote-request
   form submissions to your inbox via Resend
 - `functions/api/vendor.js` — same thing for the vendor application form
@@ -108,12 +110,39 @@ forward it, and the page has no password. That's usually the right trade-off for
 a vendor application, but if you ever want it locked down, Cloudflare Access can
 put a one-time email code in front of the page.
 
-Submissions go to the same `TO_EMAIL` inbox via the same Resend key — no extra
-setup needed beyond Step 5. The subject line is
-`New Vendor Application — [Business Name] (trades)`, so it's easy to filter into
-its own folder. The form has a hidden honeypot field to absorb bot spam, and it
-asks vendors **not** to send EIN, SSN, or banking details — collect those during
-onboarding through a secure channel, not email.
+Submissions go to the same `TO_EMAIL` inbox via the same Resend key, so there's
+no extra setup beyond Step 5. The subject line is
+`New Vendor Application: [Business Name] (trades) - [City, ST]`, which makes it
+easy to filter into its own folder. The form has a hidden honeypot field to
+absorb bot spam, and it asks vendors **not** to send EIN, SSN, or banking
+details. Collect those during onboarding through a secure channel, not email.
+
+### How the service-area picker works
+
+Vendors pick their state, type their home city, and then tap the surrounding
+cities they cover **with no trip charge**. A radius control (15/25/50/75 miles)
+lists nearby cities sorted by distance, and "Add all" takes the whole radius in
+one click. Nearby results cross state lines, so a vendor in Texarkana or
+Kansas City gets both sides of the border.
+
+Counties fill in automatically from whichever cities they pick, and they can add
+more by hand. If a vendor checks **Property Preservation / REO**, counties become
+required, since preservation work orders are assigned by county. The email flags
+those vendors at the top so you can see it at a glance.
+
+`cities.json` holds about 29,700 US cities with their counties and coordinates.
+It is roughly 320 KB over the wire, loads only when someone scrolls to the form,
+and is cached by Cloudflare after the first request. If it ever fails to load,
+the form falls back to a plain text box where the vendor describes their area in
+their own words, so nobody gets stuck.
+
+### Insurance limits are stated on the page
+
+The page publishes the COI limits vendors have to meet ($1M per occurrence /
+$2M aggregate general liability, $1M combined single limit auto, workers' comp at
+statutory limits, DRC named as certificate holder and additional insured). If
+your actual requirements differ, edit the `coi-box` section of `vendors.html`
+and the matching dropdown options in the Insurance & Compliance part of the form.
 
 ---
 

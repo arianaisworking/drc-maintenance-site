@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="img/drc-logo.png">
 <link rel="preload" as="image" href="img/clean-after-kitchen.jpg">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -23,15 +23,15 @@
   --shadow:0 10px 30px rgba(60,45,25,.08);
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);overflow-x:hidden;line-height:1.55}
+body{font-family:'Figtree',system-ui,sans-serif;color:var(--ink);background:var(--bg);overflow-x:hidden;line-height:1.55}
 img{max-width:100%;display:block}
-h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.01em;line-height:1.1;color:var(--ink)}
+h1,h2,h3{font-family:'Figtree',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--ink)}
 h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:12px}
 .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
 section{padding:84px 0}
 .kicker{display:inline-block;font-size:13px;font-weight:600;color:var(--sage-d);background:var(--sage-l);padding:6px 14px;border-radius:99px;margin-bottom:14px}
 .lede{font-size:17px;color:var(--muted);max-width:600px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:99px;font:600 15px/1 'Inter',sans-serif;text-decoration:none;cursor:pointer;border:none;transition:background .2s,transform .15s,box-shadow .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:99px;font:600 15px/1 'Figtree',sans-serif;text-decoration:none;cursor:pointer;border:none;transition:background .2s,transform .15s,box-shadow .2s}
 .btn-main{background:var(--sage-d);color:#fff;box-shadow:0 6px 18px rgba(46,107,62,.25)}
 .btn-main:hover{background:#255a33;transform:translateY(-1px)}
 .btn-soft{background:var(--paper);color:var(--ink);border:1.5px solid var(--line)}
@@ -44,7 +44,7 @@ nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-betw
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .logo img{height:52px;width:auto}
 .logo{gap:14px}
-.logo span{background:var(--sage-d);color:#fff;font:800 15px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:10px 16px;border-radius:10px;box-shadow:0 4px 12px rgba(46,107,62,.25)}
+.logo span{font:700 24px/1 'Figtree',sans-serif;color:var(--sage-d);letter-spacing:-.01em;padding-left:14px;border-left:2px solid var(--line)}
 .navlinks{display:flex;align-items:center;gap:26px;list-style:none}
 .navlinks a{font-size:15px;font-weight:500;color:var(--ink);text-decoration:none}
 .navlinks a:hover{color:var(--sage-d)}
@@ -54,13 +54,13 @@ nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-betw
 .hero{padding:56px 0 72px}
 .hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
 .hero h1{font-size:clamp(38px,5.4vw,60px);margin-bottom:16px}
-.hero h1 em{font-style:italic;color:var(--sage-d)}
+.hero h1 em{font-style:normal;color:var(--sage-d)}
 .hero .lede{margin-bottom:26px}
 .ask{background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow);padding:24px;border:1px solid var(--line)}
 .ask h2{font-size:22px;margin-bottom:4px}
 .ask p{font-size:14px;color:var(--muted);margin-bottom:16px}
 .picks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pick{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px 13px;cursor:pointer;font:600 14px/1.25 'Inter',sans-serif;color:var(--ink);transition:border-color .15s,background .15s,transform .15s}
+.pick{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px 13px;cursor:pointer;font:600 14px/1.25 'Figtree',sans-serif;color:var(--ink);transition:border-color .15s,background .15s,transform .15s}
 .pick:hover{border-color:var(--sage);background:var(--sage-l);transform:translateY(-2px)}
 .pick .ic{font-size:22px;line-height:1}
 .pick small{font-weight:400;color:var(--muted);font-size:12px}
@@ -94,7 +94,7 @@ nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-betw
 .how img{border-radius:28px;width:100%;aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow)}
 .steps{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:20px}
 .steps li{display:flex;gap:16px}
-.steps .n{width:40px;height:40px;border-radius:50%;background:var(--clay-l);color:var(--clay);font-family:'Fraunces',serif;font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.steps .n{width:40px;height:40px;border-radius:50%;background:var(--clay-l);color:var(--clay);font-family:'Figtree',sans-serif;font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .steps b{display:block;font-size:17px;margin-bottom:2px}
 .steps span{color:var(--muted);font-size:15px}
 
@@ -150,7 +150,7 @@ legend,.lbl{display:block;font-size:15px;font-weight:600;margin-bottom:10px}
 .row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
 .row.two{grid-template-columns:1fr 1fr}
 .field label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;font:16px 'Inter',sans-serif;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.field input,.field select,.field textarea{width:100%;font:16px 'Figtree',sans-serif;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
 .field textarea{min-height:84px;resize:vertical}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--sage);background:#fff}
 .field.bad input{border-color:var(--err)}
@@ -174,7 +174,7 @@ legend,.lbl{display:block;font-size:15px;font-weight:600;margin-bottom:10px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .est{position:sticky;top:96px;background:var(--paper);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
 .est .k{font-size:13px;font-weight:600;color:var(--sage-d)}
-.est .big{font-family:'Fraunces',serif;font-size:38px;font-weight:700;margin:6px 0 2px;line-height:1.1}
+.est .big{font-family:'Figtree',sans-serif;font-size:38px;font-weight:700;margin:6px 0 2px;line-height:1.1}
 .est .sub{font-size:13.5px;color:var(--muted);margin-bottom:14px}
 .est ul{list-style:none;border-top:1px solid var(--line);padding-top:12px;font-size:13.5px}
 .est li{display:flex;justify-content:space-between;gap:10px;padding:4px 0;color:var(--muted)}
@@ -234,7 +234,7 @@ footer a:hover{color:#fff}
   .badge .dot{width:34px;height:34px;font-size:16px}
   nav .wrap{height:64px}
   .logo img{height:42px}
-  .logo span{font-size:12.5px;padding:8px 11px;letter-spacing:.12em}
+  .logo span{font-size:19px;padding-left:10px}
   .navlinks li:not(:last-child){display:none}
   .navlinks .btn{padding:10px 16px;font-size:13px}
   .picks{grid-template-columns:repeat(2,1fr)}

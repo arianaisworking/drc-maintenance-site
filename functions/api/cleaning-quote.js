@@ -42,7 +42,7 @@ export async function onRequestPost({ request, env }) {
     surfaces: all('surfaces'), surfaceNotes: g('surface_notes'),
     style: g('style'), focus: g('focus'), sensitivities: g('sensitivities'),
     access: g('access'), parking: g('parking'),
-    date: g('date'), time: g('time'), heard: g('heard'), notes: g('notes'),
+    date: g('date'), time: g('time'), callTime: g('calltime'), heard: g('heard'), notes: g('notes'),
     payment: g('payment'),
   };
 
@@ -73,7 +73,8 @@ export async function onRequestPost({ request, env }) {
     ? est.addonLines.map(a => `${esc(a.label)}${a.qty > 1 ? ' x' + a.qty : ''} (${money(a.amount)})`).join('<br>') : '';
 
   const officeHtml = `
-    <h2 style="font-family:Arial,sans-serif;color:#0E2240">New cleaning quote request</h2>
+    <h2 style="font-family:Arial,sans-serif;color:#0E2240">New cleaning lead: call them</h2>
+    <p style="font-family:Arial,sans-serif;font-size:18px"><strong>Call ${esc(lead.name)} at <a href="tel:${esc(lead.phone)}">${esc(lead.phone)}</a></strong>${lead.callTime ? ' (best time: ' + esc(lead.callTime) + ')' : ''}</p>
     <p style="font-family:Arial,sans-serif;font-size:16px"><strong>Estimate shown to client:</strong> ${esc(estLine)}</p>
     <table style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">
       ${row('Name', esc(lead.name))}
@@ -95,12 +96,13 @@ export async function onRequestPost({ request, env }) {
       ${row('Access', esc(lead.access))}
       ${row('Parking', esc(lead.parking))}
       ${row('Preferred date', esc([lead.date, lead.time].filter(Boolean).join(' · ')))}
+      ${row('Best time to call', esc(lead.callTime))}
       ${row('Pays by', esc(lead.payment))}
       ${row('Heard about us', esc(lead.heard))}
       ${row('Notes', esc(lead.notes).replace(/\n/g, '<br>'))}
       ${row('Photos', attachments.length ? attachments.length + ' attached' : 'None')}
     </table>
-    <p style="font-family:Arial,sans-serif;font-size:13px;color:#637085">Next: review photos, confirm the price, send the Square link or Zelle details, then dispatch once paid.</p>`;
+    <p style="font-family:Arial,sans-serif;font-size:13px;color:#637085">Next: call the client, confirm the price and date, send the Square link or Zelle details, then dispatch once paid.</p>`;
 
   const send = body => fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -123,8 +125,8 @@ export async function onRequestPost({ request, env }) {
 
   // Client confirmation. A failure here doesn't fail the request.
   const clientEst = est.ok && !est.quoteOnly
-    ? `<p>Your estimate: <strong>${money(est.low)} – ${money(est.high)}</strong>. We'll confirm the exact price after we look over your details and photos.</p>`
-    : `<p>We'll look over your details and photos and send you a price.</p>`;
+    ? `<p>Your estimate: <strong>${money(est.low)} – ${money(est.high)}</strong>.</p>`
+    : '';
   try {
     await send({
       from: env.FROM_EMAIL,
@@ -134,7 +136,7 @@ export async function onRequestPost({ request, env }) {
         <p>Hi ${esc(lead.name.split(' ')[0])},</p>
         <p>Thanks for reaching out to DRC Cleaning. We received your request for a ${esc(lbl('services', lead.service).toLowerCase())}.</p>
         ${clientEst}
-        <p>Once you approve the price, we'll send a secure Square payment link or Zelle details. Your date is locked in as soon as payment is received.</p>
+        <p>Someone from our team will call you at ${esc(lead.phone)} shortly to confirm your price, answer any questions and pick a date. Once you approve the price, we'll send a secure card link or Zelle details, and your date is locked in when payment comes through.</p>
         <p>Talk soon,<br>DRC Cleaning<br>Dedicated Resource Center LLC</p></div>`,
     });
   } catch {}

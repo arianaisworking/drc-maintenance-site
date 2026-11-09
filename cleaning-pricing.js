@@ -15,6 +15,7 @@
 export const PRICING = {
   CLIENT_RATE: 55,        // $ per cleaner-hour charged to the client
   MINIMUM: 150,           // smallest job we book
+  CARPET_MINIMUM: 120,    // smallest carpet-only job
   RANGE_LOW: 0.9,         // range shown = middle x 0.9 ...
   RANGE_HIGH: 1.15,       // ... up to middle x 1.15
 
@@ -32,6 +33,8 @@ export const PRICING = {
     move:     { label: 'Move-in / move-out', factor: 1.7 },
     rental:   { label: 'Airbnb / vacation rental turnover', factor: 0.9 },
     student:  { label: 'Student housing turnover', factor: 1.1 },
+    // Carpet only: priced from the carpet add-ons (rooms, stairs, rugs), not hours.
+    carpet:   { label: 'Carpet cleaning', carpetOnly: true },
     hoarder:  { label: 'Hoarder, debris or biohazard cleanout', quoteOnly: true },
     commercial: { label: 'Office, dental, restaurant or other business', quoteOnly: true },
   },
@@ -58,6 +61,9 @@ export const PRICING = {
   },
 
   addons: {
+    carpetRoom:  { label: 'Carpet cleaning (per room)', add: 45 },
+    carpetStairs:{ label: 'Carpeted stairs (per flight)', add: 40 },
+    rug:         { label: 'Area rug (each)', add: 35 },
     fridge:    { label: 'Inside fridge', add: 35 },
     oven:      { label: 'Inside oven', add: 35 },
     cabinets:  { label: 'Inside cabinets and drawers', add: 45 },
@@ -87,6 +93,20 @@ export function estimate(answers = {}, P = PRICING) {
   const svc = P.services[answers.service];
   if (!svc) return { ok: false, reason: 'Pick a service' };
   if (svc.quoteOnly) return { ok: true, quoteOnly: true, service: svc.label };
+
+  if (svc.carpetOnly) {
+    let total = 0; const addonLines = [];
+    for (const [key, qty] of Object.entries(answers.addons || {})) {
+      const a = P.addons[key]; const q = Math.min(num(qty), 20);
+      if (!a || !q) continue;
+      total += a.add * q; addonLines.push({ label: a.label, qty: q, amount: a.add * q });
+    }
+    if (!total) return { ok: false, reason: 'Add your carpet rooms' };
+    const freq = P.frequency[answers.frequency] || P.frequency.once;
+    const middle = Math.max(P.CARPET_MINIMUM, total - freq.off);
+    return { ok: true, quoteOnly: false, carpetOnly: true, service: svc.label, laborHours: 0, labor: 0, addons: total, addonLines,
+      products: 0, discount: freq.off, low: Math.max(P.CARPET_MINIMUM, roundTo5(middle * P.RANGE_LOW)), high: roundTo5(middle * P.RANGE_HIGH), middle: roundTo5(middle) };
+  }
 
   const sqft = Math.min(num(answers.sqft), 20000);
   const beds = Math.min(num(answers.bedrooms), 20);

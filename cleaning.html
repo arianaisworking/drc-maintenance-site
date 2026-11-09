@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRC Cleaning | Home, Move-Out &amp; Rental Cleaning in Dallas, Denver &amp; Nashville</title>
-<meta name="description" content="Friendly, background-checked, insured cleaners in Dallas, Denver and Nashville. Standard, deep, move-out, Airbnb and student housing cleans. Choose organic or microplastic-free products. Get your price in two minutes and we'll call you.">
+<title>DRC Cleaning | Home, Move-Out &amp; Rental Cleaning in Dallas, Denver, Nashville &amp; Phoenix</title>
+<meta name="description" content="Friendly, background-checked, insured cleaners in Dallas, Denver, Nashville and Phoenix. Standard, deep, move-out, Airbnb, student housing and carpet cleaning. Choose organic or microplastic-free products. Get your price in two minutes and we'll call you.">
 <meta property="og:title" content="DRC Cleaning | Get your price in two minutes">
 <meta property="og:description" content="Background-checked, insured cleaners. Tell us about your home and we'll call you to book.">
 <meta property="og:image" content="img/clean-after-kitchen.jpg">
@@ -272,7 +272,7 @@ footer a:hover{color:#fff}
 <header class="hero">
   <div class="wrap">
     <div>
-      <span class="kicker">Now booking in Dallas, Denver &amp; Nashville</span>
+      <span class="kicker">Now booking in Dallas, Denver, Nashville &amp; Phoenix</span>
       <h1>A clean home, <em>without the stress.</em></h1>
       <p class="lede">Friendly, background-checked cleaners who use the products you choose. Answer a few quick questions, see your price, and we'll call you to book.</p>
       <div class="ask" id="ask">
@@ -283,7 +283,7 @@ footer a:hover{color:#fff}
           <button class="pick" data-svc="deep"><span class="ic">✨</span>Deep clean<small>Top to bottom</small></button>
           <button class="pick" data-svc="move"><span class="ic">📦</span>Moving in or out<small>Empty home</small></button>
           <button class="pick" data-svc="rental"><span class="ic">🛏️</span>Airbnb turnover<small>Between guests</small></button>
-          <button class="pick" data-svc="student"><span class="ic">🎓</span>Student housing<small>Per unit</small></button>
+          <button class="pick" data-svc="carpet"><span class="ic">🧼</span>Carpet cleaning<small>Per room</small></button>
           <button class="pick" data-svc="hoarder"><span class="ic">🧹</span>Something bigger<small>Cleanouts, businesses</small></button>
         </div>
       </div>
@@ -344,6 +344,7 @@ footer a:hover{color:#fff}
       <div class="card"><div class="ic">📦</div><h3>Move-in / move-out</h3><p>Empty-home cleans to get your deposit back or start fresh.</p><a href="#quote" data-svc="move">Get a price →</a></div>
       <div class="card"><div class="ic">🛏️</div><h3>Airbnb turnover</h3><p>Fast turns between guests, with photos so you know it's guest-ready.</p><a href="#quote" data-svc="rental">Get a price →</a></div>
       <div class="card"><div class="ic">🎓</div><h3>Student housing</h3><p>Move-out and turnover cleans per unit or per bed for leasing offices.</p><a href="#quote" data-svc="student">Get a price →</a></div>
+      <div class="card"><div class="ic">🧼</div><h3>Carpet cleaning</h3><p>Deep steam cleaning for carpets, rugs and stairs. Add it to any clean or book it on its own.</p><a href="#quote" data-svc="carpet">Get a price →</a></div>
       <div class="card"><div class="ic">🏢</div><h3>Bigger jobs</h3><p>Hoarder and debris cleanouts, offices, dental, restaurants and more. Quoted from photos.</p><a href="#quote" data-svc="commercial">Get a quote →</a></div>
     </div>
   </div>
@@ -396,7 +397,7 @@ footer a:hover{color:#fff}
         </div>
         <div class="row two">
           <div class="field"><label for="m_email">Email *</label><input id="m_email" name="email" type="email" autocomplete="email"></div>
-          <div class="field"><label for="m_city">Area</label><select id="m_city" name="city"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Somewhere else</option></select></div>
+          <div class="field"><label for="m_city">Area</label><select id="m_city" name="city"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Somewhere else</option></select></div>
         </div>
         <div class="field" style="margin-bottom:16px"><label for="m_what">What needs attention? *</label><textarea id="m_what" name="what" placeholder="Example: kitchen faucet drips and the guest bathroom door won't latch."></textarea></div>
         <div class="field" style="margin-bottom:18px"><label for="m_when">How soon?</label><select id="m_when" name="when"><option>Whenever is convenient</option><option>This week</option><option>As soon as possible</option><option>Emergency (water, no heat, can't lock up)</option></select></div>
@@ -435,6 +436,7 @@ footer a:hover{color:#fff}
             <div class="field"><label for="bedrooms">Bedrooms</label><input id="bedrooms" name="bedrooms" type="number" inputmode="numeric" min="0" max="20" placeholder="3"></div>
             <div class="field"><label for="bathrooms">Bathrooms</label><input id="bathrooms" name="bathrooms" type="number" inputmode="decimal" min="0" max="20" step="0.5" placeholder="2"></div>
           </div>
+          <fieldset id="carpetBox"><legend id="carpetLegend">Want carpet cleaning too?</legend><div class="opt-grid" id="carpetOpts"></div></fieldset>
           <fieldset><legend>How does it look right now? No judgment, we've seen it all.</legend><div class="opt-grid" id="soilOpts"></div></fieldset>
           <fieldset><legend>Pets</legend><div class="opt-grid three" id="petOpts"></div></fieldset>
         </div>
@@ -474,7 +476,7 @@ footer a:hover{color:#fff}
           </div>
           <div class="row">
             <div class="field"><label for="address">Street address</label><input id="address" name="address" autocomplete="street-address"></div>
-            <div class="field"><label for="metro">Area *</label><select id="metro" name="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Somewhere else</option></select></div>
+            <div class="field"><label for="metro">Area *</label><select id="metro" name="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Somewhere else</option></select></div>
             <div class="field"><label for="city">City</label><input id="city" name="city" autocomplete="address-level2"></div>
             <div class="field"><label for="zip">ZIP</label><input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code"></div>
           </div>
@@ -531,7 +533,7 @@ footer a:hover{color:#fff}
       <details><summary>What's the difference between organic and no-microplastics?</summary><p>Organic and unscented means vinegar-based, fragrance-free products, which is great for allergies, kids and pets. No microplastics goes a step further: plastic-free tools and products, and no microfiber cloths, which shed tiny plastic fibers.</p></details>
       <details><summary>Are your cleaners background-checked and insured?</summary><p>Yes. Every cleaner passes a background check and carries their own liability and auto insurance before they're sent to a home.</p></details>
       <details><summary>What happens after I send my estimate?</summary><p>Someone from DRC calls you to confirm your price, answer questions and set a date. Once you approve, we send a secure card link or Zelle details, and your date is locked in when payment comes through.</p></details>
-      <details><summary>Where do you clean?</summary><p>We currently serve the Dallas, Denver and Nashville areas. Somewhere else? Send your estimate anyway and we'll let you know.</p></details>
+      <details><summary>Where do you clean?</summary><p>We currently serve the Dallas, Denver, Nashville and Phoenix areas. Somewhere else? Send your estimate anyway and we'll let you know.</p></details>
       <details><summary>Do I need to be home?</summary><p>No. Many clients give us a lockbox or door code. Either way, you get before and after photos of every room when we're done.</p></details>
       <details><summary>Do you offer recurring cleaning?</summary><p>Yes. Weekly, every two weeks and monthly clients get a lower price on every visit.</p></details>
       <details><summary>Can you fix things while you're there?</summary><p>Yes. We're part of DRC Maintenance, so we can also handle repairs, paint, junk removal and lawn care. Add it to your estimate or send a request in the repairs section, and we'll quote it from photos first.</p></details>
@@ -593,17 +595,22 @@ $('#styleOpts').innerHTML = [
 ].map(([l, n], i) => `<div class="opt"><input type="radio" name="style" id="st${i}" value="${l}"><label for="st${i}">${l}<small>${n}</small></label></div>`).join('');
 
 const addons = {};
-$('#addonOpts').innerHTML = Object.entries(P.addons).map(([k, a]) =>
+const CARPET = ['carpetRoom', 'carpetStairs', 'rug'];
+const addonHtml = ([k, a]) =>
   `<div class="addon" data-k="${k}"><div><div class="nm">${a.label}</div><div class="pr">+$${a.add}</div></div>
-   <div class="stepper"><button type="button" data-d="-1" aria-label="Less ${a.label}">−</button><output>0</output><button type="button" data-d="1" aria-label="More ${a.label}">+</button></div></div>`).join('');
-$('#addonOpts').addEventListener('click', e => {
+   <div class="stepper"><button type="button" data-d="-1" aria-label="Less ${a.label}">−</button><output>0</output><button type="button" data-d="1" aria-label="More ${a.label}">+</button></div></div>`;
+$('#addonOpts').innerHTML = Object.entries(P.addons).filter(([k]) => !CARPET.includes(k)).map(addonHtml).join('');
+$('#carpetOpts').innerHTML = Object.entries(P.addons).filter(([k]) => CARPET.includes(k)).map(addonHtml).join('');
+const onStep = e => {
   const b = e.target.closest('button[data-d]'); if (!b) return;
   const row = b.closest('.addon'); const k = row.dataset.k;
   addons[k] = Math.max(0, Math.min(10, (addons[k] || 0) + Number(b.dataset.d)));
   row.querySelector('output').textContent = addons[k];
   row.classList.toggle('on', addons[k] > 0);
   update();
-});
+};
+$('#addonOpts').addEventListener('click', onStep);
+$('#carpetOpts').addEventListener('click', onStep);
 $('#surfOpts').addEventListener('change', e => {
   const boxes = [...form.querySelectorAll('input[name=surfaces]')];
   if (e.target.value === 'None' && e.target.checked) boxes.forEach(b => { if (b !== e.target) b.checked = false; });
@@ -617,16 +624,22 @@ const answers = () => ({
 });
 function update() {
   const a = answers(); const r = estimate(a); const list = $('#estList');
+  const carpet = a.service === 'carpet';
+  if (r.ok && step > 0 && step < 4) $('#err').textContent = '';
+  document.querySelector('.panel[data-p="1"] .row').style.display = carpet ? 'none' : '';
+  document.querySelectorAll('.panel[data-p="1"] fieldset:not(#carpetBox)').forEach(f => f.style.display = carpet ? 'none' : '');
+  $('#carpetLegend').textContent = carpet ? 'How much carpet?' : 'Want carpet cleaning too?';
+  document.querySelector('.panel[data-p="1"] h3').textContent = carpet ? 'Tell us about your carpet' : 'Tell us about your home';
   if (!r.ok) {
     $('#estBig').textContent = '—';
-    $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : 'Add your square feet, bedrooms or bathrooms.';
+    $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : r.reason === 'Add your carpet rooms' ? 'Add how many rooms of carpet.' : 'Add your square feet, bedrooms or bathrooms.';
     list.innerHTML = ''; return r;
   }
   if (r.quoteOnly) { $('#estBig').textContent = 'Custom quote'; $('#estSub').textContent = "Add photos at the end and we'll call you with a price."; list.innerHTML = `<li><span>Service</span><span>${r.service}</span></li>`; return r; }
   $('#estBig').textContent = `${money(r.low)} – ${money(r.high)}`;
   $('#estSub').textContent = a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one-time clean';
   const li = (k, v) => `<li><span>${k}</span><span>${v}</span></li>`;
-  list.innerHTML = li('Service', r.service) + li('Time', `about ${r.laborHours} cleaner-hours`)
+  list.innerHTML = li('Service', r.service) + (r.carpetOnly ? '' : li('Time', `about ${r.laborHours} cleaner-hours`))
     + r.addonLines.map(x => li(x.label + (x.qty > 1 ? ' ×' + x.qty : ''), '+' + money(x.amount))).join('')
     + (r.products ? li('Products', '+' + money(r.products)) : '')
     + (r.discount ? li('Recurring savings', '−' + money(r.discount)) : '');
@@ -682,7 +695,7 @@ function show(n, scroll = true) {
 function check(n) {
   document.querySelectorAll('.field.bad').forEach(f => f.classList.remove('bad'));
   if (n === 0 && !val('service')) return 'Pick the service you need.';
-  if (n === 1) { const r = estimate(answers()); if (!r.quoteOnly && !r.ok) { $('#sqft').parentElement.classList.add('bad'); return 'Add your square feet, bedrooms or bathrooms.'; } }
+  if (n === 1) { const r = estimate(answers()); if (!r.quoteOnly && !r.ok) { if (r.reason === 'Add your carpet rooms') return 'Add how many rooms of carpet.'; $('#sqft').parentElement.classList.add('bad'); return 'Add your square feet, bedrooms or bathrooms.'; } }
   if (n === 4) {
     for (const [id, what] of [['name', 'your name'], ['phone', 'a phone number'], ['email', 'your email'], ['metro', 'your area']]) {
       const el = $('#' + id);

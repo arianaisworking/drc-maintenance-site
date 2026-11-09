@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRC Cleaning | Home, Move-Out &amp; Rental Cleaning in DFW</title>
-<meta name="description" content="Friendly, background-checked, insured cleaners. Standard, deep, move-out, Airbnb and student housing cleans. Choose organic or microplastic-free products. Get your price in two minutes and we'll call you.">
+<title>DRC Cleaning | Home, Move-Out &amp; Rental Cleaning in Dallas, Denver &amp; Nashville</title>
+<meta name="description" content="Friendly, background-checked, insured cleaners in Dallas, Denver and Nashville. Standard, deep, move-out, Airbnb and student housing cleans. Choose organic or microplastic-free products. Get your price in two minutes and we'll call you.">
 <meta property="og:title" content="DRC Cleaning | Get your price in two minutes">
 <meta property="og:description" content="Background-checked, insured cleaners. Tell us about your home and we'll call you to book.">
 <meta property="og:image" content="img/clean-after-kitchen.jpg">
@@ -272,7 +272,7 @@ footer a:hover{color:#fff}
 <header class="hero">
   <div class="wrap">
     <div>
-      <span class="kicker">Now booking in Dallas–Fort Worth</span>
+      <span class="kicker">Now booking in Dallas, Denver &amp; Nashville</span>
       <h1>A clean home, <em>without the stress.</em></h1>
       <p class="lede">Friendly, background-checked cleaners who use the products you choose. Answer a few quick questions, see your price, and we'll call you to book.</p>
       <div class="ask" id="ask">
@@ -396,7 +396,7 @@ footer a:hover{color:#fff}
         </div>
         <div class="row two">
           <div class="field"><label for="m_email">Email *</label><input id="m_email" name="email" type="email" autocomplete="email"></div>
-          <div class="field"><label for="m_city">City or ZIP</label><input id="m_city" name="city"></div>
+          <div class="field"><label for="m_city">Area</label><select id="m_city" name="city"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Somewhere else</option></select></div>
         </div>
         <div class="field" style="margin-bottom:16px"><label for="m_what">What needs attention? *</label><textarea id="m_what" name="what" placeholder="Example: kitchen faucet drips and the guest bathroom door won't latch."></textarea></div>
         <div class="field" style="margin-bottom:18px"><label for="m_when">How soon?</label><select id="m_when" name="when"><option>Whenever is convenient</option><option>This week</option><option>As soon as possible</option><option>Emergency (water, no heat, can't lock up)</option></select></div>
@@ -474,6 +474,7 @@ footer a:hover{color:#fff}
           </div>
           <div class="row">
             <div class="field"><label for="address">Street address</label><input id="address" name="address" autocomplete="street-address"></div>
+            <div class="field"><label for="metro">Area *</label><select id="metro" name="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Somewhere else</option></select></div>
             <div class="field"><label for="city">City</label><input id="city" name="city" autocomplete="address-level2"></div>
             <div class="field"><label for="zip">ZIP</label><input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code"></div>
           </div>
@@ -530,6 +531,7 @@ footer a:hover{color:#fff}
       <details><summary>What's the difference between organic and no-microplastics?</summary><p>Organic and unscented means vinegar-based, fragrance-free products, which is great for allergies, kids and pets. No microplastics goes a step further: plastic-free tools and products, and no microfiber cloths, which shed tiny plastic fibers.</p></details>
       <details><summary>Are your cleaners background-checked and insured?</summary><p>Yes. Every cleaner passes a background check and carries their own liability and auto insurance before they're sent to a home.</p></details>
       <details><summary>What happens after I send my estimate?</summary><p>Someone from DRC calls you to confirm your price, answer questions and set a date. Once you approve, we send a secure card link or Zelle details, and your date is locked in when payment comes through.</p></details>
+      <details><summary>Where do you clean?</summary><p>We currently serve the Dallas, Denver and Nashville areas. Somewhere else? Send your estimate anyway and we'll let you know.</p></details>
       <details><summary>Do I need to be home?</summary><p>No. Many clients give us a lockbox or door code. Either way, you get before and after photos of every room when we're done.</p></details>
       <details><summary>Do you offer recurring cleaning?</summary><p>Yes. Weekly, every two weeks and monthly clients get a lower price on every visit.</p></details>
       <details><summary>Can you fix things while you're there?</summary><p>Yes. We're part of DRC Maintenance, so we can also handle repairs, paint, junk removal and lawn care. Add it to your estimate or send a request in the repairs section, and we'll quote it from photos first.</p></details>
@@ -682,7 +684,7 @@ function check(n) {
   if (n === 0 && !val('service')) return 'Pick the service you need.';
   if (n === 1) { const r = estimate(answers()); if (!r.quoteOnly && !r.ok) { $('#sqft').parentElement.classList.add('bad'); return 'Add your square feet, bedrooms or bathrooms.'; } }
   if (n === 4) {
-    for (const [id, what] of [['name', 'your name'], ['phone', 'a phone number'], ['email', 'your email']]) {
+    for (const [id, what] of [['name', 'your name'], ['phone', 'a phone number'], ['email', 'your email'], ['metro', 'your area']]) {
       const el = $('#' + id);
       if (!el.value.trim() || (id === 'email' && !/^\S+@\S+\.\S+$/.test(el.value)) || (id === 'phone' && el.value.replace(/\D/g, '').length < 10)) {
         el.parentElement.classList.add('bad'); el.focus(); return `Please add ${what}.`;

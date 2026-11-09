@@ -36,7 +36,7 @@ export async function onRequestPost({ request, env }) {
 
   const lead = {
     name: g('name'), email: g('email'), phone: g('phone'),
-    address: g('address'), city: g('city'), zip: g('zip'),
+    address: g('address'), metro: g('metro'), city: g('city'), zip: g('zip'),
     service: g('service'), sqft: g('sqft'), bedrooms: g('bedrooms'), bathrooms: g('bathrooms'),
     soil: g('soil'), pets: g('pets'), products: g('products'), frequency: g('frequency'),
     surfaces: all('surfaces'), surfaceNotes: g('surface_notes'),
@@ -80,6 +80,7 @@ export async function onRequestPost({ request, env }) {
       ${row('Name', esc(lead.name))}
       ${row('Phone', esc(lead.phone))}
       ${row('Email', esc(lead.email))}
+      ${row('Area', esc(lead.metro))}
       ${row('Address', esc([lead.address, lead.city, lead.zip].filter(Boolean).join(', ')))}
       ${row('Service', esc(lbl('services', lead.service)))}
       ${row('Size', esc([lead.sqft && lead.sqft + ' sq ft', lead.bedrooms && lead.bedrooms + ' bed', lead.bathrooms && lead.bathrooms + ' bath'].filter(Boolean).join(' · ')))}
@@ -115,7 +116,7 @@ export async function onRequestPost({ request, env }) {
     from: env.FROM_EMAIL,
     to: env.CLEANING_TO_EMAIL || env.TO_EMAIL,
     reply_to: lead.email,
-    subject: `Cleaning quote: ${lead.name}, ${lbl('services', lead.service)}${lead.city ? ', ' + lead.city : ''}`,
+    subject: `Cleaning quote: ${lead.name}, ${lbl('services', lead.service)}${lead.metro ? ', ' + lead.metro : lead.city ? ', ' + lead.city : ''}`,
     html: officeHtml,
     attachments: attachments.length ? attachments : undefined,
   });

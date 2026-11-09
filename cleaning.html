@@ -43,7 +43,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(251,246,238,.92);backdrop-
 nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .logo img{height:52px;width:auto}
-.logo span{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--sage-d)}
+.logo{gap:14px}
+.logo span{background:var(--sage-d);color:#fff;font:800 15px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:10px 16px;border-radius:10px;box-shadow:0 4px 12px rgba(46,107,62,.25)}
 .navlinks{display:flex;align-items:center;gap:26px;list-style:none}
 .navlinks a{font-size:15px;font-weight:500;color:var(--ink);text-decoration:none}
 .navlinks a:hover{color:var(--sage-d)}
@@ -106,6 +107,21 @@ nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-betw
 .card a{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;color:var(--sage-d);text-decoration:none}
 .prods{background:var(--sand)}
 .prods .cards{grid-template-columns:repeat(4,1fr)}
+
+/* MAINTENANCE */
+.maint .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.mlist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+.mlist div{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14.5px;font-weight:600;display:flex;gap:10px;align-items:center}
+.mprice{background:var(--clay-l);border-radius:16px;padding:18px 20px;font-size:15px}
+.mprice b{display:block;margin-bottom:6px}
+.mprice ul{margin:0 0 0 18px;color:var(--ink)}
+.mprice li{margin:4px 0}
+.mform{background:var(--paper);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
+.mform h3{font-size:24px;margin-bottom:4px}
+.mform .hint{font-size:14.5px;color:var(--muted);margin-bottom:18px}
+.mform .ok{display:none;text-align:center;padding:20px 0}
+.mform.sent form{display:none}
+.mform.sent .ok{display:block}
 
 /* QUOTER */
 .quote{background:var(--sage-l)}
@@ -201,6 +217,7 @@ footer a:hover{color:#fff}
   .hero-img img{aspect-ratio:16/10}
   .badge{left:12px;bottom:12px}
   .q-layout{grid-template-columns:1fr}
+  .maint .wrap{grid-template-columns:1fr}
   .est{position:static}
   .trust .wrap{grid-template-columns:repeat(2,1fr)}
   .cards,.prods .cards{grid-template-columns:repeat(2,1fr)}
@@ -217,7 +234,7 @@ footer a:hover{color:#fff}
   .badge .dot{width:34px;height:34px;font-size:16px}
   nav .wrap{height:64px}
   .logo img{height:42px}
-  .logo span{font-size:16px}
+  .logo span{font-size:12.5px;padding:8px 11px;letter-spacing:.12em}
   .navlinks li:not(:last-child){display:none}
   .navlinks .btn{padding:10px 16px;font-size:13px}
   .picks{grid-template-columns:repeat(2,1fr)}
@@ -225,6 +242,8 @@ footer a:hover{color:#fff}
   .cards,.prods .cards,.trust .wrap{grid-template-columns:1fr}
   .q-card{padding:22px 16px}
   .opt-grid,.opt-grid.three,.row,.row.two{grid-template-columns:1fr}
+  .mlist{grid-template-columns:1fr 1fr}
+  .mform{padding:22px 16px}
   .thumbs{grid-template-columns:repeat(3,1fr)}
   .band{padding:30px 22px;border-radius:22px}
   .center-cta{display:none}
@@ -243,6 +262,7 @@ footer a:hover{color:#fff}
     <ul class="navlinks">
       <li><a href="#how">How it works</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#maintenance">Repairs</a></li>
       <li><a href="#faq">Questions</a></li>
       <li><a href="#quote" class="btn btn-main">Get my price</a></li>
     </ul>
@@ -343,6 +363,52 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
+<section id="maintenance" class="maint">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Need something fixed too?</span>
+      <h2>Maintenance for every need, big or small</h2>
+      <p class="lede">We're DRC Maintenance first. Add a repair to your clean, or send us any request on its own. One call handles it all.</p>
+      <div class="mlist">
+        <div>🚰 Leaks &amp; faucets</div><div>🚽 Toilets &amp; disposals</div>
+        <div>🧱 Drywall &amp; patching</div><div>🎨 Painting &amp; touch-ups</div>
+        <div>💡 Lights &amp; fixtures</div><div>🚪 Doors, locks &amp; hardware</div>
+        <div>🗑️ Junk removal</div><div>🌿 Lawn &amp; yard</div>
+        <div>🔥 HVAC &amp; appliances</div><div>🏠 Flooring, roofs &amp; bigger projects</div>
+      </div>
+      <div class="mprice">
+        <b>How repair pricing works</b>
+        <ul>
+          <li>Send photos or a short video and we'll quote most jobs for free, no visit needed.</li>
+          <li>Already booked a clean? Your cleaner can snap photos while they're there.</li>
+          <li>If we do need to see it in person, we tell you the visit cost upfront, before anyone comes out.</li>
+          <li>You approve the price before any work starts. No surprises.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mform" id="mform">
+      <form id="mreq" novalidate>
+        <h3>Send us your request</h3>
+        <p class="hint">Tell us what's going on and we'll call you with next steps.</p>
+        <div class="row two">
+          <div class="field"><label for="m_name">Your name *</label><input id="m_name" name="name" autocomplete="name"></div>
+          <div class="field"><label for="m_phone">Phone *</label><input id="m_phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="row two">
+          <div class="field"><label for="m_email">Email *</label><input id="m_email" name="email" type="email" autocomplete="email"></div>
+          <div class="field"><label for="m_city">City or ZIP</label><input id="m_city" name="city"></div>
+        </div>
+        <div class="field" style="margin-bottom:16px"><label for="m_what">What needs attention? *</label><textarea id="m_what" name="what" placeholder="Example: kitchen faucet drips and the guest bathroom door won't latch."></textarea></div>
+        <div class="field" style="margin-bottom:18px"><label for="m_when">How soon?</label><select id="m_when" name="when"><option>Whenever is convenient</option><option>This week</option><option>As soon as possible</option><option>Emergency (water, no heat, can't lock up)</option></select></div>
+        <div class="err-msg" id="m_err" role="alert"></div>
+        <button type="submit" class="btn btn-main" style="width:100%">Send my request</button>
+        <p class="hint" style="margin:12px 0 0;font-size:13px">Have photos? We'll ask for them when we call, or add them in the cleaning estimate below.</p>
+      </form>
+      <div class="ok"><div class="done-card"><div class="tick">✓</div><h3>Request sent!</h3><p>Someone from DRC will call you shortly to talk through it.</p></div></div>
+    </div>
+  </div>
+</section>
+
 <section id="quote" class="quote">
   <div class="wrap">
     <span class="kicker">Your estimate</span>
@@ -388,6 +454,7 @@ footer a:hover{color:#fff}
           <fieldset><legend>While we clean</legend><div class="opt-grid" id="styleOpts"></div></fieldset>
           <div class="field" style="margin-bottom:20px"><label for="focus">Top priorities or problem spots</label><textarea id="focus" name="focus" placeholder="Example: the shower glass, the kitchen floor, the kids' bathroom."></textarea></div>
           <div class="field" style="margin-bottom:20px"><label for="sensitivities">Allergies, scents to avoid or rooms to skip</label><input id="sensitivities" name="sensitivities" placeholder="Example: no bleach, skip the office."></div>
+          <div class="field" style="margin-bottom:20px"><label for="maint">Anything need fixing while we're there? (optional)</label><input id="maint" name="maint" placeholder="Example: leaky faucet, loose cabinet door, touch-up paint."></div>
           <div class="row two">
             <div class="field"><label for="access">How do we get in?</label><select id="access" name="access"><option value="">Choose one</option><option>Someone will be home</option><option>Lockbox or key code</option><option>Smart lock / door code</option><option>Property manager lets us in</option><option>Not sure yet</option></select></div>
             <div class="field"><label for="parking">Parking</label><select id="parking" name="parking"><option value="">Choose one</option><option>Driveway</option><option>Street</option><option>Visitor / garage parking</option><option>Paid parking</option></select></div>
@@ -465,7 +532,7 @@ footer a:hover{color:#fff}
       <details><summary>What happens after I send my estimate?</summary><p>Someone from DRC calls you to confirm your price, answer questions and set a date. Once you approve, we send a secure card link or Zelle details, and your date is locked in when payment comes through.</p></details>
       <details><summary>Do I need to be home?</summary><p>No. Many clients give us a lockbox or door code. Either way, you get before and after photos of every room when we're done.</p></details>
       <details><summary>Do you offer recurring cleaning?</summary><p>Yes. Weekly, every two weeks and monthly clients get a lower price on every visit.</p></details>
-      <details><summary>Can you fix things while you're there?</summary><p>Yes. We're part of DRC Maintenance, so we can also handle repairs, paint, junk removal and lawn care. Just mention it in your notes.</p></details>
+      <details><summary>Can you fix things while you're there?</summary><p>Yes. We're part of DRC Maintenance, so we can also handle repairs, paint, junk removal and lawn care. Add it to your estimate or send a request in the repairs section, and we'll quote it from photos first.</p></details>
     </div>
   </div>
 </section>
@@ -663,6 +730,29 @@ const io = new IntersectionObserver(es => {
   mbar.classList.toggle('hide', !!(seen.ask || seen.quote));
 }, { threshold: 0.05 });
 io.observe($('#ask')); io.observe($('#quote'));
+
+// Maintenance request form (goes through the site's contact form email)
+$('#mreq').addEventListener('submit', async e => {
+  e.preventDefault();
+  const me = $('#m_err'); me.textContent = '';
+  const v = id => $('#' + id).value.trim();
+  if (!v('m_name') || v('m_phone').replace(/\D/g, '').length < 10 || !/^\S+@\S+\.\S+$/.test(v('m_email')) || !v('m_what')) {
+    me.textContent = 'Please add your name, phone, email and what needs attention.'; return;
+  }
+  const btn = e.submitter || $('#mreq button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
+  const [firstName, ...rest] = v('m_name').split(' ');
+  try {
+    const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+      firstName, lastName: rest.join(' '), email: v('m_email'), phone: v('m_phone'),
+      propertyType: 'Private home (cleaning page)', service: 'Maintenance request: ' + v('m_when'),
+      message: v('m_what') + (v('m_city') ? '\n\nLocation: ' + v('m_city') : '') + '\n\nPlease call the client.'
+    }) });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.success === false) throw new Error();
+    $('#mform').classList.add('sent');
+  } catch { me.textContent = 'Something went wrong. Please try again.'; }
+  finally { btn.disabled = false; btn.textContent = 'Send my request'; }
+});
 
 const qs = new URLSearchParams(location.search).get('service');
 if (qs && P.services[qs]) { const r = document.getElementById('service_' + qs); if (r) r.checked = true; }

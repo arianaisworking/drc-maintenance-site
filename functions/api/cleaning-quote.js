@@ -42,7 +42,7 @@ export async function onRequestPost({ request, env }) {
     surfaces: all('surfaces'), surfaceNotes: g('surface_notes'),
     style: g('style'), focus: g('focus'), sensitivities: g('sensitivities'),
     access: g('access'), parking: g('parking'),
-    date: g('date'), time: g('time'), callTime: g('calltime'), heard: g('heard'), notes: g('notes'),
+    date: g('date'), time: g('time'), callTime: g('calltime'), heard: g('heard'), notes: g('notes'), maint: g('maint'),
     payment: g('payment'),
   };
 
@@ -99,6 +99,7 @@ export async function onRequestPost({ request, env }) {
       ${row('Best time to call', esc(lead.callTime))}
       ${row('Pays by', esc(lead.payment))}
       ${row('Heard about us', esc(lead.heard))}
+      ${row('Repairs wanted', lead.maint ? '<strong>' + esc(lead.maint) + '</strong>' : '')}
       ${row('Notes', esc(lead.notes).replace(/\n/g, '<br>'))}
       ${row('Photos', attachments.length ? attachments.length + ' attached' : 'None')}
     </table>

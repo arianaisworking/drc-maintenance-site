@@ -74,7 +74,8 @@ nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-betw
 /* TRUST */
 .trust{background:var(--sand);padding:26px 0}
 .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.trust div{display:flex;gap:12px;align-items:center;font-size:14px}
+.trust .wrap>div{display:flex;gap:14px;align-items:center;font-size:14px}
+.trust .wrap>div>div{display:block}
 .trust .ic{font-size:22px}
 .trust b{display:block;font-size:15px}
 .trust span{color:var(--muted);font-size:13px}
@@ -209,6 +210,21 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
 footer a:hover{color:#fff}
 .fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:12px;color:rgba(255,255,255,.4)}
 
+
+/* refined icons, no emoji */
+.i{width:22px;height:22px;display:block}
+.trust .ic{color:var(--sage-d);width:44px;height:44px;border-radius:50%;border:1px solid var(--sand2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.badge .dot{color:var(--sage-d)}
+.est .call .ic{color:var(--sage-d);flex-shrink:0}
+.est .call .i{width:18px;height:18px;margin-top:2px}
+.pick{position:relative;padding:16px 34px 16px 15px;justify-content:center;min-height:78px}
+.pick::after{content:'';position:absolute;right:14px;top:50%;width:8px;height:8px;border-top:1.6px solid var(--sage-d);border-right:1.6px solid var(--sage-d);transform:translateY(-50%) rotate(45deg);opacity:.55;transition:opacity .15s,right .15s}
+.pick:hover::after{opacity:1;right:11px}
+.card{border-top:3px solid var(--sage)}
+.card h3{margin-top:2px}
+.mlist div::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--sage);flex-shrink:0}
+
+.card.wide{grid-column:1/-1}
 /* MOBILE BAR */
 .mbar{display:none}
 
@@ -279,28 +295,28 @@ footer a:hover{color:#fff}
         <h2>What can we clean for you?</h2>
         <p>Tap one to start your estimate. It takes about two minutes.</p>
         <div class="picks">
-          <button class="pick" data-svc="standard"><span class="ic">🏡</span>Regular clean<small>Weekly, biweekly or once</small></button>
-          <button class="pick" data-svc="deep"><span class="ic">✨</span>Deep clean<small>Top to bottom</small></button>
-          <button class="pick" data-svc="move"><span class="ic">📦</span>Moving in or out<small>Empty home</small></button>
-          <button class="pick" data-svc="rental"><span class="ic">🛏️</span>Airbnb turnover<small>Between guests</small></button>
-          <button class="pick" data-svc="carpet"><span class="ic">🧼</span>Carpet cleaning<small>Per room</small></button>
-          <button class="pick" data-svc="hoarder"><span class="ic">🧹</span>Something bigger<small>Cleanouts, businesses</small></button>
+          <button class="pick" data-svc="standard">Regular clean<small>Weekly, biweekly or once</small></button>
+          <button class="pick" data-svc="deep">Deep clean<small>Top to bottom</small></button>
+          <button class="pick" data-svc="move">Moving in or out<small>Empty home</small></button>
+          <button class="pick" data-svc="rental">Airbnb turnover<small>Between guests</small></button>
+          <button class="pick" data-svc="carpet">Carpet cleaning<small>Per room</small></button>
+          <button class="pick" data-svc="hoarder">Something bigger<small>Cleanouts, businesses</small></button>
         </div>
       </div>
     </div>
     <div class="hero-img">
       <img src="img/clean-after-kitchen.jpg" alt="A bright, freshly cleaned kitchen with a marble counter and natural cleaning supplies">
-      <div class="badge"><div class="dot">📸</div><div><b>Photos of every room</b><span>Sent to you when we're done</span></div></div>
+      <div class="badge"><div class="dot"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div><b>Photos of every room</b><span>Sent to you when we're done</span></div></div>
     </div>
   </div>
 </header>
 
 <div class="trust">
   <div class="wrap">
-    <div><span class="ic">🛡️</span><div><b>Background-checked</b><span>Every cleaner, every time</span></div></div>
-    <div><span class="ic">✅</span><div><b>Insured</b><span>Liability and auto coverage</span></div></div>
-    <div><span class="ic">🌿</span><div><b>Your products, your call</b><span>Organic and plastic-free options</span></div></div>
-    <div><span class="ic">📞</span><div><b>A real person calls you</b><span>No surprises on price</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Background-checked</b><span>Every cleaner, every time</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span><div><b>Insured</b><span>Liability and auto coverage</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></svg></span><div><b>Your products, your call</b><span>Organic and plastic-free options</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b>A real person calls you</b><span>No surprises on price</span></div></div>
   </div>
 </div>
 
@@ -339,13 +355,13 @@ footer a:hover{color:#fff}
     <span class="kicker">Services</span>
     <h2>Whatever your home needs</h2>
     <div class="cards">
-      <div class="card"><div class="ic">🏡</div><h3>Regular clean</h3><p>Kitchen, bathrooms, dusting, floors and surfaces on a schedule that suits you.</p><a href="#quote" data-svc="standard">Get a price →</a></div>
-      <div class="card"><div class="ic">✨</div><h3>Deep clean</h3><p>Baseboards, doors, fixtures and built-up grime. The best first visit.</p><a href="#quote" data-svc="deep">Get a price →</a></div>
-      <div class="card"><div class="ic">📦</div><h3>Move-in / move-out</h3><p>Empty-home cleans to get your deposit back or start fresh.</p><a href="#quote" data-svc="move">Get a price →</a></div>
-      <div class="card"><div class="ic">🛏️</div><h3>Airbnb turnover</h3><p>Fast turns between guests, with photos so you know it's guest-ready.</p><a href="#quote" data-svc="rental">Get a price →</a></div>
-      <div class="card"><div class="ic">🎓</div><h3>Student housing</h3><p>Move-out and turnover cleans per unit or per bed for leasing offices.</p><a href="#quote" data-svc="student">Get a price →</a></div>
-      <div class="card"><div class="ic">🧼</div><h3>Carpet cleaning</h3><p>Deep steam cleaning for carpets, rugs and stairs. Add it to any clean or book it on its own.</p><a href="#quote" data-svc="carpet">Get a price →</a></div>
-      <div class="card"><div class="ic">🏢</div><h3>Bigger jobs</h3><p>Hoarder and debris cleanouts, offices, dental, restaurants and more. Quoted from photos.</p><a href="#quote" data-svc="commercial">Get a quote →</a></div>
+      <div class="card"><h3>Regular clean</h3><p>Kitchen, bathrooms, dusting, floors and surfaces on a schedule that suits you.</p><a href="#quote" data-svc="standard">Get a price →</a></div>
+      <div class="card"><h3>Deep clean</h3><p>Baseboards, doors, fixtures and built-up grime. The best first visit.</p><a href="#quote" data-svc="deep">Get a price →</a></div>
+      <div class="card"><h3>Move-in / move-out</h3><p>Empty-home cleans to get your deposit back or start fresh.</p><a href="#quote" data-svc="move">Get a price →</a></div>
+      <div class="card"><h3>Airbnb turnover</h3><p>Fast turns between guests, with photos so you know it's guest-ready.</p><a href="#quote" data-svc="rental">Get a price →</a></div>
+      <div class="card"><h3>Student housing</h3><p>Move-out and turnover cleans per unit or per bed for leasing offices.</p><a href="#quote" data-svc="student">Get a price →</a></div>
+      <div class="card"><h3>Carpet cleaning</h3><p>Deep steam cleaning for carpets, rugs and stairs. Add it to any clean or book it on its own.</p><a href="#quote" data-svc="carpet">Get a price →</a></div>
+      <div class="card wide"><h3>Bigger jobs</h3><p>Hoarder and debris cleanouts, offices, dental, restaurants and more. Quoted from photos.</p><a href="#quote" data-svc="commercial">Get a quote →</a></div>
     </div>
   </div>
 </section>
@@ -356,10 +372,10 @@ footer a:hover{color:#fff}
     <h2>Clean the way you like</h2>
     <p class="lede">Have marble or natural stone, or a product you love? Tell us and we'll use what's safe for your home.</p>
     <div class="cards">
-      <div class="card"><div class="ic">🧴</div><h3>Your products</h3><p>Leave out what you'd like us to use and we'll use only that.</p></div>
-      <div class="card"><div class="ic">🧽</div><h3>Our products</h3><p>We bring professional supplies and equipment.</p></div>
-      <div class="card"><div class="ic">🍋</div><h3>Organic &amp; unscented</h3><p>Vinegar-based, fragrance-free. Great for allergies, kids and pets.</p></div>
-      <div class="card"><div class="ic">🌱</div><h3>No microplastics</h3><p>Plastic-free tools and products, no microfiber cloths.</p></div>
+      <div class="card"><h3>Your products</h3><p>Leave out what you'd like us to use and we'll use only that.</p></div>
+      <div class="card"><h3>Our products</h3><p>We bring professional supplies and equipment.</p></div>
+      <div class="card"><h3>Organic &amp; unscented</h3><p>Vinegar-based, fragrance-free. Great for allergies, kids and pets.</p></div>
+      <div class="card"><h3>No microplastics</h3><p>Plastic-free tools and products, no microfiber cloths.</p></div>
     </div>
   </div>
 </section>
@@ -371,11 +387,11 @@ footer a:hover{color:#fff}
       <h2>Maintenance for every need, big or small</h2>
       <p class="lede">We're DRC Maintenance first. Add a repair to your clean, or send us any request on its own. One call handles it all.</p>
       <div class="mlist">
-        <div>🚰 Leaks &amp; faucets</div><div>🚽 Toilets &amp; disposals</div>
-        <div>🧱 Drywall &amp; patching</div><div>🎨 Painting &amp; touch-ups</div>
-        <div>💡 Lights &amp; fixtures</div><div>🚪 Doors, locks &amp; hardware</div>
-        <div>🗑️ Junk removal</div><div>🌿 Lawn &amp; yard</div>
-        <div>🔥 HVAC &amp; appliances</div><div>🏠 Flooring, roofs &amp; bigger projects</div>
+        <div>Leaks &amp; faucets</div><div>Toilets &amp; disposals</div>
+        <div>Drywall &amp; patching</div><div>Painting &amp; touch-ups</div>
+        <div>Lights &amp; fixtures</div><div>Doors, locks &amp; hardware</div>
+        <div>Junk removal</div><div>Lawn &amp; yard</div>
+        <div>HVAC &amp; appliances</div><div>Flooring, roofs &amp; bigger projects</div>
       </div>
       <div class="mprice">
         <b>How repair pricing works</b>
@@ -518,7 +534,7 @@ footer a:hover{color:#fff}
         <div class="big" id="estBig">—</div>
         <div class="sub" id="estSub">Pick a service to get started.</div>
         <ul id="estList"></ul>
-        <div class="call"><span>📞</span><span>We'll call you to confirm the final price after looking at your details. No payment until you approve it.</span></div>
+        <div class="call"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><span>We'll call you to confirm the final price after looking at your details. No payment until you approve it.</span></div>
       </aside>
     </div>
   </div>

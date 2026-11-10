@@ -29,8 +29,7 @@ h1,h2,h3{font-family:'Figtree',system-ui,sans-serif;font-weight:700;letter-spaci
 h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:12px}
 .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
 section{padding:84px 0}
-.kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-d);margin-bottom:16px}
-.kicker::before{content:'';width:28px;height:1.5px;background:currentColor}
+.kicker{display:inline-flex;align-items:center;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-d);margin-bottom:16px}
 .lede{font-size:17px;color:var(--muted);max-width:600px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:99px;font:600 15px/1 'Figtree',sans-serif;text-decoration:none;cursor:pointer;border:none;transition:background .2s,transform .15s,box-shadow .2s}
 .btn-main{background:var(--sage-d);color:#fff;box-shadow:0 2px 8px rgba(46,107,62,.18)}
@@ -281,7 +280,6 @@ footer a:hover{color:#fff}
   .hero{display:block;min-height:0;padding:0 0 40px}
   .hero-bg{height:220px}
   .hero .kicker{font-size:10.5px;letter-spacing:.12em}
-  .hero .kicker::before{display:none}
   .hero::before{display:none}
   .hero-copy{padding-top:26px}
   .leaf{display:none}
@@ -324,6 +322,13 @@ footer a:hover{color:#fff}
 .plan-svg .fx{fill:none;stroke:#b9ad99;stroke-width:1.6;stroke-linecap:round;pointer-events:none}
 .plan-svg .rm.on .fx{stroke:var(--sage-d)}
 .plan-svg text{font:600 15px 'Figtree',sans-serif;fill:var(--ink);text-anchor:middle;pointer-events:none}
+.plan-pic{position:relative;border-radius:22px;overflow:hidden;background:#f7efe2}
+.plan-pic img{display:block;width:100%;height:auto}
+.hot{position:absolute;border:2px solid transparent;border-radius:14px;background:transparent;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;transition:background .2s,border-color .2s}
+.hot span{background:rgba(255,255,255,.94);color:var(--ink);font:700 13.5px 'Figtree',sans-serif;padding:7px 13px;border-radius:99px;box-shadow:0 4px 14px rgba(30,30,25,.16)}
+.hot:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.8)}
+.hot.on{border-color:var(--sage-d);background:rgba(46,107,62,.10)}
+.hot.on span{background:var(--sage-d);color:#fff}
 .plan-tabs{display:none}
 .plan-hint{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
 .room-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:26px}
@@ -344,9 +349,10 @@ footer a:hover{color:#fff}
 @media(max-width:980px){.tour{grid-template-columns:1fr}}
 @media(max-width:639px){
   .tour{gap:16px;padding-top:22px}
-  .plan-svg{display:none}
+  .plan-pic{border-radius:18px;margin-bottom:12px}
+  .hot span{font-size:11.5px;padding:5px 9px}
   .plan-hint{display:none}
-  .plan-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 4px}
+  .plan-tabs{display:none}
   .plan-tabs::-webkit-scrollbar{display:none}
   .plan-tabs button{flex:0 0 auto;border:1.5px solid var(--line);background:var(--paper);border-radius:99px;padding:10px 16px;font:600 14px 'Figtree',sans-serif;color:var(--ink);cursor:pointer}
   .plan-tabs button.on{background:var(--sage-d);border-color:var(--sage-d);color:#fff}
@@ -384,6 +390,8 @@ footer a:hover{color:#fff}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips button{border:1.5px solid var(--sage);background:var(--paper);color:var(--sage-d);border-radius:99px;padding:8px 13px;font:600 13.5px 'Figtree',sans-serif;cursor:pointer}
 .chips button:hover{background:var(--sage-l)}
+.chips button.on{background:var(--sage-d);color:#fff}
+.chips button.done{background:var(--ink);border-color:var(--ink);color:#fff}
 .chat-in{display:none;gap:8px;padding:12px;border-top:1px solid var(--line)}
 .chat-in.on{display:flex}
 .chat-in input{flex:1;font:15px 'Figtree',sans-serif;padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg)}
@@ -672,15 +680,13 @@ footer a:hover{color:#fff}
     </div>
     <div class="tour" id="tour">
       <div class="plan" role="tablist" aria-label="Pick a room">
-        <svg viewBox="0 0 520 380" aria-hidden="true" class="plan-svg">
-          <path class="roof" d="M20 128 260 18l240 110"/>
-          <rect class="wall" x="40" y="120" width="440" height="240" rx="6"/>
-          <g class="rm" data-room="kitchen"><rect x="52" y="132" width="200" height="104" rx="4"/><path class="fx" d="M66 146h70v18H66zM150 146h18v18h-18zM66 206h172"/><circle class="fx" cx="215" cy="190" r="16"/></g>
-          <g class="rm" data-room="living"><rect x="264" y="132" width="204" height="104" rx="4"/><path class="fx" d="M286 186h92v18h-92zM286 186v-22h12v22M366 186v-22h12v22"/><rect class="fx" x="400" y="160" width="46" height="30" rx="3"/></g>
-          <g class="rm" data-room="bath"><rect x="52" y="248" width="150" height="100" rx="4"/><rect class="fx" x="66" y="262" width="58" height="30" rx="12"/><circle class="fx" cx="178" cy="300" r="12"/><path class="fx" d="M150 270h36"/></g>
-          <g class="rm" data-room="bed"><rect x="214" y="248" width="254" height="100" rx="4"/><rect class="fx" x="236" y="262" width="92" height="52" rx="6"/><path class="fx" d="M236 280h92M250 262v18M314 262v18"/><rect class="fx" x="372" y="262" width="34" height="28" rx="3"/></g>
-          <text x="152" y="228">Kitchen</text><text x="366" y="226">Living areas</text><text x="127" y="338">Bathrooms</text><text x="341" y="338">Bedrooms</text>
-        </svg>
+        <div class="plan-pic">
+          <img src="img/clean-house-cutaway.webp" alt="Cutaway view of a clean home showing the kitchen, living room, bathroom and bedroom" width="1448" height="1086" loading="lazy">
+          <button class="hot" data-room="kitchen" style="left:14%;top:3%;width:36%;height:39%"><span>Kitchen</span></button>
+          <button class="hot" data-room="living" style="left:51%;top:3%;width:36%;height:39%"><span>Living areas</span></button>
+          <button class="hot" data-room="bath" style="left:6%;top:44%;width:39%;height:32%"><span>Bathrooms</span></button>
+          <button class="hot" data-room="bed" style="left:46%;top:44%;width:46%;height:32%"><span>Bedrooms</span></button>
+        </div>
         <div class="plan-tabs">
           <button role="tab" data-room="kitchen">Kitchen</button><button role="tab" data-room="living">Living areas</button><button role="tab" data-room="bath">Bathrooms</button><button role="tab" data-room="bed">Bedrooms</button>
         </div>
@@ -688,7 +694,7 @@ footer a:hover{color:#fff}
       </div>
       <div class="room-card" aria-live="polite">
         <div class="rc-top"><span class="rc-count" id="rcCount"></span><h3 id="rcName"></h3></div>
-        <div class="rc-mode" role="group" aria-label="Clean type"><button data-mode="std" class="on">Every clean</button><button data-mode="deep">Deep and move out add</button></div>
+        <div class="rc-mode" role="group" aria-label="Clean type"><button data-mode="std" class="on">Every clean</button><button data-mode="deep">Deep clean extras</button></div>
         <ul id="rcList"></ul>
         <p class="rc-note">Items marked <i>on request</i> can be added when we call.</p>
         <div class="rc-nav"><button id="rcPrev" aria-label="Previous room">&larr; <span></span></button><button id="rcNext" aria-label="Next room"><span></span> &rarr;</button></div>
@@ -1004,9 +1010,9 @@ update(); show(0, false);
 // Room tour
 (() => {
   const R = {
-    kitchen: {name:'Kitchen', std:['Counters, backsplash and sink scrubbed and shined','Stovetop and range hood degreased','Outside of appliances and cabinet fronts wiped','Microwave cleaned inside and out','Small appliances wiped and put back','Table and chairs wiped','Trash emptied and bin wiped','Floors vacuumed and mopped','Dishes <i>on request</i>'], deep:['Inside oven and fridge','Inside cabinets and drawers','Baseboards hand wiped','Grout spot-scrubbed','Light fixtures and vents dusted','Behind and under movable appliances']},
-    living: {name:'Living areas', std:['Dusting of reachable surfaces, shelves and decor','Light switches, handles and doors wiped','TV and electronics dusted','Mirrors and glass tables shined','Couch cushions straightened, crumbs vacuumed','Window sills and ledges wiped','Stairs and railings dusted','Carpets vacuumed, hard floors mopped','Trash emptied','Blinds dusted <i>on request</i>'], deep:['Baseboards and door frames hand wiped','Ceiling fans and vents dusted','Under cushions and furniture vacuumed','Interior windows and tracks','Wall spot-cleaning']},
-    bath: {name:'Bathrooms', std:['Showers, tubs and tile scrubbed','Toilets cleaned and sanitized, base included','Mirrors and glass streak-free','Vanities, sinks and fixtures polished','Countertops cleared and wiped','Towels folded or hung','Trash emptied','Floors vacuumed and mopped'], deep:['Soap scum and hard water buildup removed','Grout scrubbed','Inside cabinets and drawers','Exhaust fan and vents dusted','Baseboards and door frames hand wiped']},
+    kitchen: {name:'Kitchen', std:['Counters, backsplash and sink scrubbed and shined','Stovetop and range hood degreased','Outside of appliances and cabinet fronts wiped','Microwave cleaned inside and out','Small appliances wiped and put back','Table and chairs wiped','Trash emptied and bin wiped','Floors vacuumed and mopped','Dishes <i>on request</i>'], deep:['Inside oven and fridge','Inside cabinets and drawers','Baseboards hand wiped','Grout spot scrubbed','Light fixtures and vents dusted','Behind and under movable appliances']},
+    living: {name:'Living areas', std:['Dusting of reachable surfaces, shelves and decor','Light switches, handles and doors wiped','TV and electronics dusted','Mirrors and glass tables shined','Couch cushions straightened, crumbs vacuumed','Window sills and ledges wiped','Stairs and railings dusted','Carpets vacuumed, hard floors mopped','Trash emptied','Blinds dusted <i>on request</i>'], deep:['Baseboards and door frames hand wiped','Ceiling fans and vents dusted','Under cushions and furniture vacuumed','Interior windows and tracks','Wall spot cleaning']},
+    bath: {name:'Bathrooms', std:['Showers, tubs and tile scrubbed','Toilets cleaned and sanitized, base included','Mirrors and glass streak free','Vanities, sinks and fixtures polished','Countertops cleared and wiped','Towels folded or hung','Trash emptied','Floors vacuumed and mopped'], deep:['Soap scum and hard water buildup removed','Grout scrubbed','Inside cabinets and drawers','Exhaust fan and vents dusted','Baseboards and door frames hand wiped']},
     bed: {name:'Bedrooms', std:['Dusting of dressers, nightstands and shelves','Mirrors and glass shined','Light switches and handles wiped','Window sills wiped','Beds made','Linens changed <i>on request</i>','Trash emptied','Carpets vacuumed, hard floors mopped'], deep:['Under beds vacuumed','Baseboards and door frames hand wiped','Ceiling fans and vents dusted','Closet floors and shelves','Interior windows and tracks']}
   };
   const order = ['kitchen','living','bath','bed']; let cur = 'kitchen', mode = 'std';
@@ -1038,39 +1044,56 @@ document.querySelectorAll('[data-freq]').forEach(el => el.addEventListener('clic
   if (typeof show === 'function') show(1);
 }));
 
-// Chat: quick guided flow that hands the visitor to a real person
+// Chat: guided intake that hands the visitor to a real person
 (() => {
   const fab = document.getElementById('chatFab'), box = document.getElementById('chat'), log = document.getElementById('chatLog');
   const inForm = document.getElementById('chatIn'), txt = document.getElementById('chatTxt');
   if (!fab) return;
-  const lead = { topic: '', name: '', phone: '', when: '' }; let started = false, waiting = null;
-  const say = (t, who = 'bot') => { const d = document.createElement('div'); d.className = 'msg ' + who; d.textContent = t; log.appendChild(d); log.scrollTop = log.scrollHeight; };
-  const chips = (opts, cb) => { const w = document.createElement('div'); w.className = 'chips'; opts.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.onclick = () => { w.remove(); say(o, 'me'); cb(o); }; w.appendChild(b); }); log.appendChild(w); log.scrollTop = log.scrollHeight; };
-  const ask = (q, ph, type, cb) => { say(q); txt.value = ''; txt.placeholder = ph; txt.type = type; inForm.classList.add('on'); txt.focus(); waiting = cb; };
-  inForm.addEventListener('submit', e => { e.preventDefault(); const v = txt.value.trim(); if (!v || !waiting) return; say(v, 'me'); const cb = waiting; waiting = null; inForm.classList.remove('on'); cb(v); });
+  const lead = { service: '', size: '', location: '', notes: '', addons: [], name: '', email: '', phone: '' };
+  let started = false, waiting = null;
+  const scroll = () => { log.scrollTop = log.scrollHeight; };
+  const say = (t, who = 'bot') => { const d = document.createElement('div'); d.className = 'msg ' + who; d.textContent = t; log.appendChild(d); scroll(); };
+  const chips = (opts, cb) => { const w = document.createElement('div'); w.className = 'chips'; opts.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.onclick = () => { w.remove(); inForm.classList.remove('on'); waiting = null; say(o, 'me'); cb(o); }; w.appendChild(b); }); log.appendChild(w); scroll(); return w; };
+  const multi = (opts, cb) => {
+    const w = document.createElement('div'); w.className = 'chips'; const picked = new Set();
+    opts.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.onclick = () => { if (picked.has(o)) { picked.delete(o); b.classList.remove('on'); } else { picked.add(o); b.classList.add('on'); } }; w.appendChild(b); });
+    const done = document.createElement('button'); done.type = 'button'; done.className = 'done'; done.textContent = 'Done';
+    done.onclick = () => { w.remove(); const list = [...picked]; say(list.length ? list.join(', ') : 'No add ons', 'me'); cb(list); };
+    w.appendChild(done); log.appendChild(w); scroll();
+  };
+  const ask = (q, ph, type, cb, skip) => {
+    say(q); txt.value = ''; txt.placeholder = ph; txt.type = type; inForm.classList.add('on'); waiting = cb;
+    if (skip) chips([skip], () => cb(''));
+    setTimeout(() => txt.focus(), 50);
+  };
+  inForm.addEventListener('submit', e => { e.preventDefault(); const v = txt.value.trim(); if (!v || !waiting) return; const sk = log.querySelector('.chips:last-child'); if (sk) sk.remove(); say(v, 'me'); const cb = waiting; waiting = null; inForm.classList.remove('on'); cb(v); });
+
   const send = async () => {
-    say('One moment...');
+    say('Sending your details...');
     try {
       const r = await fetch('/api/cleaning-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...lead, page: location.href }) });
-      log.lastChild.remove();
-      if (!r.ok) throw 0;
-      say('Thank you, ' + lead.name.split(' ')[0] + '! Someone from DRC will reach out at ' + lead.phone + (lead.when === 'Text me instead' ? ' by text' : '') + ' shortly.');
-      chips(['Get my price now', 'Close chat'], o => { if (o === 'Close chat') box.classList.remove('open'); else { box.classList.remove('open'); location.hash = '#quote'; } });
-    } catch { log.lastChild && log.lastChild.textContent === 'One moment...' && log.lastChild.remove(); say('Sorry, that did not go through. Please try again in a minute, or start your estimate and we will call you.'); }
+      log.lastChild.remove(); if (!r.ok) throw 0;
+      say('Thank you, ' + lead.name.split(' ')[0] + '! Someone from DRC will reach out shortly' + (lead.phone ? ' at ' + lead.phone : ' by email') + ' to confirm your price and pick a day.');
+      chips(['See my price now', 'Close chat'], o => { box.classList.remove('open'); if (o !== 'Close chat') location.hash = '#quote'; });
+    } catch { if (log.lastChild && log.lastChild.textContent === 'Sending your details...') log.lastChild.remove(); say('Sorry, that did not go through. Please try again in a minute.'); chips(['Try again'], () => send()); }
   };
-  const getPhone = () => ask('What is the best number to reach you?', 'Phone number', 'tel', v => {
-    if (v.replace(/\D/g, '').length < 10) { say('That number looks short. Could you check it?'); return getPhone(); }
-    lead.phone = v;
-    say('When is a good time?'); chips(['Call me now', 'This afternoon', 'This evening', 'Text me instead'], w => { lead.when = w; send(); });
+  const getPhone = () => ask('And a phone number, if you would like a call or text?', 'Phone (optional)', 'tel', v => {
+    if (v && v.replace(/\D/g, '').length < 10) { say('That number looks short. Could you check it?'); return getPhone(); }
+    lead.phone = v; send();
+  }, 'Email is fine');
+  const getEmail = () => ask("What's your email?", 'you@email.com', 'email', v => {
+    if (!/^\S+@\S+\.\S+$/.test(v)) { say('That email does not look right. Could you check it?'); return getEmail(); }
+    lead.email = v; getPhone();
   });
+  const contact = () => ask("Almost done. What's your name?", 'Your name', 'text', v => { lead.name = v; getEmail(); });
+  const addons = () => { say('Want us to quote anything else while we are there? Pick any that apply.'); multi(['Organization specialist', 'Maintenance quote', 'Handyman work', 'Landscaping'], list => { lead.addons = list; contact(); }); };
+  const notes = () => ask('Anything specific about your clean? Products you like, pets, allergies, rooms to focus on.', 'Your notes', 'text', v => { lead.notes = v; addons(); }, 'Nothing special');
+  const place = () => ask('What city and state is the home in?', 'City, State', 'text', v => { lead.location = v; notes(); });
+  const size = biz => { say(biz ? 'About how big is the space?' : 'How big is the home?'); chips(biz ? ['Under 1,500 sq ft', '1,500 to 3,000 sq ft', 'Over 3,000 sq ft'] : ['Studio or 1 bed', '2 beds', '3 beds', '4 beds', '5+ beds'], v => { lead.size = v; place(); }); };
   const start = () => {
     started = true;
-    say("Hi! I'll get you to the right person fast. What can we help with?");
-    chips(['A cleaning price', 'A recurring membership', 'A repair', 'Something else'], t => {
-      lead.topic = t;
-      if (t === 'A cleaning price') say('You can see your price in two minutes with our estimate, or we can call you.');
-      ask("What's your name?", 'Your name', 'text', n => { lead.name = n; getPhone(); });
-    });
+    say("Hi! I'll get a few details and connect you with someone from DRC. What kind of cleaning do you need?");
+    chips(['Regular clean', 'Deep clean', 'Move in or move out', 'Airbnb turnover', 'Carpet cleaning', 'Hoarder or debris cleanout', 'Office or business'], v => { lead.service = v; size(v === 'Office or business'); });
   };
   fab.addEventListener('click', () => { box.classList.toggle('open'); if (!started) start(); });
   document.getElementById('chatX').addEventListener('click', () => box.classList.remove('open'));

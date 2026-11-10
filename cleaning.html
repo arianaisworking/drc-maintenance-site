@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DRC Cleaning | Home, Move-Out &amp; Rental Cleaning in Dallas, Denver, Nashville &amp; Phoenix</title>
-<meta name="description" content="Friendly, background-checked, insured cleaners in Dallas, Denver, Nashville and Phoenix. Standard, deep, move-out, Airbnb, student housing and carpet cleaning. Choose organic or microplastic-free products. Get your price in two minutes and we'll call you.">
+<meta name="description" content="Friendly, background-checked cleaners in Dallas, Denver, Nashville and Phoenix. Standard, deep, move-out, Airbnb, student housing and carpet cleaning. Choose organic or microplastic-free products. Get your price in two minutes and we'll call you.">
 <meta property="og:title" content="DRC Cleaning | Get your price in two minutes">
-<meta property="og:description" content="Background-checked, insured cleaners. Tell us about your home and we'll call you to book.">
+<meta property="og:description" content="Background-checked cleaners. Tell us about your home and we'll call you to book.">
 <meta property="og:image" content="img/clean-hero-listing.jpg">
 <link rel="icon" type="image/png" href="img/drc-logo.png">
 <link rel="preload" as="image" href="img/clean-hero-listing.jpg">
@@ -309,6 +309,58 @@ footer a:hover{color:#fff}
   .mbar.hide{transform:translateY(140%)}
   body{padding-bottom:20px}
 }
+
+/* MOBILE POLISH */
+@media(max-width:639px){
+  h2{font-size:31px;letter-spacing:-.025em;line-height:1.1}
+  section{padding:52px 0}
+  .kicker{font-size:11px;margin-bottom:10px}
+  /* hero: inset photo with soft frame */
+  .hero{padding-bottom:28px}
+  .hero-bg{display:block;width:calc(100% - 24px);height:300px;margin:12px auto 0;border-radius:24px;box-shadow:0 10px 30px rgba(40,36,30,.12)}
+  .hero::after{display:none}
+  .hero-copy{padding-top:22px}
+  .hero h1{font-size:44px;line-height:1;letter-spacing:-.04em}
+  .ask{padding:18px 16px;border-radius:22px}
+  .ask h2{font-size:20px}
+  .picks{gap:8px}
+  .pick{padding:12px;font-size:13.5px;border-radius:12px}
+  /* swipe rows instead of tall stacks */
+  .trust{padding:18px 0}
+  .trust .wrap,.promise,.cards,.prods .cards{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:12px;margin-left:-16px;margin-right:-16px;padding:4px 16px 14px;scroll-padding:0 16px}
+  .trust .wrap::-webkit-scrollbar,.promise::-webkit-scrollbar,.cards::-webkit-scrollbar{display:none}
+  .trust .wrap{padding-left:16px;padding-right:16px;margin:0}
+  .trust .wrap>div{flex:0 0 auto;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 16px 12px 12px}
+  .trust b{font-size:14px}.trust span{font-size:12.5px}
+  .promise>div,.cards>.card{flex:0 0 80%;scroll-snap-align:start}
+  .card{padding:20px;display:flex;flex-direction:column}
+  .card a{margin-top:auto;padding-top:12px}
+  .swipe-hint{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);margin:-4px 0 0}
+  /* before / after side by side */
+  .ba{grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
+  .ba figure{border-radius:16px}
+  .ba img{aspect-ratio:3/4}
+  .ba figcaption{top:8px;left:8px;font-size:11px;padding:4px 10px}
+  /* standard checklist tighter */
+  .std-grid>div,.std-grid>div+div{padding:16px 0}
+  .std-grid li{font-size:14.5px;margin:7px 0}
+  /* how it works: image as a slim banner */
+  .how img{aspect-ratio:16/9;border-radius:20px}
+  .steps{gap:16px;margin-top:20px}
+  /* repairs as compact chips */
+  .mlist{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+  .mlist div{padding:8px 12px;font-size:13.5px;border-radius:99px}
+  .mprice{padding:16px;font-size:14.5px}
+  /* estimate panel only matters once they pick */
+  .est{border-radius:18px}
+  /* slimmer floating CTA */
+  .mbar{left:50%;right:auto;transform:translateX(-50%);bottom:14px;width:auto}
+  .mbar .btn{padding:14px 26px;box-shadow:0 8px 24px rgba(30,70,40,.28);white-space:nowrap}
+  .mbar.hide{transform:translate(-50%,160%)}
+  .band{padding:28px 20px}
+  footer{padding-bottom:80px}
+}
+@media(min-width:640px){.swipe-hint{display:none}}
 </style>
 </head>
 <body>
@@ -335,7 +387,7 @@ footer a:hover{color:#fff}
     <div class="hero-copy">
       <span class="kicker">Dallas · Denver · Nashville · Phoenix</span>
       <h1>Come home to <span class="swash">calm.</span></h1>
-      <p class="lede">Vetted, insured cleaners who use the products you choose, with photos of every room when they're done. See your price in two minutes and we'll call you to book.</p>
+      <p class="lede">Background-checked cleaners who use the products you choose, with photos of every room when they're done. See your price in two minutes and we'll call you to book.</p>
       <div class="ask" id="ask">
         <h2>What can we clean for you?</h2>
         <p>Tap one to start your estimate. It takes about two minutes.</p>
@@ -355,7 +407,7 @@ footer a:hover{color:#fff}
 <div class="trust">
   <div class="wrap">
     <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Background-checked</b><span>Every cleaner, every time</span></div></div>
-    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span><div><b>Insured</b><span>Liability and auto coverage</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span><div><b>Flexible scheduling</b><span>Weekdays and weekends</span></div></div>
     <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></svg></span><div><b>Your products, your call</b><span>Organic and plastic-free options</span></div></div>
     <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b>A real person calls you</b><span>No surprises on price</span></div></div>
   </div>
@@ -389,7 +441,7 @@ footer a:hover{color:#fff}
     <div class="promise">
       <div><b>Photo-verified</b><span>Before and after photos of every room, sent to you.</span></div>
       <div><b>Make-it-right promise</b><span>Missed something? Tell us and we'll come back and fix it.</span></div>
-      <div><b>One trusted team</b><span>Vetted, insured cleaners who know your home and your preferences.</span></div>
+      <div><b>One trusted team</b><span>The same friendly faces who learn your home and your preferences.</span></div>
     </div>
   </div>
 </section>
@@ -414,6 +466,7 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <span class="kicker">Services</span>
     <h2>Whatever your home needs</h2>
+    <p class="swipe-hint">Swipe to see more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
     <div class="cards">
       <div class="card"><h3>Regular clean</h3><p>Kitchen, bathrooms, dusting, floors and surfaces on a schedule that suits you.</p><a href="#quote" data-svc="standard">Get a price →</a></div>
       <div class="card"><h3>Deep clean</h3><p>Baseboards, doors, fixtures and built-up grime. The best first visit.</p><a href="#quote" data-svc="deep">Get a price →</a></div>
@@ -431,6 +484,7 @@ footer a:hover{color:#fff}
     <span class="kicker">Your products, your call</span>
     <h2>Clean the way you like</h2>
     <p class="lede">Have marble or natural stone, or a product you love? Tell us and we'll use what's safe for your home.</p>
+    <p class="swipe-hint">Swipe to see more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
     <div class="cards">
       <div class="card"><h3>Your products</h3><p>Leave out what you'd like us to use and we'll use only that.</p></div>
       <div class="card"><h3>Our products</h3><p>We bring professional supplies and equipment.</p></div>
@@ -607,7 +661,7 @@ footer a:hover{color:#fff}
     <div class="faq">
       <details><summary>Do I need to provide cleaning supplies?</summary><p>No. We can bring ours, or you can leave out your own and we'll use only those. If you have marble, granite or other natural stone, tell us and we'll use a stone-safe, pH-neutral cleaner.</p></details>
       <details><summary>What's the difference between organic and no-microplastics?</summary><p>Organic and unscented means vinegar-based, fragrance-free products, which is great for allergies, kids and pets. No microplastics goes a step further: plastic-free tools and products, and no microfiber cloths, which shed tiny plastic fibers.</p></details>
-      <details><summary>Are your cleaners background-checked and insured?</summary><p>Yes. Every cleaner passes a background check and carries their own liability and auto insurance before they're sent to a home.</p></details>
+      <details><summary>Are your cleaners background-checked?</summary><p>Yes. Every cleaner passes a background check before they're sent to a home.</p></details>
       <details><summary>What happens after I send my estimate?</summary><p>Someone from DRC calls you to confirm your price, answer questions and set a date. Once you approve, we send a secure card link or Zelle details, and your date is locked in when payment comes through.</p></details>
       <details><summary>Where do you clean?</summary><p>We currently serve the Dallas, Denver, Nashville and Phoenix areas. Somewhere else? Send your estimate anyway and we'll let you know.</p></details>
       <details><summary>Do I need to be home?</summary><p>No. Many clients give us a lockbox or door code. Either way, you get before and after photos of every room when we're done.</p></details>
@@ -619,7 +673,7 @@ footer a:hover{color:#fff}
 
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="band">
+    <div class="band" id="band">
       <div><h2>Ready for a cleaner home?</h2><p>Two minutes for your price, then we'll give you a call.</p></div>
       <a href="#ask" class="btn">Start my estimate</a>
     </div>
@@ -818,9 +872,9 @@ async function submit() {
 const mbar = $('#mbar'); const seen = {};
 const io = new IntersectionObserver(es => {
   es.forEach(e => { seen[e.target.id] = e.isIntersecting; });
-  mbar.classList.toggle('hide', !!(seen.ask || seen.quote));
+  mbar.classList.toggle('hide', !!(seen.ask || seen.quote || seen.mform || seen.band));
 }, { threshold: 0.05 });
-io.observe($('#ask')); io.observe($('#quote'));
+['#ask','#quote','#mform','#band'].forEach(q => $(q) && io.observe($(q)));
 
 // Maintenance request form (goes through the site's contact form email)
 $('#mreq').addEventListener('submit', async e => {

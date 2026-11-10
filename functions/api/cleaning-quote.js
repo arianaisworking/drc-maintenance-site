@@ -9,6 +9,7 @@
 //   CLEANING_LEAD_WEBHOOK  optional, POSTs the lead as JSON (for the dashboard)
 
 import { PRICING, estimate } from '../../cleaning-pricing.js';
+import { repEmail } from '../lib/rep-email.js';
 
 const MAX_PHOTOS = 8;
 const MAX_PHOTO_BYTES = 4 * 1024 * 1024;
@@ -68,43 +69,34 @@ export async function onRequestPost({ request, env }) {
     : est.quoteOnly ? 'Quote after photos'
     : `${money(est.low)} to ${money(est.high)} (middle ${money(est.middle)}, about ${est.laborHours} cleaner hours${est.carpetQuote ? '; carpet NOT included, quote it' : ''})`;
 
-  const row = (k, v) => v ? `<tr><td style="padding:4px 12px 4px 0;color:#637085;vertical-align:top">${esc(k)}</td><td style="padding:4px 0">${v}</td></tr>` : '';
   const addonText = est.addonLines && est.addonLines.length
-    ? est.addonLines.map(a => `${esc(a.label)}${a.qty > 1 ? ' x' + a.qty : ''} (${a.quote ? 'QUOTE for area' : money(a.amount)})`).join('<br>') : '';
-
-  const officeHtml = `
-    <h2 style="font-family:Arial,sans-serif;color:#0E2240">New cleaning lead: call them</h2>
-    <p style="font-family:Arial,sans-serif;font-size:18px"><strong>Call ${esc(lead.name)} at <a href="tel:${esc(lead.phone)}">${esc(lead.phone)}</a></strong>${lead.callTime ? ' (best time: ' + esc(lead.callTime) + ')' : ''}</p>
-    <p style="font-family:Arial,sans-serif;font-size:16px"><strong>Estimate shown to client:</strong> ${esc(estLine)}</p>
-    <table style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">
-      ${row('Name', esc(lead.name))}
-      ${row('Phone', esc(lead.phone))}
-      ${row('Email', esc(lead.email))}
-      ${row('Area', esc(lead.metro))}
-      ${row('Address', esc([lead.address, lead.city, lead.zip].filter(Boolean).join(', ')))}
-      ${row('Service', esc(lbl('services', lead.service)))}
-      ${row('Size', esc([lead.sqft && lead.sqft + ' sq ft', lead.bedrooms && lead.bedrooms + ' bed', lead.bathrooms && lead.bathrooms + ' bath'].filter(Boolean).join(' · ')))}
-      ${row('Condition', esc(lbl('soil', lead.soil)))}
-      ${row('Pets', esc(lbl('pets', lead.pets)))}
-      ${row('Products', esc(lbl('products', lead.products)))}
-      ${row('Special surfaces', esc(lead.surfaces.join(', ')))}
-      ${row('Surface notes', esc(lead.surfaceNotes))}
-      ${row('Add-ons', addonText)}
-      ${row('How often', esc(lbl('frequency', lead.frequency)))}
-      ${row('Work style', esc(lead.style))}
-      ${row('Focus on', esc(lead.focus))}
-      ${row('Allergies / scents', esc(lead.sensitivities))}
-      ${row('Access', esc(lead.access))}
-      ${row('Parking', esc(lead.parking))}
-      ${row('Preferred date', esc([lead.date, lead.time].filter(Boolean).join(' · ')))}
-      ${row('Best time to call', esc(lead.callTime))}
-      ${row('Pays by', esc(lead.payment))}
-      ${row('Heard about us', esc(lead.heard))}
-      ${row('Repairs wanted', lead.maint ? '<strong>' + esc(lead.maint) + '</strong>' : '')}
-      ${row('Notes', esc(lead.notes).replace(/\n/g, '<br>'))}
-      ${row('Photos', attachments.length ? attachments.length + ' attached' : 'None')}
-    </table>
-    <p style="font-family:Arial,sans-serif;font-size:13px;color:#637085">Next: call the client, confirm the price and date, send the Square link or Zelle details, then dispatch once paid.</p>`;
+    ? est.addonLines.map(a => `${esc(a.label)}${a.qty > 1 ? ' x' + a.qty : ''} (${a.quote ? 'quote for area' : money(a.amount)})`).join('<br>') : '';
+  const origin = new URL(request.url).origin;
+  const rows = [
+    ['Service', esc(lbl('services', lead.service))],
+    ['Area', esc(lead.metro)],
+    ['Address', esc([lead.address, lead.city, lead.zip].filter(Boolean).join(', '))],
+    ['Size', esc([lead.sqft && lead.sqft + ' sq ft', lead.bedrooms && lead.bedrooms + ' bed', lead.bathrooms && lead.bathrooms + ' bath'].filter(Boolean).join(' · '))],
+    ['Condition', esc(lead.soil && lbl('soil', lead.soil))],
+    ['Pets', esc(lead.pets && lbl('pets', lead.pets))],
+    ['Products', esc(lead.products && lbl('products', lead.products))],
+    ['Special surfaces', esc(lead.surfaces.join(', '))],
+    ['Surface notes', esc(lead.surfaceNotes)],
+    ['Add ons chosen', addonText],
+    ['How often', esc(lead.frequency && lbl('frequency', lead.frequency))],
+    ['Work style', esc(lead.style)],
+    ['Focus on', esc(lead.focus)],
+    ['Allergies or scents', esc(lead.sensitivities)],
+    ['Access', esc(lead.access)],
+    ['Parking', esc(lead.parking)],
+    ['Preferred date', esc([lead.date, lead.time].filter(Boolean).join(' · '))],
+    ['Pays by', esc(lead.payment)],
+    ['Heard about us', esc(lead.heard)],
+    ['Repairs wanted', lead.maint ? '<strong>' + esc(lead.maint) + '</strong>' : ''],
+    ['Notes', esc(lead.notes).replace(/\n/g, '<br>')],
+  ];
+  const officeHtml = repEmail({ origin, source: 'website estimate', est, photos: attachments.length, rows,
+    lead: { ...lead, serviceKey: lead.service, bedrooms: Number(lead.bedrooms) || 0, bathrooms: Number(lead.bathrooms) || 0, sqft: Number(lead.sqft) || 0, addonCounts: addons } });
 
   const send = body => fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -116,9 +108,9 @@ export async function onRequestPost({ request, env }) {
     from: env.FROM_EMAIL,
     to: env.CLEANING_TO_EMAIL || env.TO_EMAIL,
     reply_to: lead.email,
-    subject: `Cleaning quote: ${lead.name}, ${lbl('services', lead.service)}${lead.metro ? ', ' + lead.metro : lead.city ? ', ' + lead.city : ''}`,
+    subject: `DRC Home Services lead: ${lead.name}, ${lbl('services', lead.service)}${lead.metro ? ', ' + lead.metro : lead.city ? ', ' + lead.city : ''}`,
     html: officeHtml,
-    attachments: attachments.length ? attachments : undefined,
+    attachments: [...attachments, { filename: 'DRC-Home-Services-Cleaning-Price-Sheet.pdf', path: `${origin}/docs/drc-cleaning-price-sheet.pdf` }],
   });
   if (!office.ok) {
     const err = await office.text();
@@ -136,10 +128,10 @@ export async function onRequestPost({ request, env }) {
       subject: 'We got your cleaning request',
       html: `<div style="font-family:Arial,sans-serif;font-size:15px;color:#1a1a14;line-height:1.6">
         <p>Hi ${esc(lead.name.split(' ')[0])},</p>
-        <p>Thanks for reaching out to DRC Cleaning. We received your request for a ${esc(lbl('services', lead.service).toLowerCase())}.</p>
+        <p>Thanks for reaching out to DRC Home Services. We received your request for a ${esc(lbl('services', lead.service).toLowerCase())}.</p>
         ${clientEst}
         <p>Someone from our team will call you at ${esc(lead.phone)} shortly to confirm your price, answer any questions and pick a date. Once you approve the price, we'll send a secure card link or Zelle details, and your date is locked in when payment comes through.</p>
-        <p>Talk soon,<br>DRC Cleaning<br>Dedicated Resource Center LLC</p></div>`,
+        <p>Talk soon,<br>DRC Home Services<br>Dedicated Resource Center LLC</p></div>`,
     });
   } catch {}
 

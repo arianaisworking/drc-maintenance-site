@@ -12,17 +12,17 @@ const S = [
     intro: 'Kitchens, bathrooms, dusting, surfaces and floors, done the same careful way every visit by background checked cleaners. Weekly, every two weeks or monthly.',
     inc: ['Kitchen counters, sink, stovetop and appliance fronts', 'Bathrooms scrubbed and sanitized', 'Dusting of reachable surfaces and decor', 'Floors vacuumed and mopped', 'Beds made and trash emptied', 'Before and after photos of every room'],
     good: ['Busy families who want weekends back', 'Homes that are kept up and need regular care', 'Anyone ready for a recurring membership'],
-    price: 'Most 3 bed, 2 bath homes run $190 to $245. See your exact price online in about a minute.',
+    price: 'Priced by your home size and how often you want us. Tell us what you need and we text or call you with your quote.',
     faq: [['Will my cleaner know my preferences?', 'Yes. Your products, problem spots and rooms to skip are saved to your checklist for every visit.'], ['Do I need to provide supplies?', 'No. We can bring ours, or use yours, including organic and plastic free options.']],
-    cta: { label: 'See my price', href: '/cleaning?service=standard#quote' }, lead: 'clean', svc: 'Essential Home Cleaning' },
+    cta: { label: 'Get my quote', href: '/cleaning?service=standard#quote' }, lead: 'clean', svc: 'Essential Home Cleaning' },
   { g: 'Cleaning', slug: 'signature-deep-cleaning', name: 'Signature Deep Cleaning', img: 'deep',
     h1: 'Top to bottom, inside and behind',
     intro: 'The detailed clean for first visits, seasonal refreshes and homes that need extra care. Baseboards, doors, fixtures, built up grime and the spots that usually get skipped.',
     inc: ['Everything in Essential Home Cleaning', 'Baseboards and door frames hand wiped', 'Soap scum and hard water buildup removed', 'Ceiling fans, vents and light fixtures dusted', 'Under and behind movable furniture', 'Inside oven, fridge and cabinets on request'],
     good: ['A first clean before starting a membership', 'Spring and holiday refreshes', 'Homes that have not had a professional clean in a while'],
-    price: 'Most 3 bed, 2 bath homes run $335 to $425. You get a starting range online and your final quote after we review your home.',
+    price: 'Priced by your home size and condition. Tell us what you need and we text or call you with your quote.',
     faq: [['How long does a deep clean take?', 'Usually 5 to 8 cleaner hours for a typical home, depending on size and condition.'], ['Can I switch to regular cleans after?', 'Yes. Most clients start with a deep clean, then keep it up with Essential Home Cleaning.']],
-    cta: { label: 'See my price', href: '/cleaning?service=deep#quote' }, lead: 'clean', svc: 'Signature Deep Cleaning' },
+    cta: { label: 'Get my quote', href: '/cleaning?service=deep#quote' }, lead: 'clean', svc: 'Signature Deep Cleaning' },
   { g: 'Cleaning', slug: 'complete-home-care', name: 'Complete Home Care', img: 'homecare',
     h1: 'Your whole home, handled by one team',
     intro: 'Cleaning plus laundry, linens, kitchen detailing, organizing and repairs. Pick what you want and a DRC home care specialist builds a personalized, itemized plan before anything is scheduled.',
@@ -36,17 +36,17 @@ const S = [
     intro: 'Empty home cleans that get every cabinet, appliance and corner ready for move in day or the final walk through.',
     inc: ['Inside all cabinets, drawers and closets', 'Inside oven, fridge and dishwasher', 'Bathrooms deep cleaned', 'Baseboards, doors, switches and vents', 'Floors vacuumed and mopped throughout', 'Photos of every room for your records'],
     good: ['Renters who want their deposit back', 'Buyers moving into a new home', 'Landlords and property managers between tenants'],
-    price: 'Priced by home size and condition. See your price online in about a minute.',
+    price: 'Priced by home size and condition. Get your quote by text or phone.',
     faq: [['Does the home need to be empty?', 'Empty is best, so we can reach every surface. Tell us if anything will still be there.'], ['Can you do the same day as the move?', 'Often yes. Share your date and we will confirm.']],
-    cta: { label: 'See my price', href: '/cleaning?service=move#quote' }, lead: 'clean', svc: 'Move in or move out' },
+    cta: { label: 'Get my quote', href: '/cleaning?service=move#quote' }, lead: 'clean', svc: 'Move in or move out' },
   { g: 'Cleaning', slug: 'airbnb-turnover-cleaning', name: 'Airbnb turnover cleaning', img: 'airbnb',
     h1: 'Guest ready between every stay',
     intro: 'Fast, reliable turnovers with fresh linens, restocked basics and photos, so you know the place is ready before your next guest arrives.',
     inc: ['Full clean between guests', 'Linens changed and beds made', 'Towels refreshed and staged', 'Restock of supplies you provide', 'Damage and missing item notes', 'Photos after every turnover'],
     good: ['Airbnb and vacation rental hosts', 'Property managers with short term rentals', 'Bed and breakfasts'],
-    price: 'Priced per turnover by size. See your price online.',
+    price: 'Priced per turnover by size. Get your quote by text or phone.',
     faq: [['Can you work around check in times?', 'Yes. Share your calendar and we schedule around checkouts and check ins.'], ['Do you report damage?', 'Yes. Your cleaner notes anything broken or missing with photos.']],
-    cta: { label: 'See my price', href: '/cleaning?service=rental#quote' }, lead: 'clean', svc: 'Airbnb turnover' },
+    cta: { label: 'Get my quote', href: '/cleaning?service=rental#quote' }, lead: 'clean', svc: 'Airbnb turnover' },
   { g: 'Cleaning', slug: 'carpet-cleaning', name: 'Carpet cleaning', img: 'carpet',
     h1: 'Fresh, deep cleaned carpets and rugs',
     intro: 'Deep steam cleaning for carpets, area rugs and stairs. Add it to any clean or book it on its own.',
@@ -168,6 +168,7 @@ label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
 input,textarea,select{width:100%;font:16px 'Figtree',sans-serif;padding:12px 13px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
 textarea{min-height:90px;resize:vertical}
 .lead .btn{width:100%;margin-top:14px}
+.cks{display:grid;gap:9px;margin-top:14px}.ck{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;font-weight:500;cursor:pointer;margin:0}.ck input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--sage-d)}
 .err{color:var(--err);font-size:14px;margin-top:8px}
 .ok{display:none;text-align:center;padding:20px 0}.ok b{display:block;font-size:22px;margin-bottom:6px}
 .hp{position:absolute;left:-9999px}
@@ -217,6 +218,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-s
         ${x.lead === 'maint' ? '' : '<div class="full"><label for="sz">Home size</label><select id="sz"><option value="">Choose one</option><option>Studio or 1 bed</option><option>2 beds</option><option>3 beds</option><option>4 beds</option><option>5+ beds</option></select></div>'}
         <div class="full"><label for="m">${x.lead === 'maint' ? 'What needs attention? *' : 'Anything we should know?'}</label><textarea id="m" placeholder="${x.lead === 'maint' ? 'Example: kitchen faucet drips and the guest bathroom door will not latch.' : 'Rooms to focus on, preferred days, pets, products you like.'}"></textarea></div>
       </div>
+      <div class="cks"><label class="ck"><input type="checkbox" id="sms"><span>Text me my quote and scheduling updates. Message and data rates may apply. Reply STOP to opt out anytime.</span></label>
+      <label class="ck"><input type="checkbox" id="cl" checked><span>It's OK to call me about my quote.</span></label></div>
       <input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit">${x.lead === 'maint' ? 'Send my request' : 'Send my request'}</button>
       <p class="err" id="er" role="alert"></p>
@@ -244,8 +247,8 @@ $('#lf').addEventListener('submit', async e => {
     let r;
     ${x.lead === 'maint'
       ? `const [firstName, ...rest] = v('n').split(' ');
-    r = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ firstName, lastName: rest.join(' '), email: v('e'), phone: v('p'), propertyType: 'Private home (${esc(x.name)} page)', service: ${JSON.stringify(x.svc)}, message: v('m') + '\\n\\nZIP: ' + v('z') + '\\nPage: ' + location.href + '\\n\\nPlease call the client.' }) });`
-      : `r = await fetch('/api/cleaning-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ service: ${JSON.stringify(x.svc)}, size: v('sz'), location: 'ZIP ' + v('z'), notes: v('m'), name: v('n'), email: v('e'), phone: v('p'), page: location.href }) });`}
+    r = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ firstName, lastName: rest.join(' '), email: v('e'), phone: v('p'), propertyType: 'Private home (${esc(x.name)} page)', service: ${JSON.stringify(x.svc)}, message: v('m') + '\\n\\nZIP: ' + v('z') + '\\nText OK: ' + ($('#sms').checked ? 'YES (opted in)' : 'NO') + '\\nCall OK: ' + ($('#cl').checked ? 'Yes' : 'No') + '\\nPage: ' + location.href + '\\n\\nPlease call the client.' }) });`
+      : `r = await fetch('/api/cleaning-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ service: ${JSON.stringify(x.svc)}, size: v('sz'), location: 'ZIP ' + v('z'), notes: v('m'), name: v('n'), email: v('e'), phone: v('p'), smsOptIn: $('#sms').checked, callOk: $('#cl').checked, page: location.href }) });`}
     if (!r.ok) throw 0;
     $('#lf').style.display = 'none'; $('#ok').style.display = 'block';
   } catch { er.textContent = 'Something went wrong. Please try again.'; btn.disabled = false; btn.textContent = 'Send my request'; }

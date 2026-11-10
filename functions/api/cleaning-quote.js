@@ -45,6 +45,7 @@ export async function onRequestPost({ request, env }) {
     access: g('access'), parking: g('parking'),
     date: g('date'), time: g('time'), callTime: g('calltime'), heard: g('heard'), notes: g('notes'), maint: g('maint'),
     payment: g('payment'), homecare: all('homecare'),
+    smsOptIn: g('sms_optin') === 'yes', callOk: g('call_ok') === 'yes',
   };
 
   if (!lead.name || !lead.phone || !lead.email || !lead.service) {
@@ -74,6 +75,7 @@ export async function onRequestPost({ request, env }) {
   const origin = new URL(request.url).origin;
   const rows = [
     ['Service', esc(lbl('services', lead.service))],
+    ['Contact permission', `<strong>Text: ${lead.smsOptIn ? 'YES, opted in to quote and scheduling texts' : 'NO, do not text'}</strong><br><strong>Call: ${lead.callOk ? 'Yes' : 'No, email only'}</strong>`],
     ['Area', esc(lead.metro)],
     ['Address', esc([lead.address, lead.city, lead.zip].filter(Boolean).join(', '))],
     ['Size', esc([lead.sqft && lead.sqft + ' sq ft', lead.bedrooms && lead.bedrooms + ' bed', lead.bathrooms && lead.bathrooms + ' bath'].filter(Boolean).join(' · '))],
@@ -119,9 +121,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   // Client confirmation. A failure here doesn't fail the request.
-  const clientEst = est.ok && !est.quoteOnly
-    ? `<p>Your estimate: <strong>${money(est.low)} to ${money(est.high)}</strong>.</p>`
-    : '';
+  const clientEst = ''; // quotes are given by text or phone, not in the email
   try {
     await send({
       from: env.FROM_EMAIL,
@@ -133,7 +133,7 @@ export async function onRequestPost({ request, env }) {
         ${clientEst}
         ${lead.service === 'homecare'
           ? `<p>We've received your selections. A DRC home care specialist will review your needs and send you a personalized, itemized quote before scheduling.</p>`
-          : `<p>Someone from our team will call you at ${esc(lead.phone)} shortly to confirm your price, answer any questions and pick a date. Once you approve the price, we'll email a secure Square payment link, and your date is locked in when payment comes through.</p>`}
+          : `<p>Someone from our team will reach out ${lead.smsOptIn ? 'by text' : lead.callOk ? 'by phone' : 'by email'} shortly with your quote, answer any questions and pick a date. Once you approve the price, we'll email a secure Square payment link, and your date is locked in when payment comes through.</p>`}
         <p>Talk soon,<br>DRC Home Services<br>Dedicated Resource Center LLC</p></div>`,
     });
   } catch {}

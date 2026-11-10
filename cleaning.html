@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRC Cleaning | Home, Move-Out &amp; Rental Cleaning in Dallas, Denver, Nashville &amp; Phoenix</title>
+<meta name="description" content="Friendly, background-checked, insured cleaners in Dallas, Denver, Nashville and Phoenix. Standard, deep, move-out, Airbnb, student housing and carpet cleaning. Choose organic or microplastic-free products. Get your price in two minutes and we'll call you.">
+<meta property="og:title" content="DRC Cleaning | Get your price in two minutes">
+<meta property="og:description" content="Background-checked, insured cleaners. Tell us about your home and we'll call you to book.">
+<meta property="og:image" content="img/clean-hero-listing.jpg">
+<link rel="icon" type="image/png" href="img/drc-logo.png">
+<link rel="preload" as="image" href="img/clean-hero-listing.jpg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FBF6EE;--paper:#FFFFFF;--sand:#F3EADB;--sand2:#EADCC5;
+  --sage:#5E8B6B;--sage-d:#2E6B3E;--sage-l:#E4EEE5;
+  --clay:#C9784F;--clay-l:#F7E3D7;
+  --ink:#24323F;--muted:#6B6A66;--line:#E7DDCD;--err:#B23A2A;
+  --r:18px;
+  --shadow:0 10px 30px rgba(60,45,25,.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Figtree',system-ui,sans-serif;color:var(--ink);background:var(--bg);overflow-x:hidden;line-height:1.55}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:'Figtree',system-ui,sans-serif;font-weight:700;letter-spacing:-.025em;line-height:1.1;color:var(--ink)}
+h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:12px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+section{padding:84px 0}
+.kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-d);margin-bottom:16px}
+.kicker::before{content:'';width:28px;height:1.5px;background:currentColor}
+.lede{font-size:17px;color:var(--muted);max-width:600px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:99px;font:600 15px/1 'Figtree',sans-serif;text-decoration:none;cursor:pointer;border:none;transition:background .2s,transform .15s,box-shadow .2s}
+.btn-main{background:var(--sage-d);color:#fff;box-shadow:0 2px 8px rgba(46,107,62,.18)}
+.btn-main:hover{background:#255a33;transform:translateY(-1px)}
+.btn-soft{background:var(--paper);color:var(--ink);border:1.5px solid var(--line)}
+.btn-soft:hover{border-color:var(--sage)}
+.btn[disabled]{opacity:.6;cursor:wait;transform:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(251,246,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo img{height:52px;width:auto}
+.logo{gap:14px}
+.logo span{font:700 24px/1 'Figtree',sans-serif;color:var(--sage-d);letter-spacing:-.01em;padding-left:14px;border-left:2px solid var(--line)}
+.navlinks{display:flex;align-items:center;gap:26px;list-style:none}
+.navlinks a{font-size:15px;font-weight:500;color:var(--ink);text-decoration:none}
+.navlinks a:hover{color:var(--sage-d)}
+.navlinks .btn{padding:12px 20px;font-size:14px;color:#fff}
+
+/* HERO */
+.hero{position:relative;min-height:760px;display:flex;align-items:center;padding:64px 0;overflow:hidden}
+.hero-bg{position:absolute;top:0;right:0;bottom:0;width:50%;height:100%;object-fit:cover;object-position:38% center;z-index:0}
+.hero::before{display:none}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.hero-copy{max-width:min(508px,calc(50vw - 72px));position:relative;z-index:2}
+.hero h1{font-size:clamp(44px,6vw,72px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:18px}
+.hero .lede{margin-bottom:28px;font-size:17.5px;color:#4d4b47}
+.hero .ask{background:var(--paper)}
+.ask{background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow);padding:24px;border:1px solid var(--line)}
+.ask h2{font-size:22px;margin-bottom:4px}
+.ask p{font-size:14px;color:var(--muted);margin-bottom:16px}
+.picks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pick{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px 13px;cursor:pointer;font:600 14px/1.25 'Figtree',sans-serif;color:var(--ink);transition:border-color .15s,background .15s,transform .15s}
+.pick:hover{border-color:var(--sage);background:var(--sage-l);transform:translateY(-2px)}
+.pick .ic{font-size:22px;line-height:1}
+.pick small{font-weight:400;color:var(--muted);font-size:12px}
+
+/* TRUST */
+.trust{background:var(--sand);padding:26px 0}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.trust .wrap>div{display:flex;gap:14px;align-items:center;font-size:14px}
+.trust .wrap>div>div{display:block}
+.trust .ic{font-size:22px}
+.trust b{display:block;font-size:15px}
+.trust span{color:var(--muted);font-size:13px}
+
+/* BEFORE / AFTER */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.ba figure{position:relative;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.ba img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.ba figcaption{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);border-radius:99px;padding:6px 14px;font-size:13px;font-weight:700;letter-spacing:.04em}
+.ba figure:last-child figcaption{background:var(--sage-d);color:#fff}
+.ba-note{font-size:13px;color:var(--muted);margin-top:12px}
+.center-cta{text-align:center;margin-top:30px}
+
+/* HOW */
+.how{background:var(--paper)}
+.how .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.how img{border-radius:28px;width:100%;aspect-ratio:1/1;object-fit:cover;box-shadow:var(--shadow)}
+.steps{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:20px}
+.steps li{display:flex;gap:16px}
+.steps .n{width:40px;height:40px;border-radius:50%;background:var(--clay-l);color:var(--clay);font-family:'Figtree',sans-serif;font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.steps b{display:block;font-size:17px;margin-bottom:2px}
+.steps span{color:var(--muted);font-size:15px}
+
+/* SERVICES + PRODUCTS */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.card .ic{font-size:26px;margin-bottom:10px}
+.card h3{font-size:20px;margin-bottom:6px}
+.card p{font-size:14.5px;color:var(--muted)}
+.card a{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;color:var(--sage-d);text-decoration:none}
+.prods{background:var(--sand)}
+.prods .cards{grid-template-columns:repeat(4,1fr)}
+
+/* MAINTENANCE */
+.maint .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.mlist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+.mlist div{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14.5px;font-weight:600;display:flex;gap:10px;align-items:center}
+.mprice{background:var(--clay-l);border-radius:16px;padding:18px 20px;font-size:15px}
+.mprice b{display:block;margin-bottom:6px}
+.mprice ul{margin:0 0 0 18px;color:var(--ink)}
+.mprice li{margin:4px 0}
+.mform{background:var(--paper);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
+.mform h3{font-size:24px;margin-bottom:4px}
+.mform .hint{font-size:14.5px;color:var(--muted);margin-bottom:18px}
+.mform .ok{display:none;text-align:center;padding:20px 0}
+.mform.sent form{display:none}
+.mform.sent .ok{display:block}
+
+/* QUOTER */
+.quote{background:var(--sage-l)}
+.q-layout{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:30px;align-items:start}
+.q-card{background:var(--paper);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+.progress{height:6px;background:var(--sand);border-radius:99px;overflow:hidden;margin-bottom:8px}
+.progress i{display:block;height:100%;width:20%;background:var(--sage);border-radius:99px;transition:width .3s}
+.q-count{font-size:13px;color:var(--muted);margin-bottom:22px}
+.panel{display:none}
+.panel.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.panel h3{font-size:26px;margin-bottom:4px}
+.panel .hint{font-size:15px;color:var(--muted);margin-bottom:22px}
+fieldset{border:none;margin-bottom:24px}
+legend,.lbl{display:block;font-size:15px;font-weight:600;margin-bottom:10px}
+.opt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.opt-grid.three{grid-template-columns:repeat(3,1fr)}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt label{display:block;height:100%;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;cursor:pointer;font-size:14.5px;font-weight:600;transition:border-color .15s,background .15s}
+.opt label small{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:3px;line-height:1.4}
+.opt label .price{float:right;font-weight:600;color:var(--sage-d);font-size:13px;margin-left:8px}
+.opt input:checked+label{border-color:var(--sage);background:var(--sage-l)}
+.opt input:checked+label::after{content:'✓';float:right;color:var(--sage-d);font-weight:700;margin-left:6px}
+.opt input:focus-visible+label{outline:2px solid var(--sage);outline-offset:2px}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.row.two{grid-template-columns:1fr 1fr}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;font:16px 'Figtree',sans-serif;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.field textarea{min-height:84px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--sage);background:#fff}
+.field.bad input{border-color:var(--err)}
+.addon{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;font-size:14px}
+.addon.on{border-color:var(--sage);background:var(--sage-l)}
+.addon .nm{font-weight:600}
+.addon .pr{font-size:12.5px;color:var(--muted)}
+.stepper{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.stepper button{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);background:#fff;font-size:17px;line-height:1;cursor:pointer;color:var(--ink)}
+.stepper output{min-width:16px;text-align:center;font-weight:700}
+.callout{background:var(--clay-l);border-radius:14px;padding:14px 16px;font-size:14.5px;margin-bottom:6px}
+.drop{border:2px dashed var(--sand2);border-radius:16px;padding:24px;text-align:center;background:var(--bg);cursor:pointer;font-size:14.5px;color:var(--muted)}
+.drop.over{border-color:var(--sage);background:var(--sage-l)}
+.drop b{color:var(--ink)}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.thumbs div{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--line)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs button{position:absolute;top:4px;right:4px;width:24px;height:24px;border-radius:50%;border:none;background:rgba(36,50,63,.8);color:#fff;cursor:pointer;font-size:14px;line-height:1}
+.q-nav{display:flex;justify-content:space-between;gap:12px;margin-top:8px;padding-top:20px;border-top:1px solid var(--line)}
+.err-msg{color:var(--err);font-size:14px;font-weight:600;margin-top:10px;min-height:1em}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.est{position:sticky;top:96px;background:var(--paper);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
+.est .k{font-size:13px;font-weight:600;color:var(--sage-d)}
+.est .big{font-family:'Figtree',sans-serif;font-size:38px;font-weight:700;margin:6px 0 2px;line-height:1.1}
+.est .sub{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+.est ul{list-style:none;border-top:1px solid var(--line);padding-top:12px;font-size:13.5px}
+.est li{display:flex;justify-content:space-between;gap:10px;padding:4px 0;color:var(--muted)}
+.est li span:last-child{color:var(--ink);font-weight:600;text-align:right}
+.est .call{margin-top:16px;background:var(--sage-l);border-radius:14px;padding:12px 14px;font-size:13.5px;display:flex;gap:10px}
+.done-card{text-align:center;padding:26px 6px}
+.done-card .tick{width:68px;height:68px;border-radius:50%;background:var(--sage-d);color:#fff;font-size:32px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.done-card h3{font-size:30px;margin-bottom:10px}
+.done-card p{color:var(--muted);max-width:440px;margin:0 auto 10px}
+
+/* FAQ */
+.faq{max-width:780px;margin-top:20px}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:600;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-size:22px;line-height:1;color:var(--sage-d)}
+.faq details[open] summary::after{content:'–'}
+.faq p{color:var(--muted);font-size:15px;margin-top:8px}
+
+/* CTA BAND + FOOTER */
+.band{background:var(--sage-d);color:#fff;border-radius:28px;padding:44px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.band h2{color:#fff;margin:0}
+.band p{color:rgba(255,255,255,.8);margin-top:6px}
+.band .btn{background:#fff;color:var(--sage-d)}
+footer{background:var(--ink);color:rgba(255,255,255,.6);padding:48px 0 26px;font-size:14px}
+footer .wrap>div:first-child{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;margin-bottom:30px}
+footer img{height:50px;width:auto;background:#fff;border-radius:10px;padding:4px}
+footer p{max-width:300px;margin-top:12px}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+footer h5{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px}
+footer a{color:rgba(255,255,255,.7);text-decoration:none}
+footer a:hover{color:#fff}
+.fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:12px;color:rgba(255,255,255,.4)}
+
+
+/* refined icons, no emoji */
+.i{width:22px;height:22px;display:block}
+.trust .ic{color:var(--sage-d);width:44px;height:44px;border-radius:50%;border:1px solid var(--sand2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.est .call .ic{color:var(--sage-d);flex-shrink:0}
+.est .call .i{width:18px;height:18px;margin-top:2px}
+.pick{position:relative;padding:16px 34px 16px 15px;justify-content:center;min-height:78px}
+.pick::after{content:'';position:absolute;right:14px;top:50%;width:8px;height:8px;border-top:1.6px solid var(--sage-d);border-right:1.6px solid var(--sage-d);transform:translateY(-50%) rotate(45deg);opacity:.55;transition:opacity .15s,right .15s}
+.pick:hover::after{opacity:1;right:11px}
+.card{border-top:3px solid var(--sage)}
+.card h3{margin-top:2px}
+.mlist div::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--sage);flex-shrink:0}
+
+.card.wide{grid-column:1/-1}
+/* STANDARD */
+.std{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.std-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:36px}
+.std-head .lede{margin:0}
+.std-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.std-grid>div{padding:28px 28px 28px 0}
+.std-grid>div+div{padding-left:28px;border-left:1px solid var(--line)}
+.std-grid h3{font-size:20px;margin-bottom:14px}
+.std-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.std-grid li{font-size:15px;color:#4d4b47;padding-left:22px;position:relative}
+.std-grid li::before{content:'';position:absolute;left:0;top:7px;width:10px;height:6px;border-left:1.6px solid var(--sage-d);border-bottom:1.6px solid var(--sage-d);transform:rotate(-45deg)}
+.promise{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.promise div{background:var(--bg);border-radius:16px;padding:20px 22px}
+.promise b{display:block;font-size:16px;margin-bottom:4px}
+.promise span{font-size:14px;color:var(--muted)}
+
+/* hero texture + accents */
+.hero{background:radial-gradient(ellipse 60% 70% at 8% 18%,rgba(94,139,107,.13),transparent 60%),radial-gradient(ellipse 45% 55% at 42% 92%,rgba(201,120,79,.10),transparent 65%),var(--bg)}
+.hero::after{content:'';position:absolute;top:0;left:0;bottom:0;width:50%;z-index:1;pointer-events:none;opacity:.5;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .42 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.swash{position:relative;color:var(--sage-d);white-space:nowrap}
+.hero h1{position:relative;z-index:1}
+.hero-float{position:absolute;z-index:3;left:calc(50% + 32px);bottom:40px;display:flex;align-items:center;gap:14px;background:var(--paper);border-radius:18px;padding:10px 18px 10px 10px;box-shadow:0 18px 40px rgba(60,45,25,.16);text-decoration:none;color:var(--ink);transition:transform .2s}
+.hero-float:hover{transform:translateY(-3px)}
+.ba-mini{display:flex;gap:4px}
+.ba-mini img{width:58px;height:58px;object-fit:cover;border-radius:10px}
+.hero-float b{display:block;font-size:15px}
+.hero-float small{font-size:12.5px;color:var(--muted)}
+
+.leaf{position:absolute;pointer-events:none;filter:drop-shadow(0 10px 14px rgba(60,45,25,.14))}
+.leaf-a{z-index:1;width:300px;left:max(-90px,calc((100vw - 1160px)/2 - 250px));bottom:-70px;transform:rotate(-8deg)}
+.leaf-b{z-index:3;width:210px;left:calc(50% - 95px);top:-34px;transform:scaleX(-1) rotate(-28deg)}
+/* MOBILE BAR */
+.mbar{display:none}
+
+@media(max-width:980px){
+  .how .wrap{grid-template-columns:1fr}
+  .hero{display:block;min-height:0;padding:0 0 48px}
+  .hero-bg{position:static;width:100%;height:380px}
+  .hero-copy{max-width:640px;padding-top:36px}
+  .q-layout{grid-template-columns:1fr}
+  .maint .wrap{grid-template-columns:1fr}
+  .hero-float{display:none}
+  .leaf-b{display:none}
+  .leaf-a{width:170px;left:auto;right:-36px;bottom:auto;top:250px;z-index:3}
+    .hero::after{width:100%;top:380px}
+  .std-head{grid-template-columns:1fr;gap:12px}
+  .std-grid,.promise{grid-template-columns:1fr}
+  .std-grid>div,.std-grid>div+div{padding:22px 0;border-left:none;border-bottom:1px solid var(--line)}
+  .est{position:static}
+  .trust .wrap{grid-template-columns:repeat(2,1fr)}
+  .cards,.prods .cards{grid-template-columns:repeat(2,1fr)}
+  .how img{aspect-ratio:16/11}
+}
+@media(max-width:639px){
+  .wrap{padding:0 16px}
+  section{padding:60px 0}
+  .hero{display:block;min-height:0;padding:0 0 40px}
+  .hero-bg{height:220px}
+  .hero .kicker{font-size:10.5px;letter-spacing:.12em}
+  .hero .kicker::before{display:none}
+  .hero::before{display:none}
+  .hero-copy{padding-top:26px}
+  .leaf{display:none}
+  .hero .ask{background:var(--paper)}
+  .hero h1{font-size:40px;margin-bottom:10px}
+  .hero .lede{font-size:15.5px;margin-bottom:18px}
+  .hero .kicker{margin-bottom:10px}
+  nav .wrap{height:64px}
+  .logo img{height:42px}
+  .logo span{font-size:19px;padding-left:10px}
+  .navlinks li:not(:last-child){display:none}
+  .navlinks .btn{padding:10px 16px;font-size:13px}
+  .picks{grid-template-columns:repeat(2,1fr)}
+  .ba{grid-template-columns:1fr}
+  .cards,.prods .cards,.trust .wrap{grid-template-columns:1fr}
+  .q-card{padding:22px 16px}
+  .opt-grid,.opt-grid.three,.row,.row.two{grid-template-columns:1fr}
+  .mlist{grid-template-columns:1fr 1fr}
+  .mform{padding:22px 16px}
+  .thumbs{grid-template-columns:repeat(3,1fr)}
+  .band{padding:30px 22px;border-radius:22px}
+  .center-cta{display:none}
+  .mbar{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:90;transition:transform .25s}
+  .mbar .btn{width:100%;padding:16px}
+  .mbar.hide{transform:translateY(140%)}
+  body{padding-bottom:20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="/" class="logo"><img src="img/drc-logo.png" alt="DRC Maintenance"><span>Cleaning</span></a>
+    <ul class="navlinks">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#maintenance">Repairs</a></li>
+      <li><a href="#faq">Questions</a></li>
+      <li><a href="#quote" class="btn btn-main">Get my price</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+<a class="hero-float" href="#results"><span class="ba-mini"><img src="img/clean-before-kitchen.jpg" alt=""><img src="img/clean-after-kitchen.jpg" alt=""></span><span><b>See the difference</b><small>Before &amp; after, every room</small></span></a>
+  <img class="leaf leaf-a" src="img/eucalyptus.webp" alt="" aria-hidden="true">
+  <img class="leaf leaf-b" src="img/eucalyptus.webp" alt="" aria-hidden="true">
+  <img class="hero-bg" src="img/clean-hero-listing.jpg" alt="A bright, freshly cleaned living room and open kitchen" fetchpriority="high">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="kicker">Dallas · Denver · Nashville · Phoenix</span>
+      <h1>Come home to <span class="swash">calm.</span></h1>
+      <p class="lede">Vetted, insured cleaners who use the products you choose, with photos of every room when they're done. See your price in two minutes and we'll call you to book.</p>
+      <div class="ask" id="ask">
+        <h2>What can we clean for you?</h2>
+        <p>Tap one to start your estimate. It takes about two minutes.</p>
+        <div class="picks">
+          <button class="pick" data-svc="standard">Regular clean<small>Weekly, biweekly or once</small></button>
+          <button class="pick" data-svc="deep">Deep clean<small>Top to bottom</small></button>
+          <button class="pick" data-svc="move">Moving in or out<small>Empty home</small></button>
+          <button class="pick" data-svc="rental">Airbnb turnover<small>Between guests</small></button>
+          <button class="pick" data-svc="carpet">Carpet cleaning<small>Per room</small></button>
+          <button class="pick" data-svc="hoarder">Something bigger<small>Cleanouts, businesses</small></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="trust">
+  <div class="wrap">
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Background-checked</b><span>Every cleaner, every time</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span><div><b>Insured</b><span>Liability and auto coverage</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></svg></span><div><b>Your products, your call</b><span>Organic and plastic-free options</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b>A real person calls you</b><span>No surprises on price</span></div></div>
+  </div>
+</div>
+
+<section id="results">
+  <div class="wrap">
+    <span class="kicker">The difference</span>
+    <h2>From "where do I start?" to "ahh."</h2>
+    <p class="lede">Dishes, grime, clutter on the counters. We handle it so you can come home and relax.</p>
+    <div class="ba">
+      <figure><img src="img/clean-before-kitchen.jpg" alt="A kitchen with dishes in the sink and a cluttered, dirty counter" loading="lazy"><figcaption>Before</figcaption></figure>
+      <figure><img src="img/clean-after-kitchen.jpg" alt="The same kitchen spotless and tidy" loading="lazy"><figcaption>After</figcaption></figure>
+    </div>
+    <p class="ba-note">Example of a deep clean. Your cleaner sends real before and after photos of your home.</p>
+    <div class="center-cta"><a href="#ask" class="btn btn-main">Start my estimate</a></div>
+  </div>
+</section>
+
+<section id="standard" class="std">
+  <div class="wrap">
+    <div class="std-head">
+      <div><span class="kicker">The DRC standard</span><h2>Every clean includes</h2></div>
+      <p class="lede">A detailed checklist for every room, so nothing is left to chance. Deep and move-out cleans go further, inside and behind.</p>
+    </div>
+    <div class="std-grid">
+      <div><h3>Kitchen</h3><ul><li>Counters, backsplash and sink scrubbed and shined</li><li>Stovetop and range hood degreased</li><li>Outside of appliances and cabinet fronts wiped</li><li>Microwave cleaned inside and out</li><li>Floors vacuumed and mopped</li></ul></div>
+      <div><h3>Bathrooms</h3><ul><li>Showers, tubs and tile scrubbed</li><li>Toilets cleaned and sanitized, base included</li><li>Mirrors and glass streak-free</li><li>Vanities, sinks and fixtures polished</li><li>Floors vacuumed and mopped</li></ul></div>
+      <div><h3>Living areas &amp; bedrooms</h3><ul><li>Dusting of reachable surfaces, shelves and décor</li><li>Light switches, handles and doors wiped</li><li>Beds made, linens changed on request</li><li>Mirrors and glass tables shined</li><li>Carpets vacuumed, hard floors mopped</li></ul></div>
+    </div>
+    <div class="promise">
+      <div><b>Photo-verified</b><span>Before and after photos of every room, sent to you.</span></div>
+      <div><b>Make-it-right promise</b><span>Missed something? Tell us and we'll come back and fix it.</span></div>
+      <div><b>One trusted team</b><span>Vetted, insured cleaners who know your home and your preferences.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="how">
+  <div class="wrap">
+    <img src="img/clean-cleaner.jpg" alt="A smiling cleaner in a green shirt wiping a bathroom mirror" loading="lazy">
+    <div>
+      <span class="kicker">How it works</span>
+      <h2>Easy from the first click</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><div><b>Tell us about your home</b><span>A few quick taps and some photos if you have them. You see your price range right away.</span></div></li>
+        <li><span class="n">2</span><div><b>We call you</b><span>Someone from DRC calls to confirm your price, answer questions and pick a time that works.</span></div></li>
+        <li><span class="n">3</span><div><b>Book and relax</b><span>Pay by secure card link or Zelle to lock your date. Your cleaner shows up ready.</span></div></li>
+        <li><span class="n">4</span><div><b>See the results</b><span>You get before and after photos of every room, even if you're not home.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <span class="kicker">Services</span>
+    <h2>Whatever your home needs</h2>
+    <div class="cards">
+      <div class="card"><h3>Regular clean</h3><p>Kitchen, bathrooms, dusting, floors and surfaces on a schedule that suits you.</p><a href="#quote" data-svc="standard">Get a price →</a></div>
+      <div class="card"><h3>Deep clean</h3><p>Baseboards, doors, fixtures and built-up grime. The best first visit.</p><a href="#quote" data-svc="deep">Get a price →</a></div>
+      <div class="card"><h3>Move-in / move-out</h3><p>Empty-home cleans to get your deposit back or start fresh.</p><a href="#quote" data-svc="move">Get a price →</a></div>
+      <div class="card"><h3>Airbnb turnover</h3><p>Fast turns between guests, with photos so you know it's guest-ready.</p><a href="#quote" data-svc="rental">Get a price →</a></div>
+      <div class="card"><h3>Student housing</h3><p>Move-out and turnover cleans per unit or per bed for leasing offices.</p><a href="#quote" data-svc="student">Get a price →</a></div>
+      <div class="card"><h3>Carpet cleaning</h3><p>Deep steam cleaning for carpets, rugs and stairs. Add it to any clean or book it on its own.</p><a href="#quote" data-svc="carpet">Get a price →</a></div>
+      <div class="card wide"><h3>Bigger jobs</h3><p>Hoarder and debris cleanouts, offices, dental, restaurants and more. Quoted from photos.</p><a href="#quote" data-svc="commercial">Get a quote →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="prods" id="products">
+  <div class="wrap">
+    <span class="kicker">Your products, your call</span>
+    <h2>Clean the way you like</h2>
+    <p class="lede">Have marble or natural stone, or a product you love? Tell us and we'll use what's safe for your home.</p>
+    <div class="cards">
+      <div class="card"><h3>Your products</h3><p>Leave out what you'd like us to use and we'll use only that.</p></div>
+      <div class="card"><h3>Our products</h3><p>We bring professional supplies and equipment.</p></div>
+      <div class="card"><h3>Organic &amp; unscented</h3><p>Vinegar-based, fragrance-free. Great for allergies, kids and pets.</p></div>
+      <div class="card"><h3>No microplastics</h3><p>Plastic-free tools and products, no microfiber cloths.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="maintenance" class="maint">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Need something fixed too?</span>
+      <h2>Maintenance for every need, big or small</h2>
+      <p class="lede">We're DRC Maintenance first. Add a repair to your clean, or send us any request on its own. One call handles it all.</p>
+      <div class="mlist">
+        <div>Leaks &amp; faucets</div><div>Toilets &amp; disposals</div>
+        <div>Drywall &amp; patching</div><div>Painting &amp; touch-ups</div>
+        <div>Lights &amp; fixtures</div><div>Doors, locks &amp; hardware</div>
+        <div>Junk removal</div><div>Lawn &amp; yard</div>
+        <div>HVAC &amp; appliances</div><div>Flooring, roofs &amp; bigger projects</div>
+      </div>
+      <div class="mprice">
+        <b>How repair pricing works</b>
+        <ul>
+          <li>Send photos or a short video and we'll quote most jobs for free, no visit needed.</li>
+          <li>Already booked a clean? Your cleaner can snap photos while they're there.</li>
+          <li>If we do need to see it in person, we tell you the visit cost upfront, before anyone comes out.</li>
+          <li>You approve the price before any work starts. No surprises.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mform" id="mform">
+      <form id="mreq" novalidate>
+        <h3>Send us your request</h3>
+        <p class="hint">Tell us what's going on and we'll call you with next steps.</p>
+        <div class="row two">
+          <div class="field"><label for="m_name">Your name *</label><input id="m_name" name="name" autocomplete="name"></div>
+          <div class="field"><label for="m_phone">Phone *</label><input id="m_phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="row two">
+          <div class="field"><label for="m_email">Email *</label><input id="m_email" name="email" type="email" autocomplete="email"></div>
+          <div class="field"><label for="m_city">Area</label><select id="m_city" name="city"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Somewhere else</option></select></div>
+        </div>
+        <div class="field" style="margin-bottom:16px"><label for="m_what">What needs attention? *</label><textarea id="m_what" name="what" placeholder="Example: kitchen faucet drips and the guest bathroom door won't latch."></textarea></div>
+        <div class="field" style="margin-bottom:18px"><label for="m_when">How soon?</label><select id="m_when" name="when"><option>Whenever is convenient</option><option>This week</option><option>As soon as possible</option><option>Emergency (water, no heat, can't lock up)</option></select></div>
+        <div class="err-msg" id="m_err" role="alert"></div>
+        <button type="submit" class="btn btn-main" style="width:100%">Send my request</button>
+        <p class="hint" style="margin:12px 0 0;font-size:13px">Have photos? We'll ask for them when we call, or add them in the cleaning estimate below.</p>
+      </form>
+      <div class="ok"><div class="done-card"><div class="tick">✓</div><h3>Request sent!</h3><p>Someone from DRC will call you shortly to talk through it.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="quote" class="quote">
+  <div class="wrap">
+    <span class="kicker">Your estimate</span>
+    <h2>Let's get you a price</h2>
+    <p class="lede">A few quick questions. When you're done, someone from DRC will call you to confirm and book.</p>
+
+    <div class="q-layout">
+      <form class="q-card" id="qform" novalidate>
+        <div class="progress"><i id="bar"></i></div>
+        <div class="q-count" id="count">Step 1 of 5</div>
+
+        <div class="panel on" data-p="0">
+          <h3>What do you need?</h3>
+          <p class="hint">Pick the closest match. You can explain anything special later.</p>
+          <fieldset><div class="opt-grid" id="svcOpts"></div></fieldset>
+          <fieldset><legend>How often?</legend><div class="opt-grid" id="freqOpts"></div></fieldset>
+        </div>
+
+        <div class="panel" data-p="1">
+          <h3>Tell us about your home</h3>
+          <p class="hint">A rough guess is totally fine.</p>
+          <div class="row">
+            <div class="field"><label for="sqft">Square feet</label><input id="sqft" name="sqft" type="number" inputmode="numeric" min="0" step="50" placeholder="1800"></div>
+            <div class="field"><label for="bedrooms">Bedrooms</label><input id="bedrooms" name="bedrooms" type="number" inputmode="numeric" min="0" max="20" placeholder="3"></div>
+            <div class="field"><label for="bathrooms">Bathrooms</label><input id="bathrooms" name="bathrooms" type="number" inputmode="decimal" min="0" max="20" step="0.5" placeholder="2"></div>
+          </div>
+          <fieldset id="carpetBox"><legend id="carpetLegend">Want carpet cleaning too?</legend><div class="opt-grid" id="carpetOpts"></div></fieldset>
+          <fieldset><legend>How does it look right now? No judgment, we've seen it all.</legend><div class="opt-grid" id="soilOpts"></div></fieldset>
+          <fieldset><legend>Pets</legend><div class="opt-grid three" id="petOpts"></div></fieldset>
+        </div>
+
+        <div class="panel" data-p="2">
+          <h3>Products and surfaces</h3>
+          <p class="hint">Do you have cleaning supplies you'd like us to use, or should we bring ours?</p>
+          <fieldset><div class="opt-grid" id="prodOpts"></div></fieldset>
+          <fieldset><legend>Any special surfaces? Pick all that apply.</legend><div class="opt-grid three" id="surfOpts"></div></fieldset>
+          <div class="field" style="margin-bottom:22px"><label for="surface_notes">Anything we should know about your surfaces or products?</label><textarea id="surface_notes" name="surface_notes" placeholder="Example: marble kitchen counters, please use the stone cleaner under the sink."></textarea></div>
+          <fieldset><legend>Extras</legend><div class="opt-grid" id="addonOpts"></div></fieldset>
+        </div>
+
+        <div class="panel" data-p="3">
+          <h3>How do you like things done?</h3>
+          <p class="hint">Everyone's different. This helps us send the right cleaner.</p>
+          <fieldset><legend>While we clean</legend><div class="opt-grid" id="styleOpts"></div></fieldset>
+          <div class="field" style="margin-bottom:20px"><label for="focus">Top priorities or problem spots</label><textarea id="focus" name="focus" placeholder="Example: the shower glass, the kitchen floor, the kids' bathroom."></textarea></div>
+          <div class="field" style="margin-bottom:20px"><label for="sensitivities">Allergies, scents to avoid or rooms to skip</label><input id="sensitivities" name="sensitivities" placeholder="Example: no bleach, skip the office."></div>
+          <div class="field" style="margin-bottom:20px"><label for="maint">Anything need fixing while we're there? (optional)</label><input id="maint" name="maint" placeholder="Example: leaky faucet, loose cabinet door, touch-up paint."></div>
+          <div class="row two">
+            <div class="field"><label for="access">How do we get in?</label><select id="access" name="access"><option value="">Choose one</option><option>Someone will be home</option><option>Lockbox or key code</option><option>Smart lock / door code</option><option>Property manager lets us in</option><option>Not sure yet</option></select></div>
+            <div class="field"><label for="parking">Parking</label><select id="parking" name="parking"><option value="">Choose one</option><option>Driveway</option><option>Street</option><option>Visitor / garage parking</option><option>Paid parking</option></select></div>
+          </div>
+        </div>
+
+        <div class="panel" data-p="4">
+          <h3>Where should we call you?</h3>
+          <p class="hint">Someone from DRC will call to confirm your price and find a time. Photos help us get it exactly right.</p>
+          <div class="row two">
+            <div class="field"><label for="name">Your name *</label><input id="name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="phone">Best phone number *</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+          </div>
+          <div class="row two">
+            <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="calltime">Best time to call</label><select id="calltime" name="calltime"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="address">Street address</label><input id="address" name="address" autocomplete="street-address"></div>
+            <div class="field"><label for="metro">Area *</label><select id="metro" name="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Somewhere else</option></select></div>
+            <div class="field"><label for="city">City</label><input id="city" name="city" autocomplete="address-level2"></div>
+            <div class="field"><label for="zip">ZIP</label><input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code"></div>
+          </div>
+          <div class="row two">
+            <div class="field"><label for="date">Preferred cleaning date</label><input id="date" name="date" type="date"></div>
+            <div class="field"><label for="payment">How would you like to pay?</label><select id="payment" name="payment"><option>Card (secure link)</option><option>Zelle</option></select></div>
+          </div>
+          <span class="lbl">Photos (optional)</span>
+          <div class="drop" id="drop" tabindex="0" role="button" aria-label="Add photos"><b>Tap to add photos</b> or drag them here<br><small>Kitchen, bathrooms and problem spots help most. Up to 8.</small></div>
+          <input type="file" id="photoIn" accept="image/*" multiple hidden>
+          <div class="thumbs" id="thumbs"></div>
+          <div class="row two" style="margin-top:20px">
+            <div class="field"><label for="heard">How did you hear about us?</label><select id="heard" name="heard"><option value="">Choose one</option><option>Facebook</option><option>Instagram</option><option>Google</option><option>Yelp</option><option>Nextdoor</option><option>Craigslist</option><option>Friend or family</option><option>Realtor or property manager</option><option>Other</option></select></div>
+            <div class="field"><label for="notes">Anything else?</label><input id="notes" name="notes"></div>
+          </div>
+          <div class="hp" aria-hidden="true"><label>Website <input name="company_site" tabindex="-1" autocomplete="off"></label></div>
+          <div class="callout"><b>Nothing to pay today.</b> We'll call to confirm your price first. You only pay once you're happy with it.</div>
+        </div>
+
+        <div class="panel" data-p="5">
+          <div class="done-card">
+            <div class="tick">✓</div>
+            <h3>You're all set!</h3>
+            <p id="doneMsg">Someone from DRC will call you shortly to confirm your price and book your clean.</p>
+            <p>We also sent a copy to your email.</p>
+          </div>
+        </div>
+
+        <div class="err-msg" id="err" role="alert"></div>
+        <div class="q-nav" id="qnav">
+          <button type="button" class="btn btn-soft" id="back" hidden>← Back</button>
+          <span></span>
+          <button type="button" class="btn btn-main" id="next">Next →</button>
+        </div>
+      </form>
+
+      <aside class="est" aria-live="polite">
+        <div class="k">Your estimate</div>
+        <div class="big" id="estBig">—</div>
+        <div class="sub" id="estSub">Pick a service to get started.</div>
+        <ul id="estList"></ul>
+        <div class="call"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><span>We'll call you to confirm the final price after looking at your details. No payment until you approve it.</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <span class="kicker">Questions</span>
+    <h2>Good to know</h2>
+    <div class="faq">
+      <details><summary>Do I need to provide cleaning supplies?</summary><p>No. We can bring ours, or you can leave out your own and we'll use only those. If you have marble, granite or other natural stone, tell us and we'll use a stone-safe, pH-neutral cleaner.</p></details>
+      <details><summary>What's the difference between organic and no-microplastics?</summary><p>Organic and unscented means vinegar-based, fragrance-free products, which is great for allergies, kids and pets. No microplastics goes a step further: plastic-free tools and products, and no microfiber cloths, which shed tiny plastic fibers.</p></details>
+      <details><summary>Are your cleaners background-checked and insured?</summary><p>Yes. Every cleaner passes a background check and carries their own liability and auto insurance before they're sent to a home.</p></details>
+      <details><summary>What happens after I send my estimate?</summary><p>Someone from DRC calls you to confirm your price, answer questions and set a date. Once you approve, we send a secure card link or Zelle details, and your date is locked in when payment comes through.</p></details>
+      <details><summary>Where do you clean?</summary><p>We currently serve the Dallas, Denver, Nashville and Phoenix areas. Somewhere else? Send your estimate anyway and we'll let you know.</p></details>
+      <details><summary>Do I need to be home?</summary><p>No. Many clients give us a lockbox or door code. Either way, you get before and after photos of every room when we're done.</p></details>
+      <details><summary>Do you offer recurring cleaning?</summary><p>Yes. Weekly, every two weeks and monthly clients get a lower price on every visit.</p></details>
+      <details><summary>Can you fix things while you're there?</summary><p>Yes. We're part of DRC Maintenance, so we can also handle repairs, paint, junk removal and lawn care. Add it to your estimate or send a request in the repairs section, and we'll quote it from photos first.</p></details>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <div><h2>Ready for a cleaner home?</h2><p>Two minutes for your price, then we'll give you a call.</p></div>
+      <a href="#ask" class="btn">Start my estimate</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div><img src="img/drc-logo.png" alt="DRC Maintenance"><p>DRC Cleaning is part of Dedicated Resource Center LLC, a family-owned property maintenance company.</p></div>
+      <div><h5>Cleaning</h5><ul><li><a href="#services">Services</a></li><li><a href="#how">How it works</a></li><li><a href="#quote">Get my price</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="/">DRC Maintenance</a></li><li><a href="about.html">About</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+    </div>
+    <div class="fbot"><span>© <span id="yr">2026</span> Dedicated Resource Center LLC. All rights reserved.</span><span><a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></span></div>
+  </div>
+</footer>
+
+<div class="mbar" id="mbar"><a href="#ask" class="btn btn-main">Get my price in 2 minutes</a></div>
+
+<script type="module">
+import { PRICING as P, estimate } from './cleaning-pricing.js';
+
+const $ = s => document.querySelector(s);
+const form = $('#qform');
+const money = n => '$' + Math.round(n).toLocaleString('en-US');
+$('#yr').textContent = new Date().getFullYear();
+
+function radios(el, name, group, def, extra) {
+  el.innerHTML = Object.entries(group).map(([k, v]) => {
+    const id = `${name}_${k}`;
+    const right = extra ? extra(v) : '';
+    const note = v.note ? `<small>${v.note}</small>` : '';
+    return `<div class="opt"><input type="radio" name="${name}" id="${id}" value="${k}" ${k === def ? 'checked' : ''}><label for="${id}">${right}${v.label}${note}</label></div>`;
+  }).join('');
+}
+radios($('#svcOpts'), 'service', P.services, '', v => v.quoteOnly ? '<span class="price">Quote</span>' : '');
+radios($('#freqOpts'), 'frequency', P.frequency, 'once', v => v.off ? `<span class="price">Save $${v.off}</span>` : '');
+radios($('#soilOpts'), 'soil', P.soil, 'average');
+radios($('#petOpts'), 'pets', P.pets, 'none');
+radios($('#prodOpts'), 'products', P.products, 'client', v => v.add ? `<span class="price">+$${v.add}</span>` : '<span class="price">Included</span>');
+
+const SURFACES = ['Marble', 'Granite or stone', 'Quartz', 'Hardwood floors', 'Stainless steel', 'Glass shower', 'Wallpaper', 'Antiques', 'None'];
+$('#surfOpts').innerHTML = SURFACES.map((s, i) => `<div class="opt"><input type="checkbox" name="surfaces" id="sf${i}" value="${s}"><label for="sf${i}">${s}</label></div>`).join('');
+$('#styleOpts').innerHTML = [
+  ['Quiet and efficient', 'In and out, minimal chat.'],
+  ['Walk through with me', 'Show me what was done before you leave.'],
+  ["I won't be home", 'Leave a note and send photos.'],
+  ['Follow my checklist', "I'll share exact instructions."],
+].map(([l, n], i) => `<div class="opt"><input type="radio" name="style" id="st${i}" value="${l}"><label for="st${i}">${l}<small>${n}</small></label></div>`).join('');
+
+const addons = {};
+const CARPET = ['carpetRoom', 'carpetStairs', 'rug'];
+const addonHtml = ([k, a]) =>
+  `<div class="addon" data-k="${k}"><div><div class="nm">${a.label}</div><div class="pr">+$${a.add}</div></div>
+   <div class="stepper"><button type="button" data-d="-1" aria-label="Less ${a.label}">−</button><output>0</output><button type="button" data-d="1" aria-label="More ${a.label}">+</button></div></div>`;
+$('#addonOpts').innerHTML = Object.entries(P.addons).filter(([k]) => !CARPET.includes(k)).map(addonHtml).join('');
+$('#carpetOpts').innerHTML = Object.entries(P.addons).filter(([k]) => CARPET.includes(k)).map(addonHtml).join('');
+const onStep = e => {
+  const b = e.target.closest('button[data-d]'); if (!b) return;
+  const row = b.closest('.addon'); const k = row.dataset.k;
+  addons[k] = Math.max(0, Math.min(10, (addons[k] || 0) + Number(b.dataset.d)));
+  row.querySelector('output').textContent = addons[k];
+  row.classList.toggle('on', addons[k] > 0);
+  update();
+};
+$('#addonOpts').addEventListener('click', onStep);
+$('#carpetOpts').addEventListener('click', onStep);
+$('#surfOpts').addEventListener('change', e => {
+  const boxes = [...form.querySelectorAll('input[name=surfaces]')];
+  if (e.target.value === 'None' && e.target.checked) boxes.forEach(b => { if (b !== e.target) b.checked = false; });
+  else if (e.target.checked) boxes.find(b => b.value === 'None').checked = false;
+});
+
+const val = n => (form.querySelector(`input[name=${n}]:checked`) || {}).value || '';
+const answers = () => ({
+  service: val('service'), frequency: val('frequency'), soil: val('soil'), pets: val('pets'), products: val('products'),
+  sqft: $('#sqft').value, bedrooms: $('#bedrooms').value, bathrooms: $('#bathrooms').value, addons,
+});
+function update() {
+  const a = answers(); const r = estimate(a); const list = $('#estList');
+  const carpet = a.service === 'carpet';
+  if (r.ok && step > 0 && step < 4) $('#err').textContent = '';
+  document.querySelector('.panel[data-p="1"] .row').style.display = carpet ? 'none' : '';
+  document.querySelectorAll('.panel[data-p="1"] fieldset:not(#carpetBox)').forEach(f => f.style.display = carpet ? 'none' : '');
+  $('#carpetLegend').textContent = carpet ? 'How much carpet?' : 'Want carpet cleaning too?';
+  document.querySelector('.panel[data-p="1"] h3').textContent = carpet ? 'Tell us about your carpet' : 'Tell us about your home';
+  if (!r.ok) {
+    $('#estBig').textContent = '—';
+    $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : r.reason === 'Add your carpet rooms' ? 'Add how many rooms of carpet.' : 'Add your square feet, bedrooms or bathrooms.';
+    list.innerHTML = ''; return r;
+  }
+  if (r.quoteOnly) { $('#estBig').textContent = 'Custom quote'; $('#estSub').textContent = "Add photos at the end and we'll call you with a price."; list.innerHTML = `<li><span>Service</span><span>${r.service}</span></li>`; return r; }
+  $('#estBig').textContent = `${money(r.low)} – ${money(r.high)}`;
+  $('#estSub').textContent = a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one-time clean';
+  const li = (k, v) => `<li><span>${k}</span><span>${v}</span></li>`;
+  list.innerHTML = li('Service', r.service) + (r.carpetOnly ? '' : li('Time', `about ${r.laborHours} cleaner-hours`))
+    + r.addonLines.map(x => li(x.label + (x.qty > 1 ? ' ×' + x.qty : ''), '+' + money(x.amount))).join('')
+    + (r.products ? li('Products', '+' + money(r.products)) : '')
+    + (r.discount ? li('Recurring savings', '−' + money(r.discount)) : '');
+  return r;
+}
+form.addEventListener('input', update);
+form.addEventListener('change', update);
+
+// Photos, resized in the browser so uploads stay small
+const photos = [];
+function resize(file) {
+  return new Promise(res => {
+    const img = new Image(); const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const s = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(b => { URL.revokeObjectURL(url); res(b ? new File([b], file.name.replace(/\.\w+$/, '') + '.jpg', { type: 'image/jpeg' }) : file); }, 'image/jpeg', 0.8);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); res(null); };
+    img.src = url;
+  });
+}
+async function addFiles(list) {
+  for (const f of list) { if (photos.length >= 8) break; if (!/^image\//.test(f.type)) continue; const s = await resize(f); if (s) photos.push(s); }
+  drawThumbs();
+}
+function drawThumbs() {
+  $('#thumbs').innerHTML = photos.map((p, i) => `<div><img src="${URL.createObjectURL(p)}" alt="Photo ${i + 1}"><button type="button" data-i="${i}" aria-label="Remove photo">×</button></div>`).join('');
+}
+$('#thumbs').addEventListener('click', e => { const b = e.target.closest('button[data-i]'); if (b) { photos.splice(+b.dataset.i, 1); drawThumbs(); } });
+const drop = $('#drop'), pin = $('#photoIn');
+drop.addEventListener('click', () => pin.click());
+drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pin.click(); } });
+pin.addEventListener('change', () => { addFiles(pin.files); pin.value = ''; });
+['dragenter', 'dragover'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.add('over'); }));
+['dragleave', 'drop'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.remove('over'); }));
+drop.addEventListener('drop', e => addFiles(e.dataTransfer.files));
+
+// Steps
+let step = 0; const LAST = 4; const err = $('#err');
+function show(n, scroll = true) {
+  step = n;
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', +p.dataset.p === n));
+  $('#bar').style.width = Math.min(100, (n + 1) * 20) + '%';
+  $('#count').textContent = n > LAST ? 'Done' : `Step ${n + 1} of ${LAST + 1}`;
+  $('#back').hidden = n === 0 || n > LAST;
+  $('#next').textContent = n === LAST ? 'Send and have DRC call me' : 'Next →';
+  $('#qnav').style.display = n > LAST ? 'none' : '';
+  err.textContent = '';
+  if (scroll) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function check(n) {
+  document.querySelectorAll('.field.bad').forEach(f => f.classList.remove('bad'));
+  if (n === 0 && !val('service')) return 'Pick the service you need.';
+  if (n === 1) { const r = estimate(answers()); if (!r.quoteOnly && !r.ok) { if (r.reason === 'Add your carpet rooms') return 'Add how many rooms of carpet.'; $('#sqft').parentElement.classList.add('bad'); return 'Add your square feet, bedrooms or bathrooms.'; } }
+  if (n === 4) {
+    for (const [id, what] of [['name', 'your name'], ['phone', 'a phone number'], ['email', 'your email'], ['metro', 'your area']]) {
+      const el = $('#' + id);
+      if (!el.value.trim() || (id === 'email' && !/^\S+@\S+\.\S+$/.test(el.value)) || (id === 'phone' && el.value.replace(/\D/g, '').length < 10)) {
+        el.parentElement.classList.add('bad'); el.focus(); return `Please add ${what}.`;
+      }
+    }
+  }
+  return '';
+}
+$('#back').addEventListener('click', () => show(step - 1));
+$('#next').addEventListener('click', async () => {
+  const m = check(step); if (m) { err.textContent = m; return; }
+  if (step < LAST) return show(step + 1);
+  await submit();
+});
+
+// The hero question and service links jump straight into the estimate
+function startWith(svc) {
+  const r = document.getElementById('service_' + svc);
+  if (r) { r.checked = true; update(); show(1); } else show(0);
+}
+document.querySelectorAll('[data-svc]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); startWith(el.dataset.svc); }));
+
+async function submit() {
+  const btn = $('#next'); btn.disabled = true; btn.textContent = 'Sending…';
+  const fd = new FormData(form);
+  fd.set('addons', JSON.stringify(addons));
+  photos.forEach(p => fd.append('photos', p));
+  try {
+    const res = await fetch('/api/cleaning-quote', { method: 'POST', body: fd });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.success) throw new Error(data.error || 'Something went wrong.');
+    const r = data.estimate; const first = $('#name').value.trim().split(' ')[0];
+    const est = r && r.ok && !r.quoteOnly ? ` Your estimate is ${money(r.low)} – ${money(r.high)}.` : '';
+    $('#doneMsg').textContent = `Thanks, ${first}!${est} Someone from DRC will call you at ${$('#phone').value.trim()} shortly to confirm your price and book your clean.`;
+    show(LAST + 1);
+  } catch (e) {
+    err.textContent = (e.message || 'Something went wrong.') + ' Please try again.';
+  } finally { btn.disabled = false; if (step === LAST) btn.textContent = 'Send and have DRC call me'; }
+}
+
+// Mobile "get my price" bar hides once the estimate is on screen
+const mbar = $('#mbar'); const seen = {};
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { seen[e.target.id] = e.isIntersecting; });
+  mbar.classList.toggle('hide', !!(seen.ask || seen.quote));
+}, { threshold: 0.05 });
+io.observe($('#ask')); io.observe($('#quote'));
+
+// Maintenance request form (goes through the site's contact form email)
+$('#mreq').addEventListener('submit', async e => {
+  e.preventDefault();
+  const me = $('#m_err'); me.textContent = '';
+  const v = id => $('#' + id).value.trim();
+  if (!v('m_name') || v('m_phone').replace(/\D/g, '').length < 10 || !/^\S+@\S+\.\S+$/.test(v('m_email')) || !v('m_what')) {
+    me.textContent = 'Please add your name, phone, email and what needs attention.'; return;
+  }
+  const btn = e.submitter || $('#mreq button[type=submit]'); btn.disabled = true; btn.textContent = 'Sending…';
+  const [firstName, ...rest] = v('m_name').split(' ');
+  try {
+    const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+      firstName, lastName: rest.join(' '), email: v('m_email'), phone: v('m_phone'),
+      propertyType: 'Private home (cleaning page)', service: 'Maintenance request: ' + v('m_when'),
+      message: v('m_what') + (v('m_city') ? '\n\nLocation: ' + v('m_city') : '') + '\n\nPlease call the client.'
+    }) });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.success === false) throw new Error();
+    $('#mform').classList.add('sent');
+  } catch { me.textContent = 'Something went wrong. Please try again.'; }
+  finally { btn.disabled = false; btn.textContent = 'Send my request'; }
+});
+
+const qs = new URLSearchParams(location.search).get('service');
+if (qs && P.services[qs]) { const r = document.getElementById('service_' + qs); if (r) r.checked = true; }
+update(); show(0, false);
+</script>
+</body>
+</html>

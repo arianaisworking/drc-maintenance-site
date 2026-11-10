@@ -198,3 +198,22 @@ and the matching dropdown options in the Insurance & Compliance part of the form
 - Before truly going live, have an attorney review `privacy.html` and
   `terms.html` — the current text is solid boilerplate but not
   custom legal advice for your business or states of operation.
+
+---
+
+## DRC Cleaning page (/cleaning)
+
+`cleaning.html` is the cleaning division page with the instant-estimate quoter.
+Cloudflare serves it at `drcmaintenance.com/cleaning`.
+
+- **Prices** all live in `cleaning-pricing.js` (client hourly rate, minimum,
+  service and dirt-level multipliers, product upcharges, add-ons, recurring
+  discounts). The page and the email both read this file, so edit it once.
+- **Requests** go to `functions/api/cleaning-quote.js`, which emails the office
+  (with the client's photos attached) and sends the client a confirmation.
+  Uses the same `RESEND_API_KEY`, `FROM_EMAIL` and `TO_EMAIL` as the contact form.
+- Optional env vars:
+  - `CLEANING_TO_EMAIL` sends cleaning leads to a different inbox.
+  - `CLEANING_LEAD_WEBHOOK` also POSTs each lead as JSON (for the dashboard).
+- Link straight to a service with `/cleaning?service=move` (standard, deep,
+  move, rental, student, hoarder, commercial).

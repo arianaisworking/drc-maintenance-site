@@ -217,3 +217,18 @@ Cloudflare serves it at `drcmaintenance.com/cleaning`.
   - `CLEANING_LEAD_WEBHOOK` also POSTs each lead as JSON (for the dashboard).
 - Link straight to a service with `/cleaning?service=move` (standard, deep,
   move, rental, student, hoarder, commercial).
+
+## DRC Home Services lead flow (cleaning)
+
+- Every cleaning lead (estimate form and website chat) emails the office a branded
+  DRC Home Services email with add ons to offer, follow up questions, a short call
+  script, the price sheet attached and a prefilled calculator link.
+- `/cleaning-rep` is the rep calculator (not linked from the site, noindex). It prices
+  the clean, shows cleaner pay and DRC margin, and creates the customer agreement link.
+- `/cleaning-book` is the customer agreement page. The link is signed so the price
+  can't be changed. When the customer signs, the office gets "Signed agreement" and the
+  customer gets a copy. Lock the date only after payment shows up. Non refundable.
+- Payment links are pasted by the rep (Square or similar).
+- Optional env var `BOOKING_SECRET` signs agreement links (falls back to RESEND_API_KEY).
+- Price sheet: `node scripts/price-sheet.mjs` rebuilds docs/drc-cleaning-price-sheet.pdf
+  from cleaning-pricing.js (run a local server on :8765 first).

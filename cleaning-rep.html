@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Rep Quote Calculator | DRC Home Services</title>
+<link rel="icon" href="img/drc-logo.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap');
+:root{--bg:#FBF6EE;--paper:#fff;--sand:#F3EADB;--sage:#5E8B6B;--sage-d:#2E6B3E;--sage-l:#E4EEE5;--clay:#C9784F;--ink:#24323F;--muted:#6B6A66;--line:#E7DDCD;--err:#B23A2A}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Figtree',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header{background:var(--sage-d);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:14px}
+header img{height:40px;background:#fff;border-radius:6px;padding:3px}
+header b{letter-spacing:.08em;font-size:17px}header span{opacity:.8;font-size:14px;margin-left:auto}
+main{max-width:1180px;margin:0 auto;padding:28px 20px 60px;display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:start}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px}
+h2{font-size:22px;margin-bottom:14px}h3{font-size:15px;margin:18px 0 8px;color:var(--sage-d);text-transform:uppercase;letter-spacing:.08em}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.grid.two{grid-template-columns:1fr 1fr}
+label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:4px}
+input,select,textarea{width:100%;font:15px 'Figtree',sans-serif;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+textarea{min-height:84px;resize:vertical}
+.addons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.addons div{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px}
+.addons input{width:64px;padding:6px 8px}
+.est{position:sticky;top:16px}
+.big{font-size:38px;font-weight:800;color:var(--sage-d);line-height:1.1}
+.sub{color:var(--muted);font-size:14px;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:14px}td{padding:7px 0;border-top:1px solid var(--line)}td:last-child{text-align:right;font-weight:600}
+.keep{background:var(--sage-l);border-radius:12px;padding:12px 14px;margin-top:14px;font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:99px;padding:13px 22px;font:700 15px 'Figtree',sans-serif;cursor:pointer;background:var(--sage-d);color:#fff;text-decoration:none}
+.btn.soft{background:var(--paper);color:var(--sage-d);border:1.5px solid var(--sage-d)}
+.out{display:none;margin-top:16px;background:var(--bg);border:1px dashed var(--sage);border-radius:12px;padding:14px}
+.out input{font-size:13px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.err{color:var(--err);font-size:14px;margin-top:8px}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+@media(max-width:900px){main{grid-template-columns:1fr}.est{position:static}.grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header><img src="img/drc-logo.png" alt="DRC"><b>DRC HOME SERVICES</b><span>Rep quote calculator</span></header>
+<main>
+<div>
+  <div class="card">
+    <h2>1. Price the clean</h2>
+    <div class="grid two">
+      <div><label for="service">Service</label><select id="service"></select></div>
+      <div><label for="frequency">How often</label><select id="frequency"></select></div>
+    </div>
+    <div class="grid" style="margin-top:12px">
+      <div><label for="sqft">Sq ft</label><input id="sqft" type="number" min="0"></div>
+      <div><label for="bedrooms">Bedrooms</label><input id="bedrooms" type="number" min="0"></div>
+      <div><label for="bathrooms">Bathrooms</label><input id="bathrooms" type="number" min="0" step="0.5"></div>
+      <div><label for="soil">Condition</label><select id="soil"></select></div>
+    </div>
+    <div class="grid two" style="margin-top:12px">
+      <div><label for="pets">Pets</label><select id="pets"></select></div>
+      <div><label for="products">Products</label><select id="products"></select></div>
+    </div>
+    <h3>Add ons</h3>
+    <div class="addons" id="addons"></div>
+    <p class="note">Carpet, rugs, hoarder cleanouts and businesses are quoted for the area: set the final price yourself below.</p>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h2>2. Send the agreement</h2>
+    <div class="grid two" style="margin-bottom:12px">
+      <div><label for="bRep">Your name (rep) *</label><input id="bRep" autocomplete="name"></div>
+      <div><label for="bPref">Customer's preferred day and time</label><input id="bPref" placeholder="From the questionnaire or the call"></div>
+    </div>
+    <div class="grid two">
+      <div><label for="bName">Customer name</label><input id="bName"></div>
+      <div><label for="bPhone">Phone</label><input id="bPhone"></div>
+      <div><label for="bEmail">Email</label><input id="bEmail" type="email"></div>
+      <div><label for="bAddress">Service address</label><input id="bAddress"></div>
+      <div><label for="bDate">Service date (leave blank to let them pick)</label><input id="bDate" type="date"></div>
+      <div><label for="bWindow">Arrival window</label><select id="bWindow"><option value="">Let them pick</option><option>8 to 10 AM</option><option>10 AM to 12 PM</option><option>12 to 2 PM</option><option>2 to 4 PM</option></select></div>
+      <div><label for="bPrice">Final price ($)</label><input id="bPrice" type="number" min="0" step="1"></div>
+      <div><label for="bPay">Payment link (Square or similar)</label><input id="bPay" placeholder="https://square.link/..."></div>
+    </div>
+    <div style="margin-top:12px"><label for="bIncludes">What's included (the customer sees this)</label><textarea id="bIncludes"></textarea></div>
+    <div style="margin-top:12px"><label for="bInfo">Customer notes from the questionnaire (office only)</label><textarea id="bInfo"></textarea></div>
+    <div class="row"><button class="btn" id="make">Create agreement link</button></div>
+    <p class="err" id="err"></p>
+    <div class="out" id="out">
+      <label for="link">Agreement link</label><input id="link" readonly>
+      <div class="row"><button class="btn soft" id="copy">Copy link</button><a class="btn soft" id="sms">Text it</a><a class="btn soft" id="mail">Email it</a></div>
+      <p class="note">When they sign, the office gets a "Signed agreement" email. Lock in the date only after the payment shows up. All payments are non refundable.</p>
+    </div>
+  </div>
+</div>
+
+<aside class="card est">
+  <h2>Quote</h2>
+  <div class="big" id="big"></div>
+  <div class="sub" id="sub"></div>
+  <table id="lines"></table>
+  <div class="keep" id="keep"></div>
+  <div class="row"><button class="btn soft" id="useMid">Use suggested price</button><a class="btn soft" href="docs/drc-cleaning-price-sheet.pdf" target="_blank">Price sheet</a></div>
+</aside>
+</main>
+
+<script type="module">
+import { PRICING as P, estimate } from './cleaning-pricing.js';
+const $ = s => document.querySelector(s);
+const money = n => '$' + Math.round(n).toLocaleString('en-US');
+const fill = (id, obj, sel) => { $(id).innerHTML = Object.entries(obj).map(([k, v]) => `<option value="${k}"${k === sel ? ' selected' : ''}>${v.label}</option>`).join(''); };
+const q = new URLSearchParams(location.search);
+fill('#service', P.services, q.get('service') || 'standard');
+fill('#frequency', P.frequency, q.get('frequency') || 'once');
+fill('#soil', P.soil, q.get('soil') || 'average');
+fill('#pets', P.pets, q.get('pets') || 'none');
+fill('#products', P.products, q.get('products') || 'drc');
+['sqft', 'bedrooms', 'bathrooms'].forEach(k => { if (q.get(k)) $('#' + k).value = q.get(k); });
+let pre = {}; try { pre = JSON.parse(q.get('addons') || '{}'); } catch {}
+$('#addons').innerHTML = Object.entries(P.addons).map(([k, a]) => `<div><span>${a.label}<br><small style="color:var(--muted)">${a.quote ? 'quote for area' : '+$' + a.add}</small></span><input type="number" min="0" max="20" data-k="${k}" value="${pre[k] || 0}"></div>`).join('');
+try { $('#bRep').value = localStorage.getItem('drcRep') || ''; } catch {}
+$('#bPref').value = q.get('pref') || ''; $('#bInfo').value = q.get('info') || '';
+$('#bName').value = q.get('name') || ''; $('#bEmail').value = q.get('email') || ''; $('#bPhone').value = q.get('phone') || ''; $('#bAddress').value = q.get('address') || '';
+
+let last = null;
+function update() {
+  const addons = {}; document.querySelectorAll('#addons input').forEach(i => { if (Number(i.value) > 0) addons[i.dataset.k] = Number(i.value); });
+  const a = { service: $('#service').value, frequency: $('#frequency').value, sqft: $('#sqft').value, bedrooms: $('#bedrooms').value, bathrooms: $('#bathrooms').value, soil: $('#soil').value, pets: $('#pets').value, products: $('#products').value, addons };
+  const r = estimate(a); last = r;
+  const svc = P.services[a.service].label;
+  if (!r.ok) { $('#big').textContent = ''; $('#sub').textContent = r.reason; $('#lines').innerHTML = ''; $('#keep').textContent = ''; return; }
+  if (r.quoteOnly) {
+    $('#big').textContent = 'Custom quote'; $('#sub').textContent = svc + ': set the price for their area after photos.';
+    $('#lines').innerHTML = (r.addonLines || []).map(x => `<tr><td>${x.label}</td><td>${x.qty}</td></tr>`).join('');
+    $('#keep').textContent = 'Price it so cleaner pay ($20 to $25 an hour) stays under half of the price.';
+  } else {
+    $('#big').textContent = `${money(r.low)} to ${money(r.high)}`;
+    $('#sub').textContent = `Suggested ${money(r.middle)} · about ${r.laborHours} cleaner hours` + (r.carpetQuote ? ' · carpet NOT included, add your carpet quote' : '');
+    const li = (k, v) => `<tr><td>${k}</td><td>${v}</td></tr>`;
+    $('#lines').innerHTML = li('Labor', money(r.labor)) + r.addonLines.map(x => li(x.label + (x.qty > 1 ? ' x' + x.qty : ''), x.quote ? 'quote' : '+' + money(x.amount))).join('')
+      + (r.products ? li('Products', '+' + money(r.products)) : '') + (r.discount ? li('Membership savings', '−' + money(r.discount)) : '');
+    const p20 = r.laborHours * 20, p25 = r.laborHours * 25;
+    $('#keep').innerHTML = `Cleaner pay: <b>${money(p20)} to ${money(p25)}</b><br>DRC keeps at the suggested price: <b>${money(r.middle - p25)} to ${money(r.middle - p20)}</b> (${Math.round((r.middle - p25) / r.middle * 100)}% to ${Math.round((r.middle - p20) / r.middle * 100)}%)`;
+  }
+  if (!$('#bPrice').dataset.edited && r.ok && !r.quoteOnly) $('#bPrice').value = r.middle;
+  if (!$('#bIncludes').dataset.edited) {
+    const extras = (r.addonLines || []).map(x => x.label + (x.qty > 1 ? ' x' + x.qty : '')).join(', ');
+    $('#bIncludes').value = `${svc}${a.bedrooms ? `, ${a.bedrooms} bed` : ''}${a.bathrooms ? ` ${a.bathrooms} bath` : ''}${a.sqft ? `, about ${a.sqft} sq ft` : ''}. ${P.products[a.products].label}.${extras ? ' Add ons: ' + extras + '.' : ''}${a.frequency !== 'once' ? ' Membership: ' + P.frequency[a.frequency].label.toLowerCase() + '.' : ''}`;
+  }
+}
+document.querySelectorAll('main input, main select').forEach(el => el.addEventListener('input', update));
+$('#bIncludes').addEventListener('input', () => { $('#bIncludes').dataset.edited = 1; });
+$('#bPrice').addEventListener('input', () => { $('#bPrice').dataset.edited = 1; });
+$('#useMid').addEventListener('click', () => { if (last && last.ok && !last.quoteOnly) $('#bPrice').value = last.middle; });
+update();
+if (last && last.ok && !last.quoteOnly) $('#bPrice').value = last.middle;
+
+$('#make').addEventListener('click', async () => {
+  $('#err').textContent = '';
+  const booking = { name: $('#bName').value, email: $('#bEmail').value, phone: $('#bPhone').value, address: $('#bAddress').value,
+    service: P.services[$('#service').value].label, includes: $('#bIncludes').value, date: $('#bDate').value, window: $('#bWindow').value,
+    price: $('#bPrice').value, pay: $('#bPay').value.trim(), rep: $('#bRep').value.trim(), pref: $('#bPref').value.trim(), info: $('#bInfo').value.trim(),
+    frequency: $('#frequency').value, frequencyLabel: P.frequency[$('#frequency').value].label };
+  if (!booking.rep) { $('#err').textContent = 'Add your name as the rep so it is logged.'; return; }
+  if (!booking.name || !booking.price) { $('#err').textContent = 'Add the customer name and final price.'; return; }
+  try { localStorage.setItem('drcRep', booking.rep); } catch {}
+  const r = await fetch('/api/cleaning-booking', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'create', booking }) });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) { $('#err').textContent = d.error || 'Could not create the link.'; return; }
+  $('#link').value = d.url; $('#out').style.display = 'block';
+  const first = booking.name.split(' ')[0];
+  const msg = `Hi ${first}, this is ${booking.rep} with DRC Home Services. Here is your cleaning agreement (${money(booking.price)}). Please review it, ${booking.date ? 'sign' : 'pick your preferred dates and times, sign'} and pay to lock in your date: ${d.url}`;
+  $('#sms').href = `sms:${booking.phone.replace(/[^\d+]/g, '')}?&body=${encodeURIComponent(msg)}`;
+  $('#mail').href = `mailto:${booking.email}?subject=${encodeURIComponent('Your DRC Home Services cleaning agreement')}&body=${encodeURIComponent(msg)}`;
+});
+$('#copy').addEventListener('click', () => { navigator.clipboard.writeText($('#link').value); $('#copy').textContent = 'Copied'; });
+</script>
+</body>
+</html>

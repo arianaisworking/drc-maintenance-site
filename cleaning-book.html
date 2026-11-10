@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Your Cleaning Agreement | DRC Home Services</title>
+<link rel="icon" href="img/drc-logo.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap');
+:root{--bg:#FBF6EE;--paper:#fff;--sage:#5E8B6B;--sage-d:#2E6B3E;--sage-l:#E4EEE5;--ink:#24323F;--muted:#6B6A66;--line:#E7DDCD;--err:#B23A2A}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Figtree',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:var(--sage-d);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:12px}
+header img{height:40px;background:#fff;border-radius:6px;padding:3px}header b{letter-spacing:.08em;font-size:17px}
+main{max-width:720px;margin:0 auto;padding:28px 16px 60px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px;margin-bottom:18px}
+h1{font-size:30px;letter-spacing:-.02em;line-height:1.15;margin-bottom:6px}
+.sub{color:var(--muted)}
+dl{display:grid;grid-template-columns:150px 1fr;gap:10px 16px;font-size:15.5px;margin-top:18px}
+dt{color:var(--muted)}dd{font-weight:600;white-space:pre-line}
+.price{font-size:34px;font-weight:800;color:var(--sage-d)}
+h2{font-size:19px;margin-bottom:12px}
+ol{padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+label{display:block;font-size:14px;font-weight:600;margin:16px 0 6px}
+input[type=text]{width:100%;font:17px 'Figtree',sans-serif;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg)}
+.agree{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:15px;font-weight:500}
+.agree input{width:20px;height:20px;margin-top:2px;accent-color:var(--sage-d)}
+.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;border:none;border-radius:99px;padding:16px 22px;font:700 16px 'Figtree',sans-serif;cursor:pointer;background:var(--sage-d);color:#fff;text-decoration:none;margin-top:18px}
+.btn[disabled]{opacity:.6}
+.err{color:var(--err);font-size:14.5px;margin-top:10px}
+.done{display:none;text-align:center}
+.done .tick{width:64px;height:64px;border-radius:50%;background:var(--sage-d);color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.prefs{display:flex;flex-direction:column;gap:10px;margin-top:10px}.prefs div{display:grid;grid-template-columns:1fr 1fr;gap:10px}.prefs input,.prefs select{font:16px 'Figtree',sans-serif;padding:12px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);width:100%}
+.small{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+@media(max-width:560px){dl{grid-template-columns:1fr;gap:2px}dd{margin-bottom:10px}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<header><img src="img/drc-logo.png" alt="DRC"><b>DRC HOME SERVICES</b></header>
+<main>
+  <div class="card" id="bad" style="display:none"><h1>This link isn't working</h1><p class="sub" id="badMsg"></p></div>
+  <div id="good" style="display:none">
+    <div class="card">
+      <h1>Your cleaning agreement</h1>
+      <p class="sub">Please review, sign and pay to lock in your date.</p>
+      <dl id="dl"></dl>
+    </div>
+    <div class="card" id="signCard">
+      <h2>Terms</h2>
+      <ol>
+        <li>The price above covers the services listed. Anything extra is agreed with you before we do it.</li>
+        <li>Your date is locked in once your payment is confirmed. Until then, the date is not held.</li>
+        <li>All payments are non refundable.</li>
+        <li>Please make sure our team can get in at your scheduled time, or tell us how to get in.</li>
+        <li>If we missed something, tell us and we'll come back and make it right.</li>
+      </ol>
+      <div id="prefBox" style="display:none">
+        <h2 style="margin-top:22px">Your preferred dates and times</h2>
+        <p class="sub" style="font-size:14.5px">Pick up to three. Our team will reach out to confirm your schedule soon.</p>
+        <div class="prefs" id="prefs"></div>
+      </div>
+      <label for="signer">Type your full name to sign</label>
+      <input type="text" id="signer" autocomplete="name">
+      <label class="agree"><input type="checkbox" id="agree"><span>I agree to the price and terms above, including that all payments are non refundable.</span></label>
+      <button class="btn" id="sign">Sign agreement</button>
+      <p class="err" id="err"></p>
+    </div>
+    <div class="card done" id="done">
+      <div class="tick">&#10003;</div>
+      <h1>Signed. Thank you!</h1>
+      <p class="sub" id="doneMsg"></p>
+      <a class="btn" id="pay" style="display:none" target="_blank" rel="noopener">Pay now to lock in your date</a>
+      <p class="small">A copy of your agreement is on its way to your email.</p>
+    </div>
+  </div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const q = new URLSearchParams(location.search); const b = q.get('b'), s = q.get('s');
+const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 2 });
+const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmtDate = d => { if (!d) return ''; const x = new Date(d + 'T12:00:00'); return isNaN(x) ? d : x.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }); };
+const post = body => fetch('/api/cleaning-booking', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ b, s, ...body }) }).then(async r => ({ ok: r.ok, d: await r.json().catch(() => ({})) }));
+(async () => {
+  const { ok, d } = await post({ action: 'verify' });
+  if (!ok) { $('#bad').style.display = 'block'; $('#badMsg').textContent = d.error || 'Please ask DRC Home Services for a new link.'; return; }
+  const k = d.booking; $('#good').style.display = 'block';
+  const row = (t, v) => v ? `<dt>${t}</dt><dd>${v}</dd>` : '';
+  $('#dl').innerHTML = row('Name', esc(k.name)) + row('Address', esc(k.address)) + row('Service', esc(k.service)) + row('Includes', esc(k.includes))
+    + row('Date', esc([fmtDate(k.date), k.window].filter(Boolean).join(', '))) + row('How often', k.frequency && k.frequency !== 'once' ? esc(k.frequencyLabel) : '')
+    + `<dt>Price</dt><dd class="price">${money(k.price)}${k.frequency && k.frequency !== 'once' ? ' <small style="font-size:15px;color:var(--muted)">per visit</small>' : ''}</dd>` + row('Your DRC rep', esc(k.rep)) + row('Agreement', esc(k.id));
+  if (!k.date) {
+    $('#prefBox').style.display = 'block';
+    const today = new Date(); today.setDate(today.getDate() + 1); const min = today.toISOString().slice(0, 10);
+    $('#prefs').innerHTML = [1, 2, 3].map(i => `<div><input type="date" min="${min}" aria-label="Preferred date ${i}" data-d="${i}"><select aria-label="Preferred time ${i}" data-t="${i}"><option>Morning (8 AM to 12 PM)</option><option>Afternoon (12 to 4 PM)</option><option>Any time</option></select></div>`).join('');
+  }
+  $('#signer').value = '';
+  $('#sign').addEventListener('click', async () => {
+    $('#err').textContent = '';
+    const signer = $('#signer').value.trim();
+    if (signer.length < 3) { $('#err').textContent = 'Please type your full name.'; return; }
+    if (!$('#agree').checked) { $('#err').textContent = 'Please check the box to agree to the terms.'; return; }
+    const prefs = [1, 2, 3].map(i => { const d = document.querySelector(`[data-d="${i}"]`); return d && d.value ? `${d.value} (${fmtDate(d.value)}), ${document.querySelector(`[data-t="${i}"]`).value}` : ''; }).filter(Boolean);
+    if (!k.date && !prefs.length) { $('#err').textContent = 'Please pick at least one preferred date.'; return; }
+    $('#sign').disabled = true; $('#sign').textContent = 'Signing...';
+    const r = await post({ action: 'sign', signer, agree: true, prefs });
+    if (!r.ok) { $('#sign').disabled = false; $('#sign').textContent = 'Sign agreement'; $('#err').textContent = r.d.error || 'Something went wrong. Please try again.'; return; }
+    $('#signCard').style.display = 'none'; $('#done').style.display = 'block';
+    if (r.d.pay) { $('#pay').href = r.d.pay; $('#pay').style.display = 'inline-flex'; $('#doneMsg').textContent = 'One last step: pay securely below. Our team will reach out soon to confirm your schedule, and your date is locked in once your payment is confirmed.'; }
+    else $('#doneMsg').textContent = "We'll text you a secure payment link, and our team will reach out soon to confirm your schedule. Your date is locked in once your payment is confirmed.";
+  });
+})();
+</script>
+</body>
+</html>

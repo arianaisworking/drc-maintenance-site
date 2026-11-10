@@ -498,7 +498,7 @@ footer a:hover{color:#fff}
           <button class="pick" data-svc="deep">Deep clean<small>Top to bottom</small></button>
           <button class="pick" data-svc="move">Moving in or out<small>Empty home</small></button>
           <button class="pick" data-svc="rental">Airbnb turnover<small>Between guests</small></button>
-          <button class="pick" data-svc="carpet">Carpet cleaning<small>Per room</small></button>
+          <button class="pick" data-svc="carpet">Carpet cleaning<small>Quoted for your area</small></button>
           <button class="pick" data-svc="hoarder">Something bigger<small>Cleanouts, businesses</small></button>
         </div>
       </div>
@@ -652,7 +652,7 @@ footer a:hover{color:#fff}
       <div class="card"><h3>Move in or move out</h3><p>Empty home cleans to get your deposit back or start fresh.</p><a href="#quote" data-svc="move">Get a price →</a></div>
       <div class="card"><h3>Airbnb turnover</h3><p>Fast turns between guests, with photos so you know it's guest ready.</p><a href="#quote" data-svc="rental">Get a price →</a></div>
       <div class="card"><h3>Student housing</h3><p>Move out and turnover cleans per unit or per bed for leasing offices.</p><a href="#quote" data-svc="student">Get a price →</a></div>
-      <div class="card"><h3>Carpet cleaning</h3><p>Deep steam cleaning for carpets, rugs and stairs. Add it to any clean or book it on its own.</p><a href="#quote" data-svc="carpet">Get a price →</a></div>
+      <div class="card"><h3>Carpet cleaning</h3><p>Deep steam cleaning for carpets, rugs and stairs. Add it to any clean or book it on its own. Quoted for your area.</p><a href="#quote" data-svc="carpet">Get a quote →</a></div>
       <div class="card wide"><h3>Bigger jobs</h3><p>Hoarder and debris cleanouts, offices, dental, restaurants and more. Quoted from photos.</p><a href="#quote" data-svc="commercial">Get a quote →</a></div>
     </div>
   </div>
@@ -831,7 +831,7 @@ $('#styleOpts').innerHTML = [
 const addons = {};
 const CARPET = ['carpetRoom', 'carpetStairs', 'rug'];
 const addonHtml = ([k, a]) =>
-  `<div class="addon" data-k="${k}"><div><div class="nm">${a.label}</div><div class="pr">+$${a.add}</div></div>
+  `<div class="addon" data-k="${k}"><div><div class="nm">${a.label}</div><div class="pr">${a.quote ? 'Quoted for your area' : '+$' + a.add}</div></div>
    <div class="stepper"><button type="button" data-d="-1" aria-label="Less ${a.label}">−</button><output>0</output><button type="button" data-d="1" aria-label="More ${a.label}">+</button></div></div>`;
 $('#addonOpts').innerHTML = Object.entries(P.addons).filter(([k]) => !CARPET.includes(k)).map(addonHtml).join('');
 $('#carpetOpts').innerHTML = Object.entries(P.addons).filter(([k]) => CARPET.includes(k)).map(addonHtml).join('');
@@ -869,12 +869,12 @@ function update() {
     $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : r.reason === 'Add your carpet rooms' ? 'Add how many rooms of carpet.' : 'Add your square feet, bedrooms or bathrooms.';
     list.innerHTML = ''; return r;
   }
-  if (r.quoteOnly) { $('#estBig').textContent = 'Custom quote'; $('#estSub').textContent = "Add photos at the end and we'll call you with a price."; list.innerHTML = `<li><span>Service</span><span>${r.service}</span></li>`; return r; }
+  if (r.quoteOnly) { $('#estBig').textContent = 'Custom quote'; $('#estSub').textContent = r.service === 'Carpet cleaning' ? "Carpet pricing depends on your area. We'll call you with your price." : "Add photos at the end and we'll call you with a price."; list.innerHTML = `<li><span>Service</span><span>${r.service}</span></li>` + (r.addonLines || []).map(x => `<li><span>${x.label}</span><span>${x.qty}</span></li>`).join(''); return r; }
   $('#estBig').textContent = `${money(r.low)} to ${money(r.high)}`;
-  $('#estSub').textContent = a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one time clean';
+  $('#estSub').textContent = (a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one time clean') + (r.carpetQuote ? '. Carpet is quoted separately for your area.' : '');
   const li = (k, v) => `<li><span>${k}</span><span>${v}</span></li>`;
-  list.innerHTML = li('Service', r.service) + (r.carpetOnly ? '' : li('Time', `about ${r.laborHours} cleaner-hours`))
-    + r.addonLines.map(x => li(x.label + (x.qty > 1 ? ' ×' + x.qty : ''), '+' + money(x.amount))).join('')
+  list.innerHTML = li('Service', r.service) + (r.carpetOnly ? '' : li('Time', `about ${r.laborHours} cleaner hours`))
+    + r.addonLines.map(x => li(x.label + (x.qty > 1 ? ' ×' + x.qty : ''), x.quote ? 'Quoted separately' : '+' + money(x.amount))).join('')
     + (r.products ? li('Products', '+' + money(r.products)) : '')
     + (r.discount ? li('Recurring savings', '−' + money(r.discount)) : '');
   return r;

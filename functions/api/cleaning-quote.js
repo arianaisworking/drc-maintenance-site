@@ -100,7 +100,7 @@ export async function onRequestPost({ request, env }) {
       ${row('Best time to call', esc(lead.callTime))}
       ${row('Pays by', esc(lead.payment))}
       ${row('Heard about us', esc(lead.heard))}
-      ${row('Community Care', lead.care ? '<strong>Asked to be considered for a reduced Community Care rate. Talk about it privately on the call.</strong>' : '')}
+      ${row('Community Care', lead.care ? '<strong>APPLIED for Community Care. Needs approval before any discount: learn their situation on the call, ask for a referral or proof, then get Ariana\'s OK. Quote the regular price until approved.</strong>' : '')}
       ${row('Repairs wanted', lead.maint ? '<strong>' + esc(lead.maint) + '</strong>' : '')}
       ${row('Notes', esc(lead.notes).replace(/\n/g, '<br>'))}
       ${row('Photos', attachments.length ? attachments.length + ' attached' : 'None')}

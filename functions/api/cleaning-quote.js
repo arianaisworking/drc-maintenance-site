@@ -43,7 +43,7 @@ export async function onRequestPost({ request, env }) {
     style: g('style'), focus: g('focus'), sensitivities: g('sensitivities'),
     access: g('access'), parking: g('parking'),
     date: g('date'), time: g('time'), callTime: g('calltime'), heard: g('heard'), notes: g('notes'), maint: g('maint'),
-    payment: g('payment'), care: g('care') === 'yes',
+    payment: g('payment'),
   };
 
   if (!lead.name || !lead.phone || !lead.email || !lead.service) {
@@ -100,7 +100,6 @@ export async function onRequestPost({ request, env }) {
       ${row('Best time to call', esc(lead.callTime))}
       ${row('Pays by', esc(lead.payment))}
       ${row('Heard about us', esc(lead.heard))}
-      ${row('Community Care', lead.care ? '<strong>APPLIED for Community Care. Needs approval before any discount: learn their situation on the call, ask for a referral or proof, then get Ariana\'s OK. Quote the regular price until approved.</strong>' : '')}
       ${row('Repairs wanted', lead.maint ? '<strong>' + esc(lead.maint) + '</strong>' : '')}
       ${row('Notes', esc(lead.notes).replace(/\n/g, '<br>'))}
       ${row('Photos', attachments.length ? attachments.length + ' attached' : 'None')}
@@ -117,7 +116,7 @@ export async function onRequestPost({ request, env }) {
     from: env.FROM_EMAIL,
     to: env.CLEANING_TO_EMAIL || env.TO_EMAIL,
     reply_to: lead.email,
-    subject: `${lead.care ? '[Community Care] ' : ''}Cleaning quote: ${lead.name}, ${lbl('services', lead.service)}${lead.metro ? ', ' + lead.metro : lead.city ? ', ' + lead.city : ''}`,
+    subject: `Cleaning quote: ${lead.name}, ${lbl('services', lead.service)}${lead.metro ? ', ' + lead.metro : lead.city ? ', ' + lead.city : ''}`,
     html: officeHtml,
     attachments: attachments.length ? attachments : undefined,
   });

@@ -341,20 +341,7 @@ footer a:hover{color:#fff}
 .rc-note i{font-style:normal;color:var(--clay);font-weight:600}
 .rc-nav{display:flex;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
 .rc-nav button{border:none;background:none;font:600 14px 'Figtree',sans-serif;color:var(--sage-d);cursor:pointer;padding:4px 0}
-/* COMMUNITY CARE */
-.care{background:var(--clay-l)}
-.care .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center}
-.care-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin:20px 0 26px}
-.care-list li{display:flex;gap:12px;font-size:15.5px}
-.care-list li b{display:block}
-.care-list li span{color:var(--muted);font-size:14.5px}
-.care-dot{width:8px;height:8px;border-radius:50%;background:var(--clay);margin-top:8px;flex-shrink:0}
-.care-card{background:var(--paper);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
-.care-card h3{font-size:22px;margin-bottom:8px}
-.care-card p{font-size:14.5px;color:var(--muted);margin-bottom:16px}
-.care-opt{display:flex;gap:10px;align-items:flex-start;background:var(--clay-l);border-radius:14px;padding:14px;margin-top:16px;font-size:14.5px;cursor:pointer}
-.care-opt input{margin-top:3px;accent-color:var(--sage-d);width:18px;height:18px}
-@media(max-width:980px){.tour,.care .wrap{grid-template-columns:1fr}}
+@media(max-width:980px){.tour{grid-template-columns:1fr}}
 @media(max-width:639px){
   .tour{gap:16px;padding-top:22px}
   .plan-svg{display:none}
@@ -365,7 +352,6 @@ footer a:hover{color:#fff}
   .plan-tabs button.on{background:var(--sage-d);border-color:var(--sage-d);color:#fff}
   .room-card{padding:20px 18px}
   .rc-mode{display:flex}.rc-mode button{flex:1;padding:9px 8px}
-  .care-card{padding:22px 18px}
 }
 
 /* MOBILE POLISH */
@@ -571,27 +557,6 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section id="care" class="care">
-  <div class="wrap">
-    <div>
-      <span class="kicker">DRC Community Care</span>
-      <h2>A helping hand, at a rate that works</h2>
-      <p class="lede">Some seasons are heavier than others. Each month we set aside a few reduced-rate cleans for local families who need a lighter load. Community Care is by application and approval only.</p>
-      <ul class="care-list">
-        <li><span class="care-dot"></span><div><b>Single parents and new moms</b><span>When there's no time left over for the house.</span></div></li>
-        <li><span class="care-dot"></span><div><b>Women going through a hard time</b><span>A move, a loss, a health scare or starting over.</span></div></li>
-        <li><span class="care-dot"></span><div><b>Reviewed privately</b><span>Every application is reviewed by our team. We may ask for a referral from a school, church, shelter, social worker or similar, or for proof of your situation.</span></div></li>
-      </ul>
-      <a href="#quote" class="btn btn-main" data-care="1">Apply for Community Care</a>
-    </div>
-    <div class="care-card">
-      <h3>How it works</h3>
-      <p>Start a normal estimate and tick the Community Care box at the end. Someone from DRC will call you to learn about your situation and what would help most. If your application is approved, we'll offer a reduced rate before booking.</p>
-      <p style="margin:0">Your estimate shows our regular price. The reduced rate only applies after approval. Spots are limited each month in Dallas, Denver, Nashville and Phoenix, so approved families may be added to a short wait list.</p>
-    </div>
-  </div>
-</section>
-
 <section id="maintenance" class="maint">
   <div class="wrap">
     <div>
@@ -720,7 +685,6 @@ footer a:hover{color:#fff}
             <div class="field"><label for="heard">How did you hear about us?</label><select id="heard" name="heard"><option value="">Choose one</option><option>Facebook</option><option>Instagram</option><option>Google</option><option>Yelp</option><option>Nextdoor</option><option>Craigslist</option><option>Friend or family</option><option>Realtor or property manager</option><option>Other</option></select></div>
             <div class="field"><label for="notes">Anything else?</label><input id="notes" name="notes"></div>
           </div>
-          <label class="care-opt"><input type="checkbox" id="careAsk" name="care" value="yes"><span><b>I'd like to apply for Community Care.</b> I understand it needs approval, and my regular price applies unless I'm approved.</span></label>
           <div class="hp" aria-hidden="true"><label>Website <input name="company_site" tabindex="-1" autocomplete="off"></label></div>
           <div class="callout"><b>Nothing to pay today.</b> We'll call to confirm your price first. You only pay once you're happy with it.</div>
         </div>
@@ -1028,7 +992,6 @@ update(); show(0, false);
   document.getElementById('rcPrev').addEventListener('click', () => { cur = order[(order.indexOf(cur) + 3) % 4]; render(); });
   document.getElementById('rcNext').addEventListener('click', () => { cur = order[(order.indexOf(cur) + 1) % 4]; render(); });
   render();
-  document.querySelectorAll('[data-care]').forEach(a => a.addEventListener('click', () => { const c = document.getElementById('careAsk'); if (c) c.checked = true; }));
 })();
 </script>
 </body>

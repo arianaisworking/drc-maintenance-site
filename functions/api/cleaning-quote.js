@@ -63,10 +63,10 @@ export async function onRequestPost({ request, env }) {
   }
 
   const P = PRICING;
-  const lbl = (group, key) => (P[group][key] && P[group][key].label) || key || '—';
+  const lbl = (group, key) => (P[group][key] && P[group][key].label) || key || '';
   const estLine = !est.ok ? 'No estimate (missing size)'
     : est.quoteOnly ? 'Quote after photos'
-    : `${money(est.low)} – ${money(est.high)} (middle ${money(est.middle)}, about ${est.laborHours} cleaner-hours)`;
+    : `${money(est.low)} to ${money(est.high)} (middle ${money(est.middle)}, about ${est.laborHours} cleaner-hours)`;
 
   const row = (k, v) => v ? `<tr><td style="padding:4px 12px 4px 0;color:#637085;vertical-align:top">${esc(k)}</td><td style="padding:4px 0">${v}</td></tr>` : '';
   const addonText = est.addonLines && est.addonLines.length
@@ -127,7 +127,7 @@ export async function onRequestPost({ request, env }) {
 
   // Client confirmation. A failure here doesn't fail the request.
   const clientEst = est.ok && !est.quoteOnly
-    ? `<p>Your estimate: <strong>${money(est.low)} – ${money(est.high)}</strong>.</p>`
+    ? `<p>Your estimate: <strong>${money(est.low)} to ${money(est.high)}</strong>.</p>`
     : '';
   try {
     await send({

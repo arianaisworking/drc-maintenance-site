@@ -83,8 +83,9 @@ export const PRICING = {
 
   // What Complete Home Care clients can pick. Never priced online.
   homecare: ['Weekly or biweekly cleaning', 'Laundry, folding and putting away', 'Fresh linens and beds made',
-    'Kitchen detailing: fridge, oven, cabinets', 'Closet and pantry organizing', 'Inside windows and blinds',
-    'Garage and patio', 'Repairs and maintenance coordination'],
+    'Kitchen detailing: fridge, oven, cabinets', 'Closet organizing', 'Pantry organizing',
+    'Refrigerator cleanout and organizing', 'Inside windows and blinds',
+    'Garage and patio', 'Repairs and maintenance coordination', 'Landscaping and yard care'],
 
   // $ off each visit for recurring clients.
   frequency: {

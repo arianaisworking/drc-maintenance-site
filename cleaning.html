@@ -577,7 +577,7 @@ footer a:hover{color:#fff}
           <fieldset><div class="opt-grid" id="svcOpts"></div></fieldset>
           <div class="row" id="sizeRow">
             <div class="field"><label for="zip">ZIP code *</label><input id="zip" name="zip" inputmode="numeric" maxlength="5" autocomplete="postal-code" placeholder="75092"></div>
-            <div class="field"><label for="sqft">Square feet</label><input id="sqft" name="sqft" type="number" inputmode="numeric" min="0" step="50" placeholder="1800"></div>
+            <div class="field"><label for="sqft">Square feet *</label><input id="sqft" name="sqft" type="number" inputmode="numeric" min="0" step="50" placeholder="1800"></div>
             <div class="field"><label for="bedrooms">Bedrooms</label><input id="bedrooms" name="bedrooms" type="number" inputmode="numeric" min="0" max="20" placeholder="3"></div>
             <div class="field"><label for="bathrooms">Bathrooms</label><input id="bathrooms" name="bathrooms" type="number" inputmode="decimal" min="0" max="20" step="0.5" placeholder="2"></div>
           </div>
@@ -920,7 +920,9 @@ const answers = () => ({
   sqft: $('#sqft').value, bedrooms: $('#bedrooms').value, bathrooms: $('#bathrooms').value, addons,
 });
 function update() {
-  const a = answers(); const r = estimate(a); const list = $('#estList');
+  const a = answers(); const list = $('#estList');
+  const sized = P.services[a.service] && !P.services[a.service].quoteOnly && a.service !== 'carpet';
+  const r = sized && !(+a.sqft >= 300) ? { ok: false, reason: 'Add your square feet' } : estimate(a);
   const carpet = a.service === 'carpet', hc = a.service === 'homecare';
   if (r.ok && step < LAST) $('#err').textContent = '';
   ['#sqft', '#bedrooms', '#bathrooms'].forEach(q => $(q).parentElement.style.display = carpet ? 'none' : '');
@@ -933,7 +935,7 @@ function update() {
   $('#tuneHint').textContent = hc ? 'Pick everything you want. There is no running total. A DRC home care specialist reviews your needs and sends a personalized, itemized quote before scheduling.' : carpet ? 'Carpet pricing depends on your area, so we quote it for you.' : 'All optional. Skip anything that does not apply.';
   if (!r.ok) {
     $('#estBig').textContent = '';
-    $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : r.reason === 'Add your carpet rooms' ? 'Add how many rooms of carpet.' : 'Add your square feet, bedrooms or bathrooms.';
+    $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : r.reason === 'Add your carpet rooms' ? 'Add how many rooms of carpet.' : r.reason === 'Add your square feet' ? 'Add your square feet to see your price. A rough guess is fine.' : 'Add your square feet, bedrooms or bathrooms.';
     list.innerHTML = ''; return r;
   }
   if (r.quoteOnly && hc) {
@@ -1011,7 +1013,9 @@ function check(n) {
   if (n === 0) {
     if (!val('service')) return 'Pick the service you need.';
     if (!/^\d{5}$/.test($('#zip').value.trim())) { $('#zip').parentElement.classList.add('bad'); $('#zip').focus(); return 'Add your 5 digit ZIP code.'; }
-    const r = estimate(answers()); if (!r.quoteOnly && !r.ok) { $('#sqft').parentElement.classList.add('bad'); return 'Add your square feet, bedrooms or bathrooms.'; }
+    const r = estimate(answers());
+    // Square feet drives most of the price. Without it the estimate drops toward the minimum, which undersells the service.
+    if (!r.quoteOnly && !r.carpetOnly && !(+$('#sqft').value >= 300)) { $('#sqft').parentElement.classList.add('bad'); $('#sqft').focus(); return 'Add your square feet. A rough guess is fine.'; }
   }
   if (n === 2) {
     for (const [id, what] of [['name', 'your name'], ['phone', 'a phone number'], ['email', 'your email']]) {

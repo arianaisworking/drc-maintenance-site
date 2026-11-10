@@ -45,7 +45,7 @@ export async function onRequestPost({ request, env }) {
     access: g('access'), parking: g('parking'),
     date: g('date'), time: g('time'), callTime: g('calltime'), heard: g('heard'), notes: g('notes'), maint: g('maint'),
     payment: g('payment'), homecare: all('homecare'),
-    contactPref: g('contact_pref'),
+    contactPref: g('contact_pref'), interests: g('interests'),
     source: ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].map(g).filter(Boolean).join(' / '),
     clickId: g('gclid') ? 'Google click' : g('fbclid') ? 'Meta click' : '', landing: g('landing'),
   };
@@ -88,6 +88,7 @@ export async function onRequestPost({ request, env }) {
     ['Surface notes', esc(lead.surfaceNotes)],
     ['Home care wanted', lead.homecare.length ? '<strong>' + lead.homecare.map(esc).join('<br>') + '</strong><br><i>Send an itemized proposal. No price was shown online.</i>' : ''],
     ['Add ons chosen', addonText],
+    ['Also wants a quote for', lead.interests ? '<strong>' + esc(lead.interests) + '</strong><br><i>Offer these on the call. Not in the estimate.</i>' : ''],
     ['How often', esc(lead.frequency && lbl('frequency', lead.frequency))],
     ['Work style', esc(lead.style)],
     ['Focus on', esc(lead.focus)],

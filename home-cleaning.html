@@ -75,9 +75,26 @@ section{padding:76px 0}
 .price.empty b{font-size:15px;color:var(--muted);font-weight:600}
 .err{color:var(--err);font-size:14px;font-weight:600;min-height:1.2em;margin-top:8px}
 .fine{font-size:12.5px;color:var(--muted);margin-top:10px;text-align:center}
-.stepb{display:none}
-.qc.b .stepa{display:none}.qc.b .stepb{display:block}
-.qc.done .stepa,.qc.done .stepb{display:none}
+.stepb,.stepx{display:none}
+.qc.x .stepa,.qc.b .stepa{display:none}.qc.x .stepx{display:block}.qc.b .stepb{display:block}
+.qc.done .stepa,.qc.done .stepb,.qc.done .stepx{display:none}
+.recs{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.tog{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--bg);border-radius:14px;padding:11px 12px;cursor:pointer;font:inherit;color:var(--ink)}
+.tog .t{flex:1;min-width:0}.tog b{display:block;font-size:14.5px}.tog small{display:block;font-size:12.5px;color:var(--muted);line-height:1.35;margin-top:2px}
+.tog .pr{font-size:13px;font-weight:700;color:var(--sage-d);white-space:nowrap}
+.tog::after{content:'';width:20px;height:20px;border-radius:6px;border:1.5px solid #cbbfa9;background:#fff;flex-shrink:0}
+.tog[aria-pressed=true]{border-color:var(--sage);background:var(--sage-l)}
+.tog[aria-pressed=true]::after{background:var(--sage-d) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/14px no-repeat;border-color:var(--sage-d)}
+.rec-tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);margin-bottom:2px}
+.grp{font-size:14px;font-weight:700;margin:4px 0 8px}
+.grp small{font-weight:400;color:var(--muted);font-size:12.5px}
+details.xtra{border:1.5px solid var(--line);border-radius:14px;padding:2px 12px;margin-bottom:16px}
+details.xtra summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--sage-d);padding:10px 0}
+details.xtra[open]{padding-bottom:12px}
+details.xtra .recs{margin:4px 0 0}
+.svcs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px}
+.svcs .tog{padding:9px 10px}.svcs .tog b{font-size:13.5px;font-weight:600}
+@media(max-width:600px){.svcs{grid-template-columns:1fr}}
 .ok{display:none;text-align:center;padding:18px 4px}
 .qc.done .ok{display:block}
 .ok .tick{width:62px;height:62px;border-radius:50%;background:var(--sage-d);color:#fff;font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
@@ -205,8 +222,21 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
         <div class="price empty" id="price"><span id="pLbl">Your estimate</span><b id="pVal">Add your square feet</b></div>
 
         <div class="stepa">
-          <button type="button" class="btn" id="go">Hold my price</button>
+          <button type="button" class="btn" id="go">Continue</button>
           <p class="fine">No commitment. Nothing to pay today.</p>
+        </div>
+
+        <div class="stepx">
+          <h2>Make it yours</h2>
+          <p class="sub">All optional. Tell us what you want, and here is what we suggest for your home.</p>
+          <div class="grp">Recommended for your home</div>
+          <div class="recs" id="recs"></div>
+          <details class="xtra"><summary>See all extras</summary><div class="recs" id="extras"></div></details>
+          <div class="grp">Want help with more? <small>We quote these for you. Never added to your price.</small></div>
+          <div class="svcs" id="svcs"></div>
+          <div class="f" style="margin-bottom:14px"><label for="wish">Anything else on your list?</label><input id="wish" name="focus" placeholder="Example: guest room before the holidays, a leaky faucet"></div>
+          <button type="button" class="btn" id="goB">Continue</button>
+          <p class="fine"><button type="button" class="link" id="skipX">Skip</button> &nbsp;|&nbsp; <button type="button" class="link" id="backX">Back</button></p>
         </div>
 
         <div class="stepb">
@@ -225,7 +255,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
           </div>
           <input type="hidden" name="metro" id="metro"><input type="hidden" name="products" value="client"><input type="hidden" name="soil" value="average"><input type="hidden" name="pets" value="none">
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="landing">
-          <input type="hidden" name="heard" id="heard">
+          <input type="hidden" name="heard" id="heard"><input type="hidden" name="interests" id="interests">
           <div class="hp" aria-hidden="true"><label>Website <input name="company_site" tabindex="-1" autocomplete="off"></label></div>
           <button type="button" class="btn" id="send">Send my estimate</button>
           <p class="fine"><button type="button" class="link" id="backA">Change my details</button></p>
@@ -332,9 +362,13 @@ const metroFor = z => {
   return z ? 'Somewhere else' : '';
 };
 
+// What the customer adds in "Make it yours"
+const picked = {};          // priced extras, key -> qty
+const wants = new Set();    // services and ideas we quote, never priced online
+
 function answers() {
   return { service: val('service'), frequency: val('service') === 'deep' ? 'once' : val('frequency'), soil: 'average', pets: 'none', products: 'client',
-    sqft: $('#sqft').value, bedrooms: $('#bedrooms').value, bathrooms: $('#bathrooms').value, addons: {} };
+    sqft: $('#sqft').value, bedrooms: $('#bedrooms').value, bathrooms: $('#bathrooms').value, addons: picked };
 }
 function update() {
   const a = answers(), deep = a.service === 'deep';
@@ -345,7 +379,9 @@ function update() {
   if (!r.ok) { box.classList.add('empty'); $('#pVal').textContent = 'Add your square feet'; $('#pLbl').textContent = 'Your estimate'; return r; }
   box.classList.remove('empty');
   $('#pVal').textContent = deep ? `From ${money(r.low)}` : `${money(r.low)} to ${money(r.high)}`;
-  $('#pLbl').innerHTML = deep ? 'Starting range<br>Final quote after a quick review' : `Per visit, ${P.frequency[a.frequency].label.toLowerCase()}<br>About ${r.laborHours} cleaner hours`;
+  const extra = (r.addonLines || []).filter(x => !x.quote).reduce((t, x) => t + x.amount, 0);
+  const note = extra ? `<br>Includes ${money(extra)} in extras` : wants.size ? `<br>Plus ${wants.size} item${wants.size > 1 ? 's' : ''} we will quote` : '';
+  $('#pLbl').innerHTML = (deep ? 'Starting range<br>Final quote after a quick review' : `Per visit, ${P.frequency[a.frequency].label.toLowerCase()}<br>About ${r.laborHours} cleaner hours`) + note;
   return r;
 }
 form.addEventListener('input', update);
@@ -378,14 +414,50 @@ function checkB() {
   if (!/^\S+@\S+\.\S+$/.test($('#email').value)) return bad('email', 'Please add your email.');
   return true;
 }
-$('#go').addEventListener('click', () => { if (!checkA()) return; $('#metro').value = metroFor($('#zip').value.trim()); qc.classList.add('b'); setTimeout(() => $('#name').focus(), 50); });
-$('#backA').addEventListener('click', () => { qc.classList.remove('b'); err.textContent = ''; });
+// Recommendations: we tell them what their home likely needs, they pick what they want
+const tog = (id, title, sub, price, on) => `<button type="button" class="tog" data-id="${id}" aria-pressed="${on ? 'true' : 'false'}"><span class="t">${title}${sub ? `<small>${sub}</small>` : ''}</span>${price ? `<span class="pr">${price}</span>` : ''}</button>`;
+const isOn = id => id.startsWith('a:') ? !!picked[id.slice(2)] : wants.has(id.slice(2));
+const OTHER = ['Carpet cleaning', 'Closet organizing', 'Pantry organizing', 'Refrigerator organizing', 'Laundry and linens service', 'Repairs and handyman', 'Landscaping and yard', 'Move in or move out'];
+function recsFor() {
+  const a = answers(), sq = +a.sqft, beds = +a.bedrooms, out = [];
+  const recurring = a.service === 'standard' && a.frequency !== 'once';
+  if (recurring) { const d = estimate({ ...a, service: 'deep', frequency: 'once', addons: {} });
+    out.push(['w:Signature Deep first visit', '<span class="rec-tag">Our recommendation</span><b>Start with a deep clean</b>', 'Resets the whole home so every visit after stays easy.', d.ok ? 'from ' + money(d.low) : '']); }
+  out.push(['a:fridge', '<b>Inside fridge</b>', 'Shelves and drawers wiped out and reset.', '+' + money(P.addons.fridge.add)]);
+  out.push(['a:oven', '<b>Inside oven</b>', 'Baked on grease gone.', '+' + money(P.addons.oven.add)]);
+  if (a.service === 'deep' || sq >= 3000) out.push(['a:windows', '<b>Interior windows and tracks</b>', 'More light, especially in larger homes.', '+' + money(P.addons.windows.add)]);
+  if (beds >= 4 || recurring) out.push(['a:laundry', '<b>Laundry, wash and fold</b>', 'One load per visit. Tell us if you want more.', '+' + money(P.addons.laundry.add)]);
+  out.push(['w:Carpet cleaning', '<b>Carpet and rug cleaning</b>', 'Quoted for your area and added to the same visit.', 'Quoted']);
+  return out.slice(0, 5);
+}
+function drawX() {
+  const recs = recsFor(), recIds = new Set(recs.map(r => r[0]));
+  $('#recs').innerHTML = recs.map(([id, t, s2, p]) => tog(id, t, s2, p, isOn(id))).join('');
+  $('#extras').innerHTML = Object.entries(P.addons).filter(([k, v]) => !v.quote && !recIds.has('a:' + k))
+    .map(([k, v]) => tog('a:' + k, `<b>${v.label}</b>`, '', '+' + money(v.add), isOn('a:' + k))).join('');
+  $('#svcs').innerHTML = OTHER.filter(o => !recIds.has('w:' + o)).map(o => tog('w:' + o, `<b>${o}</b>`, '', '', isOn('w:' + o))).join('');
+}
+$('#qc').addEventListener('click', e => {
+  const b = e.target.closest('.tog'); if (!b) return;
+  const on = b.getAttribute('aria-pressed') !== 'true', id = b.dataset.id;
+  b.setAttribute('aria-pressed', on);
+  if (id.startsWith('a:')) { if (on) picked[id.slice(2)] = 1; else delete picked[id.slice(2)]; }
+  else { on ? wants.add(id.slice(2)) : wants.delete(id.slice(2)); }
+  update();
+});
+const toB = () => { qc.classList.remove('x'); qc.classList.add('b'); setTimeout(() => $('#name').focus(), 50); };
+$('#go').addEventListener('click', () => { if (!checkA()) return; $('#metro').value = metroFor($('#zip').value.trim()); drawX(); qc.classList.add('x'); qc.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+$('#goB').addEventListener('click', toB);
+$('#skipX').addEventListener('click', () => { for (const k in picked) delete picked[k]; wants.clear(); $('#wish').value = ''; update(); toB(); });
+$('#backX').addEventListener('click', () => { qc.classList.remove('x'); err.textContent = ''; });
+$('#backA').addEventListener('click', () => { qc.classList.remove('b'); drawX(); qc.classList.add('x'); err.textContent = ''; });
 $('#send').addEventListener('click', async () => {
   if (!checkB()) return;
   const btn = $('#send'); btn.disabled = true; btn.textContent = 'Sending...';
   const fd = new FormData(form);
   if (val('service') === 'deep') fd.set('frequency', 'once');
-  fd.set('addons', '{}');
+  fd.set('addons', JSON.stringify(picked));
+  fd.set('interests', [...wants].join(', '));
   try {
     const res = await fetch('/api/cleaning-quote', { method: 'POST', body: fd });
     const data = await res.json().catch(() => ({}));

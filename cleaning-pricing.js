@@ -30,7 +30,7 @@ export const PRICING = {
   services: {
     standard: { label: 'Standard clean', factor: 1.0 },
     deep:     { label: 'Deep clean', factor: 1.6 },
-    move:     { label: 'Move-in / move-out', factor: 1.7 },
+    move:     { label: 'Move in or move out', factor: 1.7 },
     rental:   { label: 'Airbnb / vacation rental turnover', factor: 0.9 },
     student:  { label: 'Student housing turnover', factor: 1.1 },
     // Carpet only: priced from the carpet add-ons (rooms, stairs, rugs), not hours.
@@ -42,7 +42,7 @@ export const PRICING = {
   soil: {
     light:   { label: 'Light: kept up, mostly dusting and wiping', factor: 0.9 },
     average: { label: 'Average: normal everyday mess', factor: 1.0 },
-    heavy:   { label: 'Heavy: built-up grime, soap scum, grease', factor: 1.3 },
+    heavy:   { label: 'Heavy: built up grime, soap scum, grease', factor: 1.3 },
     extreme: { label: 'Very heavy: hasn\'t been cleaned in months', factor: 1.6 },
   },
 
@@ -56,8 +56,8 @@ export const PRICING = {
   products: {
     client:       { label: 'Use my products', note: 'You leave out what you want us to use.', add: 0 },
     drc:          { label: 'Bring your products', note: 'Standard professional products.', add: 20 },
-    organic:      { label: 'Organic, vinegar-based or unscented', note: 'Good for allergies, kids and pets.', add: 35 },
-    microplastic: { label: 'No microplastics', note: 'Plastic-free tools and products, no microfiber.', add: 45 },
+    organic:      { label: 'Organic, vinegar based or unscented', note: 'Good for allergies, kids and pets.', add: 35 },
+    microplastic: { label: 'No microplastics', note: 'Plastic free tools and products, no microfiber.', add: 45 },
   },
 
   addons: {
@@ -68,11 +68,11 @@ export const PRICING = {
     oven:      { label: 'Inside oven', add: 35 },
     cabinets:  { label: 'Inside cabinets and drawers', add: 45 },
     windows:   { label: 'Interior windows and tracks', add: 50 },
-    baseboards:{ label: 'Hand-wiped baseboards', add: 40 },
+    baseboards:{ label: 'Hand wiped baseboards', add: 40 },
     blinds:    { label: 'Blinds', add: 35 },
     laundry:   { label: 'Laundry, wash and fold (per load)', add: 25 },
     dishes:    { label: 'Dishes', add: 20 },
-    garage:    { label: 'Garage sweep-out', add: 60 },
+    garage:    { label: 'Garage sweep out', add: 60 },
     patio:     { label: 'Patio or balcony', add: 40 },
   },
 

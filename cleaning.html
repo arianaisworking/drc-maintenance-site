@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DRC Cleaning | Home, Move-Out &amp; Rental Cleaning in Dallas, Denver, Nashville &amp; Phoenix</title>
-<meta name="description" content="Friendly, background-checked, insured cleaners in Dallas, Denver, Nashville and Phoenix. Standard, deep, move-out, Airbnb, student housing and carpet cleaning. Choose organic or microplastic-free products. Get your price in two minutes and we'll call you.">
+<meta name="description" content="Friendly, background checked cleaners in Dallas, Denver, Nashville and Phoenix. Standard, deep, move out, Airbnb, student housing and carpet cleaning. Choose organic or microplastic free products. Get your price in two minutes and we'll call you.">
 <meta property="og:title" content="DRC Cleaning | Get your price in two minutes">
-<meta property="og:description" content="Background-checked, insured cleaners. Tell us about your home and we'll call you to book.">
+<meta property="og:description" content="Background checked cleaners. Tell us about your home and we'll call you to book.">
 <meta property="og:image" content="img/clean-hero-listing.jpg">
 <link rel="icon" type="image/png" href="img/drc-logo.png">
 <link rel="preload" as="image" href="img/clean-hero-listing.jpg">
@@ -29,8 +29,7 @@ h1,h2,h3{font-family:'Figtree',system-ui,sans-serif;font-weight:700;letter-spaci
 h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:12px}
 .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
 section{padding:84px 0}
-.kicker{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-d);margin-bottom:16px}
-.kicker::before{content:'';width:28px;height:1.5px;background:currentColor}
+.kicker{display:inline-flex;align-items:center;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-d);margin-bottom:16px}
 .lede{font-size:17px;color:var(--muted);max-width:600px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:99px;font:600 15px/1 'Figtree',sans-serif;text-decoration:none;cursor:pointer;border:none;transition:background .2s,transform .15s,box-shadow .2s}
 .btn-main{background:var(--sage-d);color:#fff;box-shadow:0 2px 8px rgba(46,107,62,.18)}
@@ -281,7 +280,6 @@ footer a:hover{color:#fff}
   .hero{display:block;min-height:0;padding:0 0 40px}
   .hero-bg{height:220px}
   .hero .kicker{font-size:10.5px;letter-spacing:.12em}
-  .hero .kicker::before{display:none}
   .hero::before{display:none}
   .hero-copy{padding-top:26px}
   .leaf{display:none}
@@ -309,6 +307,162 @@ footer a:hover{color:#fff}
   .mbar.hide{transform:translateY(140%)}
   body{padding-bottom:20px}
 }
+
+
+/* ROOM TOUR */
+.tour>*{min-width:0}
+.tour{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:start;border-top:1px solid var(--line);padding-top:34px}
+.plan-svg{width:100%;height:auto;display:block}
+.plan-svg .roof{fill:none;stroke:var(--line);stroke-width:2.5;stroke-linejoin:round}
+.plan-svg .wall{fill:var(--bg);stroke:#cfc6b6;stroke-width:3}
+.plan-svg .rm rect:first-child{fill:var(--paper);stroke:#ddd4c4;stroke-width:1.5;transition:fill .2s,stroke .2s}
+.plan-svg .rm{cursor:pointer}
+.plan-svg .rm:hover rect:first-child{fill:var(--sage-l)}
+.plan-svg .rm.on rect:first-child{fill:var(--sage-l);stroke:var(--sage);stroke-width:2.5}
+.plan-svg .fx{fill:none;stroke:#b9ad99;stroke-width:1.6;stroke-linecap:round;pointer-events:none}
+.plan-svg .rm.on .fx{stroke:var(--sage-d)}
+.plan-svg text{font:600 15px 'Figtree',sans-serif;fill:var(--ink);text-anchor:middle;pointer-events:none}
+.plan-pic{position:relative;border-radius:22px;overflow:hidden;background:#f7efe2}
+.plan-pic img{display:block;width:100%;height:auto}
+.hot{position:absolute;border:2px solid transparent;border-radius:14px;background:transparent;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;transition:background .2s,border-color .2s}
+.hot span{background:rgba(255,255,255,.94);color:var(--ink);font:700 13.5px 'Figtree',sans-serif;padding:7px 13px;border-radius:99px;box-shadow:0 4px 14px rgba(30,30,25,.16)}
+.hot:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.8)}
+.hot.on{border-color:var(--sage-d);background:rgba(46,107,62,.10)}
+.hot.on span{background:var(--sage-d);color:#fff}
+.plan-tabs{display:none}
+.plan-hint{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
+.room-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.rc-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.rc-top h3{font-size:24px;margin:0}
+.rc-count{background:var(--sage-d);color:#fff;border-radius:99px;font-size:12px;font-weight:700;padding:5px 10px;letter-spacing:.02em}
+.rc-mode{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:99px;padding:4px;margin-bottom:16px}
+.rc-mode button{border:none;background:none;font:600 13px 'Figtree',sans-serif;padding:8px 14px;border-radius:99px;cursor:pointer;color:var(--muted)}
+.rc-mode button.on{background:var(--sage-d);color:#fff}
+#rcList{list-style:none;display:flex;flex-direction:column;gap:9px}
+#rcList li{font-size:15px;color:#4d4b47;padding-left:22px;position:relative}
+#rcList li::before{content:'';position:absolute;left:0;top:7px;width:10px;height:6px;border-left:1.6px solid var(--sage-d);border-bottom:1.6px solid var(--sage-d);transform:rotate(-45deg)}
+#rcList li i{font-style:normal;font-size:12px;color:var(--clay);font-weight:600;margin-left:6px}
+.rc-note{font-size:12.5px;color:var(--muted);margin:14px 0 0}
+.rc-note i{font-style:normal;color:var(--clay);font-weight:600}
+.rc-nav{display:flex;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.rc-nav button{border:none;background:none;font:600 14px 'Figtree',sans-serif;color:var(--sage-d);cursor:pointer;padding:4px 0}
+@media(max-width:980px){.tour{grid-template-columns:1fr}}
+@media(max-width:639px){
+  .tour{gap:16px;padding-top:22px}
+  .plan-pic{border-radius:18px;margin-bottom:12px}
+  .hot span{font-size:11.5px;padding:5px 9px}
+  .plan-hint{display:none}
+  .plan-tabs{display:none}
+  .plan-tabs::-webkit-scrollbar{display:none}
+  .plan-tabs button{flex:0 0 auto;border:1.5px solid var(--line);background:var(--paper);border-radius:99px;padding:10px 16px;font:600 14px 'Figtree',sans-serif;color:var(--ink);cursor:pointer}
+  .plan-tabs button.on{background:var(--sage-d);border-color:var(--sage-d);color:#fff}
+  .room-card{padding:20px 18px}
+  .rc-mode{display:flex}.rc-mode button{flex:1;padding:9px 8px}
+}
+
+
+/* MEMBERSHIP */
+.member{background:var(--paper)}
+.m-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:30px}
+.m-head .lede{margin:0}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:6px}
+.plan.pop{border:2px solid var(--sage-d);background:var(--sage-l)}
+.plan b{font-size:21px}
+.plan .save{font-weight:700;color:var(--sage-d);font-size:15px}
+.plan p{color:var(--muted);font-size:14.5px;margin:4px 0 16px}
+.plan .btn{margin-top:auto}
+.plan .tag{position:absolute;top:-12px;left:22px;background:var(--sage-d);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:5px 11px;border-radius:99px}
+.m-note{font-size:13.5px;color:var(--muted);margin-top:18px;text-align:center}
+/* CHAT */
+.chat-fab{position:fixed;right:20px;bottom:20px;z-index:120;display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border:none;border-radius:99px;padding:14px 20px;font:600 14.5px 'Figtree',sans-serif;cursor:pointer;box-shadow:0 10px 28px rgba(30,30,25,.28)}
+.chat-fab svg{width:20px;height:20px}
+.chat{position:fixed;right:20px;bottom:84px;z-index:121;width:360px;max-width:calc(100vw - 24px);max-height:min(560px,calc(100vh - 120px));display:none;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:22px;box-shadow:0 20px 50px rgba(30,30,25,.22);overflow:hidden}
+.chat.open{display:flex}
+.chat-top{display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--sage-d);color:#fff}
+.chat-top b{display:block;font-size:15.5px}.chat-top span{font-size:12.5px;opacity:.85}
+.chat-top button{margin-left:auto;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1}
+.chat-av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-weight:700}
+.chat-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:85%;padding:10px 14px;border-radius:16px;font-size:14.5px;line-height:1.45}
+.msg.bot{background:var(--bg);border:1px solid var(--line);border-bottom-left-radius:6px}
+.msg.me{align-self:flex-end;background:var(--sage-d);color:#fff;border-bottom-right-radius:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1.5px solid var(--sage);background:var(--paper);color:var(--sage-d);border-radius:99px;padding:8px 13px;font:600 13.5px 'Figtree',sans-serif;cursor:pointer}
+.chips button:hover{background:var(--sage-l)}
+.chips button.on{background:var(--sage-d);color:#fff}
+.chips button.done{background:var(--ink);border-color:var(--ink);color:#fff}
+.chat-in{display:none;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chat-in.on{display:flex}
+.chat-in input{flex:1;font:15px 'Figtree',sans-serif;padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg)}
+.chat-in button{border:none;background:var(--sage-d);color:#fff;border-radius:12px;padding:0 16px;font:600 14px 'Figtree',sans-serif;cursor:pointer}
+@media(max-width:980px){.m-head,.plans{grid-template-columns:1fr}.plans{gap:14px}}
+@media(max-width:639px){
+  .chat-fab{right:14px;bottom:14px;padding:14px;}
+  .chat-fab span{display:none}
+  .mbar{left:14px!important;right:80px!important;transform:none!important;width:auto!important}
+  .mbar .btn{width:100%}
+  .mbar.hide{transform:translateY(160%)!important}
+  .chat{right:12px;left:12px;bottom:80px;width:auto;max-height:calc(100vh - 110px)}
+  .plan{padding:22px 20px}
+}
+
+/* MOBILE POLISH */
+@media(max-width:639px){
+  h2{font-size:31px;letter-spacing:-.025em;line-height:1.1}
+  section{padding:52px 0}
+  .kicker{font-size:11px;margin-bottom:10px}
+  /* hero: inset photo with soft frame */
+  .hero{padding-bottom:28px}
+  .hero-bg{display:block;width:calc(100% - 24px);height:300px;margin:12px auto 0;border-radius:24px;box-shadow:0 10px 30px rgba(40,36,30,.12)}
+  .hero::after{display:none}
+  .hero-copy{padding-top:22px}
+  .hero h1{font-size:44px;line-height:1;letter-spacing:-.04em}
+  .ask{padding:18px 16px;border-radius:22px}
+  .ask h2{font-size:20px}
+  .picks{gap:8px}
+  .pick{padding:12px;font-size:13.5px;border-radius:12px}
+  /* swipe rows instead of tall stacks */
+  .trust{padding:18px 0}
+  .trust .wrap,.promise,.cards,.prods .cards{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:12px;margin-left:-16px;margin-right:-16px;padding:4px 16px 14px;scroll-padding:0 16px}
+  .trust .wrap::-webkit-scrollbar,.promise::-webkit-scrollbar,.cards::-webkit-scrollbar{display:none}
+  .trust .wrap{padding-left:16px;padding-right:16px;margin:0}
+  .trust .wrap>div{flex:0 0 auto;scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 16px 12px 12px}
+  .trust b{font-size:14px}.trust span{font-size:12.5px}
+  .promise>div,.cards>.card{flex:0 0 80%;scroll-snap-align:start}
+  .card{padding:20px;display:flex;flex-direction:column}
+  .card a{margin-top:auto;padding-top:12px}
+  .swipe-hint{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);margin:-4px 0 0}
+  /* before / after side by side */
+  .ba{grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
+  .ba figure{border-radius:16px}
+  .ba img{aspect-ratio:3/4}
+  .ba figcaption{top:8px;left:8px;font-size:11px;padding:4px 10px}
+  /* standard checklist tighter */
+  .std-grid>div,.std-grid>div+div{padding:16px 0}
+  .std-grid li{font-size:14.5px;margin:7px 0}
+  /* how it works: image as a slim banner */
+  .how img{aspect-ratio:16/9;border-radius:20px}
+  .steps{gap:16px;margin-top:20px}
+  /* repairs as compact chips */
+  .mlist{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+  .mlist div{padding:8px 12px;font-size:13.5px;border-radius:99px}
+  .mprice{padding:16px;font-size:14.5px}
+  /* estimate panel only matters once they pick */
+  .est{border-radius:18px}
+  /* slimmer floating CTA */
+  .mbar{left:50%;right:auto;transform:translateX(-50%);bottom:14px;width:auto}
+  .mbar .btn{padding:14px 26px;box-shadow:0 8px 24px rgba(30,70,40,.28);white-space:nowrap}
+  .mbar.hide{transform:translate(-50%,160%)}
+  .band{padding:28px 20px}
+  footer{padding-bottom:80px}
+}
+@media(min-width:640px){.swipe-hint{display:none}}
+
+@media(max-width:639px){
+  .mbar{left:14px;right:80px;transform:none;width:auto}
+  .mbar.hide{transform:translateY(160%)}
+}
 </style>
 </head>
 <body>
@@ -317,8 +471,8 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <a href="/" class="logo"><img src="img/drc-logo.png" alt="DRC Maintenance"><span>Cleaning</span></a>
     <ul class="navlinks">
-      <li><a href="#how">How it works</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#membership">Membership</a></li>
       <li><a href="#maintenance">Repairs</a></li>
       <li><a href="#faq">Questions</a></li>
       <li><a href="#quote" class="btn btn-main">Get my price</a></li>
@@ -335,7 +489,7 @@ footer a:hover{color:#fff}
     <div class="hero-copy">
       <span class="kicker">Dallas · Denver · Nashville · Phoenix</span>
       <h1>Come home to <span class="swash">calm.</span></h1>
-      <p class="lede">Vetted, insured cleaners who use the products you choose, with photos of every room when they're done. See your price in two minutes and we'll call you to book.</p>
+      <p class="lede">Background checked cleaners who use the products you choose, with photos of every room when they're done. See your price in two minutes and we'll call you to book.</p>
       <div class="ask" id="ask">
         <h2>What can we clean for you?</h2>
         <p>Tap one to start your estimate. It takes about two minutes.</p>
@@ -354,137 +508,12 @@ footer a:hover{color:#fff}
 
 <div class="trust">
   <div class="wrap">
-    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Background-checked</b><span>Every cleaner, every time</span></div></div>
-    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span><div><b>Insured</b><span>Liability and auto coverage</span></div></div>
-    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></svg></span><div><b>Your products, your call</b><span>Organic and plastic-free options</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Background checked</b><span>Every cleaner, every time</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span><div><b>Flexible scheduling</b><span>Weekdays and weekends</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></svg></span><div><b>Your products, your call</b><span>Organic and plastic free options</span></div></div>
     <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b>A real person calls you</b><span>No surprises on price</span></div></div>
   </div>
 </div>
-
-<section id="results">
-  <div class="wrap">
-    <span class="kicker">The difference</span>
-    <h2>From "where do I start?" to "ahh."</h2>
-    <p class="lede">Dishes, grime, clutter on the counters. We handle it so you can come home and relax.</p>
-    <div class="ba">
-      <figure><img src="img/clean-before-kitchen.jpg" alt="A kitchen with dishes in the sink and a cluttered, dirty counter" loading="lazy"><figcaption>Before</figcaption></figure>
-      <figure><img src="img/clean-after-kitchen.jpg" alt="The same kitchen spotless and tidy" loading="lazy"><figcaption>After</figcaption></figure>
-    </div>
-    <p class="ba-note">Example of a deep clean. Your cleaner sends real before and after photos of your home.</p>
-    <div class="center-cta"><a href="#ask" class="btn btn-main">Start my estimate</a></div>
-  </div>
-</section>
-
-<section id="standard" class="std">
-  <div class="wrap">
-    <div class="std-head">
-      <div><span class="kicker">The DRC standard</span><h2>Every clean includes</h2></div>
-      <p class="lede">A detailed checklist for every room, so nothing is left to chance. Deep and move-out cleans go further, inside and behind.</p>
-    </div>
-    <div class="std-grid">
-      <div><h3>Kitchen</h3><ul><li>Counters, backsplash and sink scrubbed and shined</li><li>Stovetop and range hood degreased</li><li>Outside of appliances and cabinet fronts wiped</li><li>Microwave cleaned inside and out</li><li>Floors vacuumed and mopped</li></ul></div>
-      <div><h3>Bathrooms</h3><ul><li>Showers, tubs and tile scrubbed</li><li>Toilets cleaned and sanitized, base included</li><li>Mirrors and glass streak-free</li><li>Vanities, sinks and fixtures polished</li><li>Floors vacuumed and mopped</li></ul></div>
-      <div><h3>Living areas &amp; bedrooms</h3><ul><li>Dusting of reachable surfaces, shelves and décor</li><li>Light switches, handles and doors wiped</li><li>Beds made, linens changed on request</li><li>Mirrors and glass tables shined</li><li>Carpets vacuumed, hard floors mopped</li></ul></div>
-    </div>
-    <div class="promise">
-      <div><b>Photo-verified</b><span>Before and after photos of every room, sent to you.</span></div>
-      <div><b>Make-it-right promise</b><span>Missed something? Tell us and we'll come back and fix it.</span></div>
-      <div><b>One trusted team</b><span>Vetted, insured cleaners who know your home and your preferences.</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="how" class="how">
-  <div class="wrap">
-    <img src="img/clean-cleaner.jpg" alt="A smiling cleaner in a green shirt wiping a bathroom mirror" loading="lazy">
-    <div>
-      <span class="kicker">How it works</span>
-      <h2>Easy from the first click</h2>
-      <ol class="steps">
-        <li><span class="n">1</span><div><b>Tell us about your home</b><span>A few quick taps and some photos if you have them. You see your price range right away.</span></div></li>
-        <li><span class="n">2</span><div><b>We call you</b><span>Someone from DRC calls to confirm your price, answer questions and pick a time that works.</span></div></li>
-        <li><span class="n">3</span><div><b>Book and relax</b><span>Pay by secure card link or Zelle to lock your date. Your cleaner shows up ready.</span></div></li>
-        <li><span class="n">4</span><div><b>See the results</b><span>You get before and after photos of every room, even if you're not home.</span></div></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<section id="services">
-  <div class="wrap">
-    <span class="kicker">Services</span>
-    <h2>Whatever your home needs</h2>
-    <div class="cards">
-      <div class="card"><h3>Regular clean</h3><p>Kitchen, bathrooms, dusting, floors and surfaces on a schedule that suits you.</p><a href="#quote" data-svc="standard">Get a price →</a></div>
-      <div class="card"><h3>Deep clean</h3><p>Baseboards, doors, fixtures and built-up grime. The best first visit.</p><a href="#quote" data-svc="deep">Get a price →</a></div>
-      <div class="card"><h3>Move-in / move-out</h3><p>Empty-home cleans to get your deposit back or start fresh.</p><a href="#quote" data-svc="move">Get a price →</a></div>
-      <div class="card"><h3>Airbnb turnover</h3><p>Fast turns between guests, with photos so you know it's guest-ready.</p><a href="#quote" data-svc="rental">Get a price →</a></div>
-      <div class="card"><h3>Student housing</h3><p>Move-out and turnover cleans per unit or per bed for leasing offices.</p><a href="#quote" data-svc="student">Get a price →</a></div>
-      <div class="card"><h3>Carpet cleaning</h3><p>Deep steam cleaning for carpets, rugs and stairs. Add it to any clean or book it on its own.</p><a href="#quote" data-svc="carpet">Get a price →</a></div>
-      <div class="card wide"><h3>Bigger jobs</h3><p>Hoarder and debris cleanouts, offices, dental, restaurants and more. Quoted from photos.</p><a href="#quote" data-svc="commercial">Get a quote →</a></div>
-    </div>
-  </div>
-</section>
-
-<section class="prods" id="products">
-  <div class="wrap">
-    <span class="kicker">Your products, your call</span>
-    <h2>Clean the way you like</h2>
-    <p class="lede">Have marble or natural stone, or a product you love? Tell us and we'll use what's safe for your home.</p>
-    <div class="cards">
-      <div class="card"><h3>Your products</h3><p>Leave out what you'd like us to use and we'll use only that.</p></div>
-      <div class="card"><h3>Our products</h3><p>We bring professional supplies and equipment.</p></div>
-      <div class="card"><h3>Organic &amp; unscented</h3><p>Vinegar-based, fragrance-free. Great for allergies, kids and pets.</p></div>
-      <div class="card"><h3>No microplastics</h3><p>Plastic-free tools and products, no microfiber cloths.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="maintenance" class="maint">
-  <div class="wrap">
-    <div>
-      <span class="kicker">Need something fixed too?</span>
-      <h2>Maintenance for every need, big or small</h2>
-      <p class="lede">We're DRC Maintenance first. Add a repair to your clean, or send us any request on its own. One call handles it all.</p>
-      <div class="mlist">
-        <div>Leaks &amp; faucets</div><div>Toilets &amp; disposals</div>
-        <div>Drywall &amp; patching</div><div>Painting &amp; touch-ups</div>
-        <div>Lights &amp; fixtures</div><div>Doors, locks &amp; hardware</div>
-        <div>Junk removal</div><div>Lawn &amp; yard</div>
-        <div>HVAC &amp; appliances</div><div>Flooring, roofs &amp; bigger projects</div>
-      </div>
-      <div class="mprice">
-        <b>How repair pricing works</b>
-        <ul>
-          <li>Send photos or a short video and we'll quote most jobs for free, no visit needed.</li>
-          <li>Already booked a clean? Your cleaner can snap photos while they're there.</li>
-          <li>If we do need to see it in person, we tell you the visit cost upfront, before anyone comes out.</li>
-          <li>You approve the price before any work starts. No surprises.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="mform" id="mform">
-      <form id="mreq" novalidate>
-        <h3>Send us your request</h3>
-        <p class="hint">Tell us what's going on and we'll call you with next steps.</p>
-        <div class="row two">
-          <div class="field"><label for="m_name">Your name *</label><input id="m_name" name="name" autocomplete="name"></div>
-          <div class="field"><label for="m_phone">Phone *</label><input id="m_phone" name="phone" type="tel" autocomplete="tel"></div>
-        </div>
-        <div class="row two">
-          <div class="field"><label for="m_email">Email *</label><input id="m_email" name="email" type="email" autocomplete="email"></div>
-          <div class="field"><label for="m_city">Area</label><select id="m_city" name="city"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Somewhere else</option></select></div>
-        </div>
-        <div class="field" style="margin-bottom:16px"><label for="m_what">What needs attention? *</label><textarea id="m_what" name="what" placeholder="Example: kitchen faucet drips and the guest bathroom door won't latch."></textarea></div>
-        <div class="field" style="margin-bottom:18px"><label for="m_when">How soon?</label><select id="m_when" name="when"><option>Whenever is convenient</option><option>This week</option><option>As soon as possible</option><option>Emergency (water, no heat, can't lock up)</option></select></div>
-        <div class="err-msg" id="m_err" role="alert"></div>
-        <button type="submit" class="btn btn-main" style="width:100%">Send my request</button>
-        <p class="hint" style="margin:12px 0 0;font-size:13px">Have photos? We'll ask for them when we call, or add them in the cleaning estimate below.</p>
-      </form>
-      <div class="ok"><div class="done-card"><div class="tick">✓</div><h3>Request sent!</h3><p>Someone from DRC will call you shortly to talk through it.</p></div></div>
-    </div>
-  </div>
-</section>
 
 <section id="quote" class="quote">
   <div class="wrap">
@@ -532,7 +561,7 @@ footer a:hover{color:#fff}
           <fieldset><legend>While we clean</legend><div class="opt-grid" id="styleOpts"></div></fieldset>
           <div class="field" style="margin-bottom:20px"><label for="focus">Top priorities or problem spots</label><textarea id="focus" name="focus" placeholder="Example: the shower glass, the kitchen floor, the kids' bathroom."></textarea></div>
           <div class="field" style="margin-bottom:20px"><label for="sensitivities">Allergies, scents to avoid or rooms to skip</label><input id="sensitivities" name="sensitivities" placeholder="Example: no bleach, skip the office."></div>
-          <div class="field" style="margin-bottom:20px"><label for="maint">Anything need fixing while we're there? (optional)</label><input id="maint" name="maint" placeholder="Example: leaky faucet, loose cabinet door, touch-up paint."></div>
+          <div class="field" style="margin-bottom:20px"><label for="maint">Anything need fixing while we're there? (optional)</label><input id="maint" name="maint" placeholder="Example: leaky faucet, loose cabinet door, touch up paint."></div>
           <div class="row two">
             <div class="field"><label for="access">How do we get in?</label><select id="access" name="access"><option value="">Choose one</option><option>Someone will be home</option><option>Lockbox or key code</option><option>Smart lock / door code</option><option>Property manager lets us in</option><option>Not sure yet</option></select></div>
             <div class="field"><label for="parking">Parking</label><select id="parking" name="parking"><option value="">Choose one</option><option>Driveway</option><option>Street</option><option>Visitor / garage parking</option><option>Paid parking</option></select></div>
@@ -591,11 +620,136 @@ footer a:hover{color:#fff}
 
       <aside class="est" aria-live="polite">
         <div class="k">Your estimate</div>
-        <div class="big" id="estBig">—</div>
+        <div class="big" id="estBig"></div>
         <div class="sub" id="estSub">Pick a service to get started.</div>
         <ul id="estList"></ul>
         <div class="call"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><span>We'll call you to confirm the final price after looking at your details. No payment until you approve it.</span></div>
       </aside>
+    </div>
+  </div>
+</section>
+
+<section id="membership" class="member">
+  <div class="wrap">
+    <div class="m-head"><div><span class="kicker">Membership</span><h2>Recurring cleans, one less thing to think about</h2></div><p class="lede">Pick how often. Same trusted team, priority booking and a lower price on every visit.</p></div>
+    <div class="plans">
+      <div class="plan"><b>Monthly</b><span class="save">Save $10 every visit</span><p>A reset once a month.</p><a href="#quote" class="btn btn-soft" data-freq="monthly">Start monthly</a></div>
+      <div class="plan pop"><span class="tag">Most popular</span><b>Every 2 weeks</b><span class="save">Save $15 every visit</span><p>The sweet spot for busy homes.</p><a href="#quote" class="btn btn-main" data-freq="biweekly">Start every 2 weeks</a></div>
+      <div class="plan"><b>Weekly</b><span class="save">Save $20 every visit</span><p>Always guest ready.</p><a href="#quote" class="btn btn-soft" data-freq="weekly">Start weekly</a></div>
+    </div>
+    <p class="m-note">Get your price in two minutes, then we'll call to set your day and text a secure link to save your card for automatic payment after each visit.</p>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <span class="kicker">Services</span>
+    <h2>Whatever your home needs</h2>
+    <p class="swipe-hint">Swipe to see more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+    <div class="cards">
+      <div class="card"><h3>Regular clean</h3><p>Kitchen, bathrooms, dusting, floors and surfaces on a schedule that suits you.</p><a href="#quote" data-svc="standard">Get a price →</a></div>
+      <div class="card"><h3>Deep clean</h3><p>Baseboards, doors, fixtures and built up grime. The best first visit.</p><a href="#quote" data-svc="deep">Get a price →</a></div>
+      <div class="card"><h3>Move in or move out</h3><p>Empty home cleans to get your deposit back or start fresh.</p><a href="#quote" data-svc="move">Get a price →</a></div>
+      <div class="card"><h3>Airbnb turnover</h3><p>Fast turns between guests, with photos so you know it's guest ready.</p><a href="#quote" data-svc="rental">Get a price →</a></div>
+      <div class="card"><h3>Student housing</h3><p>Move out and turnover cleans per unit or per bed for leasing offices.</p><a href="#quote" data-svc="student">Get a price →</a></div>
+      <div class="card"><h3>Carpet cleaning</h3><p>Deep steam cleaning for carpets, rugs and stairs. Add it to any clean or book it on its own.</p><a href="#quote" data-svc="carpet">Get a price →</a></div>
+      <div class="card wide"><h3>Bigger jobs</h3><p>Hoarder and debris cleanouts, offices, dental, restaurants and more. Quoted from photos.</p><a href="#quote" data-svc="commercial">Get a quote →</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <span class="kicker">The difference</span>
+    <h2>From "where do I start?" to "ahh."</h2>
+    <p class="lede">Dishes, grime, clutter on the counters. We handle it so you can come home and relax.</p>
+    <div class="ba">
+      <figure><img src="img/clean-before-kitchen.jpg" alt="A kitchen with dishes in the sink and a cluttered, dirty counter" loading="lazy"><figcaption>Before</figcaption></figure>
+      <figure><img src="img/clean-after-kitchen.jpg" alt="The same kitchen spotless and tidy" loading="lazy"><figcaption>After</figcaption></figure>
+    </div>
+    <p class="ba-note">Example of a deep clean. Your cleaner sends real before and after photos of your home.</p>
+    <div class="center-cta"><a href="#ask" class="btn btn-main">Start my estimate</a></div>
+  </div>
+</section>
+
+<section id="standard" class="std">
+  <div class="wrap">
+    <div class="std-head">
+      <div><span class="kicker">The DRC standard</span><h2>Every clean includes</h2></div>
+      <p class="lede">A detailed checklist for every room, so nothing is left to chance. Deep and move out cleans go further, inside and behind.</p>
+    </div>
+    <div class="tour" id="tour">
+      <div class="plan" role="tablist" aria-label="Pick a room">
+        <div class="plan-pic">
+          <img src="img/clean-house-cutaway.webp" alt="Cutaway view of a clean home showing the kitchen, living room, bathroom and bedroom" width="1448" height="1086" loading="lazy">
+          <button class="hot" data-room="kitchen" style="left:14%;top:3%;width:36%;height:39%"><span>Kitchen</span></button>
+          <button class="hot" data-room="living" style="left:51%;top:3%;width:36%;height:39%"><span>Living areas</span></button>
+          <button class="hot" data-room="bath" style="left:6%;top:44%;width:39%;height:32%"><span>Bathrooms</span></button>
+          <button class="hot" data-room="bed" style="left:46%;top:44%;width:46%;height:32%"><span>Bedrooms</span></button>
+        </div>
+        <div class="plan-tabs">
+          <button role="tab" data-room="kitchen">Kitchen</button><button role="tab" data-room="living">Living areas</button><button role="tab" data-room="bath">Bathrooms</button><button role="tab" data-room="bed">Bedrooms</button>
+        </div>
+        <p class="plan-hint">Tap a room to see what we clean.</p>
+      </div>
+      <div class="room-card" aria-live="polite">
+        <div class="rc-top"><span class="rc-count" id="rcCount"></span><h3 id="rcName"></h3></div>
+        <div class="rc-mode" role="group" aria-label="Clean type"><button data-mode="std" class="on">Every clean</button><button data-mode="deep">Deep clean extras</button></div>
+        <ul id="rcList"></ul>
+        <p class="rc-note">Items marked <i>on request</i> can be added when we call.</p>
+        <div class="rc-nav"><button id="rcPrev" aria-label="Previous room">&larr; <span></span></button><button id="rcNext" aria-label="Next room"><span></span> &rarr;</button></div>
+      </div>
+    </div>
+    <div class="promise">
+      <div><b>Photo verified</b><span>Before and after photos of every room, sent to you.</span></div>
+      <div><b>Make it right promise</b><span>Missed something? Tell us and we'll come back and fix it.</span></div>
+      <div><b>One trusted team</b><span>The same friendly faces who learn your home and your preferences.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="maintenance" class="maint">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Need something fixed too?</span>
+      <h2>Maintenance for every need, big or small</h2>
+      <p class="lede">We're DRC Maintenance first. Add a repair to your clean, or send us any request on its own. One call handles it all.</p>
+      <div class="mlist">
+        <div>Leaks &amp; faucets</div><div>Toilets &amp; disposals</div>
+        <div>Drywall &amp; patching</div><div>Painting &amp; touch ups</div>
+        <div>Lights &amp; fixtures</div><div>Doors, locks &amp; hardware</div>
+        <div>Junk removal</div><div>Lawn &amp; yard</div>
+        <div>HVAC &amp; appliances</div><div>Flooring, roofs &amp; bigger projects</div>
+      </div>
+      <div class="mprice">
+        <b>How repair pricing works</b>
+        <ul>
+          <li>Send photos or a short video and we'll quote most jobs for free, no visit needed.</li>
+          <li>Already booked a clean? Your cleaner can snap photos while they're there.</li>
+          <li>If we do need to see it in person, we tell you the visit cost upfront, before anyone comes out.</li>
+          <li>You approve the price before any work starts. No surprises.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mform" id="mform">
+      <form id="mreq" novalidate>
+        <h3>Send us your request</h3>
+        <p class="hint">Tell us what's going on and we'll call you with next steps.</p>
+        <div class="row two">
+          <div class="field"><label for="m_name">Your name *</label><input id="m_name" name="name" autocomplete="name"></div>
+          <div class="field"><label for="m_phone">Phone *</label><input id="m_phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="row two">
+          <div class="field"><label for="m_email">Email *</label><input id="m_email" name="email" type="email" autocomplete="email"></div>
+          <div class="field"><label for="m_city">Area</label><select id="m_city" name="city"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Somewhere else</option></select></div>
+        </div>
+        <div class="field" style="margin-bottom:16px"><label for="m_what">What needs attention? *</label><textarea id="m_what" name="what" placeholder="Example: kitchen faucet drips and the guest bathroom door won't latch."></textarea></div>
+        <div class="field" style="margin-bottom:18px"><label for="m_when">How soon?</label><select id="m_when" name="when"><option>Whenever is convenient</option><option>This week</option><option>As soon as possible</option><option>Emergency (water, no heat, can't lock up)</option></select></div>
+        <div class="err-msg" id="m_err" role="alert"></div>
+        <button type="submit" class="btn btn-main" style="width:100%">Send my request</button>
+        <p class="hint" style="margin:12px 0 0;font-size:13px">Have photos? We'll ask for them when we call, or add them in the cleaning estimate below.</p>
+      </form>
+      <div class="ok"><div class="done-card"><div class="tick">✓</div><h3>Request sent!</h3><p>Someone from DRC will call you shortly to talk through it.</p></div></div>
     </div>
   </div>
 </section>
@@ -605,21 +759,18 @@ footer a:hover{color:#fff}
     <span class="kicker">Questions</span>
     <h2>Good to know</h2>
     <div class="faq">
-      <details><summary>Do I need to provide cleaning supplies?</summary><p>No. We can bring ours, or you can leave out your own and we'll use only those. If you have marble, granite or other natural stone, tell us and we'll use a stone-safe, pH-neutral cleaner.</p></details>
-      <details><summary>What's the difference between organic and no-microplastics?</summary><p>Organic and unscented means vinegar-based, fragrance-free products, which is great for allergies, kids and pets. No microplastics goes a step further: plastic-free tools and products, and no microfiber cloths, which shed tiny plastic fibers.</p></details>
-      <details><summary>Are your cleaners background-checked and insured?</summary><p>Yes. Every cleaner passes a background check and carries their own liability and auto insurance before they're sent to a home.</p></details>
+      <details><summary>Do I need to provide cleaning supplies?</summary><p>No. We can bring ours, or you can leave out your own and we'll use only those. If you have marble, granite or other natural stone, tell us and we'll use a stone safe, pH neutral cleaner.</p></details>
+      <details><summary>Are your cleaners background checked?</summary><p>Yes. Every cleaner passes a background check before they're sent to a home.</p></details>
       <details><summary>What happens after I send my estimate?</summary><p>Someone from DRC calls you to confirm your price, answer questions and set a date. Once you approve, we send a secure card link or Zelle details, and your date is locked in when payment comes through.</p></details>
       <details><summary>Where do you clean?</summary><p>We currently serve the Dallas, Denver, Nashville and Phoenix areas. Somewhere else? Send your estimate anyway and we'll let you know.</p></details>
       <details><summary>Do I need to be home?</summary><p>No. Many clients give us a lockbox or door code. Either way, you get before and after photos of every room when we're done.</p></details>
-      <details><summary>Do you offer recurring cleaning?</summary><p>Yes. Weekly, every two weeks and monthly clients get a lower price on every visit.</p></details>
-      <details><summary>Can you fix things while you're there?</summary><p>Yes. We're part of DRC Maintenance, so we can also handle repairs, paint, junk removal and lawn care. Add it to your estimate or send a request in the repairs section, and we'll quote it from photos first.</p></details>
     </div>
   </div>
 </section>
 
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="band">
+    <div class="band" id="band">
       <div><h2>Ready for a cleaner home?</h2><p>Two minutes for your price, then we'll give you a call.</p></div>
       <a href="#ask" class="btn">Start my estimate</a>
     </div>
@@ -629,14 +780,21 @@ footer a:hover{color:#fff}
 <footer>
   <div class="wrap">
     <div>
-      <div><img src="img/drc-logo.png" alt="DRC Maintenance"><p>DRC Cleaning is part of Dedicated Resource Center LLC, a family-owned property maintenance company.</p></div>
-      <div><h5>Cleaning</h5><ul><li><a href="#services">Services</a></li><li><a href="#how">How it works</a></li><li><a href="#quote">Get my price</a></li></ul></div>
+      <div><img src="img/drc-logo.png" alt="DRC Maintenance"><p>DRC Cleaning is part of Dedicated Resource Center LLC, a family owned property maintenance company.</p></div>
+      <div><h5>Cleaning</h5><ul><li><a href="#services">Services</a></li><li><a href="#membership">Membership</a></li><li><a href="#quote">Get my price</a></li></ul></div>
       <div><h5>Company</h5><ul><li><a href="/">DRC Maintenance</a></li><li><a href="about.html">About</a></li><li><a href="/#contact">Contact</a></li></ul></div>
     </div>
     <div class="fbot"><span>© <span id="yr">2026</span> Dedicated Resource Center LLC. All rights reserved.</span><span><a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></span></div>
   </div>
 </footer>
 
+
+<button class="chat-fab" id="chatFab" aria-label="Chat with DRC"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Questions? Chat with us</span></button>
+<div class="chat" id="chat" role="dialog" aria-label="Chat with DRC Cleaning">
+  <div class="chat-top"><span class="chat-av">D</span><div><b>DRC Cleaning</b><span>We'll connect you with a real person</span></div><button id="chatX" aria-label="Close chat">&times;</button></div>
+  <div class="chat-log" id="chatLog"></div>
+  <form class="chat-in" id="chatIn"><input id="chatTxt" autocomplete="off"><button>Send</button></form>
+</div>
 <div class="mbar" id="mbar"><a href="#ask" class="btn btn-main">Get my price in 2 minutes</a></div>
 
 <script type="module">
@@ -707,13 +865,13 @@ function update() {
   $('#carpetLegend').textContent = carpet ? 'How much carpet?' : 'Want carpet cleaning too?';
   document.querySelector('.panel[data-p="1"] h3').textContent = carpet ? 'Tell us about your carpet' : 'Tell us about your home';
   if (!r.ok) {
-    $('#estBig').textContent = '—';
+    $('#estBig').textContent = '';
     $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : r.reason === 'Add your carpet rooms' ? 'Add how many rooms of carpet.' : 'Add your square feet, bedrooms or bathrooms.';
     list.innerHTML = ''; return r;
   }
   if (r.quoteOnly) { $('#estBig').textContent = 'Custom quote'; $('#estSub').textContent = "Add photos at the end and we'll call you with a price."; list.innerHTML = `<li><span>Service</span><span>${r.service}</span></li>`; return r; }
-  $('#estBig').textContent = `${money(r.low)} – ${money(r.high)}`;
-  $('#estSub').textContent = a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one-time clean';
+  $('#estBig').textContent = `${money(r.low)} to ${money(r.high)}`;
+  $('#estSub').textContent = a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one time clean';
   const li = (k, v) => `<li><span>${k}</span><span>${v}</span></li>`;
   list.innerHTML = li('Service', r.service) + (r.carpetOnly ? '' : li('Time', `about ${r.laborHours} cleaner-hours`))
     + r.addonLines.map(x => li(x.label + (x.qty > 1 ? ' ×' + x.qty : ''), '+' + money(x.amount))).join('')
@@ -806,7 +964,7 @@ async function submit() {
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.success) throw new Error(data.error || 'Something went wrong.');
     const r = data.estimate; const first = $('#name').value.trim().split(' ')[0];
-    const est = r && r.ok && !r.quoteOnly ? ` Your estimate is ${money(r.low)} – ${money(r.high)}.` : '';
+    const est = r && r.ok && !r.quoteOnly ? ` Your estimate is ${money(r.low)} to ${money(r.high)}.` : '';
     $('#doneMsg').textContent = `Thanks, ${first}!${est} Someone from DRC will call you at ${$('#phone').value.trim()} shortly to confirm your price and book your clean.`;
     show(LAST + 1);
   } catch (e) {
@@ -818,9 +976,9 @@ async function submit() {
 const mbar = $('#mbar'); const seen = {};
 const io = new IntersectionObserver(es => {
   es.forEach(e => { seen[e.target.id] = e.isIntersecting; });
-  mbar.classList.toggle('hide', !!(seen.ask || seen.quote));
+  mbar.classList.toggle('hide', !!(seen.ask || seen.quote || seen.mform || seen.band));
 }, { threshold: 0.05 });
-io.observe($('#ask')); io.observe($('#quote'));
+['#ask','#quote','#mform','#band'].forEach(q => $(q) && io.observe($(q)));
 
 // Maintenance request form (goes through the site's contact form email)
 $('#mreq').addEventListener('submit', async e => {
@@ -848,6 +1006,98 @@ $('#mreq').addEventListener('submit', async e => {
 const qs = new URLSearchParams(location.search).get('service');
 if (qs && P.services[qs]) { const r = document.getElementById('service_' + qs); if (r) r.checked = true; }
 update(); show(0, false);
+
+// Room tour
+(() => {
+  const R = {
+    kitchen: {name:'Kitchen', std:['Counters, backsplash and sink scrubbed and shined','Stovetop and range hood degreased','Outside of appliances and cabinet fronts wiped','Microwave cleaned inside and out','Small appliances wiped and put back','Table and chairs wiped','Trash emptied and bin wiped','Floors vacuumed and mopped','Dishes <i>on request</i>'], deep:['Inside oven and fridge','Inside cabinets and drawers','Baseboards hand wiped','Grout spot scrubbed','Light fixtures and vents dusted','Behind and under movable appliances']},
+    living: {name:'Living areas', std:['Dusting of reachable surfaces, shelves and decor','Light switches, handles and doors wiped','TV and electronics dusted','Mirrors and glass tables shined','Couch cushions straightened, crumbs vacuumed','Window sills and ledges wiped','Stairs and railings dusted','Carpets vacuumed, hard floors mopped','Trash emptied','Blinds dusted <i>on request</i>'], deep:['Baseboards and door frames hand wiped','Ceiling fans and vents dusted','Under cushions and furniture vacuumed','Interior windows and tracks','Wall spot cleaning']},
+    bath: {name:'Bathrooms', std:['Showers, tubs and tile scrubbed','Toilets cleaned and sanitized, base included','Mirrors and glass streak free','Vanities, sinks and fixtures polished','Countertops cleared and wiped','Towels folded or hung','Trash emptied','Floors vacuumed and mopped'], deep:['Soap scum and hard water buildup removed','Grout scrubbed','Inside cabinets and drawers','Exhaust fan and vents dusted','Baseboards and door frames hand wiped']},
+    bed: {name:'Bedrooms', std:['Dusting of dressers, nightstands and shelves','Mirrors and glass shined','Light switches and handles wiped','Window sills wiped','Beds made','Linens changed <i>on request</i>','Trash emptied','Carpets vacuumed, hard floors mopped'], deep:['Under beds vacuumed','Baseboards and door frames hand wiped','Ceiling fans and vents dusted','Closet floors and shelves','Interior windows and tracks']}
+  };
+  const order = ['kitchen','living','bath','bed']; let cur = 'kitchen', mode = 'std';
+  const tour = document.getElementById('tour'); if (!tour) return;
+  const render = () => {
+    const r = R[cur], items = r[mode];
+    document.getElementById('rcName').textContent = r.name;
+    document.getElementById('rcCount').textContent = mode === 'std' ? items.length + ' every visit' : '+' + items.length + ' on deep cleans';
+    document.getElementById('rcList').innerHTML = items.map(t => '<li>' + t + '</li>').join('');
+    tour.querySelectorAll('[data-room]').forEach(el => el.classList.toggle('on', el.dataset.room === cur));
+    tour.querySelectorAll('.rc-mode button').forEach(b => b.classList.toggle('on', b.dataset.mode === mode));
+    const i = order.indexOf(cur);
+    document.querySelector('#rcPrev span').textContent = R[order[(i + 3) % 4]].name;
+    document.querySelector('#rcNext span').textContent = R[order[(i + 1) % 4]].name;
+  };
+  tour.querySelectorAll('[data-room]').forEach(el => el.addEventListener('click', () => { cur = el.dataset.room; render(); }));
+  tour.querySelectorAll('.rc-mode button').forEach(b => b.addEventListener('click', () => { mode = b.dataset.mode; render(); }));
+  document.getElementById('rcPrev').addEventListener('click', () => { cur = order[(order.indexOf(cur) + 3) % 4]; render(); });
+  document.getElementById('rcNext').addEventListener('click', () => { cur = order[(order.indexOf(cur) + 1) % 4]; render(); });
+  render();
+})();
+
+// Membership buttons jump into the estimate with the frequency preset
+document.querySelectorAll('[data-freq]').forEach(el => el.addEventListener('click', e => {
+  e.preventDefault();
+  const svc = document.getElementById('service_standard'); if (svc) svc.checked = true;
+  const f = document.querySelector('input[name="frequency"][value="' + el.dataset.freq + '"]'); if (f) f.checked = true;
+  if (typeof update === 'function') update();
+  if (typeof show === 'function') show(1);
+}));
+
+// Chat: guided intake that hands the visitor to a real person
+(() => {
+  const fab = document.getElementById('chatFab'), box = document.getElementById('chat'), log = document.getElementById('chatLog');
+  const inForm = document.getElementById('chatIn'), txt = document.getElementById('chatTxt');
+  if (!fab) return;
+  const lead = { service: '', size: '', location: '', notes: '', addons: [], name: '', email: '', phone: '' };
+  let started = false, waiting = null;
+  const scroll = () => { log.scrollTop = log.scrollHeight; };
+  const say = (t, who = 'bot') => { const d = document.createElement('div'); d.className = 'msg ' + who; d.textContent = t; log.appendChild(d); scroll(); };
+  const chips = (opts, cb) => { const w = document.createElement('div'); w.className = 'chips'; opts.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.onclick = () => { w.remove(); inForm.classList.remove('on'); waiting = null; say(o, 'me'); cb(o); }; w.appendChild(b); }); log.appendChild(w); scroll(); return w; };
+  const multi = (opts, cb) => {
+    const w = document.createElement('div'); w.className = 'chips'; const picked = new Set();
+    opts.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.onclick = () => { if (picked.has(o)) { picked.delete(o); b.classList.remove('on'); } else { picked.add(o); b.classList.add('on'); } }; w.appendChild(b); });
+    const done = document.createElement('button'); done.type = 'button'; done.className = 'done'; done.textContent = 'Done';
+    done.onclick = () => { w.remove(); const list = [...picked]; say(list.length ? list.join(', ') : 'No add ons', 'me'); cb(list); };
+    w.appendChild(done); log.appendChild(w); scroll();
+  };
+  const ask = (q, ph, type, cb, skip) => {
+    say(q); txt.value = ''; txt.placeholder = ph; txt.type = type; inForm.classList.add('on'); waiting = cb;
+    if (skip) chips([skip], () => cb(''));
+    setTimeout(() => txt.focus(), 50);
+  };
+  inForm.addEventListener('submit', e => { e.preventDefault(); const v = txt.value.trim(); if (!v || !waiting) return; const sk = log.querySelector('.chips:last-child'); if (sk) sk.remove(); say(v, 'me'); const cb = waiting; waiting = null; inForm.classList.remove('on'); cb(v); });
+
+  const send = async () => {
+    say('Sending your details...');
+    try {
+      const r = await fetch('/api/cleaning-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...lead, page: location.href }) });
+      log.lastChild.remove(); if (!r.ok) throw 0;
+      say('Thank you, ' + lead.name.split(' ')[0] + '! Someone from DRC will reach out shortly' + (lead.phone ? ' at ' + lead.phone : ' by email') + ' to confirm your price and pick a day.');
+      chips(['See my price now', 'Close chat'], o => { box.classList.remove('open'); if (o !== 'Close chat') location.hash = '#quote'; });
+    } catch { if (log.lastChild && log.lastChild.textContent === 'Sending your details...') log.lastChild.remove(); say('Sorry, that did not go through. Please try again in a minute.'); chips(['Try again'], () => send()); }
+  };
+  const getPhone = () => ask('And a phone number, if you would like a call or text?', 'Phone (optional)', 'tel', v => {
+    if (v && v.replace(/\D/g, '').length < 10) { say('That number looks short. Could you check it?'); return getPhone(); }
+    lead.phone = v; send();
+  }, 'Email is fine');
+  const getEmail = () => ask("What's your email?", 'you@email.com', 'email', v => {
+    if (!/^\S+@\S+\.\S+$/.test(v)) { say('That email does not look right. Could you check it?'); return getEmail(); }
+    lead.email = v; getPhone();
+  });
+  const contact = () => ask("Almost done. What's your name?", 'Your name', 'text', v => { lead.name = v; getEmail(); });
+  const addons = () => { say('Want us to quote anything else while we are there? Pick any that apply.'); multi(['Organization specialist', 'Maintenance quote', 'Handyman work', 'Landscaping'], list => { lead.addons = list; contact(); }); };
+  const notes = () => ask('Anything specific about your clean? Products you like, pets, allergies, rooms to focus on.', 'Your notes', 'text', v => { lead.notes = v; addons(); }, 'Nothing special');
+  const place = () => ask('What city and state is the home in?', 'City, State', 'text', v => { lead.location = v; notes(); });
+  const size = biz => { say(biz ? 'About how big is the space?' : 'How big is the home?'); chips(biz ? ['Under 1,500 sq ft', '1,500 to 3,000 sq ft', 'Over 3,000 sq ft'] : ['Studio or 1 bed', '2 beds', '3 beds', '4 beds', '5+ beds'], v => { lead.size = v; place(); }); };
+  const start = () => {
+    started = true;
+    say("Hi! I'll get a few details and connect you with someone from DRC. What kind of cleaning do you need?");
+    chips(['Regular clean', 'Deep clean', 'Move in or move out', 'Airbnb turnover', 'Carpet cleaning', 'Hoarder or debris cleanout', 'Office or business'], v => { lead.service = v; size(v === 'Office or business'); });
+  };
+  fab.addEventListener('click', () => { box.classList.toggle('open'); if (!started) start(); });
+  document.getElementById('chatX').addEventListener('click', () => box.classList.remove('open'));
+})();
 </script>
 </body>
 </html>

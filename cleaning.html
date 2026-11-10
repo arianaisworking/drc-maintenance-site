@@ -56,7 +56,7 @@ nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-betw
 .hero-bg{position:absolute;top:0;right:0;bottom:0;width:50%;height:100%;object-fit:cover;object-position:38% center;z-index:0}
 .hero::before{display:none}
 .hero .wrap{position:relative;z-index:2;width:100%}
-.hero-copy{max-width:min(508px,calc(50vw - 72px))}
+.hero-copy{max-width:min(508px,calc(50vw - 72px));position:relative;z-index:2}
 .hero h1{font-size:clamp(44px,6vw,72px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:18px}
 .hero .lede{margin-bottom:28px;font-size:17.5px;color:#4d4b47}
 .hero .ask{background:var(--paper)}
@@ -238,6 +238,20 @@ footer a:hover{color:#fff}
 .promise b{display:block;font-size:16px;margin-bottom:4px}
 .promise span{font-size:14px;color:var(--muted)}
 
+/* hero texture + accents */
+.hero{background:radial-gradient(ellipse 60% 70% at 8% 18%,rgba(94,139,107,.13),transparent 60%),radial-gradient(ellipse 45% 55% at 42% 92%,rgba(201,120,79,.10),transparent 65%),var(--bg)}
+.hero::after{content:'';position:absolute;top:0;left:0;bottom:0;width:50%;z-index:1;pointer-events:none;opacity:.5;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .42 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.sprig{position:absolute;z-index:1;width:170px;height:272px;color:var(--sage);opacity:.32;left:max(4px,calc((100vw - 1160px)/2 - 150px));bottom:-46px;transform:rotate(-16deg);pointer-events:none}
+.swash{position:relative;color:var(--sage-d);white-space:nowrap}
+.swash svg{position:absolute;left:0;right:0;bottom:-.06em;width:100%;height:.22em;color:var(--clay);opacity:.55;z-index:-1}
+.hero h1{position:relative;z-index:1}
+.hero-float{position:absolute;z-index:3;left:calc(50% + 32px);bottom:40px;display:flex;align-items:center;gap:14px;background:var(--paper);border-radius:18px;padding:10px 18px 10px 10px;box-shadow:0 18px 40px rgba(60,45,25,.16);text-decoration:none;color:var(--ink);transition:transform .2s}
+.hero-float:hover{transform:translateY(-3px)}
+.ba-mini{display:flex;gap:4px}
+.ba-mini img{width:58px;height:58px;object-fit:cover;border-radius:10px}
+.hero-float b{display:block;font-size:15px}
+.hero-float small{font-size:12.5px;color:var(--muted)}
+
 /* MOBILE BAR */
 .mbar{display:none}
 
@@ -248,6 +262,9 @@ footer a:hover{color:#fff}
   .hero-copy{max-width:640px;padding-top:36px}
   .q-layout{grid-template-columns:1fr}
   .maint .wrap{grid-template-columns:1fr}
+  .hero-float{display:none}
+  .sprig{display:none}
+  .hero::after{width:100%;top:380px}
   .std-head{grid-template-columns:1fr;gap:12px}
   .std-grid,.promise{grid-template-columns:1fr}
   .std-grid>div,.std-grid>div+div{padding:22px 0;border-left:none;border-bottom:1px solid var(--line)}
@@ -307,11 +324,13 @@ footer a:hover{color:#fff}
 </nav>
 
 <header class="hero">
+<a class="hero-float" href="#results"><span class="ba-mini"><img src="img/clean-before-kitchen.jpg" alt=""><img src="img/clean-after-kitchen.jpg" alt=""></span><span><b>See the difference</b><small>Before &amp; after, every room</small></span></a>
+  <svg class="sprig" viewBox="0 0 200 320" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M100 312 C 98 240, 104 160, 120 8"/><g><path d="M101 270 c -26 -6 -44 -26 -46 -46 c 22 2 40 20 46 46z"/><path d="M103 236 c 24 -8 40 -28 40 -48 c -22 4 -38 24 -40 48z"/><path d="M104 196 c -24 -6 -40 -24 -42 -44 c 20 2 36 20 42 44z"/><path d="M107 160 c 22 -8 36 -26 36 -44 c -20 4 -34 22 -36 44z"/><path d="M109 124 c -20 -6 -34 -22 -36 -40 c 18 2 32 18 36 40z"/><path d="M112 90 c 18 -8 30 -22 30 -38 c -16 4 -28 18 -30 38z"/><path d="M115 58 c -16 -6 -26 -18 -28 -32 c 14 2 26 14 28 32z"/></g></svg>
   <img class="hero-bg" src="img/clean-hero-listing.jpg" alt="A bright, freshly cleaned living room and open kitchen" fetchpriority="high">
   <div class="wrap">
     <div class="hero-copy">
       <span class="kicker">Dallas · Denver · Nashville · Phoenix</span>
-      <h1>Come home to calm.</h1>
+      <h1>Come home to <span class="swash">calm.<svg viewBox="0 0 220 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 16 C 50 6, 110 4, 216 12" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/></svg></span></h1>
       <p class="lede">Vetted, insured cleaners who use the products you choose, with photos of every room when they're done. See your price in two minutes and we'll call you to book.</p>
       <div class="ask" id="ask">
         <h2>What can we clean for you?</h2>

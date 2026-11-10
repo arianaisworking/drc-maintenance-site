@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRC Cleaning | Home, Move-Out &amp; Rental Cleaning in Dallas, Denver, Nashville &amp; Phoenix</title>
+<title>DRC Home Services | Home, Move Out &amp; Rental Cleaning in Dallas, Denver, Nashville &amp; Phoenix</title>
 <meta name="description" content="Friendly, background checked cleaners in Dallas, Denver, Nashville and Phoenix. Standard, deep, move out, Airbnb, student housing and carpet cleaning. Choose organic or microplastic free products. See your price in about a minute.">
 <meta property="og:title" content="DRC Cleaning | Get your price in two minutes">
 <meta property="og:description" content="Background checked cleaners. See your price in about a minute. No commitment.">
@@ -589,7 +589,7 @@ footer a:hover{color:#fff}
           <p class="hint" id="tuneHint">All optional. Skip anything that doesn't apply.</p>
           <fieldset id="hcBox"><legend>What would you like us to take care of? Pick all that apply.</legend><div class="opt-grid" id="hcOpts"></div></fieldset>
           <div id="tuneStd">
-            <fieldset><legend>How does it look right now? No judgment, we've seen it all.</legend><div class="opt-grid" id="soilOpts"></div></fieldset>
+            <fieldset><legend>How would you describe your home today?</legend><div class="opt-grid" id="soilOpts"></div></fieldset>
             <fieldset><legend>Pets</legend><div class="opt-grid three" id="petOpts"></div></fieldset>
             <fieldset><legend>Cleaning products</legend><div class="opt-grid" id="prodOpts"></div></fieldset>
             <fieldset><legend>Extras</legend><div class="opt-grid" id="addonOpts"></div></fieldset>
@@ -648,7 +648,7 @@ footer a:hover{color:#fff}
         <div class="panel" data-p="3">
           <div class="done-card">
             <div class="tick">✓</div>
-            <h3>You're all set!</h3>
+            <h3>Thank you.</h3>
             <p id="doneMsg">Our team will reach out to confirm your price and schedule soon.</p>
             <p>We also sent a copy to your email.</p>
           </div>
@@ -717,7 +717,7 @@ footer a:hover{color:#fff}
 <section id="results">
   <div class="wrap">
     <span class="kicker">The difference</span>
-    <h2>From "where do I start?" to "ahh."</h2>
+    <h2>Walk in and exhale.</h2>
     <p class="lede">Dishes, grime, clutter on the counters. We handle it so you can come home and relax.</p>
     <div class="ba">
       <figure><img src="img/clean-before-kitchen.jpg" alt="A kitchen with dishes in the sink and a cluttered, dirty counter" loading="lazy"><figcaption>Before</figcaption></figure>
@@ -805,7 +805,7 @@ footer a:hover{color:#fff}
         <button type="submit" class="btn btn-main" style="width:100%">Send my request</button>
         <p class="hint" style="margin:12px 0 0;font-size:13px">Have photos? We'll ask for them when we call, or add them in the cleaning estimate below.</p>
       </form>
-      <div class="ok"><div class="done-card"><div class="tick">✓</div><h3>Request sent!</h3><p>Someone from DRC will call you shortly to talk through it.</p></div></div>
+      <div class="ok"><div class="done-card"><div class="tick">✓</div><h3>Thank you.</h3><p>Our team will reach out shortly to talk it through.</p></div></div>
     </div>
   </div>
 </section>
@@ -855,6 +855,8 @@ footer a:hover{color:#fff}
 
 <script type="module">
 import { PRICING as P, estimate } from './cleaning-pricing.js';
+import { initTracking, track, trackPriceSeen, newEventId } from './tracking.js';
+initTracking();
 
 const $ = s => document.querySelector(s);
 const form = $('#qform');
@@ -946,6 +948,7 @@ function update() {
   }
   if (r.quoteOnly) { $('#estBig').textContent = 'Custom quote'; $('#estSub').textContent = r.service === 'Carpet cleaning' ? "Carpet pricing depends on your area. We'll send your price." : "Add photos at the end and we'll send your price."; list.innerHTML = `<li><span>Service</span><span>${r.service}</span></li>` + (r.addonLines || []).map(x => `<li><span>${x.label}</span><span>${x.qty}</span></li>`).join(''); return r; }
   $('#estBig').textContent = a.service === 'deep' ? `From ${money(r.low)}` : `${money(r.low)} to ${money(r.high)}`;
+  trackPriceSeen({ content_category: a.service, value: r.middle, currency: 'USD' });
   $('#estSub').textContent = (a.service === 'deep' ? `Starting range ${money(r.low)} to ${money(r.high)}. Your final quote is confirmed after we review your home. ` : '') + (a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one time clean') + (r.carpetQuote ? '. Carpet is quoted separately for your area.' : '');
   const li = (k, v) => `<li><span>${k}</span><span>${v}</span></li>`;
   list.innerHTML = li('Service', r.service) + (r.carpetOnly ? '' : li('Time', `about ${r.laborHours} cleaner hours`))
@@ -1082,6 +1085,7 @@ async function submit() {
   const fd = new FormData(form);
   fd.set('addons', JSON.stringify(addons));
   photos.forEach(p => fd.append('photos', p));
+  const eventId = newEventId(); fd.set('event_id', eventId); const est0 = estimate(answers());
   try {
     const res = await fetch('/api/cleaning-quote', { method: 'POST', body: fd });
     const data = await res.json().catch(() => ({}));
@@ -1089,8 +1093,9 @@ async function submit() {
     const r = data.estimate; const first = $('#name').value.trim().split(' ')[0];
     const est = r && r.ok && !r.quoteOnly ? ` Your estimate is ${money(r.low)} to ${money(r.high)}.` : '';
     $('#doneMsg').textContent = val('service') === 'homecare'
-      ? `Thanks, ${first}! We've received your selections. A DRC home care specialist will review your needs and send you a personalized, itemized quote before scheduling.`
-      : `Thanks, ${first}!${est} ${val('contact_pref') === 'Email' ? 'Watch your inbox.' : val('contact_pref') === 'Call' ? 'Expect a call at ' + $('#phone').value.trim() + '.' : 'Watch for a text at ' + $('#phone').value.trim() + '.'} Our team will reach out to confirm your price and schedule soon.`;
+      ? `Thank you, ${first}. We've received your selections. A DRC home care specialist will review your needs and send you a personalized, itemized quote before scheduling.`
+      : `Thank you, ${first}.${est} ${val('contact_pref') === 'Email' ? 'Watch your inbox.' : val('contact_pref') === 'Call' ? 'Expect a call at ' + $('#phone').value.trim() + '.' : 'Watch for a text at ' + $('#phone').value.trim() + '.'} Our team will reach out to confirm your price and schedule soon.`;
+    track('Lead', { content_name: (P.services[val('service')] || {}).label || 'Cleaning', value: est0.ok && !est0.quoteOnly ? est0.middle : 0, currency: 'USD' }, eventId);
     show(LAST + 1);
   } catch (e) {
     err.textContent = (e.message || 'Something went wrong.') + ' Please try again.';
@@ -1200,7 +1205,7 @@ document.querySelectorAll('[data-freq]').forEach(el => el.addEventListener('clic
     try {
       const r = await fetch('/api/cleaning-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...lead, page: location.href }) });
       log.lastChild.remove(); if (!r.ok) throw 0;
-      say('Thank you, ' + lead.name.split(' ')[0] + '! Someone from DRC will reach out shortly' + (lead.phone ? ' at ' + lead.phone : ' by email') + ' to confirm your price and pick a day.');
+      say('Thank you, ' + lead.name.split(' ')[0] + '. Someone from DRC will reach out shortly' + (lead.phone ? ' at ' + lead.phone : ' by email') + ' to confirm your price and pick a day.');
       chips(['See my price now', 'Close chat'], o => { box.classList.remove('open'); if (o !== 'Close chat') location.hash = '#quote'; });
     } catch { if (log.lastChild && log.lastChild.textContent === 'Sending your details...') log.lastChild.remove(); say('Sorry, that did not go through. Please try again in a minute.'); chips(['Try again'], () => send()); }
   };
@@ -1219,7 +1224,7 @@ document.querySelectorAll('[data-freq]').forEach(el => el.addEventListener('clic
   const size = biz => { say(biz ? 'About how big is the space?' : 'How big is the home?'); chips(biz ? ['Under 1,500 sq ft', '1,500 to 3,000 sq ft', 'Over 3,000 sq ft'] : ['Studio or 1 bed', '2 beds', '3 beds', '4 beds', '5+ beds'], v => { lead.size = v; place(); }); };
   const start = () => {
     started = true;
-    say("Hi! I'll get a few details and connect you with someone from DRC. What kind of cleaning do you need?");
+    say("Hello. I'll get a few details and connect you with someone from DRC. What kind of cleaning do you need?");
     chips(['Essential Home Cleaning', 'Signature Deep Cleaning', 'Complete Home Care', 'Move in or move out', 'Airbnb turnover', 'Carpet cleaning', 'Hoarder or debris cleanout', 'Office or business'], v => { lead.service = v; size(v === 'Office or business'); });
   };
   fab.addEventListener('click', () => { box.classList.toggle('open'); if (!started) start(); });

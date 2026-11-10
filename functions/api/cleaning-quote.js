@@ -45,7 +45,7 @@ export async function onRequestPost({ request, env }) {
     access: g('access'), parking: g('parking'),
     date: g('date'), time: g('time'), callTime: g('calltime'), heard: g('heard'), notes: g('notes'), maint: g('maint'),
     payment: g('payment'), homecare: all('homecare'),
-    contactPref: g('contact_pref'), interests: g('interests'),
+    contactPref: g('contact_pref'), interests: g('interests'), eventId: g('event_id'),
     source: ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].map(g).filter(Boolean).join(' / '),
     clickId: g('gclid') ? 'Google click' : g('fbclid') ? 'Meta click' : '', landing: g('landing'),
   };

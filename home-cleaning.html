@@ -7,7 +7,8 @@
 <title>Home Cleaning by DRC Home Services | See Your Price</title>
 <meta name="description" content="Background checked home cleaning with the same cleaner every visit. See your price in about a minute.">
 <link rel="icon" type="image/png" href="img/drc-logo.png">
-<link rel="preload" as="image" href="img/clean-hero-listing.jpg">
+<link rel="preload" as="image" href="img/clean-hero-listing.jpg" media="(min-width: 981px)">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -154,6 +155,30 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 footer a{color:rgba(255,255,255,.7);text-decoration:none}
 
 .mbar{display:none}
+/* season note, trust line */
+.season{display:none;align-items:center;gap:10px;background:var(--clay-l);color:#7a4a30;border-radius:12px;padding:10px 14px;font-size:13.5px;font-weight:500;margin-bottom:16px}
+.season.on{display:flex}.season i{width:8px;height:8px;border-radius:50%;background:var(--clay);flex-shrink:0;box-shadow:0 0 0 4px rgba(201,120,79,.18)}
+.trustline{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin-top:22px}
+.trustline span{display:inline-flex;align-items:center;gap:6px}.trustline span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--sage)}
+.limit{font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.45}
+/* compare */
+.cmp{width:100%;border-collapse:separate;border-spacing:0;margin-top:28px;background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;font-size:15px}
+.cmp th,.cmp td{padding:15px 18px;text-align:left;border-top:1px solid var(--line)}
+.cmp thead th{border-top:none;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.cmp thead th.us{color:var(--sage-d)}
+.cmp td.us{background:#F4F8F4;font-weight:600;color:var(--sage-d)}
+.cmp td.them{color:var(--muted)}
+/* promise + reviews */
+.promise{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px;margin-top:28px}
+.promise .seal{width:72px;height:72px;border-radius:50%;border:1.5px solid var(--sage);display:flex;align-items:center;justify-content:center;color:var(--sage-d)}
+.promise .seal svg{width:32px;height:32px}
+.promise h3{font-size:22px;margin-bottom:6px}.promise p{color:var(--muted);font-size:15px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.rv{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px}
+.rv .stars{color:#B8862E;letter-spacing:2px;font-size:14px;margin-bottom:8px}
+.rv p{font-size:15px;margin-bottom:12px}.rv b{font-size:13.5px}.rv span{font-size:13px;color:var(--muted)}
+@media(max-width:980px){.reviews{grid-template-columns:1fr}}
+@media(max-width:600px){.cmp{font-size:13.5px}.cmp th,.cmp td{padding:12px 10px}.promise{grid-template-columns:1fr;padding:22px 18px;text-align:left}.promise .seal{width:56px;height:56px}}
 @media(max-width:980px){
   .hero .wrap{grid-template-columns:1fr;gap:28px}
   .qc{position:static}
@@ -204,12 +229,14 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
         <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Background checked professionals</b><span>Photo verified results, every room, every visit.</span></div></li>
         <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span><div><b>One company for repairs too</b><span>Your cleaner flags it, our maintenance team fixes it.</span></div></li>
       </ul>
+      <div class="trustline"><span>Insured</span><span>Background checked</span><span>No contracts</span><span>Make it right promise</span></div>
       <div class="hero-pic" style="margin-top:30px"><img src="img/clean-hero-listing.jpg" alt="A bright, freshly cleaned living room and open kitchen" fetchpriority="high"></div>
     </div>
 
     <div class="qc" id="qc">
       <form id="lp" novalidate>
         <div class="stepa">
+          <div class="season" id="season"><i></i><span id="seasonTxt"></span></div>
           <h2>See your price</h2>
           <p class="sub">About a minute. Your price updates as you go.</p>
           <div class="seg">
@@ -236,6 +263,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
         <div class="stepa">
           <button type="button" class="btn" id="go">Continue</button>
           <p class="fine">No commitment. Nothing to pay today.</p>
+          <p class="limit" id="limit">To keep the same cleaner in every home, we welcome a limited number of new homes each month.</p>
         </div>
 
         <div class="stepx">
@@ -276,7 +304,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
         </div>
         <div class="err" id="err" role="alert"></div>
       </form>
-      <div class="ok"><div class="tick">&#10003;</div><h3>Your price is held.</h3><p id="okMsg">Our team will reach out to confirm your schedule soon.</p><p>A copy is on its way to your email.</p></div>
+      <div class="ok"><div class="tick">&#10003;</div><h3>Thank you.</h3><p id="okMsg">Our team will reach out to confirm your schedule soon.</p><p>A copy of your estimate is on its way to your email.</p></div>
     </div>
   </div>
 </section>
@@ -299,6 +327,29 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
       <figure><img src="img/clean-before-kitchen.jpg" alt="A kitchen with dishes in the sink and a cluttered counter" loading="lazy"><figcaption>Before</figcaption></figure>
       <figure><img src="img/clean-after-kitchen.jpg" alt="The same kitchen spotless and tidy" loading="lazy"><figcaption>After</figcaption></figure>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">Why homeowners choose DRC</span>
+    <h2>More than a cleaning service</h2>
+    <p class="lede">The care of a private housekeeper, with the backing of a full home maintenance company.</p>
+    <table class="cmp">
+      <thead><tr><th></th><th class="us">DRC Home Services</th><th>Many cleaning services</th></tr></thead>
+      <tbody>
+        <tr><th>Your cleaner</th><td class="us">The same person every visit</td><td class="them">Whoever is available</td></tr>
+        <tr><th>Your preferences</th><td class="us">Saved and followed every visit</td><td class="them">Repeated each time</td></tr>
+        <tr><th>Proof of work</th><td class="us">Before and after photos, every room</td><td class="them">Rarely</td></tr>
+        <tr><th>Something broken</th><td class="us">Our maintenance team handles it</td><td class="them">Find another company</td></tr>
+        <tr><th>Pricing</th><td class="us">Shown upfront, online</td><td class="them">Call for a quote</td></tr>
+      </tbody>
+    </table>
+    <div class="promise">
+      <span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+      <div><h3>The DRC promise</h3><p>If anything is missed, tell us and we will come back to make it right. Every cleaner is background checked, and DRC is fully insured.</p></div>
+    </div>
+    <div class="reviews" id="reviews" hidden></div>
   </div>
 </section>
 
@@ -354,6 +405,16 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
 
 <script type="module">
 import { PRICING as P, estimate } from './cleaning-pricing.js';
+import { initTracking, track, trackPriceSeen, newEventId } from './tracking.js';
+initTracking();
+
+// REAL client reviews only (copy them from Google). The section stays hidden while this list is empty.
+// Example: { text: 'Our home has never looked better.', name: 'Jennifer M.', area: 'Southlake' }
+const REVIEWS = [];
+
+// Only claims we can stand behind: holiday and spring demand is real, and members do get priority scheduling.
+// Set LIMITED_OPENINGS to false if new client capacity is ever wide open.
+const LIMITED_OPENINGS = true;
 const $ = s => document.querySelector(s);
 const form = $('#lp'), qc = $('#qc'), err = $('#err');
 const money = n => '$' + Math.round(n).toLocaleString('en-US');
@@ -366,6 +427,17 @@ const q = new URLSearchParams(location.search);
 const city = CITIES[(q.get('city') || '').toLowerCase()];
 if (city) { $('#kick').textContent = `Home cleaning in ${city}`; $('#areaTag').textContent = `Serving ${city}`; }
 if (q.get('service') === 'deep') { $('#sv_deep').checked = true; }
+const mo = new Date().getMonth();
+const season = mo >= 10 ? 'Holiday dates book first. Reserve yours before the calendar fills.'
+  : mo === 0 ? 'January dates are filling. Start the new year with a reset.'
+  : mo >= 2 && mo <= 4 ? 'Spring refresh season. Dates are booking quickly.' : '';
+if (season) { $('#seasonTxt').textContent = season; $('#season').classList.add('on'); }
+if (!LIMITED_OPENINGS) $('#limit').remove();
+if (REVIEWS.length) {
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  $('#reviews').innerHTML = REVIEWS.slice(0, 3).map(r => `<div class="rv"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>${esc(r.text)}</p><b>${esc(r.name)}</b>${r.area ? `<span> &middot; ${esc(r.area)}</span>` : ''}</div>`).join('');
+  $('#reviews').hidden = false;
+}
 
 const metroFor = z => {
   const p = +String(z).slice(0, 3);
@@ -393,13 +465,22 @@ function update() {
   if (!r.ok) { box.classList.add('empty'); $('#pVal').textContent = 'Add your square footage'; $('#pLbl').textContent = 'Your estimate'; return r; }
   box.classList.remove('empty');
   $('#pVal').textContent = deep ? `From ${money(r.low)}` : `${money(r.low)} to ${money(r.high)}`;
+  trackPriceSeen({ content_category: a.service, value: r.middle, currency: 'USD' });
   const extra = (r.addonLines || []).filter(x => !x.quote).reduce((t, x) => t + x.amount, 0);
   const note = extra ? `<br>Includes ${money(extra)} in extras` : wants.size ? `<br>Plus ${wants.size} item${wants.size > 1 ? 's' : ''} we will quote` : '';
   $('#pLbl').innerHTML = (deep ? 'Starting range<br>Final quote after a quick review' : `Per visit, ${P.frequency[a.frequency].label.toLowerCase()}<br>About ${r.laborHours} cleaner hours`) + note;
   return r;
 }
-form.addEventListener('input', update);
-form.addEventListener('change', update);
+// Keep their answers if they wander off and come back (same browser tab session)
+const KEEP = ['zip', 'bedrooms', 'bathrooms', 'sqft', 'name', 'phone', 'email'];
+try { const sv = JSON.parse(sessionStorage.getItem('drc_lp') || '{}');
+  KEEP.forEach(k => { if (sv[k]) $('#' + k).value = sv[k]; });
+  if (sv.service && !q.get('service')) { const r0 = $(`input[name=service][value=${sv.service}]`); if (r0) r0.checked = true; }
+  if (sv.frequency) { const r1 = $(`input[name=frequency][value=${sv.frequency}]`); if (r1) r1.checked = true; }
+} catch {}
+const remember = () => { try { const o = { service: val('service'), frequency: val('frequency') }; KEEP.forEach(k => o[k] = $('#' + k).value); sessionStorage.setItem('drc_lp', JSON.stringify(o)); } catch {} };
+form.addEventListener('input', () => { update(); remember(); });
+form.addEventListener('change', () => { update(); remember(); });
 update();
 
 // Ad tracking travels with the lead
@@ -483,6 +564,8 @@ $('#send').addEventListener('click', async () => {
   if (val('service') === 'deep') fd.set('frequency', 'once');
   fd.set('addons', JSON.stringify(picked));
   fd.set('interests', [...wants].join(', '));
+  const eventId = newEventId(); fd.set('event_id', eventId);
+  const est = update();
   try {
     const res = await fetch('/api/cleaning-quote', { method: 'POST', body: fd });
     const data = await res.json().catch(() => ({}));
@@ -490,7 +573,8 @@ $('#send').addEventListener('click', async () => {
     const first = $('#name').value.trim().split(' ')[0], pref = val('contact_pref');
     $('#okMsg').textContent = `Thanks, ${first}. ${pref === 'Email' ? 'Watch your inbox.' : pref === 'Call' ? 'Expect a call soon.' : 'Watch for a text soon.'} Our team will reach out to confirm your schedule.`;
     qc.classList.remove('b'); qc.classList.add('done');
-    try { window.dataLayer && window.dataLayer.push({ event: 'cleaning_lead' }); window.fbq && window.fbq('track', 'Lead'); window.gtag && window.gtag('event', 'generate_lead'); } catch {}
+    track('Lead', { content_name: val('service') === 'deep' ? 'Signature Deep Cleaning' : 'Essential Home Cleaning', value: est && est.ok ? est.middle : 0, currency: 'USD' }, eventId);
+    try { sessionStorage.removeItem('drc_lp'); } catch {}
   } catch (e) {
     err.textContent = (e.message || 'Something went wrong.') + ' Please try again.';
   } finally { btn.disabled = false; btn.textContent = 'Send my estimate'; }

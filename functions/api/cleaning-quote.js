@@ -45,6 +45,9 @@ export async function onRequestPost({ request, env }) {
     access: g('access'), parking: g('parking'),
     date: g('date'), time: g('time'), callTime: g('calltime'), heard: g('heard'), notes: g('notes'), maint: g('maint'),
     payment: g('payment'), homecare: all('homecare'),
+    contactPref: g('contact_pref'),
+    source: ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].map(g).filter(Boolean).join(' / '),
+    clickId: g('gclid') ? 'Google click' : g('fbclid') ? 'Meta click' : '', landing: g('landing'),
   };
 
   if (!lead.name || !lead.phone || !lead.email || !lead.service) {
@@ -74,6 +77,7 @@ export async function onRequestPost({ request, env }) {
   const origin = new URL(request.url).origin;
   const rows = [
     ['Service', esc(lbl('services', lead.service))],
+    ['Reach them by', lead.contactPref ? '<strong>' + esc(lead.contactPref) + '</strong>' : ''],
     ['Area', esc(lead.metro)],
     ['Address', esc([lead.address, lead.city, lead.zip].filter(Boolean).join(', '))],
     ['Size', esc([lead.sqft && lead.sqft + ' sq ft', lead.bedrooms && lead.bedrooms + ' bed', lead.bathrooms && lead.bathrooms + ' bath'].filter(Boolean).join(' · '))],
@@ -93,6 +97,7 @@ export async function onRequestPost({ request, env }) {
     ['Preferred date', esc([lead.date, lead.time].filter(Boolean).join(' · '))],
     ['Pays by', esc(lead.payment)],
     ['Heard about us', esc(lead.heard)],
+    ['Ad source', esc([lead.source, lead.clickId, lead.landing].filter(Boolean).join(' · '))],
     ['Repairs wanted', lead.maint ? '<strong>' + esc(lead.maint) + '</strong>' : ''],
     ['Notes', esc(lead.notes).replace(/\n/g, '<br>')],
   ];
@@ -133,7 +138,7 @@ export async function onRequestPost({ request, env }) {
         ${clientEst}
         ${lead.service === 'homecare'
           ? `<p>We've received your selections. A DRC home care specialist will review your needs and send you a personalized, itemized quote before scheduling.</p>`
-          : `<p>Someone from our team will call you at ${esc(lead.phone)} shortly to confirm your price, answer any questions and pick a date. Once you approve the price, we'll email a secure Square payment link, and your date is locked in when payment comes through.</p>`}
+          : `<p>Our team will reach out ${lead.contactPref === 'Email' ? 'by email' : lead.contactPref === 'Call' ? 'with a call at ' + esc(lead.phone) : 'with a text at ' + esc(lead.phone)} soon to confirm your price, answer any questions and confirm your schedule. Once you approve the price, we'll email a secure Square payment link, and your date is locked in when payment comes through.</p>`}
         <p>Talk soon,<br>DRC Home Services<br>Dedicated Resource Center LLC</p></div>`,
     });
   } catch {}

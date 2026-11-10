@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Home Cleaning by DRC Home Services | See Your Price</title>
+<meta name="description" content="Background checked home cleaning with the same cleaner every visit. See your price in about a minute.">
+<link rel="icon" type="image/png" href="img/drc-logo.png">
+<link rel="preload" as="image" href="img/clean-hero-listing.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#FBF6EE;--paper:#fff;--sand:#F3EADB;--sage:#5E8B6B;--sage-d:#2E6B3E;--sage-l:#E4EEE5;--clay:#C9784F;--clay-l:#F7E3D7;--ink:#24323F;--muted:#6B6A66;--line:#E7DDCD;--err:#B23A2A;--shadow:0 14px 40px rgba(60,45,25,.10)}
+body{font-family:'Figtree',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3{font-weight:700;letter-spacing:-.025em;line-height:1.08}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+section{padding:76px 0}
+.kicker{display:block;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-d);margin-bottom:14px}
+.lede{font-size:17px;color:var(--muted);max-width:580px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px 24px;border-radius:99px;border:none;font:700 16px/1 'Figtree',sans-serif;cursor:pointer;background:var(--sage-d);color:#fff;text-decoration:none;transition:background .2s,transform .15s}
+.btn:hover{background:#255a33;transform:translateY(-1px)}
+.btn[disabled]{opacity:.6;cursor:wait;transform:none}
+.link{background:none;border:none;font:600 14px 'Figtree',sans-serif;color:var(--sage-d);cursor:pointer;padding:6px 0}
+
+/* top bar: logo only, no exits */
+.top{background:rgba(251,246,238,.94);border-bottom:1px solid var(--line)}
+.top .wrap{height:70px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:46px;width:auto}
+.brand span{font-weight:700;font-size:19px;color:var(--sage-d);padding-left:12px;border-left:2px solid var(--line)}
+.top small{font-size:13px;color:var(--muted)}
+
+/* hero */
+.hero{padding:56px 0 64px;background:radial-gradient(ellipse 60% 70% at 6% 10%,rgba(94,139,107,.13),transparent 60%),var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:1fr 440px;gap:48px;align-items:start}
+.hero h1{font-size:clamp(38px,4.6vw,56px);letter-spacing:-.035em;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--sage-d)}
+.hero .lede{margin-bottom:24px}
+.promises{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+.promises li{display:flex;gap:14px;align-items:flex-start}
+.promises .ic{width:40px;height:40px;border-radius:50%;border:1px solid #d9cdb8;background:var(--paper);display:flex;align-items:center;justify-content:center;color:var(--sage-d);flex-shrink:0}
+.promises svg{width:20px;height:20px}
+.promises b{display:block;font-size:16px}
+.promises span{font-size:14.5px;color:var(--muted)}
+.hero-pic{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:16/10}
+.hero-pic img{width:100%;height:100%;object-fit:cover}
+
+/* quote card */
+.qc{background:var(--paper);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:26px;position:sticky;top:20px}
+.qc h2{font-size:23px;margin-bottom:4px}
+.qc .sub{font-size:14px;color:var(--muted);margin-bottom:18px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.seg input,.chips input{position:absolute;opacity:0;pointer-events:none}
+.seg label{display:block;border:1.5px solid var(--line);background:var(--bg);border-radius:14px;padding:12px;cursor:pointer;font-weight:600;font-size:14.5px;line-height:1.25}
+.seg label small{display:block;font-weight:400;font-size:12.5px;color:var(--muted);margin-top:3px}
+.seg input:checked+label,.chips input:checked+label{border-color:var(--sage);background:var(--sage-l)}
+.seg input:focus-visible+label,.chips input:focus-visible+label{outline:2px solid var(--sage);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.grid.two{grid-template-columns:1fr 1fr}
+.f label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+.f input{width:100%;font:16px 'Figtree',sans-serif;padding:12px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.f input:focus{outline:none;border-color:var(--sage);background:#fff}
+.f.bad input{border-color:var(--err)}
+.lbl{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.chips div{position:relative}
+.chips label{display:block;border:1.5px solid var(--line);background:var(--bg);border-radius:99px;padding:8px 12px;font-size:13.5px;font-weight:600;cursor:pointer}
+.chips label i{font-style:normal;font-weight:500;color:var(--sage-d);margin-left:4px}
+.price{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;background:var(--sage-l);border:1px solid #cfe0d2;border-radius:16px;padding:14px 16px;margin-bottom:14px;min-height:72px}
+.price span{font-size:13px;color:var(--muted);line-height:1.4}
+.price b{font-size:28px;color:var(--sage-d);white-space:nowrap;line-height:1}
+.price.empty b{font-size:15px;color:var(--muted);font-weight:600}
+.err{color:var(--err);font-size:14px;font-weight:600;min-height:1.2em;margin-top:8px}
+.fine{font-size:12.5px;color:var(--muted);margin-top:10px;text-align:center}
+.stepb{display:none}
+.qc.b .stepa{display:none}.qc.b .stepb{display:block}
+.qc.done .stepa,.qc.done .stepb{display:none}
+.ok{display:none;text-align:center;padding:18px 4px}
+.qc.done .ok{display:block}
+.ok .tick{width:62px;height:62px;border-radius:50%;background:var(--sage-d);color:#fff;font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.ok h3{font-size:26px;margin-bottom:8px}.ok p{color:var(--muted);font-size:15px;margin-bottom:8px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* trust strip */
+.strip{background:var(--sand);padding:22px 0}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;font-size:14px}
+.strip b{display:block;font-size:15px}.strip span{color:var(--muted);font-size:13px}
+
+/* before after */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.ba figure{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.ba img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.ba figcaption{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.94);border-radius:99px;padding:5px 13px;font-size:12.5px;font-weight:700}
+.ba figure:last-child figcaption{background:var(--sage-d);color:#fff}
+
+/* how */
+.how{background:var(--paper)}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px;counter-reset:s}
+.steps li{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:20px;counter-increment:s}
+.steps li::before{content:counter(s);display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--clay-l);color:var(--clay);font-weight:700;margin-bottom:12px}
+.steps b{display:block;font-size:16px;margin-bottom:4px}.steps span{font-size:14px;color:var(--muted)}
+
+/* membership */
+.perks{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+.perks li{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;border-top:3px solid var(--sage)}
+.perks b{display:block;font-size:15.5px;margin-bottom:4px}.perks span{font-size:13.5px;color:var(--muted)}
+
+/* faq */
+.faq{max-width:760px;margin-top:22px}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:15px 20px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:var(--sage-d);font-size:22px;line-height:1}
+.faq details[open] summary::after{content:'\2212'}
+.faq p{color:var(--muted);font-size:15px;margin-top:8px}
+
+.band{background:var(--sage-d);color:#fff;border-radius:26px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap}
+.band h2{color:#fff;margin:0}.band p{color:rgba(255,255,255,.82);margin-top:6px}
+.band .btn{width:auto;background:#fff;color:var(--sage-d)}
+footer{background:var(--ink);color:rgba(255,255,255,.55);padding:26px 0;font-size:12.5px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:rgba(255,255,255,.7);text-decoration:none}
+
+.mbar{display:none}
+@media(max-width:980px){
+  .hero .wrap{grid-template-columns:1fr;gap:28px}
+  .qc{position:static}
+  .hero-pic{display:none}
+  .steps,.perks,.strip .wrap{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .wrap{padding:0 16px}
+  section{padding:54px 0}
+  .top .wrap{height:60px}.brand img{height:38px}.brand span{font-size:16px;padding-left:10px}.top small{display:none}
+  .hero{padding:26px 0 40px}
+  .hero h1{font-size:34px}
+  .hero .lede{font-size:15.5px;margin-bottom:18px}
+  .promises{gap:10px;margin-bottom:0}
+  .promises .ic{width:34px;height:34px}.promises svg{width:17px;height:17px}
+  .qc{padding:20px 16px;border-radius:20px}
+  .grid{grid-template-columns:1fr 1fr}.grid .f:first-child{grid-column:1/-1}
+  .grid.two{grid-template-columns:1fr}
+  .steps,.perks{grid-template-columns:1fr}
+  .strip .wrap{grid-template-columns:1fr 1fr;gap:12px}
+  .ba{gap:8px}.ba img{aspect-ratio:3/4}
+  .band{padding:28px 20px}
+  .mbar{display:block;position:fixed;left:14px;right:14px;bottom:14px;z-index:50;transition:transform .25s}
+  .mbar.hide{transform:translateY(160%)}
+  .mbar .btn{box-shadow:0 10px 26px rgba(30,70,40,.3)}
+  footer{padding-bottom:90px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><img src="img/drc-logo.png" alt="DRC"><span>Home Services</span></div>
+    <small id="areaTag">Dallas, Denver, Nashville and Phoenix</small>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kicker" id="kick">Home cleaning</span>
+      <h1>Come home to a <em>beautifully</em> maintained home.</h1>
+      <p class="lede">Without spending your weekends maintaining it. See your price now, no phone call needed.</p>
+      <ul class="promises">
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><div><b>The same cleaner every visit</b><span>Someone who knows your home and how you like it.</span></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Background checked professionals</b><span>Photo verified results, every room, every visit.</span></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span><div><b>One company for repairs too</b><span>Your cleaner flags it, our maintenance team fixes it.</span></div></li>
+      </ul>
+      <div class="hero-pic" style="margin-top:30px"><img src="img/clean-hero-listing.jpg" alt="A bright, freshly cleaned living room and open kitchen" fetchpriority="high"></div>
+    </div>
+
+    <div class="qc" id="qc">
+      <form id="lp" novalidate>
+        <div class="stepa">
+          <h2>See your price</h2>
+          <p class="sub">About a minute. Your price updates as you go.</p>
+          <div class="seg">
+            <div><input type="radio" name="service" id="sv_std" value="standard" checked><label for="sv_std">Essential Home Cleaning<small>Recurring or one time</small></label></div>
+            <div><input type="radio" name="service" id="sv_deep" value="deep"><label for="sv_deep">Signature Deep Cleaning<small>Top to bottom reset</small></label></div>
+          </div>
+          <div class="grid">
+            <div class="f"><label for="zip">ZIP code</label><input id="zip" name="zip" inputmode="numeric" maxlength="5" autocomplete="postal-code" placeholder="76092"></div>
+            <div class="f"><label for="bedrooms">Bedrooms</label><input id="bedrooms" name="bedrooms" type="number" inputmode="numeric" min="0" max="20" value="3"></div>
+            <div class="f"><label for="bathrooms">Bathrooms</label><input id="bathrooms" name="bathrooms" type="number" inputmode="decimal" min="0" max="20" step="0.5" value="2"></div>
+          </div>
+          <div class="f" style="margin-bottom:14px"><label for="sqft">Square feet (a guess is fine)</label><input id="sqft" name="sqft" type="number" inputmode="numeric" min="0" step="50" placeholder="2400"></div>
+          <span class="lbl" id="freqLbl">How often?</span>
+          <div class="chips" id="freq">
+            <div><input type="radio" name="frequency" id="fq_bi" value="biweekly" checked><label for="fq_bi">Every 2 weeks<i>save $15</i></label></div>
+            <div><input type="radio" name="frequency" id="fq_wk" value="weekly"><label for="fq_wk">Weekly<i>save $20</i></label></div>
+            <div><input type="radio" name="frequency" id="fq_mo" value="monthly"><label for="fq_mo">Monthly<i>save $10</i></label></div>
+            <div><input type="radio" name="frequency" id="fq_once" value="once"><label for="fq_once">One time</label></div>
+          </div>
+        </div>
+
+        <div class="price empty" id="price"><span id="pLbl">Your estimate</span><b id="pVal">Add your square feet</b></div>
+
+        <div class="stepa">
+          <button type="button" class="btn" id="go">Hold my price</button>
+          <p class="fine">No commitment. Nothing to pay today.</p>
+        </div>
+
+        <div class="stepb">
+          <h2>Where should we send it?</h2>
+          <p class="sub">Our team will reach out to confirm your schedule soon.</p>
+          <div class="grid two">
+            <div class="f"><label for="name">Name</label><input id="name" name="name" autocomplete="name"></div>
+            <div class="f"><label for="phone">Mobile number</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+          </div>
+          <div class="f" style="margin-bottom:14px"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
+          <span class="lbl">Best way to reach you</span>
+          <div class="chips">
+            <div><input type="radio" name="contact_pref" id="cp_t" value="Text" checked><label for="cp_t">Text</label></div>
+            <div><input type="radio" name="contact_pref" id="cp_c" value="Call"><label for="cp_c">Call</label></div>
+            <div><input type="radio" name="contact_pref" id="cp_e" value="Email"><label for="cp_e">Email</label></div>
+          </div>
+          <input type="hidden" name="metro" id="metro"><input type="hidden" name="products" value="client"><input type="hidden" name="soil" value="average"><input type="hidden" name="pets" value="none">
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="landing">
+          <input type="hidden" name="heard" id="heard">
+          <div class="hp" aria-hidden="true"><label>Website <input name="company_site" tabindex="-1" autocomplete="off"></label></div>
+          <button type="button" class="btn" id="send">Send my estimate</button>
+          <p class="fine"><button type="button" class="link" id="backA">Change my details</button></p>
+        </div>
+        <div class="err" id="err" role="alert"></div>
+      </form>
+      <div class="ok"><div class="tick">&#10003;</div><h3>Your price is held.</h3><p id="okMsg">Our team will reach out to confirm your schedule soon.</p><p>A copy is on its way to your email.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div><b>Background checked</b><span>Every cleaner</span></div>
+    <div><b>Same cleaner</b><span>Every visit</span></div>
+    <div><b>Photo verified</b><span>Before and after</span></div>
+    <div><b>No contracts</b><span>Pause any time</span></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">The difference</span>
+    <h2>Walk in and exhale.</h2>
+    <p class="lede">Your cleaner sends real before and after photos of your home after every visit.</p>
+    <div class="ba">
+      <figure><img src="img/clean-before-kitchen.jpg" alt="A kitchen with dishes in the sink and a cluttered counter" loading="lazy"><figcaption>Before</figcaption></figure>
+      <figure><img src="img/clean-after-kitchen.jpg" alt="The same kitchen spotless and tidy" loading="lazy"><figcaption>After</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <span class="kicker">How it works</span>
+    <h2>Simple from the first click</h2>
+    <ol class="steps">
+      <li><b>See your price</b><span>Online, in about a minute.</span></li>
+      <li><b>Confirm your day</b><span>We reach out the way you prefer and confirm your schedule.</span></li>
+      <li><b>Pay securely</b><span>A Square link locks in your date. Nothing is charged before you approve.</span></li>
+      <li><b>Come home to it</b><span>Your cleaner follows your saved checklist and sends photos.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">Membership</span>
+    <h2>Recurring care, with perks</h2>
+    <p class="lede">Choose weekly, every 2 weeks or monthly. No contracts.</p>
+    <ul class="perks">
+      <li><b>Member savings</b><span>A lower price on every recurring visit.</span></li>
+      <li><b>Priority scheduling</b><span>First pick of days, including the busy weeks before holidays.</span></li>
+      <li><b>A checklist that remembers</b><span>Your products, priorities and rooms to skip, saved.</span></li>
+      <li><b>First in line for repairs</b><span>Anything broken gets flagged and scheduled first.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <span class="kicker">Questions</span>
+    <h2>Good to know</h2>
+    <div class="faq">
+      <details><summary>Is my price final?</summary><p>Essential Home Cleaning prices are instant estimates based on your home's size. Signature Deep Cleaning shows a starting range, and we confirm your final quote after a quick review. Either way, nothing is charged until you approve it.</p></details>
+      <details><summary>Will it be the same cleaner each time?</summary><p>Yes. Recurring clients keep the same cleaner, with your preferences saved for every visit.</p></details>
+      <details><summary>Do I need to be home?</summary><p>No. Many clients share a lockbox or door code. You get before and after photos when we finish.</p></details>
+      <details><summary>Do you bring supplies?</summary><p>We can bring ours, or use yours. Organic and microplastic free options are available.</p></details>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band"><div><h2>Ready for your weekends back?</h2><p>See your price in about a minute.</p></div><a href="#qc" class="btn">See my price</a></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>&copy; <span id="yr">2026</span> Dedicated Resource Center LLC</span><span><a href="privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="terms.html">Terms</a></span></div></footer>
+<div class="mbar" id="mbar"><a href="#qc" class="btn">See my price</a></div>
+
+<script type="module">
+import { PRICING as P, estimate } from './cleaning-pricing.js';
+const $ = s => document.querySelector(s);
+const form = $('#lp'), qc = $('#qc'), err = $('#err');
+const money = n => '$' + Math.round(n).toLocaleString('en-US');
+const val = n => (form.querySelector(`input[name=${n}]:checked`) || {}).value || '';
+$('#yr').textContent = new Date().getFullYear();
+
+// Match the ad: ?city=dallas puts the city in the page, and ?service=deep preselects deep cleaning
+const CITIES = { dallas: 'Dallas', denver: 'Denver', nashville: 'Nashville', phoenix: 'Phoenix', southlake: 'Southlake', colleyville: 'Colleyville', prosper: 'Prosper', scottsdale: 'Scottsdale', brentwood: 'Brentwood', 'paradise-valley': 'Paradise Valley', 'greenwood-village': 'Greenwood Village', 'preston-hollow': 'Preston Hollow' };
+const q = new URLSearchParams(location.search);
+const city = CITIES[(q.get('city') || '').toLowerCase()];
+if (city) { $('#kick').textContent = `Home cleaning in ${city}`; $('#areaTag').textContent = `Serving ${city}`; }
+if (q.get('service') === 'deep') { $('#sv_deep').checked = true; }
+
+const metroFor = z => {
+  const p = +String(z).slice(0, 3);
+  if ((p >= 750 && p <= 753) || (p >= 760 && p <= 762)) return 'Dallas area';
+  if (p >= 800 && p <= 806) return 'Denver area';
+  if (p >= 370 && p <= 372) return 'Nashville area';
+  if (p >= 850 && p <= 853) return 'Phoenix area';
+  return z ? 'Somewhere else' : '';
+};
+
+function answers() {
+  return { service: val('service'), frequency: val('service') === 'deep' ? 'once' : val('frequency'), soil: 'average', pets: 'none', products: 'client',
+    sqft: $('#sqft').value, bedrooms: $('#bedrooms').value, bathrooms: $('#bathrooms').value, addons: {} };
+}
+function update() {
+  const a = answers(), deep = a.service === 'deep';
+  // Square feet drives most of the price, so wait for it rather than show a lowball number
+  const r = +a.sqft >= 300 ? estimate(a) : { ok: false };
+  $('#freq').style.display = $('#freqLbl').style.display = deep ? 'none' : '';
+  const box = $('#price');
+  if (!r.ok) { box.classList.add('empty'); $('#pVal').textContent = 'Add your square feet'; $('#pLbl').textContent = 'Your estimate'; return r; }
+  box.classList.remove('empty');
+  $('#pVal').textContent = deep ? `From ${money(r.low)}` : `${money(r.low)} to ${money(r.high)}`;
+  $('#pLbl').innerHTML = deep ? 'Starting range<br>Final quote after a quick review' : `Per visit, ${P.frequency[a.frequency].label.toLowerCase()}<br>About ${r.laborHours} cleaner hours`;
+  return r;
+}
+form.addEventListener('input', update);
+form.addEventListener('change', update);
+update();
+
+// Ad tracking travels with the lead
+(() => {
+  let saved = {};
+  try { saved = JSON.parse(sessionStorage.getItem('drc_utm') || '{}'); } catch {}
+  for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'gclid', 'fbclid']) if (q.get(k)) saved[k] = q.get(k).slice(0, 200);
+  saved.landing = location.pathname + (city ? '?city=' + city : '');
+  try { sessionStorage.setItem('drc_utm', JSON.stringify(saved)); } catch {}
+  for (const [k, v] of Object.entries(saved)) { const el = form.querySelector(`input[name=${k}]`); if (el) el.value = v; }
+  const s = (saved.utm_source || '').toLowerCase();
+  $('#heard').value = saved.gclid || s.includes('google') ? 'Google' : saved.fbclid || /facebook|meta|instagram|fb|ig/.test(s) ? 'Facebook or Instagram ad' : 'Ad landing page';
+})();
+
+const bad = (id, msg) => { $('#' + id).parentElement.classList.add('bad'); $('#' + id).focus(); err.textContent = msg; return false; };
+function checkA() {
+  form.querySelectorAll('.f.bad').forEach(f => f.classList.remove('bad')); err.textContent = '';
+  if (!/^\d{5}$/.test($('#zip').value.trim())) return bad('zip', 'Add your 5 digit ZIP code.');
+  if (!(+$('#sqft').value >= 300)) return bad('sqft', 'Add your square feet. A rough guess is fine.');
+  return true;
+}
+function checkB() {
+  form.querySelectorAll('.f.bad').forEach(f => f.classList.remove('bad')); err.textContent = '';
+  if (!$('#name').value.trim()) return bad('name', 'Please add your name.');
+  if ($('#phone').value.replace(/\D/g, '').length < 10) return bad('phone', 'Please add a 10 digit mobile number.');
+  if (!/^\S+@\S+\.\S+$/.test($('#email').value)) return bad('email', 'Please add your email.');
+  return true;
+}
+$('#go').addEventListener('click', () => { if (!checkA()) return; $('#metro').value = metroFor($('#zip').value.trim()); qc.classList.add('b'); setTimeout(() => $('#name').focus(), 50); });
+$('#backA').addEventListener('click', () => { qc.classList.remove('b'); err.textContent = ''; });
+$('#send').addEventListener('click', async () => {
+  if (!checkB()) return;
+  const btn = $('#send'); btn.disabled = true; btn.textContent = 'Sending...';
+  const fd = new FormData(form);
+  if (val('service') === 'deep') fd.set('frequency', 'once');
+  fd.set('addons', '{}');
+  try {
+    const res = await fetch('/api/cleaning-quote', { method: 'POST', body: fd });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.success) throw new Error(data.error || 'Something went wrong.');
+    const first = $('#name').value.trim().split(' ')[0], pref = val('contact_pref');
+    $('#okMsg').textContent = `Thanks, ${first}. ${pref === 'Email' ? 'Watch your inbox.' : pref === 'Call' ? 'Expect a call soon.' : 'Watch for a text soon.'} Our team will reach out to confirm your schedule.`;
+    qc.classList.remove('b'); qc.classList.add('done');
+    try { window.dataLayer && window.dataLayer.push({ event: 'cleaning_lead' }); window.fbq && window.fbq('track', 'Lead'); window.gtag && window.gtag('event', 'generate_lead'); } catch {}
+  } catch (e) {
+    err.textContent = (e.message || 'Something went wrong.') + ' Please try again.';
+  } finally { btn.disabled = false; btn.textContent = 'Send my estimate'; }
+});
+
+// Mobile bar hides while the quote card is on screen
+const mbar = $('#mbar');
+new IntersectionObserver(es => es.forEach(e => mbar.classList.toggle('hide', e.isIntersecting))).observe(qc);
+</script>
+</body>
+</html>

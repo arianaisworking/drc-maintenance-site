@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DRC Cleaning | Home, Move-Out &amp; Rental Cleaning in Dallas, Denver, Nashville &amp; Phoenix</title>
-<meta name="description" content="Friendly, background checked cleaners in Dallas, Denver, Nashville and Phoenix. Standard, deep, move out, Airbnb, student housing and carpet cleaning. Choose organic or microplastic free products. Get your price in two minutes and we'll call you.">
+<meta name="description" content="Friendly, background checked cleaners in Dallas, Denver, Nashville and Phoenix. Standard, deep, move out, Airbnb, student housing and carpet cleaning. Choose organic or microplastic free products. See your price in about a minute.">
 <meta property="og:title" content="DRC Cleaning | Get your price in two minutes">
-<meta property="og:description" content="Background checked cleaners. Tell us about your home and we'll call you to book.">
+<meta property="og:description" content="Background checked cleaners. See your price in about a minute. No commitment.">
 <meta property="og:image" content="img/clean-hero-listing.jpg">
 <link rel="icon" type="image/png" href="img/drc-logo.png">
 <link rel="preload" as="image" href="img/clean-hero-listing.jpg">
@@ -201,6 +201,9 @@ legend,.lbl{display:block;font-size:15px;font-weight:600;margin-bottom:10px}
 .est li{display:flex;justify-content:space-between;gap:10px;padding:4px 0;color:var(--muted)}
 .est li span:last-child{color:var(--ink);font-weight:600;text-align:right}
 .est .call{margin-top:16px;background:var(--sage-l);border-radius:14px;padding:12px 14px;font-size:13.5px;display:flex;gap:10px}
+.recap{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--sage-l);border:1px solid #cfe0d2;border-radius:14px;padding:14px 16px;margin-bottom:20px}
+.recap span{font-size:13.5px;color:var(--muted)}
+.recap b{font-size:22px;color:var(--sage-d);white-space:nowrap}
 .done-card{text-align:center;padding:26px 6px}
 .done-card .tick{width:68px;height:68px;border-radius:50%;background:var(--sage-d);color:#fff;font-size:32px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
 .done-card h3{font-size:30px;margin-bottom:10px}
@@ -595,29 +598,34 @@ footer a:hover{color:#fff}
         </div>
 
         <div class="panel" data-p="2">
-          <h3>Where should we call you?</h3>
-          <p class="hint">Someone from DRC will call to confirm your price and find a time. Photos help us get it exactly right.</p>
+          <div class="recap" id="recap" hidden></div>
+          <h3>Where should we send your estimate?</h3>
+          <p class="hint">Your price is saved. Our team will reach out to confirm your schedule soon. Nothing to pay today.</p>
           <div class="row two">
             <div class="field"><label for="name">Your name *</label><input id="name" name="name" autocomplete="name" required></div>
-            <div class="field"><label for="phone">Best phone number *</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="phone">Mobile number *</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
           </div>
           <div class="row two">
             <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-            <div class="field"><label for="address">Street address</label><input id="address" name="address" autocomplete="street-address"></div>
+            <div class="field"><label for="date">Preferred date</label><input id="date" name="date" type="date"></div>
           </div>
-          <div class="row two">
-            <div class="field"><label for="metro">Area *</label><select id="metro" name="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Somewhere else</option></select></div>
-            <div class="field"><label for="city">City</label><input id="city" name="city" autocomplete="address-level2"></div>
-          </div>
-          <div class="row two">
-            <div class="field"><label for="date">Preferred cleaning date</label><input id="date" name="date" type="date"></div>
-            <div class="field"><label for="calltime">Best time to call</label><select id="calltime" name="calltime"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
-          </div>
+          <fieldset><legend>How should we reach you?</legend><div class="opt-grid three" id="prefOpts">
+            <div class="opt"><input type="radio" name="contact_pref" id="cp_text" value="Text" checked><label for="cp_text">Text me</label></div>
+            <div class="opt"><input type="radio" name="contact_pref" id="cp_call" value="Call"><label for="cp_call">Call me</label></div>
+            <div class="opt"><input type="radio" name="contact_pref" id="cp_email" value="Email"><label for="cp_email">Email me</label></div>
+          </div></fieldset>
+          <input type="hidden" id="metro" name="metro">
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="landing">
           <span class="lbl">Photos (optional)</span>
           <div class="drop" id="drop" tabindex="0" role="button" aria-label="Add photos"><b>Tap to add photos</b> or drag them here<br><small>Kitchen, bathrooms and problem spots help most. Up to 8.</small></div>
           <input type="file" id="photoIn" accept="image/*" multiple hidden>
           <div class="thumbs" id="thumbs"></div>
           <details class="more"><summary>Add more details (optional)</summary>
+          <div class="row two">
+            <div class="field"><label for="address">Street address</label><input id="address" name="address" autocomplete="street-address"></div>
+            <div class="field"><label for="city">City</label><input id="city" name="city" autocomplete="address-level2"></div>
+          </div>
+          <div class="field" style="margin-bottom:18px"><label for="calltime">Best time to reach you</label><select id="calltime" name="calltime"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
           <fieldset><legend>Any special surfaces?</legend><div class="opt-grid three" id="surfOpts"></div></fieldset>
           <div class="field" style="margin-bottom:18px"><label for="surface_notes">Notes on surfaces or products</label><textarea id="surface_notes" name="surface_notes" placeholder="Example: marble kitchen counters, please use the stone cleaner under the sink."></textarea></div>
           <fieldset><legend>While we clean</legend><div class="opt-grid" id="styleOpts"></div></fieldset>
@@ -634,14 +642,14 @@ footer a:hover{color:#fff}
           </div>
           </details>
           <div class="hp" aria-hidden="true"><label>Website <input name="company_site" tabindex="-1" autocomplete="off"></label></div>
-          <div class="callout"><b>Nothing to pay today.</b> We call to confirm your final price first. Once you approve it, we email a secure Square payment link and your date is locked in when payment comes through.</div>
+          <div class="callout"><b>No commitment.</b> We confirm your final price with you first. Once you approve it, we send a secure Square payment link and your date is locked in when payment comes through.</div>
         </div>
 
         <div class="panel" data-p="3">
           <div class="done-card">
             <div class="tick">✓</div>
             <h3>You're all set!</h3>
-            <p id="doneMsg">Someone from DRC will call you shortly to confirm your price and book your clean.</p>
+            <p id="doneMsg">Our team will reach out to confirm your price and schedule soon.</p>
             <p>We also sent a copy to your email.</p>
           </div>
         </div>
@@ -659,7 +667,7 @@ footer a:hover{color:#fff}
         <div class="big" id="estBig"></div>
         <div class="sub" id="estSub">Pick a service to get started.</div>
         <ul id="estList"></ul>
-        <div class="call"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><span>We'll call to confirm your final price. Nothing is charged until you approve it.</span></div>
+        <div class="call"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><span>We confirm your final price with you. Nothing is charged until you approve it.</span></div>
       </aside>
     </div>
   </div>
@@ -819,7 +827,7 @@ footer a:hover{color:#fff}
 <section style="padding-top:0">
   <div class="wrap">
     <div class="band" id="band">
-      <div><h2>Ready for a cleaner home?</h2><p>About a minute for your price, then we'll give you a call.</p></div>
+      <div><h2>Ready for a cleaner home?</h2><p>See your price in about a minute. No commitment.</p></div>
       <a href="#ask" class="btn">Start my estimate</a>
     </div>
   </div>
@@ -934,7 +942,7 @@ function update() {
     $('#estSub').textContent = 'Your home deserves a service tailored to your needs. A DRC home care specialist will review your selections and send a personalized, itemized quote before scheduling.';
     list.innerHTML = picks.map(t => `<li><span>${t}</span><span>✓</span></li>`).join(''); return r;
   }
-  if (r.quoteOnly) { $('#estBig').textContent = 'Custom quote'; $('#estSub').textContent = r.service === 'Carpet cleaning' ? "Carpet pricing depends on your area. We'll call you with your price." : "Add photos at the end and we'll call you with a price."; list.innerHTML = `<li><span>Service</span><span>${r.service}</span></li>` + (r.addonLines || []).map(x => `<li><span>${x.label}</span><span>${x.qty}</span></li>`).join(''); return r; }
+  if (r.quoteOnly) { $('#estBig').textContent = 'Custom quote'; $('#estSub').textContent = r.service === 'Carpet cleaning' ? "Carpet pricing depends on your area. We'll send your price." : "Add photos at the end and we'll send your price."; list.innerHTML = `<li><span>Service</span><span>${r.service}</span></li>` + (r.addonLines || []).map(x => `<li><span>${x.label}</span><span>${x.qty}</span></li>`).join(''); return r; }
   $('#estBig').textContent = a.service === 'deep' ? `From ${money(r.low)}` : `${money(r.low)} to ${money(r.high)}`;
   $('#estSub').textContent = (a.service === 'deep' ? `Starting range ${money(r.low)} to ${money(r.high)}. Your final quote is confirmed after we review your home. ` : '') + (a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one time clean') + (r.carpetQuote ? '. Carpet is quoted separately for your area.' : '');
   const li = (k, v) => `<li><span>${k}</span><span>${v}</span></li>`;
@@ -992,7 +1000,8 @@ function show(n, scroll = true) {
   $('#bar').style.width = Math.min(100, Math.round((n + 1) * 100 / (LAST + 1))) + '%';
   $('#count').textContent = n > LAST ? 'Done' : `Step ${n + 1} of ${LAST + 1}`;
   $('#back').hidden = n === 0 || n > LAST;
-  $('#next').textContent = n === LAST ? 'Send and have DRC call me' : 'Next →';
+  $('#next').textContent = n === LAST ? 'Send my estimate' : 'Next →';
+  if (n === LAST) recap();
   $('#qnav').style.display = n > LAST ? 'none' : '';
   err.textContent = '';
   if (scroll) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1005,7 +1014,7 @@ function check(n) {
     const r = estimate(answers()); if (!r.quoteOnly && !r.ok) { $('#sqft').parentElement.classList.add('bad'); return 'Add your square feet, bedrooms or bathrooms.'; }
   }
   if (n === 2) {
-    for (const [id, what] of [['name', 'your name'], ['phone', 'a phone number'], ['email', 'your email'], ['metro', 'your area']]) {
+    for (const [id, what] of [['name', 'your name'], ['phone', 'a phone number'], ['email', 'your email']]) {
       const el = $('#' + id);
       if (!el.value.trim() || (id === 'email' && !/^\S+@\S+\.\S+$/.test(el.value)) || (id === 'phone' && el.value.replace(/\D/g, '').length < 10)) {
         el.parentElement.classList.add('bad'); el.focus(); return `Please add ${what}.`;
@@ -1034,6 +1043,36 @@ document.querySelectorAll('[data-svc]').forEach(el => el.addEventListener('click
 }));
 document.querySelectorAll('[data-m]').forEach(el => el.addEventListener('click', () => { const t = $('#m_what'); if (t && !t.value) t.value = el.dataset.m + ': '; }));
 
+// Show the price they just saw at the top of the contact step (mobile users never see the side panel)
+function recap() {
+  const r = estimate(answers()); const box = $('#recap');
+  if (!r.ok) { box.hidden = true; return; }
+  const svc = val('service');
+  const price = r.quoteOnly ? (svc === 'homecare' ? 'Itemized proposal' : 'Custom quote')
+    : svc === 'deep' ? `From ${money(r.low)}` : `${money(r.low)} to ${money(r.high)}`;
+  box.innerHTML = `<span>${r.service}<br>${r.quoteOnly ? 'We price this for your home' : 'Your estimate'}</span><b>${price}</b>`;
+  box.hidden = false;
+}
+// Area comes from the ZIP, so nobody has to pick it twice
+const metroFor = z => {
+  const p = +String(z).slice(0, 3);
+  if ((p >= 750 && p <= 753) || (p >= 760 && p <= 762)) return 'Dallas area';
+  if (p >= 800 && p <= 806) return 'Denver area';
+  if (p >= 370 && p <= 372) return 'Nashville area';
+  if (p >= 850 && p <= 853) return 'Phoenix area';
+  return z ? 'Somewhere else' : '';
+};
+$('#zip').addEventListener('input', e => { $('#metro').value = metroFor(e.target.value.trim()); });
+// Keep ad tracking with the lead so we can see cost per paying customer
+(() => {
+  const q = new URLSearchParams(location.search); let saved = {};
+  try { saved = JSON.parse(sessionStorage.getItem('drc_utm') || '{}'); } catch {}
+  for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'gclid', 'fbclid']) if (q.get(k)) saved[k] = q.get(k).slice(0, 200);
+  if (!saved.landing) saved.landing = location.pathname;
+  try { sessionStorage.setItem('drc_utm', JSON.stringify(saved)); } catch {}
+  for (const [k, v] of Object.entries(saved)) { const el = form.querySelector(`input[name=${k}]`); if (el) el.value = v; }
+})();
+
 async function submit() {
   const btn = $('#next'); btn.disabled = true; btn.textContent = 'Sending…';
   const fd = new FormData(form);
@@ -1047,11 +1086,11 @@ async function submit() {
     const est = r && r.ok && !r.quoteOnly ? ` Your estimate is ${money(r.low)} to ${money(r.high)}.` : '';
     $('#doneMsg').textContent = val('service') === 'homecare'
       ? `Thanks, ${first}! We've received your selections. A DRC home care specialist will review your needs and send you a personalized, itemized quote before scheduling.`
-      : `Thanks, ${first}!${est} Someone from DRC will call you at ${$('#phone').value.trim()} shortly to confirm your price and book your clean.`;
+      : `Thanks, ${first}!${est} ${val('contact_pref') === 'Email' ? 'Watch your inbox.' : val('contact_pref') === 'Call' ? 'Expect a call at ' + $('#phone').value.trim() + '.' : 'Watch for a text at ' + $('#phone').value.trim() + '.'} Our team will reach out to confirm your price and schedule soon.`;
     show(LAST + 1);
   } catch (e) {
     err.textContent = (e.message || 'Something went wrong.') + ' Please try again.';
-  } finally { btn.disabled = false; if (step === LAST) btn.textContent = 'Send and have DRC call me'; }
+  } finally { btn.disabled = false; if (step === LAST) btn.textContent = 'Send my estimate'; }
 }
 
 // Mobile "get my price" bar hides once the estimate is on screen

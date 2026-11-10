@@ -221,7 +221,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
             <div class="f"><label for="bedrooms">Bedrooms</label><input id="bedrooms" name="bedrooms" type="number" inputmode="numeric" min="0" max="20" value="3"></div>
             <div class="f"><label for="bathrooms">Bathrooms</label><input id="bathrooms" name="bathrooms" type="number" inputmode="decimal" min="0" max="20" step="0.5" value="2"></div>
           </div>
-          <div class="f" style="margin-bottom:14px"><label for="sqft">Square feet (a guess is fine)</label><input id="sqft" name="sqft" type="number" inputmode="numeric" min="0" step="50" placeholder="2400"></div>
+          <div class="f" style="margin-bottom:14px"><label for="sqft">Square footage</label><input id="sqft" name="sqft" type="number" inputmode="numeric" min="0" step="50" placeholder="2400"></div>
           <span class="lbl" id="freqLbl">How often?</span>
           <div class="chips" id="freq">
             <div><input type="radio" name="frequency" id="fq_bi" value="biweekly" checked><label for="fq_bi">Every 2 weeks<i>save $15</i></label></div>
@@ -231,7 +231,7 @@ footer a{color:rgba(255,255,255,.7);text-decoration:none}
           </div>
         </div>
 
-        <div class="price empty" id="price"><span id="pLbl">Your estimate</span><b id="pVal">Add your square feet</b></div>
+        <div class="price empty" id="price"><span id="pLbl">Your estimate</span><b id="pVal">Add your square footage</b></div>
 
         <div class="stepa">
           <button type="button" class="btn" id="go">Continue</button>
@@ -390,7 +390,7 @@ function update() {
   const r = +a.sqft >= 300 ? estimate(a) : { ok: false };
   $('#freq').style.display = $('#freqLbl').style.display = deep ? 'none' : '';
   const box = $('#price');
-  if (!r.ok) { box.classList.add('empty'); $('#pVal').textContent = 'Add your square feet'; $('#pLbl').textContent = 'Your estimate'; return r; }
+  if (!r.ok) { box.classList.add('empty'); $('#pVal').textContent = 'Add your square footage'; $('#pLbl').textContent = 'Your estimate'; return r; }
   box.classList.remove('empty');
   $('#pVal').textContent = deep ? `From ${money(r.low)}` : `${money(r.low)} to ${money(r.high)}`;
   const extra = (r.addonLines || []).filter(x => !x.quote).reduce((t, x) => t + x.amount, 0);
@@ -418,7 +418,7 @@ const bad = (id, msg) => { $('#' + id).parentElement.classList.add('bad'); $('#'
 function checkA() {
   form.querySelectorAll('.f.bad').forEach(f => f.classList.remove('bad')); err.textContent = '';
   if (!/^\d{5}$/.test($('#zip').value.trim())) return bad('zip', 'Add your 5 digit ZIP code.');
-  if (!(+$('#sqft').value >= 300)) return bad('sqft', 'Add your square feet. A rough guess is fine.');
+  if (!(+$('#sqft').value >= 300)) return bad('sqft', 'Please add your square footage.');
   return true;
 }
 function checkB() {

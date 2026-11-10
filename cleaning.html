@@ -573,11 +573,11 @@ footer a:hover{color:#fff}
 
         <div class="panel on" data-p="0">
           <h3>What do you need?</h3>
-          <p class="hint">Pick the closest match. A rough guess on size is totally fine.</p>
+          <p class="hint">Choose your service and share a few details about your home.</p>
           <fieldset><div class="opt-grid" id="svcOpts"></div></fieldset>
           <div class="row" id="sizeRow">
             <div class="field"><label for="zip">ZIP code *</label><input id="zip" name="zip" inputmode="numeric" maxlength="5" autocomplete="postal-code" placeholder="75092"></div>
-            <div class="field"><label for="sqft">Square feet *</label><input id="sqft" name="sqft" type="number" inputmode="numeric" min="0" step="50" placeholder="1800"></div>
+            <div class="field"><label for="sqft">Square footage *</label><input id="sqft" name="sqft" type="number" inputmode="numeric" min="0" step="50" placeholder="1800"></div>
             <div class="field"><label for="bedrooms">Bedrooms</label><input id="bedrooms" name="bedrooms" type="number" inputmode="numeric" min="0" max="20" placeholder="3"></div>
             <div class="field"><label for="bathrooms">Bathrooms</label><input id="bathrooms" name="bathrooms" type="number" inputmode="decimal" min="0" max="20" step="0.5" placeholder="2"></div>
           </div>
@@ -687,7 +687,7 @@ footer a:hover{color:#fff}
       <div class="plan pop"><span class="tag">Most popular</span><b>Every 2 weeks</b><span class="save">Save $15 every visit</span><p>The sweet spot for busy homes.</p><a href="#quote" class="btn btn-main" data-freq="biweekly">Start every 2 weeks</a></div>
       <div class="plan"><b>Weekly</b><span class="save">Save $20 every visit</span><p>Always guest ready.</p><a href="#quote" class="btn btn-soft" data-freq="weekly">Start weekly</a></div>
     </div>
-    <p class="m-note">See your price in about a minute. We call to set your day, then you pay each visit through a secure Square link. No contracts, pause any time.</p>
+    <p class="m-note">See your price in about a minute. We confirm your day with you, then you pay each visit through a secure Square link. No contracts, pause any time.</p>
   </div>
 </section>
 
@@ -817,7 +817,7 @@ footer a:hover{color:#fff}
     <div class="faq">
       <details><summary>Do I need to provide cleaning supplies?</summary><p>No. We can bring ours, or you can leave out your own and we'll use only those. If you have marble, granite or other natural stone, tell us and we'll use a stone safe, pH neutral cleaner.</p></details>
       <details><summary>How much does a cleaning cost?</summary><p>Most 3 bed, 2 bath homes run <span data-range="standard">$190 to $245</span> for Essential Home Cleaning and <span data-range="deep">$335 to $425</span> for Signature Deep Cleaning. Your estimate uses your home's size and condition, and we confirm the final price with you before booking.</p></details>
-      <details><summary>What happens after I send my estimate?</summary><p>Someone from DRC calls you to confirm your price, answer questions and set a date. Once you approve, we email a secure Square payment link with your price and terms. Your date is locked in when payment comes through. Payments are non refundable, and if we miss anything we come back and make it right.</p></details>
+      <details><summary>What happens after I send my estimate?</summary><p>Our team reaches out by text, call or email, whichever you prefer, to confirm your price and schedule. Once you approve, we email a secure Square payment link with your price and terms. Your date is locked in when payment comes through. Payments are non refundable, and if we miss anything we come back and make it right.</p></details>
       <details><summary>Where do you clean?</summary><p>We currently serve the Dallas, Denver, Nashville and Phoenix areas. Somewhere else? Send your estimate anyway and we'll let you know.</p></details>
       <details><summary>Do I need to be home?</summary><p>No. Many clients give us a lockbox or door code. Either way, you get before and after photos of every room when we're done.</p></details>
     </div>
@@ -935,7 +935,7 @@ function update() {
   $('#tuneHint').textContent = hc ? 'Pick everything you want. There is no running total. A DRC home care specialist reviews your needs and sends a personalized, itemized quote before scheduling.' : carpet ? 'Carpet pricing depends on your area, so we quote it for you.' : 'All optional. Skip anything that does not apply.';
   if (!r.ok) {
     $('#estBig').textContent = '';
-    $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : r.reason === 'Add your carpet rooms' ? 'Add how many rooms of carpet.' : r.reason === 'Add your square feet' ? 'Add your square feet to see your price. A rough guess is fine.' : 'Add your square feet, bedrooms or bathrooms.';
+    $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : r.reason === 'Add your carpet rooms' ? 'Add how many rooms of carpet.' : r.reason === 'Add your square feet' ? 'Add your square footage to see your price.' : 'Add your square feet, bedrooms or bathrooms.';
     list.innerHTML = ''; return r;
   }
   if (r.quoteOnly && hc) {
@@ -1015,7 +1015,7 @@ function check(n) {
     if (!/^\d{5}$/.test($('#zip').value.trim())) { $('#zip').parentElement.classList.add('bad'); $('#zip').focus(); return 'Add your 5 digit ZIP code.'; }
     const r = estimate(answers());
     // Square feet drives most of the price. Without it the estimate drops toward the minimum, which undersells the service.
-    if (!r.quoteOnly && !r.carpetOnly && !(+$('#sqft').value >= 300)) { $('#sqft').parentElement.classList.add('bad'); $('#sqft').focus(); return 'Add your square feet. A rough guess is fine.'; }
+    if (!r.quoteOnly && !r.carpetOnly && !(+$('#sqft').value >= 300)) { $('#sqft').parentElement.classList.add('bad'); $('#sqft').focus(); return 'Please add your square footage.'; }
   }
   if (n === 2) {
     for (const [id, what] of [['name', 'your name'], ['phone', 'a phone number'], ['email', 'your email']]) {

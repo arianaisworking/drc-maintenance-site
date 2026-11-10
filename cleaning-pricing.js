@@ -20,16 +20,20 @@ export const PRICING = {
   RANGE_HIGH: 1.15,       // ... up to middle x 1.15
 
   hours: {
-    base: 0.75,           // setup, walk-through, photos
-    per1000sqft: 0.9,
-    perBedroom: 0.35,
-    perBathroom: 0.6,
+    // Tuned Nov 2026 to real cleaner time and market prices per sq ft (regular about $0.10 to $0.15, deep about $0.18 to $0.23)
+    // (3 bed, 2 bath standard about $170 to $260, deep about $240 to $460).
+    base: 0.5,            // setup, walk-through, photos
+    per1000sqft: 0.95,
+    perBedroom: 0.25,
+    perBathroom: 0.45,
   },
 
   // Multiplies labor hours. quoteOnly = no number online, we quote after photos.
   services: {
-    standard: { label: 'Standard clean', factor: 1.0 },
-    deep:     { label: 'Deep clean', factor: 1.6 },
+    standard: { label: 'Essential Home Cleaning', factor: 1.0 },
+    deep:     { label: 'Signature Deep Cleaning', factor: 1.75 },
+    // Cleaning plus household help. No running total online: a specialist sends an itemized proposal.
+    homecare: { label: 'Complete Home Care', quoteOnly: true, proposal: true },
     move:     { label: 'Move in or move out', factor: 1.7 },
     rental:   { label: 'Airbnb / vacation rental turnover', factor: 0.9 },
     student:  { label: 'Student housing turnover', factor: 1.1 },
@@ -71,11 +75,17 @@ export const PRICING = {
     windows:   { label: 'Interior windows and tracks', add: 50 },
     baseboards:{ label: 'Hand wiped baseboards', add: 40 },
     blinds:    { label: 'Blinds', add: 35 },
-    laundry:   { label: 'Laundry, wash and fold (per load)', add: 25 },
+    laundry:   { label: 'Laundry, wash and fold (per load)', add: 20 },
     dishes:    { label: 'Dishes', add: 20 },
     garage:    { label: 'Garage sweep out', add: 60 },
     patio:     { label: 'Patio or balcony', add: 40 },
   },
+
+  // What Complete Home Care clients can pick. Never priced online.
+  homecare: ['Weekly or biweekly cleaning', 'Laundry, folding and putting away', 'Fresh linens and beds made',
+    'Kitchen detailing: fridge, oven, cabinets', 'Closet organizing', 'Pantry organizing',
+    'Refrigerator cleanout and organizing', 'Inside windows and blinds',
+    'Garage and patio', 'Repairs and maintenance coordination', 'Landscaping and yard care'],
 
   // $ off each visit for recurring clients.
   frequency: {

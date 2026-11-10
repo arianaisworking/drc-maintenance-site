@@ -28,7 +28,7 @@ footer{margin-top:14px;font-size:10.5px;color:#6B6A66;display:flex;justify-conte
 </style></head><body><div class="page">
 <header><img src="../img/drc-logo.png" alt="DRC"><div><b>DRC HOME SERVICES</b><span>Cleaning price sheet · Dallas · Denver · Nashville · Phoenix</span></div></header>
 <h2>Typical price per visit</h2>
-<table><tr><th>Home</th><th>Regular clean</th><th>Deep clean</th><th>Move in or out</th><th>Airbnb turnover</th></tr>${rows}</table>
+<table><tr><th>Home</th><th>Essential Home Cleaning</th><th>Signature Deep Cleaning</th><th>Move in or out</th><th>Airbnb turnover</th></tr>${rows}</table>
 <p class="note">Average condition, no pets, client's products. Final price is confirmed on the call after we review details and photos. Smallest job: ${money(P.MINIMUM)}.</p>
 <div class="cols">
 <div><h2>Add ons</h2><table>${addons}</table></div>
@@ -37,9 +37,9 @@ footer{margin-top:14px;font-size:10.5px;color:#6B6A66;display:flex;justify-conte
 <h2>Adjustments</h2><table><tr><td>Heavy buildup</td><td>+30% time</td></tr><tr><td>Very heavy (months since cleaned)</td><td>+60% time</td></tr><tr><td>1 to 2 pets</td><td>+5% time</td></tr><tr><td>3+ pets or heavy shedding</td><td>+12% time</td></tr></table></div>
 </div>
 <h2>Quoted for your area</h2>
-<ul><li>Carpet cleaning, carpeted stairs and area rugs</li><li>Hoarder, debris or biohazard cleanouts</li><li>Offices, dental, restaurants and other businesses</li><li>Organization specialist: closets, pantries and garages</li><li>Repairs, handyman and landscaping through DRC Maintenance</li></ul>
+<ul><li>Complete Home Care: cleaning plus laundry, linens, organizing and repairs (itemized proposal)</li><li>Carpet cleaning, carpeted stairs and area rugs</li><li>Hoarder, debris or biohazard cleanouts</li><li>Offices, dental, restaurants and other businesses</li><li>Organization specialist: closets, pantries and garages</li><li>Repairs, handyman and landscaping through DRC Maintenance</li></ul>
 <h2>Booking</h2>
-<ul><li>We confirm your price on a call, then send a short agreement to sign and a secure payment link.</li><li>Your date is locked in once payment is confirmed.</li><li>All payments are non refundable.</li></ul>
+<ul><li>We confirm your price on a call, then email a secure Square payment link with your price and terms.</li><li>Your date is locked in once payment is confirmed.</li><li>All payments are non refundable.</li></ul>
 <footer><span>DRC Home Services · Dedicated Resource Center LLC</span><span>drcmaintenance.com/cleaning</span></footer>
 </div></body></html>`;
 fs.writeFileSync(new URL('../docs/drc-cleaning-price-sheet.html', import.meta.url), html);

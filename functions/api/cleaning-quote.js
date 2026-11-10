@@ -44,7 +44,7 @@ export async function onRequestPost({ request, env }) {
     style: g('style'), focus: g('focus'), sensitivities: g('sensitivities'),
     access: g('access'), parking: g('parking'),
     date: g('date'), time: g('time'), callTime: g('calltime'), heard: g('heard'), notes: g('notes'), maint: g('maint'),
-    payment: g('payment'),
+    payment: g('payment'), homecare: all('homecare'),
   };
 
   if (!lead.name || !lead.phone || !lead.email || !lead.service) {
@@ -82,6 +82,7 @@ export async function onRequestPost({ request, env }) {
     ['Products', esc(lead.products && lbl('products', lead.products))],
     ['Special surfaces', esc(lead.surfaces.join(', '))],
     ['Surface notes', esc(lead.surfaceNotes)],
+    ['Home care wanted', lead.homecare.length ? '<strong>' + lead.homecare.map(esc).join('<br>') + '</strong><br><i>Send an itemized proposal. No price was shown online.</i>' : ''],
     ['Add ons chosen', addonText],
     ['How often', esc(lead.frequency && lbl('frequency', lead.frequency))],
     ['Work style', esc(lead.style)],
@@ -130,7 +131,9 @@ export async function onRequestPost({ request, env }) {
         <p>Hi ${esc(lead.name.split(' ')[0])},</p>
         <p>Thanks for reaching out to DRC Home Services. We received your request for a ${esc(lbl('services', lead.service).toLowerCase())}.</p>
         ${clientEst}
-        <p>Someone from our team will call you at ${esc(lead.phone)} shortly to confirm your price, answer any questions and pick a date. Once you approve the price, we'll send a secure card link or Zelle details, and your date is locked in when payment comes through.</p>
+        ${lead.service === 'homecare'
+          ? `<p>We've received your selections. A DRC home care specialist will review your needs and send you a personalized, itemized quote before scheduling.</p>`
+          : `<p>Someone from our team will call you at ${esc(lead.phone)} shortly to confirm your price, answer any questions and pick a date. Once you approve the price, we'll email a secure Square payment link, and your date is locked in when payment comes through.</p>`}
         <p>Talk soon,<br>DRC Home Services<br>Dedicated Resource Center LLC</p></div>`,
     });
   } catch {}

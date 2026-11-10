@@ -11,7 +11,7 @@ const A = PRICING.addons;
 
 // Chat answers use plain words; map them to the pricing keys.
 const SERVICE_FROM_TEXT = {
-  'regular clean': 'standard', 'deep clean': 'deep', 'move in or move out': 'move', 'airbnb turnover': 'rental',
+  'regular clean': 'standard', 'essential home cleaning': 'standard', 'deep clean': 'deep', 'signature deep cleaning': 'deep', 'complete home care': 'homecare', 'move in or move out': 'move', 'airbnb turnover': 'rental',
   'carpet cleaning': 'carpet', 'hoarder or debris cleanout': 'hoarder', 'office or business': 'commercial',
 };
 export const serviceKey = v => PRICING.services[v] ? v : (SERVICE_FROM_TEXT[String(v || '').toLowerCase()] || '');

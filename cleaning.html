@@ -53,13 +53,13 @@ nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-betw
 
 /* HERO */
 .hero{position:relative;min-height:760px;display:flex;align-items:center;padding:64px 0;overflow:hidden}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;z-index:0}
-.hero::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(251,246,238,.97) 0%,rgba(251,246,238,.9) 34%,rgba(251,246,238,.35) 56%,rgba(251,246,238,0) 70%)}
+.hero-bg{position:absolute;top:0;right:0;bottom:0;width:50%;height:100%;object-fit:cover;object-position:center;z-index:0}
+.hero::before{display:none}
 .hero .wrap{position:relative;z-index:2;width:100%}
-.hero-copy{max-width:560px}
+.hero-copy{max-width:min(508px,calc(50vw - 72px))}
 .hero h1{font-size:clamp(44px,6vw,72px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:18px}
 .hero .lede{margin-bottom:28px;font-size:17.5px;color:#4d4b47}
-.hero .ask{background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border:1px solid rgba(231,221,205,.9)}
+.hero .ask{background:var(--paper)}
 .ask{background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow);padding:24px;border:1px solid var(--line)}
 .ask h2{font-size:22px;margin-bottom:4px}
 .ask p{font-size:14px;color:var(--muted);margin-bottom:16px}
@@ -243,7 +243,9 @@ footer a:hover{color:#fff}
 
 @media(max-width:980px){
   .how .wrap{grid-template-columns:1fr}
-  .hero::before{background:linear-gradient(90deg,rgba(251,246,238,.96) 0%,rgba(251,246,238,.85) 50%,rgba(251,246,238,.2) 100%)}
+  .hero{display:block;min-height:0;padding:0 0 48px}
+  .hero-bg{position:static;width:100%;height:380px}
+  .hero-copy{max-width:640px;padding-top:36px}
   .q-layout{grid-template-columns:1fr}
   .maint .wrap{grid-template-columns:1fr}
   .std-head{grid-template-columns:1fr;gap:12px}
@@ -258,7 +260,7 @@ footer a:hover{color:#fff}
   .wrap{padding:0 16px}
   section{padding:60px 0}
   .hero{display:block;min-height:0;padding:0 0 40px}
-  .hero-bg{position:static;height:210px;object-position:72% 30%}
+  .hero-bg{height:220px}
   .hero .kicker{font-size:10.5px;letter-spacing:.12em}
   .hero .kicker::before{display:none}
   .hero::before{display:none}

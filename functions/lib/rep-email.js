@@ -45,7 +45,7 @@ export function suggestions(lead) {
     if (!has('baseboards')) add(`Hand wiped baseboards (+$${A.baseboards.add})`, 'Pet hair collects along baseboards.');
   }
   if (/organic|allerg|unscent|fragrance|sensitiv|natural/.test(n) && lead.products !== 'organic') add(`Organic, unscented products (+$${PRICING.products.organic.add})`, 'They mentioned allergies or natural products.');
-  if (s === 'rental' && !has('laundry')) add(`Laundry, wash and fold (+$${A.laundry.add} per load)`, 'Turnovers usually need linens done.');
+  if (s === 'rental' && !has('laundry')) add(`Laundry, wash, fold and put away (+$${A.laundry.add} standard load, +$${A.laundryLarge.add} large or bedding load)`, 'Turnovers usually need linens done.');
   if (['standard', 'deep', 'move'].includes(s) && (lead.bedrooms >= 3) && !has('carpetRoom') && !/carpet/.test(n)) add('Carpet cleaning (quote for their area)', 'Larger homes often have carpeted bedrooms.');
   if (picked.some(a => /organization/.test(a))) add('Organization specialist (closets, pantry)', 'They asked for it. Ask for photos and quote by the job.');
   if (picked.some(a => /maintenance|handyman/.test(a)) || lead.maint) add('DRC Maintenance repair quote', `They asked about repairs${lead.maint ? ': ' + lead.maint : ''}. Ask for photos and pass to DRC Maintenance.`);

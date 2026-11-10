@@ -100,6 +100,13 @@ details.xtra summary small{display:block;font-weight:400;font-size:13px;color:va
 .pills .tog::after{content:'+';border:none;padding:0;font-size:16px;line-height:1}
 .pills .tog[aria-pressed=true]::after{content:'\2713';background:none;color:var(--sage-d);font-size:13px}
 .xtra .recs .tog{padding:11px 14px}
+.lcard .qty{border:1px solid var(--sage);border-top:none;border-radius:0 0 16px 16px;background:#F4F8F4;padding:4px 16px 10px;margin-top:-12px;padding-top:16px}
+.lcard .tog[aria-pressed=true]{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.qrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 0;font-size:14px}
+.qrow small{display:block;font-size:12.5px;color:var(--muted)}
+.step{display:flex;align-items:center;gap:10px}
+.step button{width:32px;height:32px;border-radius:50%;border:1px solid #cfe0d2;background:#fff;color:var(--sage-d);font-size:17px;line-height:1;cursor:pointer}
+.step output{min-width:14px;text-align:center;font-weight:700}
 .ok{display:none;text-align:center;padding:18px 4px}
 .qc.done .ok{display:block}
 .ok .tick{width:62px;height:62px;border-radius:50%;background:var(--sage-d);color:#fff;font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
@@ -431,24 +438,36 @@ function recsFor() {
   if (recurring) { const d = estimate({ ...a, service: 'deep', frequency: 'once', addons: {} });
     out.push(['w:Signature Deep first visit', '<span class="rec-tag">Suggested first visit</span><b>Begin with Signature Deep Cleaning</b>', 'A full reset, so every visit after feels effortless.', d.ok ? 'from ' + money(d.low) : '']); }
   if (a.service === 'deep' || sq >= 3000) out.push(['a:windows', '<b>Interior windows and tracks</b>', 'Brighter rooms, spotless sills.', '+' + money(P.addons.windows.add)]);
-  if (beds >= 4 || recurring) out.push(['a:laundry', '<b>Laundry, wash and fold</b>', 'One load washed, folded and put away.', '+' + money(P.addons.laundry.add)]);
+  if (beds >= 4 || recurring) out.push(['a:laundry', '<b>Laundry, folded and put away</b>', 'Washed, dried, folded, organized and put away.', 'from ' + money(P.addons.laundry.add) + ' a load']);
   out.push(['a:fridge', '<b>Inside fridge</b>', 'Shelves and drawers cleaned and reset.', '+' + money(P.addons.fridge.add)]);
   out.push(['a:oven', '<b>Inside oven</b>', 'Restored, inside and out.', '+' + money(P.addons.oven.add)]);
   // Three suggestions at most: helpful, never a sales pitch
   return out.slice(0, 3);
 }
+// Laundry is priced per load, so once added they choose how many standard and large loads
+const qrow = (k, name, note) => `<div class="qrow"><span>${name}<small>${note}</small></span><span class="step"><button type="button" data-q="${k}" data-d="-1" aria-label="Fewer">&minus;</button><output>${picked[k] || 0}</output><button type="button" data-q="${k}" data-d="1" aria-label="More">+</button></span></div>`;
+const laundryCard = (t, s2, p) => { const on = !!(picked.laundry || picked.laundryLarge);
+  return `<div class="lcard">${tog('a:laundry', t, s2, p, on)}<div class="qty"${on ? '' : ' hidden'}>${qrow('laundry', 'Standard loads', money(P.addons.laundry.add) + ' each')}${qrow('laundryLarge', 'Large or bedding loads', 'Comforters, towels, oversized. ' + money(P.addons.laundryLarge.add) + ' each')}</div></div>`; };
 function drawX() {
   const recs = recsFor(), recIds = new Set(recs.map(r => r[0]));
-  $('#recs').innerHTML = recs.map(([id, t, s2, p]) => tog(id, t, s2, p, isOn(id))).join('');
-  $('#extras').innerHTML = Object.entries(P.addons).filter(([k, v]) => !v.quote && !recIds.has('a:' + k))
-    .map(([k, v]) => tog('a:' + k, `<b>${v.label}</b>`, '', '+' + money(v.add), isOn('a:' + k))).join('');
+  const card = (id, t, s2, p) => id === 'a:laundry' ? laundryCard(t, s2, p) : tog(id, t, s2, p, isOn(id));
+  $('#recs').innerHTML = recs.map(([id, t, s2, p]) => card(id, t, s2, p)).join('');
+  $('#extras').innerHTML = Object.entries(P.addons).filter(([k, v]) => !v.quote && k !== 'laundryLarge' && !recIds.has('a:' + k))
+    .map(([k, v]) => k === 'laundry' ? laundryCard('<b>Laundry, folded and put away</b>', '', 'from ' + money(v.add) + ' a load') : tog('a:' + k, `<b>${v.label}</b>`, '', '+' + money(v.add), isOn('a:' + k))).join('');
   $('#svcs').innerHTML = OTHER.filter(o => !recIds.has('w:' + o)).map(o => tog('w:' + o, `<b>${o}</b>`, '', '', isOn('w:' + o))).join('');
 }
 $('#qc').addEventListener('click', e => {
+  const q = e.target.closest('[data-q]');
+  if (q) { const k = q.dataset.q; picked[k] = Math.max(0, Math.min(10, (picked[k] || 0) + +q.dataset.d)); if (!picked[k]) delete picked[k];
+    if (!picked.laundry && !picked.laundryLarge) { const c = q.closest('.lcard'); c.querySelector('.tog').setAttribute('aria-pressed', 'false'); c.querySelector('.qty').hidden = true; }
+    else q.parentElement.querySelector('output').textContent = picked[k] || 0;
+    update(); return; }
   const b = e.target.closest('.tog'); if (!b) return;
   const on = b.getAttribute('aria-pressed') !== 'true', id = b.dataset.id;
   b.setAttribute('aria-pressed', on);
-  if (id.startsWith('a:')) { if (on) picked[id.slice(2)] = 1; else delete picked[id.slice(2)]; }
+  if (id === 'a:laundry') { const c = b.closest('.lcard'); if (on) picked.laundry = 1; else { delete picked.laundry; delete picked.laundryLarge; }
+    c.querySelector('.qty').hidden = !on; c.querySelectorAll('output').forEach((o, i) => o.textContent = picked[i ? 'laundryLarge' : 'laundry'] || 0); }
+  else if (id.startsWith('a:')) { if (on) picked[id.slice(2)] = 1; else delete picked[id.slice(2)]; }
   else { on ? wants.add(id.slice(2)) : wants.delete(id.slice(2)); }
   update();
 });

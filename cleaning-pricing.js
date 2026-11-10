@@ -20,10 +20,10 @@ export const PRICING = {
   RANGE_HIGH: 1.15,       // ... up to middle x 1.15
 
   hours: {
-    // Tuned Nov 2026 to real cleaner time and competitor prices in our markets
+    // Tuned Nov 2026 to real cleaner time and market prices per sq ft (regular about $0.10 to $0.15, deep about $0.18 to $0.23)
     // (3 bed, 2 bath standard about $170 to $260, deep about $240 to $460).
     base: 0.5,            // setup, walk-through, photos
-    per1000sqft: 0.75,
+    per1000sqft: 0.95,
     perBedroom: 0.25,
     perBathroom: 0.45,
   },
@@ -31,7 +31,7 @@ export const PRICING = {
   // Multiplies labor hours. quoteOnly = no number online, we quote after photos.
   services: {
     standard: { label: 'Essential Home Cleaning', factor: 1.0 },
-    deep:     { label: 'Signature Deep Cleaning', factor: 1.6 },
+    deep:     { label: 'Signature Deep Cleaning', factor: 1.75 },
     // Cleaning plus household help. No running total online: a specialist sends an itemized proposal.
     homecare: { label: 'Complete Home Care', quoteOnly: true, proposal: true },
     move:     { label: 'Move in or move out', factor: 1.7 },

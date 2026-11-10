@@ -310,6 +310,64 @@ footer a:hover{color:#fff}
   body{padding-bottom:20px}
 }
 
+
+/* ROOM TOUR */
+.tour>*{min-width:0}
+.tour{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:start;border-top:1px solid var(--line);padding-top:34px}
+.plan-svg{width:100%;height:auto;display:block}
+.plan-svg .roof{fill:none;stroke:var(--line);stroke-width:2.5;stroke-linejoin:round}
+.plan-svg .wall{fill:var(--bg);stroke:#cfc6b6;stroke-width:3}
+.plan-svg .rm rect:first-child{fill:var(--paper);stroke:#ddd4c4;stroke-width:1.5;transition:fill .2s,stroke .2s}
+.plan-svg .rm{cursor:pointer}
+.plan-svg .rm:hover rect:first-child{fill:var(--sage-l)}
+.plan-svg .rm.on rect:first-child{fill:var(--sage-l);stroke:var(--sage);stroke-width:2.5}
+.plan-svg .fx{fill:none;stroke:#b9ad99;stroke-width:1.6;stroke-linecap:round;pointer-events:none}
+.plan-svg .rm.on .fx{stroke:var(--sage-d)}
+.plan-svg text{font:600 15px 'Figtree',sans-serif;fill:var(--ink);text-anchor:middle;pointer-events:none}
+.plan-tabs{display:none}
+.plan-hint{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
+.room-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.rc-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.rc-top h3{font-size:24px;margin:0}
+.rc-count{background:var(--sage-d);color:#fff;border-radius:99px;font-size:12px;font-weight:700;padding:5px 10px;letter-spacing:.02em}
+.rc-mode{display:inline-flex;background:var(--paper);border:1px solid var(--line);border-radius:99px;padding:4px;margin-bottom:16px}
+.rc-mode button{border:none;background:none;font:600 13px 'Figtree',sans-serif;padding:8px 14px;border-radius:99px;cursor:pointer;color:var(--muted)}
+.rc-mode button.on{background:var(--sage-d);color:#fff}
+#rcList{list-style:none;display:flex;flex-direction:column;gap:9px}
+#rcList li{font-size:15px;color:#4d4b47;padding-left:22px;position:relative}
+#rcList li::before{content:'';position:absolute;left:0;top:7px;width:10px;height:6px;border-left:1.6px solid var(--sage-d);border-bottom:1.6px solid var(--sage-d);transform:rotate(-45deg)}
+#rcList li i{font-style:normal;font-size:12px;color:var(--clay);font-weight:600;margin-left:6px}
+.rc-note{font-size:12.5px;color:var(--muted);margin:14px 0 0}
+.rc-note i{font-style:normal;color:var(--clay);font-weight:600}
+.rc-nav{display:flex;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.rc-nav button{border:none;background:none;font:600 14px 'Figtree',sans-serif;color:var(--sage-d);cursor:pointer;padding:4px 0}
+/* COMMUNITY CARE */
+.care{background:var(--clay-l)}
+.care .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center}
+.care-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin:20px 0 26px}
+.care-list li{display:flex;gap:12px;font-size:15.5px}
+.care-list li b{display:block}
+.care-list li span{color:var(--muted);font-size:14.5px}
+.care-dot{width:8px;height:8px;border-radius:50%;background:var(--clay);margin-top:8px;flex-shrink:0}
+.care-card{background:var(--paper);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
+.care-card h3{font-size:22px;margin-bottom:8px}
+.care-card p{font-size:14.5px;color:var(--muted);margin-bottom:16px}
+.care-opt{display:flex;gap:10px;align-items:flex-start;background:var(--clay-l);border-radius:14px;padding:14px;margin-top:16px;font-size:14.5px;cursor:pointer}
+.care-opt input{margin-top:3px;accent-color:var(--sage-d);width:18px;height:18px}
+@media(max-width:980px){.tour,.care .wrap{grid-template-columns:1fr}}
+@media(max-width:639px){
+  .tour{gap:16px;padding-top:22px}
+  .plan-svg{display:none}
+  .plan-hint{display:none}
+  .plan-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 4px}
+  .plan-tabs::-webkit-scrollbar{display:none}
+  .plan-tabs button{flex:0 0 auto;border:1.5px solid var(--line);background:var(--paper);border-radius:99px;padding:10px 16px;font:600 14px 'Figtree',sans-serif;color:var(--ink);cursor:pointer}
+  .plan-tabs button.on{background:var(--sage-d);border-color:var(--sage-d);color:#fff}
+  .room-card{padding:20px 18px}
+  .rc-mode{display:flex}.rc-mode button{flex:1;padding:9px 8px}
+  .care-card{padding:22px 18px}
+}
+
 /* MOBILE POLISH */
 @media(max-width:639px){
   h2{font-size:31px;letter-spacing:-.025em;line-height:1.1}
@@ -433,10 +491,29 @@ footer a:hover{color:#fff}
       <div><span class="kicker">The DRC standard</span><h2>Every clean includes</h2></div>
       <p class="lede">A detailed checklist for every room, so nothing is left to chance. Deep and move-out cleans go further, inside and behind.</p>
     </div>
-    <div class="std-grid">
-      <div><h3>Kitchen</h3><ul><li>Counters, backsplash and sink scrubbed and shined</li><li>Stovetop and range hood degreased</li><li>Outside of appliances and cabinet fronts wiped</li><li>Microwave cleaned inside and out</li><li>Floors vacuumed and mopped</li></ul></div>
-      <div><h3>Bathrooms</h3><ul><li>Showers, tubs and tile scrubbed</li><li>Toilets cleaned and sanitized, base included</li><li>Mirrors and glass streak-free</li><li>Vanities, sinks and fixtures polished</li><li>Floors vacuumed and mopped</li></ul></div>
-      <div><h3>Living areas &amp; bedrooms</h3><ul><li>Dusting of reachable surfaces, shelves and décor</li><li>Light switches, handles and doors wiped</li><li>Beds made, linens changed on request</li><li>Mirrors and glass tables shined</li><li>Carpets vacuumed, hard floors mopped</li></ul></div>
+    <div class="tour" id="tour">
+      <div class="plan" role="tablist" aria-label="Pick a room">
+        <svg viewBox="0 0 520 380" aria-hidden="true" class="plan-svg">
+          <path class="roof" d="M20 128 260 18l240 110"/>
+          <rect class="wall" x="40" y="120" width="440" height="240" rx="6"/>
+          <g class="rm" data-room="kitchen"><rect x="52" y="132" width="200" height="104" rx="4"/><path class="fx" d="M66 146h70v18H66zM150 146h18v18h-18zM66 206h172"/><circle class="fx" cx="215" cy="190" r="16"/></g>
+          <g class="rm" data-room="living"><rect x="264" y="132" width="204" height="104" rx="4"/><path class="fx" d="M286 186h92v18h-92zM286 186v-22h12v22M366 186v-22h12v22"/><rect class="fx" x="400" y="160" width="46" height="30" rx="3"/></g>
+          <g class="rm" data-room="bath"><rect x="52" y="248" width="150" height="100" rx="4"/><rect class="fx" x="66" y="262" width="58" height="30" rx="12"/><circle class="fx" cx="178" cy="300" r="12"/><path class="fx" d="M150 270h36"/></g>
+          <g class="rm" data-room="bed"><rect x="214" y="248" width="254" height="100" rx="4"/><rect class="fx" x="236" y="262" width="92" height="52" rx="6"/><path class="fx" d="M236 280h92M250 262v18M314 262v18"/><rect class="fx" x="372" y="262" width="34" height="28" rx="3"/></g>
+          <text x="152" y="228">Kitchen</text><text x="366" y="226">Living areas</text><text x="127" y="338">Bathrooms</text><text x="341" y="338">Bedrooms</text>
+        </svg>
+        <div class="plan-tabs">
+          <button role="tab" data-room="kitchen">Kitchen</button><button role="tab" data-room="living">Living areas</button><button role="tab" data-room="bath">Bathrooms</button><button role="tab" data-room="bed">Bedrooms</button>
+        </div>
+        <p class="plan-hint">Tap a room to see what we clean.</p>
+      </div>
+      <div class="room-card" aria-live="polite">
+        <div class="rc-top"><span class="rc-count" id="rcCount"></span><h3 id="rcName"></h3></div>
+        <div class="rc-mode" role="group" aria-label="Clean type"><button data-mode="std" class="on">Every clean</button><button data-mode="deep">Deep and move-out add</button></div>
+        <ul id="rcList"></ul>
+        <p class="rc-note">Items marked <i>on request</i> can be added when we call.</p>
+        <div class="rc-nav"><button id="rcPrev" aria-label="Previous room">&larr; <span></span></button><button id="rcNext" aria-label="Next room"><span></span> &rarr;</button></div>
+      </div>
     </div>
     <div class="promise">
       <div><b>Photo-verified</b><span>Before and after photos of every room, sent to you.</span></div>
@@ -490,6 +567,27 @@ footer a:hover{color:#fff}
       <div class="card"><h3>Our products</h3><p>We bring professional supplies and equipment.</p></div>
       <div class="card"><h3>Organic &amp; unscented</h3><p>Vinegar-based, fragrance-free. Great for allergies, kids and pets.</p></div>
       <div class="card"><h3>No microplastics</h3><p>Plastic-free tools and products, no microfiber cloths.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="care" class="care">
+  <div class="wrap">
+    <div>
+      <span class="kicker">DRC Community Care</span>
+      <h2>A helping hand, at a rate that works</h2>
+      <p class="lede">Some seasons are heavier than others. We set aside reduced-rate cleans every month for local families who need a lighter load right now.</p>
+      <ul class="care-list">
+        <li><span class="care-dot"></span><div><b>Single parents and new moms</b><span>When there's no time left over for the house.</span></div></li>
+        <li><span class="care-dot"></span><div><b>Women going through a hard time</b><span>A move, a loss, a health scare or starting over.</span></div></li>
+        <li><span class="care-dot"></span><div><b>Kept private</b><span>Tell us as much or as little as you like. No paperwork to prove anything.</span></div></li>
+      </ul>
+      <a href="#quote" class="btn btn-main" data-care="1">Ask about a Community Care clean</a>
+    </div>
+    <div class="care-card">
+      <h3>How it works</h3>
+      <p>Start a normal estimate and tick the Community Care box at the end. Someone from DRC will call you, talk through what would help most, and offer a reduced rate.</p>
+      <p style="margin:0">Spots are limited each month in Dallas, Denver, Nashville and Phoenix, so we may add you to a short wait list.</p>
     </div>
   </div>
 </section>
@@ -622,6 +720,7 @@ footer a:hover{color:#fff}
             <div class="field"><label for="heard">How did you hear about us?</label><select id="heard" name="heard"><option value="">Choose one</option><option>Facebook</option><option>Instagram</option><option>Google</option><option>Yelp</option><option>Nextdoor</option><option>Craigslist</option><option>Friend or family</option><option>Realtor or property manager</option><option>Other</option></select></div>
             <div class="field"><label for="notes">Anything else?</label><input id="notes" name="notes"></div>
           </div>
+          <label class="care-opt"><input type="checkbox" id="careAsk" name="care" value="yes"><span><b>I'd like to be considered for a Community Care rate.</b> We'll talk about it privately when we call.</span></label>
           <div class="hp" aria-hidden="true"><label>Website <input name="company_site" tabindex="-1" autocomplete="off"></label></div>
           <div class="callout"><b>Nothing to pay today.</b> We'll call to confirm your price first. You only pay once you're happy with it.</div>
         </div>
@@ -902,6 +1001,35 @@ $('#mreq').addEventListener('submit', async e => {
 const qs = new URLSearchParams(location.search).get('service');
 if (qs && P.services[qs]) { const r = document.getElementById('service_' + qs); if (r) r.checked = true; }
 update(); show(0, false);
+
+// Room tour
+(() => {
+  const R = {
+    kitchen: {name:'Kitchen', std:['Counters, backsplash and sink scrubbed and shined','Stovetop and range hood degreased','Outside of appliances and cabinet fronts wiped','Microwave cleaned inside and out','Small appliances wiped and put back','Table and chairs wiped','Trash emptied and bin wiped','Floors vacuumed and mopped','Dishes <i>on request</i>'], deep:['Inside oven and fridge','Inside cabinets and drawers','Baseboards hand-wiped','Grout spot-scrubbed','Light fixtures and vents dusted','Behind and under movable appliances']},
+    living: {name:'Living areas', std:['Dusting of reachable surfaces, shelves and decor','Light switches, handles and doors wiped','TV and electronics dusted','Mirrors and glass tables shined','Couch cushions straightened, crumbs vacuumed','Window sills and ledges wiped','Stairs and railings dusted','Carpets vacuumed, hard floors mopped','Trash emptied','Blinds dusted <i>on request</i>'], deep:['Baseboards and door frames hand-wiped','Ceiling fans and vents dusted','Under cushions and furniture vacuumed','Interior windows and tracks','Wall spot-cleaning']},
+    bath: {name:'Bathrooms', std:['Showers, tubs and tile scrubbed','Toilets cleaned and sanitized, base included','Mirrors and glass streak-free','Vanities, sinks and fixtures polished','Countertops cleared and wiped','Towels folded or hung','Trash emptied','Floors vacuumed and mopped'], deep:['Soap scum and hard water buildup removed','Grout scrubbed','Inside cabinets and drawers','Exhaust fan and vents dusted','Baseboards and door frames hand-wiped']},
+    bed: {name:'Bedrooms', std:['Dusting of dressers, nightstands and shelves','Mirrors and glass shined','Light switches and handles wiped','Window sills wiped','Beds made','Linens changed <i>on request</i>','Trash emptied','Carpets vacuumed, hard floors mopped'], deep:['Under beds vacuumed','Baseboards and door frames hand-wiped','Ceiling fans and vents dusted','Closet floors and shelves','Interior windows and tracks']}
+  };
+  const order = ['kitchen','living','bath','bed']; let cur = 'kitchen', mode = 'std';
+  const tour = document.getElementById('tour'); if (!tour) return;
+  const render = () => {
+    const r = R[cur], items = r[mode];
+    document.getElementById('rcName').textContent = r.name;
+    document.getElementById('rcCount').textContent = mode === 'std' ? items.length + ' every visit' : '+' + items.length + ' on deep cleans';
+    document.getElementById('rcList').innerHTML = items.map(t => '<li>' + t + '</li>').join('');
+    tour.querySelectorAll('[data-room]').forEach(el => el.classList.toggle('on', el.dataset.room === cur));
+    tour.querySelectorAll('.rc-mode button').forEach(b => b.classList.toggle('on', b.dataset.mode === mode));
+    const i = order.indexOf(cur);
+    document.querySelector('#rcPrev span').textContent = R[order[(i + 3) % 4]].name;
+    document.querySelector('#rcNext span').textContent = R[order[(i + 1) % 4]].name;
+  };
+  tour.querySelectorAll('[data-room]').forEach(el => el.addEventListener('click', () => { cur = el.dataset.room; render(); }));
+  tour.querySelectorAll('.rc-mode button').forEach(b => b.addEventListener('click', () => { mode = b.dataset.mode; render(); }));
+  document.getElementById('rcPrev').addEventListener('click', () => { cur = order[(order.indexOf(cur) + 3) % 4]; render(); });
+  document.getElementById('rcNext').addEventListener('click', () => { cur = order[(order.indexOf(cur) + 1) % 4]; render(); });
+  render();
+  document.querySelectorAll('[data-care]').forEach(a => a.addEventListener('click', () => { const c = document.getElementById('careAsk'); if (c) c.checked = true; }));
+})();
 </script>
 </body>
 </html>

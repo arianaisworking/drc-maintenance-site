@@ -29,7 +29,7 @@ export function suggestions(lead) {
   const once = !lead.frequency || lead.frequency === 'once';
   const F = PRICING.frequency;
 
-  if (['standard', 'rental', 'student'].includes(s) && once) add(`Membership, every 2 weeks (save $${F.biweekly.off} a visit)`, 'Same team every visit and priority booking. Offer weekly or monthly too.');
+  if (['standard', 'rental', 'student'].includes(s) && once) add(`Membership, every 2 weeks (save $${F.biweekly.off} a visit)`, 'Member savings every visit, saved checklist and priority booking. Offer weekly or monthly too.');
   if (s === 'standard' && once) add('Deep clean for the first visit', 'If it has been a while since a professional clean, start deep, then keep it up with a membership.');
   if (['deep', 'move'].includes(s)) {
     if (!has('fridge')) add(`Inside fridge (+$${A.fridge.add})`, 'Most deep and move out clients want it.');

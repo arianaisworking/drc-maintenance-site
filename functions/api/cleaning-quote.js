@@ -66,11 +66,11 @@ export async function onRequestPost({ request, env }) {
   const lbl = (group, key) => (P[group][key] && P[group][key].label) || key || '';
   const estLine = !est.ok ? 'No estimate (missing size)'
     : est.quoteOnly ? 'Quote after photos'
-    : `${money(est.low)} to ${money(est.high)} (middle ${money(est.middle)}, about ${est.laborHours} cleaner-hours)`;
+    : `${money(est.low)} to ${money(est.high)} (middle ${money(est.middle)}, about ${est.laborHours} cleaner hours${est.carpetQuote ? '; carpet NOT included, quote it' : ''})`;
 
   const row = (k, v) => v ? `<tr><td style="padding:4px 12px 4px 0;color:#637085;vertical-align:top">${esc(k)}</td><td style="padding:4px 0">${v}</td></tr>` : '';
   const addonText = est.addonLines && est.addonLines.length
-    ? est.addonLines.map(a => `${esc(a.label)}${a.qty > 1 ? ' x' + a.qty : ''} (${money(a.amount)})`).join('<br>') : '';
+    ? est.addonLines.map(a => `${esc(a.label)}${a.qty > 1 ? ' x' + a.qty : ''} (${a.quote ? 'QUOTE for area' : money(a.amount)})`).join('<br>') : '';
 
   const officeHtml = `
     <h2 style="font-family:Arial,sans-serif;color:#0E2240">New cleaning lead: call them</h2>

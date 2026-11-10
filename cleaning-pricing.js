@@ -33,8 +33,8 @@ export const PRICING = {
     move:     { label: 'Move in or move out', factor: 1.7 },
     rental:   { label: 'Airbnb / vacation rental turnover', factor: 0.9 },
     student:  { label: 'Student housing turnover', factor: 1.1 },
-    // Carpet only: priced from the carpet add-ons (rooms, stairs, rugs), not hours.
-    carpet:   { label: 'Carpet cleaning', carpetOnly: true },
+    // Carpet is always quoted by the office (pricing varies by area). No price online.
+    carpet:   { label: 'Carpet cleaning', quoteOnly: true },
     hoarder:  { label: 'Hoarder, debris or biohazard cleanout', quoteOnly: true },
     commercial: { label: 'Office, dental, restaurant or other business', quoteOnly: true },
   },
@@ -61,9 +61,10 @@ export const PRICING = {
   },
 
   addons: {
-    carpetRoom:  { label: 'Carpet cleaning (per room)', add: 45 },
-    carpetStairs:{ label: 'Carpeted stairs (per flight)', add: 40 },
-    rug:         { label: 'Area rug (each)', add: 35 },
+    // Carpet items are quoted by the office (varies by area): counted, never priced online.
+    carpetRoom:  { label: 'Carpet cleaning (rooms)', add: 0, quote: true },
+    carpetStairs:{ label: 'Carpeted stairs (flights)', add: 0, quote: true },
+    rug:         { label: 'Area rugs', add: 0, quote: true },
     fridge:    { label: 'Inside fridge', add: 35 },
     oven:      { label: 'Inside oven', add: 35 },
     cabinets:  { label: 'Inside cabinets and drawers', add: 45 },
@@ -92,7 +93,11 @@ const num = (v, d = 0) => { const n = Number(v); return Number.isFinite(n) && n 
 export function estimate(answers = {}, P = PRICING) {
   const svc = P.services[answers.service];
   if (!svc) return { ok: false, reason: 'Pick a service' };
-  if (svc.quoteOnly) return { ok: true, quoteOnly: true, service: svc.label };
+  const countLines = () => Object.entries(answers.addons || {}).map(([key, qty]) => {
+    const a = P.addons[key]; const q = Math.min(num(qty), 20);
+    return a && q ? { label: a.label, qty: q, amount: a.add * q, quote: !!a.quote } : null;
+  }).filter(Boolean);
+  if (svc.quoteOnly) return { ok: true, quoteOnly: true, service: svc.label, addonLines: countLines() };
 
   if (svc.carpetOnly) {
     let total = 0; const addonLines = [];
@@ -130,7 +135,7 @@ export function estimate(answers = {}, P = PRICING) {
     const q = Math.min(num(qty), 10);
     if (!a || !q) continue;
     addons += a.add * q;
-    addonLines.push({ label: a.label, qty: q, amount: a.add * q });
+    addonLines.push({ label: a.label, qty: q, amount: a.add * q, quote: !!a.quote });
   }
 
   const middle = Math.max(P.MINIMUM, labor + addons + prod.add - freq.off);
@@ -147,5 +152,6 @@ export function estimate(answers = {}, P = PRICING) {
     low: Math.max(P.MINIMUM, roundTo5(middle * P.RANGE_LOW)),
     high: roundTo5(middle * P.RANGE_HIGH),
     middle: roundTo5(middle),
+    carpetQuote: addonLines.some(l => l.quote),
   };
 }

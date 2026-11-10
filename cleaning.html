@@ -56,7 +56,7 @@ nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-betw
 .hero::before{display:none}
 .hero .wrap{position:relative;z-index:2;width:100%}
 .hero-copy{max-width:min(508px,calc(50vw - 72px));position:relative;z-index:2}
-.hero h1{font-size:clamp(44px,6vw,72px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:18px}
+.hero h1{font-size:clamp(40px,4.4vw,58px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:18px}
 .hero .lede{margin-bottom:28px;font-size:17.5px;color:#4d4b47}
 .hero .ask{background:var(--paper)}
 .ask{background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow);padding:24px;border:1px solid var(--line)}
@@ -98,6 +98,23 @@ nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-betw
 
 /* SERVICES + PRODUCTS */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.tier{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.tier .t-tag{align-self:flex-start;font-size:12px;font-weight:700;color:var(--sage-d);background:var(--sage-l);border-radius:99px;padding:5px 11px;margin-bottom:14px}
+.tier h3{font-size:22px;margin-bottom:8px}.tier p{font-size:14.5px;color:var(--muted);flex:1}
+.tier .t-from{margin:16px 0;font-size:13px;color:var(--muted)}.tier .t-from b{display:block;font-size:24px;color:var(--ink);margin-top:2px}
+.tier .btn{width:100%}
+.tier.dark{background:var(--sage-d);border-color:var(--sage-d)}.tier.dark h3,.tier.dark .t-from b{color:#fff}.tier.dark p,.tier.dark .t-from{color:rgba(255,255,255,.82)}
+.tier.dark .t-tag{background:rgba(255,255,255,.16);color:#fff}.tier.dark .btn{background:#fff;color:var(--sage-d)}
+.more-h{font-size:19px;margin-top:40px}
+.perks{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 22px}
+.perks li{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px}
+.perks b{display:block;font-size:15.5px;margin-bottom:4px}.perks span{font-size:13.5px;color:var(--muted)}
+details.more{margin:22px 0 6px;border:1.5px solid var(--line);border-radius:14px;padding:4px 16px}
+details.more summary{cursor:pointer;font-weight:600;padding:12px 0;color:var(--sage-d)}
+details.more[open]{padding-bottom:12px}
+@media(max-width:900px){.tiers{grid-template-columns:1fr}.perks{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.perks{grid-template-columns:1fr}}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
 .card .ic{font-size:26px;margin-bottom:10px}
 .card h3{font-size:20px;margin-bottom:6px}
@@ -417,7 +434,7 @@ footer a:hover{color:#fff}
   .hero-bg{display:block;width:calc(100% - 24px);height:300px;margin:12px auto 0;border-radius:24px;box-shadow:0 10px 30px rgba(40,36,30,.12)}
   .hero::after{display:none}
   .hero-copy{padding-top:22px}
-  .hero h1{font-size:44px;line-height:1;letter-spacing:-.04em}
+  .hero h1{font-size:36px;line-height:1.05;letter-spacing:-.035em}
   .ask{padding:18px 16px;border-radius:22px}
   .ask h2{font-size:20px}
   .picks{gap:8px}
@@ -488,18 +505,18 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <div class="hero-copy">
       <span class="kicker">Dallas · Denver · Nashville · Phoenix</span>
-      <h1>Come home to <span class="swash">calm.</span></h1>
-      <p class="lede">Background checked cleaners who use the products you choose, with photos of every room when they're done. See your price in two minutes and we'll call you to book.</p>
+      <h1>Come home to a <span class="swash">beautifully</span> maintained home.</h1>
+      <p class="lede">Without spending your weekends maintaining it. The same trusted cleaner every visit, photos when they're done, and one company for the repairs too.</p>
       <div class="ask" id="ask">
         <h2>What can we clean for you?</h2>
-        <p>Tap one to start your estimate. It takes about two minutes.</p>
+        <p>Tap one to see your price. It takes about a minute.</p>
         <div class="picks">
-          <button class="pick" data-svc="standard">Regular clean<small>Weekly, biweekly or once</small></button>
-          <button class="pick" data-svc="deep">Deep clean<small>Top to bottom</small></button>
+          <button class="pick" data-svc="standard">Essential Home Cleaning<small>Instant price, from <span data-from="standard">$175</span></small></button>
+          <button class="pick" data-svc="deep">Signature Deep Cleaning<small>Top to bottom, from <span data-from="deep">$275</span></small></button>
+          <button class="pick" data-svc="homecare">Complete Home Care<small>Cleaning, laundry, organizing, repairs</small></button>
           <button class="pick" data-svc="move">Moving in or out<small>Empty home</small></button>
           <button class="pick" data-svc="rental">Airbnb turnover<small>Between guests</small></button>
-          <button class="pick" data-svc="carpet">Carpet cleaning<small>Quoted for your area</small></button>
-          <button class="pick" data-svc="hoarder">Something bigger<small>Cleanouts, businesses</small></button>
+          <button class="pick" data-svc="">Something else<small>Carpet, cleanouts, businesses</small></button>
         </div>
       </div>
     </div>
@@ -509,9 +526,9 @@ footer a:hover{color:#fff}
 <div class="trust">
   <div class="wrap">
     <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>Background checked</b><span>Every cleaner, every time</span></div></div>
-    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span><div><b>Flexible scheduling</b><span>Weekdays and weekends</span></div></div>
-    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></svg></span><div><b>Your products, your call</b><span>Organic and plastic free options</span></div></div>
-    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b>A real person calls you</b><span>No surprises on price</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span><div><b>The same cleaner</b><span>Consistent, every visit</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></svg></span><div><b>Photo verified</b><span>Before and after, every room</span></div></div>
+    <div><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><b>One company for repairs too</b><span>Cleaning and maintenance</span></div></div>
   </div>
 </div>
 
@@ -519,56 +536,40 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <span class="kicker">Your estimate</span>
     <h2>Let's get you a price</h2>
-    <p class="lede">A few quick questions. When you're done, someone from DRC will call you to confirm and book.</p>
+    <p class="lede">Three quick steps. You see your price first, then we ask where to reach you.</p>
 
     <div class="q-layout">
       <form class="q-card" id="qform" novalidate>
         <div class="progress"><i id="bar"></i></div>
-        <div class="q-count" id="count">Step 1 of 5</div>
+        <div class="q-count" id="count">Step 1 of 3</div>
 
         <div class="panel on" data-p="0">
           <h3>What do you need?</h3>
-          <p class="hint">Pick the closest match. You can explain anything special later.</p>
+          <p class="hint">Pick the closest match. A rough guess on size is totally fine.</p>
           <fieldset><div class="opt-grid" id="svcOpts"></div></fieldset>
-          <fieldset><legend>How often?</legend><div class="opt-grid" id="freqOpts"></div></fieldset>
-        </div>
-
-        <div class="panel" data-p="1">
-          <h3>Tell us about your home</h3>
-          <p class="hint">A rough guess is totally fine.</p>
-          <div class="row">
+          <div class="row" id="sizeRow">
+            <div class="field"><label for="zip">ZIP code *</label><input id="zip" name="zip" inputmode="numeric" maxlength="5" autocomplete="postal-code" placeholder="75092"></div>
             <div class="field"><label for="sqft">Square feet</label><input id="sqft" name="sqft" type="number" inputmode="numeric" min="0" step="50" placeholder="1800"></div>
             <div class="field"><label for="bedrooms">Bedrooms</label><input id="bedrooms" name="bedrooms" type="number" inputmode="numeric" min="0" max="20" placeholder="3"></div>
             <div class="field"><label for="bathrooms">Bathrooms</label><input id="bathrooms" name="bathrooms" type="number" inputmode="decimal" min="0" max="20" step="0.5" placeholder="2"></div>
           </div>
+          <fieldset id="freqBox"><legend>How often?</legend><div class="opt-grid" id="freqOpts"></div></fieldset>
+        </div>
+
+        <div class="panel" data-p="1">
+          <h3 id="tuneH">Fine tune your price</h3>
+          <p class="hint" id="tuneHint">All optional. Skip anything that doesn't apply.</p>
+          <fieldset id="hcBox"><legend>What would you like us to take care of? Pick all that apply.</legend><div class="opt-grid" id="hcOpts"></div></fieldset>
+          <div id="tuneStd">
+            <fieldset><legend>How does it look right now? No judgment, we've seen it all.</legend><div class="opt-grid" id="soilOpts"></div></fieldset>
+            <fieldset><legend>Pets</legend><div class="opt-grid three" id="petOpts"></div></fieldset>
+            <fieldset><legend>Cleaning products</legend><div class="opt-grid" id="prodOpts"></div></fieldset>
+            <fieldset><legend>Extras</legend><div class="opt-grid" id="addonOpts"></div></fieldset>
+          </div>
           <fieldset id="carpetBox"><legend id="carpetLegend">Want carpet cleaning too?</legend><div class="opt-grid" id="carpetOpts"></div></fieldset>
-          <fieldset><legend>How does it look right now? No judgment, we've seen it all.</legend><div class="opt-grid" id="soilOpts"></div></fieldset>
-          <fieldset><legend>Pets</legend><div class="opt-grid three" id="petOpts"></div></fieldset>
         </div>
 
         <div class="panel" data-p="2">
-          <h3>Products and surfaces</h3>
-          <p class="hint">Do you have cleaning supplies you'd like us to use, or should we bring ours?</p>
-          <fieldset><div class="opt-grid" id="prodOpts"></div></fieldset>
-          <fieldset><legend>Any special surfaces? Pick all that apply.</legend><div class="opt-grid three" id="surfOpts"></div></fieldset>
-          <div class="field" style="margin-bottom:22px"><label for="surface_notes">Anything we should know about your surfaces or products?</label><textarea id="surface_notes" name="surface_notes" placeholder="Example: marble kitchen counters, please use the stone cleaner under the sink."></textarea></div>
-          <fieldset><legend>Extras</legend><div class="opt-grid" id="addonOpts"></div></fieldset>
-        </div>
-
-        <div class="panel" data-p="3">
-          <h3>How do you like things done?</h3>
-          <p class="hint">Everyone's different. This helps us send the right cleaner.</p>
-          <fieldset><legend>While we clean</legend><div class="opt-grid" id="styleOpts"></div></fieldset>
-          <div class="field" style="margin-bottom:20px"><label for="focus">Top priorities or problem spots</label><textarea id="focus" name="focus" placeholder="Example: the shower glass, the kitchen floor, the kids' bathroom."></textarea></div>
-          <div class="field" style="margin-bottom:20px"><label for="sensitivities">Allergies, scents to avoid or rooms to skip</label><input id="sensitivities" name="sensitivities" placeholder="Example: no bleach, skip the office."></div>
-          <div class="field" style="margin-bottom:20px"><label for="maint">Anything need fixing while we're there? (optional)</label><input id="maint" name="maint" placeholder="Example: leaky faucet, loose cabinet door, touch up paint."></div>
-          <div class="row two">
-            <div class="field"><label for="access">How do we get in?</label><select id="access" name="access"><option value="">Choose one</option><option>Someone will be home</option><option>Lockbox or key code</option><option>Smart lock / door code</option><option>Property manager lets us in</option><option>Not sure yet</option></select></div>
-            <div class="field"><label for="parking">Parking</label><select id="parking" name="parking"><option value="">Choose one</option><option>Driveway</option><option>Street</option><option>Visitor / garage parking</option><option>Paid parking</option></select></div>
-          </div>
-        </div>
-
-        <div class="panel" data-p="4">
           <h3>Where should we call you?</h3>
           <p class="hint">Someone from DRC will call to confirm your price and find a time. Photos help us get it exactly right.</p>
           <div class="row two">
@@ -577,31 +578,41 @@ footer a:hover{color:#fff}
           </div>
           <div class="row two">
             <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-            <div class="field"><label for="calltime">Best time to call</label><select id="calltime" name="calltime"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
-          </div>
-          <div class="row">
             <div class="field"><label for="address">Street address</label><input id="address" name="address" autocomplete="street-address"></div>
+          </div>
+          <div class="row two">
             <div class="field"><label for="metro">Area *</label><select id="metro" name="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Somewhere else</option></select></div>
             <div class="field"><label for="city">City</label><input id="city" name="city" autocomplete="address-level2"></div>
-            <div class="field"><label for="zip">ZIP</label><input id="zip" name="zip" inputmode="numeric" autocomplete="postal-code"></div>
           </div>
           <div class="row two">
             <div class="field"><label for="date">Preferred cleaning date</label><input id="date" name="date" type="date"></div>
-            <div class="field"><label for="payment">How would you like to pay?</label><select id="payment" name="payment"><option>Card (secure link)</option><option>Zelle</option></select></div>
+            <div class="field"><label for="calltime">Best time to call</label><select id="calltime" name="calltime"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
           </div>
           <span class="lbl">Photos (optional)</span>
           <div class="drop" id="drop" tabindex="0" role="button" aria-label="Add photos"><b>Tap to add photos</b> or drag them here<br><small>Kitchen, bathrooms and problem spots help most. Up to 8.</small></div>
           <input type="file" id="photoIn" accept="image/*" multiple hidden>
           <div class="thumbs" id="thumbs"></div>
-          <div class="row two" style="margin-top:20px">
+          <details class="more"><summary>Add more details (optional)</summary>
+          <fieldset><legend>Any special surfaces?</legend><div class="opt-grid three" id="surfOpts"></div></fieldset>
+          <div class="field" style="margin-bottom:18px"><label for="surface_notes">Notes on surfaces or products</label><textarea id="surface_notes" name="surface_notes" placeholder="Example: marble kitchen counters, please use the stone cleaner under the sink."></textarea></div>
+          <fieldset><legend>While we clean</legend><div class="opt-grid" id="styleOpts"></div></fieldset>
+          <div class="field" style="margin-bottom:18px"><label for="focus">Top priorities or problem spots</label><textarea id="focus" name="focus" placeholder="Example: the shower glass, the kitchen floor, the kids' bathroom."></textarea></div>
+          <div class="field" style="margin-bottom:18px"><label for="sensitivities">Allergies, scents to avoid or rooms to skip</label><input id="sensitivities" name="sensitivities" placeholder="Example: no bleach, skip the office."></div>
+          <div class="field" style="margin-bottom:18px"><label for="maint">Anything need fixing while we're there?</label><input id="maint" name="maint" placeholder="Example: leaky faucet, loose cabinet door, touch up paint."></div>
+          <div class="row two">
+            <div class="field"><label for="access">How do we get in?</label><select id="access" name="access"><option value="">Choose one</option><option>Someone will be home</option><option>Lockbox or key code</option><option>Smart lock or door code</option><option>Property manager lets us in</option><option>Not sure yet</option></select></div>
+            <div class="field"><label for="parking">Parking</label><select id="parking" name="parking"><option value="">Choose one</option><option>Driveway</option><option>Street</option><option>Visitor or garage parking</option><option>Paid parking</option></select></div>
+          </div>
+          <div class="row two">
             <div class="field"><label for="heard">How did you hear about us?</label><select id="heard" name="heard"><option value="">Choose one</option><option>Facebook</option><option>Instagram</option><option>Google</option><option>Yelp</option><option>Nextdoor</option><option>Craigslist</option><option>Friend or family</option><option>Realtor or property manager</option><option>Other</option></select></div>
             <div class="field"><label for="notes">Anything else?</label><input id="notes" name="notes"></div>
           </div>
+          </details>
           <div class="hp" aria-hidden="true"><label>Website <input name="company_site" tabindex="-1" autocomplete="off"></label></div>
-          <div class="callout"><b>Nothing to pay today.</b> We'll call to confirm your price first. You only pay once you're happy with it.</div>
+          <div class="callout"><b>Nothing to pay today.</b> We call to confirm your final price first. Once you approve it, we email a secure Square payment link and your date is locked in when payment comes through.</div>
         </div>
 
-        <div class="panel" data-p="5">
+        <div class="panel" data-p="3">
           <div class="done-card">
             <div class="tick">✓</div>
             <h3>You're all set!</h3>
@@ -623,7 +634,7 @@ footer a:hover{color:#fff}
         <div class="big" id="estBig"></div>
         <div class="sub" id="estSub">Pick a service to get started.</div>
         <ul id="estList"></ul>
-        <div class="call"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><span>We'll call you to confirm the final price after looking at your details. No payment until you approve it.</span></div>
+        <div class="call"><span class="ic"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><span>We'll call to confirm your final price. Nothing is charged until you approve it.</span></div>
       </aside>
     </div>
   </div>
@@ -631,29 +642,39 @@ footer a:hover{color:#fff}
 
 <section id="membership" class="member">
   <div class="wrap">
-    <div class="m-head"><div><span class="kicker">Membership</span><h2>Recurring cleans, one less thing to think about</h2></div><p class="lede">Pick how often. Same trusted team, priority booking and a lower price on every visit.</p></div>
+    <div class="m-head"><div><span class="kicker">Membership</span><h2>Your home, kept up for you</h2></div><p class="lede">Members get more than a lower price.</p></div>
+    <ul class="perks">
+      <li><b>Your own cleaner</b><span>The same person every visit, who learns your home and how you like it.</span></li>
+      <li><b>Priority scheduling</b><span>First pick of days, including the busy weeks before holidays.</span></li>
+      <li><b>A checklist that remembers</b><span>Your products, problem spots and rooms to skip, saved for every visit.</span></li>
+      <li><b>First in line for repairs</b><span>Your cleaner flags anything broken, and our maintenance team gets you scheduled first.</span></li>
+    </ul>
     <div class="plans">
       <div class="plan"><b>Monthly</b><span class="save">Save $10 every visit</span><p>A reset once a month.</p><a href="#quote" class="btn btn-soft" data-freq="monthly">Start monthly</a></div>
       <div class="plan pop"><span class="tag">Most popular</span><b>Every 2 weeks</b><span class="save">Save $15 every visit</span><p>The sweet spot for busy homes.</p><a href="#quote" class="btn btn-main" data-freq="biweekly">Start every 2 weeks</a></div>
       <div class="plan"><b>Weekly</b><span class="save">Save $20 every visit</span><p>Always guest ready.</p><a href="#quote" class="btn btn-soft" data-freq="weekly">Start weekly</a></div>
     </div>
-    <p class="m-note">Get your price in two minutes, then we'll call to set your day and text a secure link to save your card for automatic payment after each visit.</p>
+    <p class="m-note">See your price in about a minute. We call to set your day, then you pay each visit through a secure Square link. No contracts, pause any time.</p>
   </div>
 </section>
 
 <section id="services">
   <div class="wrap">
     <span class="kicker">Services</span>
-    <h2>Whatever your home needs</h2>
+    <h2>Three ways we take care of your home</h2>
+    <div class="tiers">
+      <div class="tier"><span class="t-tag">Instant estimate</span><h3>Essential Home Cleaning</h3><p>Kitchens, bathrooms, dusting, surfaces and floors. Weekly, every 2 weeks or monthly.</p><div class="t-from">Most 3 bed, 2 bath homes<b data-range="standard">$175 to $220</b></div><a href="#quote" class="btn btn-main" data-svc="standard">See my price</a></div>
+      <div class="tier"><span class="t-tag">Starting range, then your final quote</span><h3>Signature Deep Cleaning</h3><p>Detailed cleaning for first visits, seasonal refreshes and homes that need extra care.</p><div class="t-from">Most 3 bed, 2 bath homes<b data-range="deep">$275 to $355</b></div><a href="#quote" class="btn btn-main" data-svc="deep">See my price</a></div>
+      <div class="tier dark"><span class="t-tag">Custom proposal</span><h3>Complete Home Care</h3><p>Cleaning plus laundry, linens, kitchen detailing, organizing and repairs. One company handles it all.</p><div class="t-from">Built around your home<b>Itemized proposal</b></div><a href="#quote" class="btn" data-svc="homecare">Build my plan</a></div>
+    </div>
+    <h3 class="more-h">More services</h3>
     <p class="swipe-hint">Swipe to see more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
     <div class="cards">
-      <div class="card"><h3>Regular clean</h3><p>Kitchen, bathrooms, dusting, floors and surfaces on a schedule that suits you.</p><a href="#quote" data-svc="standard">Get a price →</a></div>
-      <div class="card"><h3>Deep clean</h3><p>Baseboards, doors, fixtures and built up grime. The best first visit.</p><a href="#quote" data-svc="deep">Get a price →</a></div>
       <div class="card"><h3>Move in or move out</h3><p>Empty home cleans to get your deposit back or start fresh.</p><a href="#quote" data-svc="move">Get a price →</a></div>
       <div class="card"><h3>Airbnb turnover</h3><p>Fast turns between guests, with photos so you know it's guest ready.</p><a href="#quote" data-svc="rental">Get a price →</a></div>
       <div class="card"><h3>Student housing</h3><p>Move out and turnover cleans per unit or per bed for leasing offices.</p><a href="#quote" data-svc="student">Get a price →</a></div>
       <div class="card"><h3>Carpet cleaning</h3><p>Deep steam cleaning for carpets, rugs and stairs. Add it to any clean or book it on its own. Quoted for your area.</p><a href="#quote" data-svc="carpet">Get a quote →</a></div>
-      <div class="card wide"><h3>Bigger jobs</h3><p>Hoarder and debris cleanouts, offices, dental, restaurants and more. Quoted from photos.</p><a href="#quote" data-svc="commercial">Get a quote →</a></div>
+      <div class="card"><h3>Bigger jobs</h3><p>Hoarder and debris cleanouts, offices, dental, restaurants and more. Quoted from photos.</p><a href="#quote" data-svc="commercial">Get a quote →</a></div>
     </div>
   </div>
 </section>
@@ -760,8 +781,8 @@ footer a:hover{color:#fff}
     <h2>Good to know</h2>
     <div class="faq">
       <details><summary>Do I need to provide cleaning supplies?</summary><p>No. We can bring ours, or you can leave out your own and we'll use only those. If you have marble, granite or other natural stone, tell us and we'll use a stone safe, pH neutral cleaner.</p></details>
-      <details><summary>Are your cleaners background checked?</summary><p>Yes. Every cleaner passes a background check before they're sent to a home.</p></details>
-      <details><summary>What happens after I send my estimate?</summary><p>Someone from DRC calls you to confirm your price, answer questions and set a date. Once you approve, we send a secure card link or Zelle details, and your date is locked in when payment comes through.</p></details>
+      <details><summary>How much does a cleaning cost?</summary><p>Most 3 bed, 2 bath homes run <span data-range="standard">$175 to $220</span> for Essential Home Cleaning and <span data-range="deep">$275 to $355</span> for Signature Deep Cleaning. Your estimate uses your home's size and condition, and we confirm the final price with you before booking.</p></details>
+      <details><summary>What happens after I send my estimate?</summary><p>Someone from DRC calls you to confirm your price, answer questions and set a date. Once you approve, we email a secure Square payment link with your price and terms. Your date is locked in when payment comes through. Payments are non refundable, and if we miss anything we come back and make it right.</p></details>
       <details><summary>Where do you clean?</summary><p>We currently serve the Dallas, Denver, Nashville and Phoenix areas. Somewhere else? Send your estimate anyway and we'll let you know.</p></details>
       <details><summary>Do I need to be home?</summary><p>No. Many clients give us a lockbox or door code. Either way, you get before and after photos of every room when we're done.</p></details>
     </div>
@@ -771,7 +792,7 @@ footer a:hover{color:#fff}
 <section style="padding-top:0">
   <div class="wrap">
     <div class="band" id="band">
-      <div><h2>Ready for a cleaner home?</h2><p>Two minutes for your price, then we'll give you a call.</p></div>
+      <div><h2>Ready for a cleaner home?</h2><p>About a minute for your price, then we'll give you a call.</p></div>
       <a href="#ask" class="btn">Start my estimate</a>
     </div>
   </div>
@@ -795,7 +816,7 @@ footer a:hover{color:#fff}
   <div class="chat-log" id="chatLog"></div>
   <form class="chat-in" id="chatIn"><input id="chatTxt" autocomplete="off"><button>Send</button></form>
 </div>
-<div class="mbar" id="mbar"><a href="#ask" class="btn btn-main">Get my price in 2 minutes</a></div>
+<div class="mbar" id="mbar"><a href="#ask" class="btn btn-main">See my price</a></div>
 
 <script type="module">
 import { PRICING as P, estimate } from './cleaning-pricing.js';
@@ -813,7 +834,14 @@ function radios(el, name, group, def, extra) {
     return `<div class="opt"><input type="radio" name="${name}" id="${id}" value="${k}" ${k === def ? 'checked' : ''}><label for="${id}">${right}${v.label}${note}</label></div>`;
   }).join('');
 }
-radios($('#svcOpts'), 'service', P.services, '', v => v.quoteOnly ? '<span class="price">Quote</span>' : '');
+radios($('#svcOpts'), 'service', P.services, '', v => v.proposal ? '<span class="price">Proposal</span>' : v.quoteOnly ? '<span class="price">Quote</span>' : '');
+$('#hcOpts').innerHTML = P.homecare.map((t, i) => `<div class="opt"><input type="checkbox" name="homecare" id="hc${i}" value="${t}"><label for="hc${i}">${t}</label></div>`).join('');
+// Typical 3 bed, 2 bath prices, worked out from the same formula as the estimate
+for (const k of ['standard', 'deep']) {
+  const t = estimate({ service: k, sqft: 1800, bedrooms: 3, bathrooms: 2 });
+  document.querySelectorAll(`[data-from="${k}"]`).forEach(el => el.textContent = money(t.low));
+  document.querySelectorAll(`[data-range="${k}"]`).forEach(el => el.textContent = `${money(t.low)} to ${money(t.high)}`);
+}
 radios($('#freqOpts'), 'frequency', P.frequency, 'once', v => v.off ? `<span class="price">Save $${v.off}</span>` : '');
 radios($('#soilOpts'), 'soil', P.soil, 'average');
 radios($('#petOpts'), 'pets', P.pets, 'none');
@@ -858,20 +886,30 @@ const answers = () => ({
 });
 function update() {
   const a = answers(); const r = estimate(a); const list = $('#estList');
-  const carpet = a.service === 'carpet';
-  if (r.ok && step > 0 && step < 4) $('#err').textContent = '';
-  document.querySelector('.panel[data-p="1"] .row').style.display = carpet ? 'none' : '';
-  document.querySelectorAll('.panel[data-p="1"] fieldset:not(#carpetBox)').forEach(f => f.style.display = carpet ? 'none' : '');
+  const carpet = a.service === 'carpet', hc = a.service === 'homecare';
+  if (r.ok && step < LAST) $('#err').textContent = '';
+  ['#sqft', '#bedrooms', '#bathrooms'].forEach(q => $(q).parentElement.style.display = carpet ? 'none' : '');
+  $('#freqBox').style.display = ['carpet', 'hoarder', 'commercial', 'move'].includes(a.service) ? 'none' : '';
+  $('#tuneStd').style.display = carpet || hc ? 'none' : '';
+  $('#hcBox').style.display = hc ? '' : 'none';
+  $('#carpetBox').style.display = hc ? 'none' : '';
   $('#carpetLegend').textContent = carpet ? 'How much carpet?' : 'Want carpet cleaning too?';
-  document.querySelector('.panel[data-p="1"] h3').textContent = carpet ? 'Tell us about your carpet' : 'Tell us about your home';
+  $('#tuneH').textContent = carpet ? 'Tell us about your carpet' : hc ? 'Build your home care plan' : 'Fine tune your price';
+  $('#tuneHint').textContent = hc ? 'Pick everything you want. There is no running total. A DRC home care specialist reviews your needs and sends a personalized, itemized quote before scheduling.' : carpet ? 'Carpet pricing depends on your area, so we quote it for you.' : 'All optional. Skip anything that does not apply.';
   if (!r.ok) {
     $('#estBig').textContent = '';
     $('#estSub').textContent = r.reason === 'Pick a service' ? 'Pick a service to get started.' : r.reason === 'Add your carpet rooms' ? 'Add how many rooms of carpet.' : 'Add your square feet, bedrooms or bathrooms.';
     list.innerHTML = ''; return r;
   }
+  if (r.quoteOnly && hc) {
+    const picks = [...form.querySelectorAll('input[name=homecare]:checked')].map(x => x.value);
+    $('#estBig').textContent = 'Personalized proposal';
+    $('#estSub').textContent = 'Your home deserves a service tailored to your needs. A DRC home care specialist will review your selections and send a personalized, itemized quote before scheduling.';
+    list.innerHTML = picks.map(t => `<li><span>${t}</span><span>✓</span></li>`).join(''); return r;
+  }
   if (r.quoteOnly) { $('#estBig').textContent = 'Custom quote'; $('#estSub').textContent = r.service === 'Carpet cleaning' ? "Carpet pricing depends on your area. We'll call you with your price." : "Add photos at the end and we'll call you with a price."; list.innerHTML = `<li><span>Service</span><span>${r.service}</span></li>` + (r.addonLines || []).map(x => `<li><span>${x.label}</span><span>${x.qty}</span></li>`).join(''); return r; }
-  $('#estBig').textContent = `${money(r.low)} to ${money(r.high)}`;
-  $('#estSub').textContent = (a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one time clean') + (r.carpetQuote ? '. Carpet is quoted separately for your area.' : '');
+  $('#estBig').textContent = a.service === 'deep' ? `From ${money(r.low)}` : `${money(r.low)} to ${money(r.high)}`;
+  $('#estSub').textContent = (a.service === 'deep' ? `Starting range ${money(r.low)} to ${money(r.high)}. Your final quote is confirmed after we review your home. ` : '') + (a.frequency && a.frequency !== 'once' ? `per visit, ${P.frequency[a.frequency].label.toLowerCase()}` : 'one time clean') + (r.carpetQuote ? '. Carpet is quoted separately for your area.' : '');
   const li = (k, v) => `<li><span>${k}</span><span>${v}</span></li>`;
   list.innerHTML = li('Service', r.service) + (r.carpetOnly ? '' : li('Time', `about ${r.laborHours} cleaner hours`))
     + r.addonLines.map(x => li(x.label + (x.qty > 1 ? ' ×' + x.qty : ''), x.quote ? 'Quoted separately' : '+' + money(x.amount))).join('')
@@ -880,6 +918,11 @@ function update() {
   return r;
 }
 form.addEventListener('input', update);
+$('#zip').addEventListener('input', () => {
+  const z = $('#zip').value.trim(); if (z.length < 3 || $('#metro').value) return;
+  const m = /^7[56]/.test(z) ? 'Dallas area' : /^80/.test(z) ? 'Denver area' : /^37/.test(z) ? 'Nashville area' : /^85/.test(z) ? 'Phoenix area' : '';
+  if (m) $('#metro').value = m;
+});
 form.addEventListener('change', update);
 
 // Photos, resized in the browser so uploads stay small
@@ -914,11 +957,12 @@ pin.addEventListener('change', () => { addFiles(pin.files); pin.value = ''; });
 drop.addEventListener('drop', e => addFiles(e.dataTransfer.files));
 
 // Steps
-let step = 0; const LAST = 4; const err = $('#err');
+let step = 0; const LAST = 2; const err = $('#err');
+const skipTune = () => ['hoarder', 'commercial'].includes(val('service'));
 function show(n, scroll = true) {
   step = n;
   document.querySelectorAll('.panel').forEach(p => p.classList.toggle('on', +p.dataset.p === n));
-  $('#bar').style.width = Math.min(100, (n + 1) * 20) + '%';
+  $('#bar').style.width = Math.min(100, Math.round((n + 1) * 100 / (LAST + 1))) + '%';
   $('#count').textContent = n > LAST ? 'Done' : `Step ${n + 1} of ${LAST + 1}`;
   $('#back').hidden = n === 0 || n > LAST;
   $('#next').textContent = n === LAST ? 'Send and have DRC call me' : 'Next →';
@@ -928,9 +972,12 @@ function show(n, scroll = true) {
 }
 function check(n) {
   document.querySelectorAll('.field.bad').forEach(f => f.classList.remove('bad'));
-  if (n === 0 && !val('service')) return 'Pick the service you need.';
-  if (n === 1) { const r = estimate(answers()); if (!r.quoteOnly && !r.ok) { if (r.reason === 'Add your carpet rooms') return 'Add how many rooms of carpet.'; $('#sqft').parentElement.classList.add('bad'); return 'Add your square feet, bedrooms or bathrooms.'; } }
-  if (n === 4) {
+  if (n === 0) {
+    if (!val('service')) return 'Pick the service you need.';
+    if (!/^\d{5}$/.test($('#zip').value.trim())) { $('#zip').parentElement.classList.add('bad'); $('#zip').focus(); return 'Add your 5 digit ZIP code.'; }
+    const r = estimate(answers()); if (!r.quoteOnly && !r.ok) { $('#sqft').parentElement.classList.add('bad'); return 'Add your square feet, bedrooms or bathrooms.'; }
+  }
+  if (n === 2) {
     for (const [id, what] of [['name', 'your name'], ['phone', 'a phone number'], ['email', 'your email'], ['metro', 'your area']]) {
       const el = $('#' + id);
       if (!el.value.trim() || (id === 'email' && !/^\S+@\S+\.\S+$/.test(el.value)) || (id === 'phone' && el.value.replace(/\D/g, '').length < 10)) {
@@ -940,17 +987,18 @@ function check(n) {
   }
   return '';
 }
-$('#back').addEventListener('click', () => show(step - 1));
+$('#back').addEventListener('click', () => show(step === 2 && skipTune() ? 0 : step - 1));
 $('#next').addEventListener('click', async () => {
   const m = check(step); if (m) { err.textContent = m; return; }
-  if (step < LAST) return show(step + 1);
+  if (step < LAST) return show(step === 0 && skipTune() ? 2 : step + 1);
   await submit();
 });
 
 // The hero question and service links jump straight into the estimate
 function startWith(svc) {
   const r = document.getElementById('service_' + svc);
-  if (r) { r.checked = true; update(); show(1); } else show(0);
+  if (r) { r.checked = true; update(); }
+  show(0); setTimeout(() => $('#zip').focus({ preventScroll: true }), 400);
 }
 document.querySelectorAll('[data-svc]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); startWith(el.dataset.svc); }));
 
@@ -965,7 +1013,9 @@ async function submit() {
     if (!res.ok || !data.success) throw new Error(data.error || 'Something went wrong.');
     const r = data.estimate; const first = $('#name').value.trim().split(' ')[0];
     const est = r && r.ok && !r.quoteOnly ? ` Your estimate is ${money(r.low)} to ${money(r.high)}.` : '';
-    $('#doneMsg').textContent = `Thanks, ${first}!${est} Someone from DRC will call you at ${$('#phone').value.trim()} shortly to confirm your price and book your clean.`;
+    $('#doneMsg').textContent = val('service') === 'homecare'
+      ? `Thanks, ${first}! We've received your selections. A DRC home care specialist will review your needs and send you a personalized, itemized quote before scheduling.`
+      : `Thanks, ${first}!${est} Someone from DRC will call you at ${$('#phone').value.trim()} shortly to confirm your price and book your clean.`;
     show(LAST + 1);
   } catch (e) {
     err.textContent = (e.message || 'Something went wrong.') + ' Please try again.';
@@ -1041,7 +1091,7 @@ document.querySelectorAll('[data-freq]').forEach(el => el.addEventListener('clic
   const svc = document.getElementById('service_standard'); if (svc) svc.checked = true;
   const f = document.querySelector('input[name="frequency"][value="' + el.dataset.freq + '"]'); if (f) f.checked = true;
   if (typeof update === 'function') update();
-  if (typeof show === 'function') show(1);
+  if (typeof show === 'function') show(0);
 }));
 
 // Chat: guided intake that hands the visitor to a real person
@@ -1093,7 +1143,7 @@ document.querySelectorAll('[data-freq]').forEach(el => el.addEventListener('clic
   const start = () => {
     started = true;
     say("Hi! I'll get a few details and connect you with someone from DRC. What kind of cleaning do you need?");
-    chips(['Regular clean', 'Deep clean', 'Move in or move out', 'Airbnb turnover', 'Carpet cleaning', 'Hoarder or debris cleanout', 'Office or business'], v => { lead.service = v; size(v === 'Office or business'); });
+    chips(['Essential Home Cleaning', 'Signature Deep Cleaning', 'Complete Home Care', 'Move in or move out', 'Airbnb turnover', 'Carpet cleaning', 'Hoarder or debris cleanout', 'Office or business'], v => { lead.service = v; size(v === 'Office or business'); });
   };
   fab.addEventListener('click', () => { box.classList.toggle('open'); if (!started) start(); });
   document.getElementById('chatX').addEventListener('click', () => box.classList.remove('open'));

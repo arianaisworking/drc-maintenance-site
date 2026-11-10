@@ -31,6 +31,7 @@ input[type=text]{width:100%;font:17px 'Figtree',sans-serif;padding:13px 14px;bor
 .err{color:var(--err);font-size:14.5px;margin-top:10px}
 .done{display:none;text-align:center}
 .done .tick{width:64px;height:64px;border-radius:50%;background:var(--sage-d);color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.prefs{display:flex;flex-direction:column;gap:10px;margin-top:10px}.prefs div{display:grid;grid-template-columns:1fr 1fr;gap:10px}.prefs input,.prefs select{font:16px 'Figtree',sans-serif;padding:12px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);width:100%}
 .small{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
 @media(max-width:560px){dl{grid-template-columns:1fr;gap:2px}dd{margin-bottom:10px}h1{font-size:26px}}
 </style>
@@ -54,6 +55,11 @@ input[type=text]{width:100%;font:17px 'Figtree',sans-serif;padding:13px 14px;bor
         <li>Please make sure our team can get in at your scheduled time, or tell us how to get in.</li>
         <li>If we missed something, tell us and we'll come back and make it right.</li>
       </ol>
+      <div id="prefBox" style="display:none">
+        <h2 style="margin-top:22px">Your preferred dates and times</h2>
+        <p class="sub" style="font-size:14.5px">Pick up to three. Our team will reach out to confirm your schedule soon.</p>
+        <div class="prefs" id="prefs"></div>
+      </div>
       <label for="signer">Type your full name to sign</label>
       <input type="text" id="signer" autocomplete="name">
       <label class="agree"><input type="checkbox" id="agree"><span>I agree to the price and terms above, including that all payments are non refundable.</span></label>
@@ -82,19 +88,27 @@ const post = body => fetch('/api/cleaning-booking', { method: 'POST', headers: {
   const k = d.booking; $('#good').style.display = 'block';
   const row = (t, v) => v ? `<dt>${t}</dt><dd>${v}</dd>` : '';
   $('#dl').innerHTML = row('Name', esc(k.name)) + row('Address', esc(k.address)) + row('Service', esc(k.service)) + row('Includes', esc(k.includes))
-    + row('Date', esc([fmtDate(k.date), k.window].filter(Boolean).join(', '))) + `<dt>Price</dt><dd class="price">${money(k.price)}</dd>` + row('Agreement', esc(k.id));
+    + row('Date', esc([fmtDate(k.date), k.window].filter(Boolean).join(', '))) + row('How often', k.frequency && k.frequency !== 'once' ? esc(k.frequencyLabel) : '')
+    + `<dt>Price</dt><dd class="price">${money(k.price)}${k.frequency && k.frequency !== 'once' ? ' <small style="font-size:15px;color:var(--muted)">per visit</small>' : ''}</dd>` + row('Your DRC rep', esc(k.rep)) + row('Agreement', esc(k.id));
+  if (!k.date) {
+    $('#prefBox').style.display = 'block';
+    const today = new Date(); today.setDate(today.getDate() + 1); const min = today.toISOString().slice(0, 10);
+    $('#prefs').innerHTML = [1, 2, 3].map(i => `<div><input type="date" min="${min}" aria-label="Preferred date ${i}" data-d="${i}"><select aria-label="Preferred time ${i}" data-t="${i}"><option>Morning (8 AM to 12 PM)</option><option>Afternoon (12 to 4 PM)</option><option>Any time</option></select></div>`).join('');
+  }
   $('#signer').value = '';
   $('#sign').addEventListener('click', async () => {
     $('#err').textContent = '';
     const signer = $('#signer').value.trim();
     if (signer.length < 3) { $('#err').textContent = 'Please type your full name.'; return; }
     if (!$('#agree').checked) { $('#err').textContent = 'Please check the box to agree to the terms.'; return; }
+    const prefs = [1, 2, 3].map(i => { const d = document.querySelector(`[data-d="${i}"]`); return d && d.value ? `${d.value} (${fmtDate(d.value)}), ${document.querySelector(`[data-t="${i}"]`).value}` : ''; }).filter(Boolean);
+    if (!k.date && !prefs.length) { $('#err').textContent = 'Please pick at least one preferred date.'; return; }
     $('#sign').disabled = true; $('#sign').textContent = 'Signing...';
-    const r = await post({ action: 'sign', signer, agree: true });
+    const r = await post({ action: 'sign', signer, agree: true, prefs });
     if (!r.ok) { $('#sign').disabled = false; $('#sign').textContent = 'Sign agreement'; $('#err').textContent = r.d.error || 'Something went wrong. Please try again.'; return; }
     $('#signCard').style.display = 'none'; $('#done').style.display = 'block';
-    if (r.d.pay) { $('#pay').href = r.d.pay; $('#pay').style.display = 'inline-flex'; $('#doneMsg').textContent = 'One last step: pay securely below. Your date is locked in as soon as your payment is confirmed.'; }
-    else $('#doneMsg').textContent = "We'll text you a secure payment link. Your date is locked in as soon as your payment is confirmed.";
+    if (r.d.pay) { $('#pay').href = r.d.pay; $('#pay').style.display = 'inline-flex'; $('#doneMsg').textContent = 'One last step: pay securely below. Our team will reach out soon to confirm your schedule, and your date is locked in once your payment is confirmed.'; }
+    else $('#doneMsg').textContent = "We'll text you a secure payment link, and our team will reach out soon to confirm your schedule. Your date is locked in once your payment is confirmed.";
   });
 })();
 </script>

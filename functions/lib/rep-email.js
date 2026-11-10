@@ -94,6 +94,11 @@ export function calculatorLink(origin, lead) {
   set('name', lead.name); set('email', lead.email); set('phone', lead.phone);
   set('address', [lead.address, lead.city || lead.location].filter(Boolean).join(', '));
   if (lead.addonCounts) set('addons', JSON.stringify(lead.addonCounts));
+  set('pref', [lead.date, lead.time].filter(Boolean).join(', '));
+  const info = [lead.surfaces && lead.surfaces.length ? 'Surfaces: ' + lead.surfaces.join(', ') : '', lead.surfaceNotes, lead.focus && 'Focus: ' + lead.focus,
+    lead.sensitivities && 'Allergies or scents: ' + lead.sensitivities, lead.access && 'Access: ' + lead.access, lead.parking && 'Parking: ' + lead.parking,
+    lead.style && 'Style: ' + lead.style, lead.notes].filter(Boolean).join('. ');
+  set('info', info.slice(0, 600));
   return `${origin}/cleaning-rep?${p.toString()}`;
 }
 
@@ -136,7 +141,7 @@ ${card('Lead details', `<table role="presentation" style="font-size:14px;border-
 ${sug.length ? card('Add ons to offer', sug.map(s => `<p style="margin:0 0 10px;font-size:14px"><b>${esc(s.title)}</b><br><span style="color:${muted}">${esc(s.why)}</span></p>`).join('')) : ''}
 ${card('Follow up questions', `<ol style="margin:0;padding-left:20px;font-size:14px;line-height:1.7">${qs.map(q => `<li>${esc(q)}</li>`).join('')}</ol>`)}
 ${card('Quick call script', script.map((l, i) => `<p style="margin:0 0 10px;font-size:14px;line-height:1.55;${i % 2 ? `color:${muted}` : ''}">${l}</p>`).join(''))}
-${card('Next steps', `<ol style="margin:0;padding-left:20px;font-size:14px;line-height:1.7"><li>Call within 15 minutes if you can.</li><li>Confirm details and price in the calculator.</li><li>In the calculator, create the agreement link and send it to the customer.</li><li>When the signed agreement email arrives and payment shows up, lock in their date and reply to confirm.</li></ol><p style="margin:12px 0 0;font-size:13px;color:${muted}">All payments are non refundable. The date is not held until payment is confirmed.</p>`)}
+${card('Next steps', `<ol style="margin:0;padding-left:20px;font-size:14px;line-height:1.7"><li>Call within 15 minutes if you can.</li><li>Confirm details and price in the calculator.</li><li>In the calculator, add your name as the rep, create the agreement link and send it to the customer.</li><li>When the signed agreement email arrives and payment shows up, lock in their date and reply to confirm.</li></ol><p style="margin:12px 0 0;font-size:13px;color:${muted}">All payments are non refundable. The date is not held until payment is confirmed.</p>`)}
 <tr><td style="padding:4px 28px 28px;font-size:12px;color:${muted};text-align:center">DRC Home Services · Dedicated Resource Center LLC · Internal, do not forward to the customer</td></tr>
 </table></td></tr></table></body></html>`;
 }

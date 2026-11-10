@@ -36,7 +36,8 @@ function summaryHtml(origin, bk, signed) {
   <table style="font-size:14px;border-collapse:collapse">
     ${tr('Customer', esc(bk.name))}${tr('Phone', esc(bk.phone))}${tr('Email', esc(bk.email))}${tr('Address', esc(bk.address))}
     ${tr('Service', esc(bk.service))}${tr('Includes', esc(bk.includes).replace(/\n/g, '<br>'))}${tr('Date', esc([bk.date, bk.window].filter(Boolean).join(', ')))}
-    ${tr('Price', `<b>${money(bk.price)}</b>`)}${tr('Agreement number', esc(bk.id))}
+    ${tr('How often', bk.frequency !== 'once' ? esc(bk.frequencyLabel) : '')}${tr('Price', `<b>${money(bk.price)}</b>${bk.frequency !== 'once' ? ' per visit' : ''}`)}${tr('Agreement number', esc(bk.id))}${tr('DRC rep', esc(bk.rep))}
+    ${signed && signed.prefs && signed.prefs.length ? tr('Preferred dates', signed.prefs.map(esc).join('<br>')) : ''}
     ${signed ? tr('Signed by', `${esc(signed.signer)} on ${esc(signed.at)}`) : ''}
   </table></div></div>`;
 }
@@ -52,7 +53,10 @@ export async function onRequestPost({ request, env }) {
       name: clean(x.name, 120), email: clean(x.email, 160), phone: clean(x.phone, 40), address: clean(x.address, 240),
       service: clean(x.service, 120), includes: clean(x.includes, 900), date: clean(x.date, 40), window: clean(x.window, 60),
       price: Math.max(0, Math.round(Number(x.price) * 100) / 100), pay: clean(x.pay, 500), created: new Date().toISOString(),
+      rep: clean(x.rep, 80), pref: clean(x.pref, 200), info: clean(x.info, 700),
+      frequency: ['weekly', 'biweekly', 'monthly'].includes(x.frequency) ? x.frequency : 'once', frequencyLabel: clean(x.frequencyLabel, 40),
     };
+    if (!bk.rep) return json({ error: 'Add the rep name' }, 400);
     if (!bk.name || !bk.service || !bk.price) return json({ error: 'Name, service and price are needed' }, 400);
     if (bk.pay && !/^https:\/\//i.test(bk.pay)) return json({ error: 'The payment link must start with https://' }, 400);
     const b = enc(bk), s = await hmac(env, b);
@@ -67,19 +71,47 @@ export async function onRequestPost({ request, env }) {
   if (d.action === 'sign') {
     const signer = clean(d.signer, 120);
     if (!signer || !d.agree) return json({ error: 'Please type your full name and agree to the terms.' }, 400);
-    const signed = { signer, at: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'medium', timeStyle: 'short' }) + ' CT', ip: request.headers.get('CF-Connecting-IP') || '' };
+    const prefs = (Array.isArray(d.prefs) ? d.prefs : []).map(p => clean(p, 80)).filter(Boolean).slice(0, 3);
+    if (!bk.date && !prefs.length) return json({ error: 'Please pick at least one preferred date.' }, 400);
+    const signed = { signer, prefs, at: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'medium', timeStyle: 'short' }) + ' CT', ip: request.headers.get('CF-Connecting-IP') || '' };
+
+    // Recurring clients: a follow up reminder for the rep before the next clean
+    let reminder = '', attachments;
+    const every = { weekly: 7, biweekly: 14, monthly: 30 }[bk.frequency];
+    const first = bk.date || (String(prefs[0] || '').match(/\d{4}-\d{2}-\d{2}/) || [])[0];
+    if (every && first) {
+      const fu = new Date(first + 'T15:00:00Z'); fu.setUTCDate(fu.getUTCDate() + every - 3);
+      const ymd = fu.toISOString().slice(0, 10).replace(/-/g, '');
+      const title = `Follow up: ${bk.name} next ${bk.frequencyLabel.toLowerCase()} clean (${bk.id})`;
+      const details = `Confirm and schedule ${bk.name}'s next clean. ${bk.phone} ${bk.email}. Rep: ${bk.rep}.`;
+      const gcal = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${ymd}/${ymd}&details=${encodeURIComponent(details)}`;
+      const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//DRC Home Services//EN', 'BEGIN:VEVENT', `UID:${bk.id}-followup@drcmaintenance.com`,
+        `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`, `DTSTART;VALUE=DATE:${ymd}`, `SUMMARY:${title}`, `DESCRIPTION:${details}`,
+        'BEGIN:VALARM', 'TRIGGER:PT9H', 'ACTION:DISPLAY', `DESCRIPTION:${title}`, 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+      attachments = [{ filename: `follow-up-${bk.id}.ics`, content: btoa(unescape(encodeURIComponent(ics))) }];
+      reminder = `<p style="font-family:Arial,sans-serif;font-size:15px;background:#E4EEE5;border-radius:10px;padding:12px 14px"><b>Recurring client (${esc(bk.frequencyLabel)}).</b> Follow up on ${fu.toLocaleDateString('en-US', { month: 'long', day: 'numeric', timeZone: 'UTC' })} to confirm and schedule the next clean. <a href="${gcal}">Add the reminder to Google Calendar</a> or open the attached calendar file.</p>`;
+    }
+
     const office = await send(env, {
       from: env.FROM_EMAIL, to: env.CLEANING_TO_EMAIL || env.TO_EMAIL, reply_to: bk.email || undefined,
-      subject: `Signed agreement ${bk.id}: ${bk.name}, ${money(bk.price)}. Lock the date once paid`,
-      html: `<p style="font-family:Arial,sans-serif;font-size:16px"><b>${esc(bk.name)} signed the cleaning agreement.</b> Check that payment of ${money(bk.price)} came through, then lock in ${esc(bk.date || 'their date')} and reply to confirm.</p>${summaryHtml(origin, bk, signed)}<p style="font-family:Arial,sans-serif;font-size:12px;color:#5F6B64">Signed from IP ${esc(signed.ip)}. Terms agreed: date locked once payment is confirmed; all payments are non refundable.</p>`,
+      subject: `Signed agreement ${bk.id}: ${bk.name}, ${money(bk.price)} (rep ${bk.rep}). Confirm schedule once paid`,
+      html: `<p style="font-family:Arial,sans-serif;font-size:16px"><b>${esc(bk.name)} signed the cleaning agreement.</b> Rep: <b>${esc(bk.rep)}</b>. Check that payment of ${money(bk.price)} came through, then ${bk.date ? `confirm ${esc(bk.date)}` : 'pick a date from their preferred times below'} and reach out to confirm the schedule.</p>${reminder}${summaryHtml(origin, bk, signed)}${bk.info ? `<p style="font-family:Arial,sans-serif;font-size:14px"><b>Customer notes (office only):</b> ${esc(bk.info)}</p>` : ''}${bk.pref ? `<p style="font-family:Arial,sans-serif;font-size:14px"><b>Preference given on the call or questionnaire:</b> ${esc(bk.pref)}</p>` : ''}<p style="font-family:Arial,sans-serif;font-size:12px;color:#5F6B64">Signed from IP ${esc(signed.ip)}. Terms agreed: date locked once payment is confirmed; all payments are non refundable.</p>`,
+      attachments,
     });
     if (!office.ok) return json({ error: 'We could not save your signature. Please try again.' }, 502);
     if (bk.email) {
       try {
         await send(env, {
           from: env.FROM_EMAIL, to: bk.email, subject: `Your DRC Home Services agreement ${bk.id}`,
-          html: `<p style="font-family:Arial,sans-serif;font-size:15px">Hi ${esc(bk.name.split(' ')[0])}, thank you! Here is a copy of your signed agreement.${bk.pay ? ` If you haven't paid yet, you can pay here: <a href="${esc(bk.pay)}">secure payment link</a>.` : ' We will send you a secure payment link.'} Your date is locked in as soon as your payment is confirmed. All payments are non refundable.</p>${summaryHtml(origin, bk, signed)}`,
+          html: `<p style="font-family:Arial,sans-serif;font-size:15px">Hi ${esc(bk.name.split(' ')[0])}, thank you! Here is a copy of your signed agreement.${bk.pay ? ` If you haven't paid yet, you can pay here: <a href="${esc(bk.pay)}">secure payment link</a>.` : ' We will send you a secure payment link.'} Our team will reach out soon to confirm your schedule. Your date is locked in once your payment is confirmed. All payments are non refundable.</p>${summaryHtml(origin, { ...bk, info: '' }, signed)}`,
         });
+      } catch {}
+    }
+    // CRM log (DRC dashboard or any webhook): who sold it, to whom, for how much
+    if (env.CLEANING_LEAD_WEBHOOK) {
+      try {
+        await fetch(env.CLEANING_LEAD_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ source: 'drcmaintenance.com/cleaning-book', event: 'agreement_signed', rep: bk.rep, booking: bk, signed }) });
       } catch {}
     }
     return json({ success: true, pay: bk.pay || '' });

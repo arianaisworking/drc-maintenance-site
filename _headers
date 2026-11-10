@@ -1,3 +1,9 @@
 # Keep the vendor signup page out of search engines — it is link-only.
 /vendors.html
   X-Robots-Tag: noindex, nofollow, noarchive
+
+# Ad landing page: paid traffic only, keep it out of search
+/home-cleaning
+  X-Robots-Tag: noindex, nofollow, noarchive
+/home-cleaning.html
+  X-Robots-Tag: noindex, nofollow, noarchive

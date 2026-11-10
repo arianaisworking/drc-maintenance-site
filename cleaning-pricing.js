@@ -75,7 +75,10 @@ export const PRICING = {
     windows:   { label: 'Interior windows and tracks', add: 50 },
     baseboards:{ label: 'Hand wiped baseboards', add: 40 },
     blinds:    { label: 'Blinds', add: 35 },
-    laundry:   { label: 'Laundry, wash and fold (per load)', add: 20 },
+    // Laundry is per load and includes washing, drying, folding, organizing and putting away.
+    // Market wash and fold alone runs about $20 to $40 a load (15 to 30 lbs); ours adds the put away.
+    laundry:      { label: 'Laundry, standard load (wash, fold and put away)', add: 35 },
+    laundryLarge: { label: 'Laundry, large or bedding load (comforters, towels, oversized)', add: 45 },
     dishes:    { label: 'Dishes', add: 20 },
     garage:    { label: 'Garage sweep out', add: 60 },
     patio:     { label: 'Patio or balcony', add: 40 },

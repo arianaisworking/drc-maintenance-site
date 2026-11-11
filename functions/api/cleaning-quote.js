@@ -29,8 +29,9 @@ export async function onRequestPost({ request, env }) {
   let form;
   try { form = await request.formData(); } catch { return json({ error: 'Could not read the form' }, 400); }
 
-  // Honeypot: real people never fill this.
-  if (form.get('company_site')) return json({ success: true });
+  // Spam trap. Browser autofill can fill it for real people, so we never drop
+  // the lead: it still goes to the office, flagged, and the client email is skipped.
+  const flagged = !!(form.get('company_site') || form.get('hp_check'));
 
   const g = k => String(form.get(k) ?? '').trim().slice(0, 2000);
   const all = k => form.getAll(k).map(v => String(v).trim()).filter(Boolean);
@@ -115,7 +116,7 @@ export async function onRequestPost({ request, env }) {
     from: env.FROM_EMAIL,
     to: env.CLEANING_TO_EMAIL || env.TO_EMAIL,
     reply_to: lead.email,
-    subject: `DRC Home Services lead: ${lead.name}, ${lbl('services', lead.service)}${lead.metro ? ', ' + lead.metro : lead.city ? ', ' + lead.city : ''}`,
+    subject: `${flagged ? '[Check: possible spam] ' : ''}DRC Home Services lead: ${lead.name}, ${lbl('services', lead.service)}${lead.metro ? ', ' + lead.metro : lead.city ? ', ' + lead.city : ''}`,
     html: officeHtml,
     attachments: [...attachments, { filename: 'DRC-Home-Services-Cleaning-Price-Sheet.pdf', path: `${origin}/docs/drc-cleaning-price-sheet.pdf` }],
   });
@@ -125,6 +126,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   // Client confirmation. A failure here doesn't fail the request.
+  if (flagged) return json({ success: true, estimate: est });
   const clientEst = est.ok && !est.quoteOnly
     ? `<p>Your estimate: <strong>${money(est.low)} to ${money(est.high)}</strong>.</p>`
     : '';

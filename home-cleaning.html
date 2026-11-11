@@ -25,7 +25,7 @@ img{max-width:100%;display:block}
 .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
 h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;line-height:1.08;text-wrap:balance}
 h2{font-size:clamp(32px,3.6vw,46px);margin-bottom:14px}
-.lede{font-size:18px;color:var(--muted);max-width:54ch}
+.lede{font-size:18px;color:var(--muted);max-width:54ch;text-wrap:pretty}
 .sec{padding:100px 0}
 .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:17px 26px;border-radius:3px;border:none;font:600 16px/1 var(--sans);letter-spacing:.01em;cursor:pointer;background:var(--ever);color:#fff;text-decoration:none;transition:background .2s}
 .btn:hover{background:var(--ever-d)}
@@ -50,9 +50,8 @@ h2{font-size:clamp(32px,3.6vw,46px);margin-bottom:14px}
 .hero h1{font-size:clamp(46px,5.2vw,74px);margin-bottom:22px}
 .hero h1 span{display:block}
 .hero .lede{margin-bottom:28px}
-.facts{list-style:none;display:flex;flex-wrap:wrap;font-size:14.5px;color:var(--ink)}
-.facts{gap:8px 22px}.facts li,.facts li:first-child{padding:0 0 0 20px;border:none;position:relative}
-  .facts li::before{content:'';position:absolute;left:0;top:50%;width:12px;height:12px;margin-top:-6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%231F3D30' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3 3 7-7'/%3E%3C/svg%3E") center/contain no-repeat}
+.facts{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px;max-width:560px;font-size:15px;line-height:1.4;color:var(--ink)}
+.facts li{border-top:1px solid #CFCDC4;padding-top:14px}
 .area{font-size:14.5px;color:var(--muted);margin-top:22px}
 
 /* quote card */
@@ -245,7 +244,10 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
   .hero .wrap{padding-top:26px;gap:22px}
   .hero .wrap>div:first-child{padding-top:0}
   .hero h1{font-size:40px;margin-bottom:12px}
-  .area{margin-top:14px}
+  .facts{grid-template-columns:1fr;gap:0}
+  .facts li{padding:11px 0}
+  .facts li:last-child{border-bottom:1px solid #CFCDC4}
+  .area{margin-top:16px}
   .hero .lede{font-size:16.5px;margin-bottom:18px}
   .qc{padding:24px 18px;margin:0 -4px}
   .needs{gap:7px}.need{font-size:14px;padding:11px 10px 11px 36px}.need::before{left:12px}

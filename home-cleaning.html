@@ -5,120 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>DRC Home Services | Your Home, Fully Handled</title>
-<meta name="description" content="Cleaning, laundry, organizing and repairs from one trusted team. See your price in about a minute.">
+<meta name="description" content="Cleaning, laundry, organizing, repairs and yard care from one trusted team. Tell us what you need and see your price.">
 <link rel="icon" type="image/png" href="img/drc-logo.png">
+<link rel="preload" as="image" href="img/clean-hero-listing.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ever:#1E3A2F; --ever-d:#14291F; --ever-l:#2C4C3E;
-  --linen:#F6F7F4; --paper:#FFFFFF; --mist:#E7EBE6; --line:#D9DED8;
-  --brass:#A8844C; --brass-l:#E9DDC6;
-  --ink:#17211C; --muted:#5B6660; --err:#A3352A;
-  --serif:'Libre Caslon Display',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
+  --paper:#FFFFFF; --stone:#F4F3EF; --stone-d:#EAE8E1; --line:#E2E1DA;
+  --ever:#1F3D30; --ever-d:#162D23; --ever-t:#EEF3EF;
+  --brass:#9C7A45; --ink:#1A1F1C; --muted:#5F6862; --err:#A3352A;
+  --serif:'Gilda Display',Georgia,serif; --sans:'Hanken Grotesk',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--ink);background:var(--linen);line-height:1.6;font-size:16px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
-a{color:inherit}
 :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
-h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.04}
-h2{font-size:clamp(34px,4.2vw,52px);margin-bottom:16px}
-.lede{font-size:18px;color:var(--muted);max-width:56ch}
-.sec{padding:104px 0}
-
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:17px 26px;border-radius:4px;border:none;font:600 16px/1 var(--sans);letter-spacing:.01em;cursor:pointer;background:var(--ever);color:#fff;text-decoration:none;transition:background .2s}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;line-height:1.08;text-wrap:balance}
+h2{font-size:clamp(32px,3.6vw,46px);margin-bottom:14px}
+.lede{font-size:18px;color:var(--muted);max-width:54ch}
+.sec{padding:100px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:17px 26px;border-radius:3px;border:none;font:600 16px/1 var(--sans);letter-spacing:.01em;cursor:pointer;background:var(--ever);color:#fff;text-decoration:none;transition:background .2s}
 .btn:hover{background:var(--ever-d)}
 .btn[disabled]{opacity:.6;cursor:wait}
-.btn.light{background:var(--linen);color:var(--ever)}
-.btn.light:hover{background:#fff}
-.link{background:none;border:none;font:500 14px var(--sans);color:var(--ever);cursor:pointer;padding:6px 0;text-decoration:underline;text-underline-offset:3px}
+.link{background:none;border:none;font:500 14px var(--sans);color:var(--ever);cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:3px}
 
-/* top bar */
-.top{position:absolute;inset:0 0 auto;z-index:5}
-.top .wrap{height:84px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:14px;color:var(--linen)}
-.brand img{height:44px;width:auto;background:#fff;border-radius:4px;padding:3px 5px}
-.brand span{font-family:var(--serif);font-size:21px}
-.top a.cta{color:var(--linen);font-weight:600;font-size:15px;text-decoration:none;border-bottom:1px solid var(--brass);padding-bottom:2px}
+/* header: white, so the logo sits naturally */
+.top{background:var(--paper);border-bottom:1px solid var(--line);position:relative;z-index:5}
+.top .wrap{height:76px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+.brand img{height:48px;width:auto}
+.brand span{font-family:var(--serif);font-size:20px;padding-left:14px;border-left:1px solid var(--line)}
+.top nav{display:flex;align-items:center;gap:26px;font-size:15px}
+.top nav button{background:none;border:none;font:500 15px var(--sans);color:var(--ink);cursor:pointer}
+.top nav a{font-weight:600;color:var(--ever);text-decoration:none;border-bottom:1px solid var(--ever);padding-bottom:1px}
 
-/* hero */
-.hero{background:var(--ever);color:var(--linen);padding:150px 0 96px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;right:-180px;top:-180px;width:560px;height:560px;border-radius:50%;border:1px solid rgba(168,132,76,.28)}
-.hero .wrap{display:grid;grid-template-columns:1fr 470px;gap:72px;align-items:start;position:relative;z-index:1}
-.hero h1{font-size:clamp(50px,6.4vw,92px);margin-bottom:24px}
-.hero .lede{color:rgba(246,247,244,.78);font-size:19px;margin-bottom:12px}
-.area{font-size:15px;color:var(--brass-l);margin-bottom:40px}
-
-/* signature: the household list */
-.list{background:var(--linen);color:var(--ink);border-radius:6px;padding:26px 28px 22px;max-width:440px;box-shadow:0 30px 60px rgba(8,20,14,.35);transform:rotate(-1.2deg)}
-.list h3{font-family:var(--serif);font-weight:400;font-size:24px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline}
-.list h3 small{font-family:var(--sans);font-size:13px;color:var(--muted)}
-.list ul{list-style:none}
-.list li{display:flex;align-items:center;gap:14px;padding:10px 0;border-top:1px solid var(--line);font-size:16px}
-.list li .box{width:20px;height:20px;border:1.5px solid #9DA79F;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .3s}
-.list li .box svg{width:13px;height:13px;stroke:#fff;stroke-width:3;fill:none;stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .35s .1s}
-.list li .t{position:relative;transition:color .4s}
-.list li .t::after{content:'';position:absolute;left:0;top:52%;height:1.5px;width:0;background:var(--muted);transition:width .45s .15s}
-.list li.done .box{background:var(--ever);border-color:var(--ever)}
-.list li.done .box svg{stroke-dashoffset:0}
-.list li.done .t{color:var(--muted)}
-.list li.done .t::after{width:100%}
-.list .by{font-size:13px;color:var(--muted);margin-top:10px;opacity:0;transition:opacity .5s}
-.list.finished .by{opacity:1}
-@media (prefers-reduced-motion:reduce){.list li *,.list li .t::after,.list .by{transition:none!important}}
+/* hero: stone on the left, photograph on the right, the card sits across both */
+.hero{position:relative;background:var(--stone);overflow:hidden}
+.hero-photo{position:absolute;top:0;right:0;bottom:0;width:44%;background:url(img/clean-hero-listing.jpg) 38% center/cover}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1fr 460px;gap:64px;padding-top:84px;padding-bottom:84px;align-items:start}
+.hero .wrap>div:first-child{padding-top:64px}
+.hero h1{font-size:clamp(46px,5.2vw,74px);margin-bottom:22px}
+.hero h1 span{display:block}
+.hero .lede{margin-bottom:28px}
+.facts{list-style:none;display:flex;flex-wrap:wrap;gap:10px 0;font-size:14.5px;color:var(--ink)}
+.facts li{padding:0 18px;border-left:1px solid #CFCDC4}
+.facts li:first-child{padding-left:0;border-left:none}
+.area{font-size:14.5px;color:var(--muted);margin-top:22px}
 
 /* quote card */
-.qc{background:var(--paper);color:var(--ink);border-radius:8px;padding:30px;box-shadow:0 30px 70px rgba(8,20,14,.4)}
-.qc h2{font-size:30px;margin-bottom:4px}
+.qc{background:var(--paper);border-radius:4px;padding:32px;box-shadow:0 24px 60px rgba(26,31,28,.14),0 2px 6px rgba(26,31,28,.06)}
+.qc h2{font-size:28px;margin-bottom:4px}
 .qc .sub{font-size:14.5px;color:var(--muted);margin-bottom:20px}
-.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.needs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.need{text-align:left;border:1px solid var(--line);background:#fff;border-radius:3px;padding:12px 14px 12px 40px;font:500 14.5px/1.3 var(--sans);color:var(--ink);cursor:pointer;position:relative;transition:border-color .15s,background .15s}
+.need::before{content:'';position:absolute;left:14px;top:50%;width:16px;height:16px;margin-top:-8px;border:1px solid #A9AEA9;border-radius:2px;background:#fff}
+.need:hover{border-color:#BDC2BC}
+.need[aria-pressed=true]{border-color:var(--ever);background:var(--ever-t)}
+.need[aria-pressed=true]::before{background:var(--ever) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E") center/12px no-repeat;border-color:var(--ever)}
+.opt{font-weight:400;color:var(--muted);margin-left:4px}
+.chatlink{font-size:14px;color:var(--muted);text-align:center;margin-top:10px;border-top:1px solid var(--line);padding-top:14px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
 .seg input,.chips input{position:absolute;opacity:0;pointer-events:none}
-.seg label{display:block;border:1px solid var(--line);border-radius:6px;padding:13px 14px;cursor:pointer;font-weight:600;font-size:15px;line-height:1.25;transition:border-color .2s,background .2s}
+.seg label{display:block;border:1px solid var(--line);border-radius:3px;padding:12px 14px;cursor:pointer;font-weight:600;font-size:15px;line-height:1.25}
 .seg label small{display:block;font-weight:400;font-size:13px;color:var(--muted);margin-top:3px}
-.seg input:checked+label{border-color:var(--ever);background:#F1F5F2;box-shadow:inset 0 0 0 1px var(--ever)}
+.seg input:checked+label{border-color:var(--ever);background:var(--ever-t);box-shadow:inset 0 0 0 1px var(--ever)}
 .seg input:focus-visible+label,.chips input:focus-visible+label{outline:2px solid var(--brass);outline-offset:2px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
 .grid.two{grid-template-columns:1fr 1fr}
-.f label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
-.f input{width:100%;font:16px var(--sans);padding:12px 13px;border:1px solid var(--line);border-radius:5px;background:#FBFCFA;color:var(--ink)}
-.f input:focus{outline:none;border-color:var(--ever);background:#fff;box-shadow:0 0 0 3px rgba(30,58,47,.12)}
-.f.bad input{border-color:var(--err)}
-.lbl{display:block;font-size:13px;font-weight:600;margin-bottom:8px}
+.f label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.f input,.f textarea{width:100%;font:16px/1.4 var(--sans);padding:12px 13px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink);resize:vertical}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--ever);box-shadow:0 0 0 3px rgba(31,61,48,.10)}
+.f.bad input,.f.bad textarea{border-color:var(--err)}
+.lbl{display:block;font-size:13.5px;font-weight:600;margin-bottom:8px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .chips div{position:relative}
 .chips label{display:block;border:1px solid var(--line);border-radius:99px;padding:8px 14px;font-size:14px;font-weight:500;cursor:pointer}
 .chips label i{font-style:normal;color:var(--brass);font-weight:600;margin-left:5px}
 .chips input:checked+label{border-color:var(--ever);background:var(--ever);color:#fff}
-.chips input:checked+label i{color:var(--brass-l)}
+.chips input:checked+label i{color:#E6D7BC}
 .price{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 2px;margin-bottom:16px;min-height:76px}
 .price span{font-size:13px;color:var(--muted);line-height:1.45}
-.price b{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--ever);white-space:nowrap;line-height:1}
+.price b{font-family:var(--serif);font-weight:400;font-size:32px;color:var(--ever);white-space:nowrap;line-height:1}
 .price.empty b{font-family:var(--sans);font-size:15px;color:var(--muted);font-weight:500}
+.recap{border:1px solid var(--line);background:var(--stone);border-radius:3px;padding:12px 14px;margin-bottom:18px;font-size:14px;line-height:1.5}
+.recap b{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:2px}
 .err{color:var(--err);font-size:14px;font-weight:600;min-height:1.2em;margin-top:8px}
 .fine{font-size:13px;color:var(--muted);margin-top:12px;text-align:center}
-.limit{font-size:13px;color:var(--muted);text-align:center;margin-top:6px;line-height:1.5}
-.season{display:none;align-items:center;gap:10px;border-left:2px solid var(--brass);background:#FAF6EE;padding:9px 12px;font-size:13.5px;color:#6E5530;margin-bottom:18px}
-.season.on{display:flex}.season i{display:none}
-.stepb,.stepx{display:none}
-.qc.x .stepa,.qc.b .stepa{display:none}.qc.x .stepx{display:block}.qc.b .stepb{display:block}
-.qc.done .stepa,.qc.done .stepb,.qc.done .stepx{display:none}
+.limit{font-size:13px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.5}
+.season{display:none;border-left:2px solid var(--brass);background:#F8F5EE;padding:9px 12px;font-size:13.5px;color:#6A5432;margin-bottom:18px}
+.season.on{display:block}
+.price{display:none}
+.stepa,.stepb,.stepx{display:none}
+.qc.a .stepw,.qc.x .stepw,.qc.b .stepw{display:none}
+.qc.a .stepa,.qc.a .price{display:flex}.qc.a .stepa{display:block}
+.qc.x .stepx{display:block}.qc.b .stepb{display:block}
+.qc.done .stepw,.qc.done .stepa,.qc.done .stepb,.qc.done .stepx,.qc.done .price{display:none}
 .ok{display:none;text-align:center;padding:24px 4px}
 .qc.done .ok{display:block}
-.ok .tick{width:58px;height:58px;border-radius:50%;background:var(--ever);color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
-.ok h3{font-family:var(--serif);font-weight:400;font-size:32px;margin-bottom:8px}.ok p{color:var(--muted);font-size:15px;margin-bottom:8px}
+.ok .tick{width:56px;height:56px;border-radius:50%;background:var(--ever);color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.ok h3{font-family:var(--serif);font-weight:400;font-size:30px;margin-bottom:8px}.ok p{color:var(--muted);font-size:15px;margin-bottom:8px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 /* finishing touches */
 .recs{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
-.tog{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:6px;padding:14px 16px;cursor:pointer;font:inherit;color:var(--ink);transition:border-color .2s,background .2s}
-.tog:hover{border-color:#B9C2BB}
+.tog{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:3px;padding:14px 16px;cursor:pointer;font:inherit;color:var(--ink)}
+.tog:hover{border-color:#BDC2BC}
 .tog .t{flex:1;min-width:0}.tog b{display:block;font-size:15px;font-weight:600}.tog small{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
 .tog .pr{font-size:13.5px;color:var(--muted);white-space:nowrap}
 .tog::after{content:'Add';font-size:12.5px;font-weight:600;color:var(--ever);border:1px solid var(--line);border-radius:99px;padding:6px 13px;flex-shrink:0}
-.tog[aria-pressed=true]{border-color:var(--ever);background:#F1F5F2}
+.tog[aria-pressed=true]{border-color:var(--ever);background:var(--ever-t)}
 .tog[aria-pressed=true]::after{content:'Added';background:var(--ever);border-color:var(--ever);color:#fff}
 .rec-tag{display:block;font-size:12.5px;font-weight:600;color:var(--brass);margin-bottom:2px}
 details.xtra{border-top:1px solid var(--line);margin:4px 0 16px}
@@ -134,7 +131,7 @@ details.xtra summary small{display:block;font-weight:400;font-size:13px;color:va
 .pills .tog::after{content:'+';border:none;padding:0;font-size:16px;line-height:1}
 .pills .tog[aria-pressed=true]::after{content:'\2713';background:none;color:var(--ever);font-size:13px}
 .xtra .recs .tog{padding:11px 14px}
-.lcard .qty{border:1px solid var(--ever);border-top:none;border-radius:0 0 6px 6px;background:#F1F5F2;padding:16px 16px 10px;margin-top:-12px}
+.lcard .qty{border:1px solid var(--ever);border-top:none;border-radius:0 0 3px 3px;background:var(--ever-t);padding:16px 16px 10px;margin-top:-12px}
 .lcard .tog[aria-pressed=true]{border-bottom-left-radius:0;border-bottom-right-radius:0}
 .qrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 0;font-size:14px}
 .qrow small{display:block;font-size:12.5px;color:var(--muted)}
@@ -142,59 +139,51 @@ details.xtra summary small{display:block;font-weight:400;font-size:13px;color:va
 .step button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ever);font-size:17px;line-height:1;cursor:pointer}
 .step output{min-width:14px;text-align:center;font-weight:700}
 
-/* photo band */
-.band-photo{height:min(64vh,620px);background:url(img/clean-hero-listing.jpg) center 62%/cover}
-
 /* one team */
-.team{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;margin-top:48px}
-.team figure{position:relative}
-.team img{width:100%;height:auto;object-fit:cover;border-radius:6px}
-.team .big{grid-row:span 2}
-.team .small{align-self:start}
-.team .big img{aspect-ratio:4/5}
-.team .small img{aspect-ratio:16/10}
-.team figcaption{margin-top:14px}
-.team figcaption b{display:block;font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.15;margin-bottom:4px}
-.team figcaption span{color:var(--muted);font-size:15.5px}
-.also{margin-top:44px;padding-top:26px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 28px;font-size:15.5px;color:var(--muted)}
-.also b{color:var(--ink);font-weight:600}
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:44px}
+.team img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:3px}
+.team figcaption{margin-top:16px}
+.team b{display:block;font-family:var(--serif);font-weight:400;font-size:25px;line-height:1.15;margin-bottom:6px}
+.team span{color:var(--muted);font-size:15.5px}
+.also{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:15.5px;color:var(--muted)}
+.also b{color:var(--ink);font-weight:600;margin-right:10px}
 
-/* comparison */
-.cmpwrap{background:var(--paper)}
-.cmp{width:100%;border-collapse:collapse;margin-top:40px;font-size:16px}
-.cmp th,.cmp td{padding:18px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-.cmp thead th{font-size:14px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--ink)}
+/* why */
+.why{background:var(--stone)}
+.cmp{width:100%;border-collapse:collapse;margin-top:36px;font-size:16px;background:var(--paper)}
+.cmp th,.cmp td{padding:18px 20px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp thead th{font-size:14px;font-weight:600;color:var(--muted)}
 .cmp thead th.us{color:var(--ever)}
 .cmp tbody th{font-weight:600;width:24%}
 .cmp td.us{color:var(--ever);font-weight:600}
 .cmp td.them{color:var(--muted)}
-.promise{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;margin-top:56px;padding:32px 36px;border:1px solid var(--brass);border-radius:6px;background:#FCFAF5}
-.seal{width:76px;height:76px;border-radius:50%;border:1px solid var(--brass);display:flex;align-items:center;justify-content:center;color:var(--brass)}
-.seal svg{width:34px;height:34px}
-.promise h3{font-family:var(--serif);font-weight:400;font-size:28px;margin-bottom:6px}
+.promise{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;margin-top:40px;padding:30px 34px;background:var(--paper);border-left:2px solid var(--brass)}
+.seal{width:64px;height:64px;border-radius:50%;border:1px solid var(--brass);display:flex;align-items:center;justify-content:center;color:var(--brass)}
+.seal svg{width:28px;height:28px}
+.promise h3{font-family:var(--serif);font-weight:400;font-size:26px;margin-bottom:6px}
 .promise p{color:var(--muted);max-width:64ch}
-.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
 .rv{border-top:1px solid var(--ink);padding-top:18px}
 .rv .stars{color:var(--brass);letter-spacing:3px;font-size:14px;margin-bottom:10px}
 .rv p{font-family:var(--serif);font-size:21px;line-height:1.35;margin-bottom:14px}
 .rv b{font-size:14px}.rv span{font-size:14px;color:var(--muted)}
 
-/* how it works */
-.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;counter-reset:s;border-top:1px solid var(--ink)}
-.steps li{counter-increment:s;padding:24px 24px 0 0}
-.steps li::before{content:counter(s);display:block;font-family:var(--serif);font-size:44px;color:var(--brass);line-height:1;margin-bottom:14px}
+/* how */
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:40px;counter-reset:s}
+.steps li{counter-increment:s;border-top:1px solid var(--ink);padding-top:18px}
+.steps li::before{content:counter(s) '.';display:block;font-size:14px;font-weight:600;color:var(--brass);margin-bottom:10px}
 .steps b{display:block;font-size:17px;margin-bottom:6px}.steps span{font-size:15px;color:var(--muted)}
 
 /* membership */
 .member{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}
-.member img{border-radius:6px;aspect-ratio:4/5;object-fit:cover;width:100%}
-.perks{list-style:none;margin-top:28px}
-.perks li{padding:18px 0;border-top:1px solid var(--line)}
+.member img{border-radius:3px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.perks{list-style:none;margin-top:26px}
+.perks li{padding:17px 0;border-top:1px solid var(--line)}
 .perks li:last-child{border-bottom:1px solid var(--line)}
 .perks b{display:block;font-size:17px;margin-bottom:2px}.perks span{color:var(--muted);font-size:15.5px}
 
 /* faq */
-.faq{max-width:780px;margin-top:36px}
+.faq{max-width:780px;margin-top:32px}
 .faq details{border-top:1px solid var(--line);padding:20px 0}
 .faq details:last-child{border-bottom:1px solid var(--line)}
 .faq summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
@@ -204,95 +193,131 @@ details.xtra summary small{display:block;font-weight:400;font-size:13px;color:va
 .faq p{color:var(--muted);margin-top:10px;max-width:68ch}
 
 /* closing */
-.close{background:var(--ever);color:var(--linen);text-align:center;padding:110px 0}
-.close h2{font-size:clamp(40px,5.4vw,72px);margin-bottom:14px}
-.close p{color:rgba(246,247,244,.75);font-size:18px;margin-bottom:32px}
-.close .btn{width:auto;padding:18px 40px}
-footer{background:var(--ever-d);color:rgba(246,247,244,.55);padding:28px 0;font-size:13px}
+.close{background:var(--stone);text-align:center;padding:100px 0;border-top:1px solid var(--line)}
+.close h2{font-size:clamp(38px,4.6vw,60px)}
+.close p{color:var(--muted);font-size:18px;margin-bottom:30px}
+.close .acts{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.close .btn{width:auto;padding:18px 36px}
+.close .btn.ghost{background:transparent;color:var(--ever);box-shadow:inset 0 0 0 1px var(--ever)}
+footer{background:var(--ever-d);color:rgba(255,255,255,.6);padding:26px 0;font-size:13px}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-footer a{color:rgba(246,247,244,.75);text-decoration:none}
-.mbar{display:none}
+footer a{color:rgba(255,255,255,.8);text-decoration:none}
 
-@media(max-width:1020px){
-  .hero .wrap{grid-template-columns:1fr;gap:48px}
-  .hero{padding-top:130px}
-  .qc{max-width:560px}
-  /* phones and tablets: price card right after the headline, the household list after it */
-  .hero .wrap>div:first-child{display:contents}
-  .hero h1,.hero .lede,.area{order:1}.qc{order:2}.list{order:3;margin-top:8px}
-  .hero .wrap{gap:0}.hero .lede{margin-bottom:12px}.area{margin-bottom:28px}
-  .list{max-width:560px}
-  .team{grid-template-columns:1fr}.team .big{grid-row:auto}.team .big img{min-height:0;aspect-ratio:4/3}
-  .steps{grid-template-columns:1fr 1fr;row-gap:28px}
+/* concierge chat */
+.cc-fab{position:fixed;right:24px;bottom:24px;z-index:60;display:flex;align-items:center;gap:10px;background:var(--paper);color:var(--ever);border:1px solid var(--line);border-radius:99px;padding:12px 18px 12px 14px;font:600 14.5px var(--sans);cursor:pointer;box-shadow:0 10px 30px rgba(26,31,28,.16)}
+.cc-fab i{width:30px;height:30px;border-radius:50%;background:var(--ever);color:#fff;display:flex;align-items:center;justify-content:center;font-style:normal}
+.cc-fab svg{width:16px;height:16px}
+.cc{position:fixed;right:24px;bottom:88px;z-index:61;width:380px;max-width:calc(100vw - 24px);height:min(600px,calc(100vh - 120px));display:none;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:0 30px 70px rgba(26,31,28,.22);overflow:hidden}
+.cc.open{display:flex}
+.cc-top{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.cc-top img{height:34px;width:auto}
+.cc-top b{display:block;font-size:15px}.cc-top span{font-size:12.5px;color:var(--muted)}
+.cc-top button{margin-left:auto;background:none;border:none;font-size:24px;line-height:1;color:var(--muted);cursor:pointer}
+.cc-log{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px;background:var(--stone)}
+.cc-msg{max-width:86%;padding:10px 14px;border-radius:14px;font-size:14.5px;line-height:1.45}
+.cc-msg.bot{background:var(--paper);border:1px solid var(--line);border-bottom-left-radius:4px}
+.cc-msg.me{align-self:flex-end;background:var(--ever);color:#fff;border-bottom-right-radius:4px}
+.cc-opts{display:flex;flex-wrap:wrap;gap:7px}
+.cc-opts button{border:1px solid var(--ever);background:var(--paper);color:var(--ever);border-radius:99px;padding:7px 13px;font:500 13.5px var(--sans);cursor:pointer}
+.cc-opts button.on{background:var(--ever);color:#fff}
+.cc-opts button.done{background:var(--ink);border-color:var(--ink);color:#fff}
+.cc-in{display:none;gap:8px;padding:12px;border-top:1px solid var(--line);background:var(--paper)}
+.cc-in.on{display:flex}
+.cc-in textarea{flex:1;font:15px/1.4 var(--sans);padding:10px 12px;border:1px solid var(--line);border-radius:3px;resize:none;height:44px}
+.cc-in button{border:none;background:var(--ever);color:#fff;border-radius:3px;padding:0 16px;font:600 14px var(--sans);cursor:pointer}
+
+.mbar{display:none}
+@media(max-width:1060px){
+  .hero-photo{position:relative;width:auto;height:260px;background-position:center 60%}
+  .hero .wrap{grid-template-columns:1fr;gap:32px;padding-top:44px;padding-bottom:56px}
+  .qc{max-width:600px}
+  .team{grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .steps{grid-template-columns:1fr 1fr}
   .member{grid-template-columns:1fr;gap:36px}.member img{aspect-ratio:16/10}
   .reviews{grid-template-columns:1fr}
 }
 @media(max-width:640px){
   .wrap{padding:0 18px}
-  .sec{padding:72px 0}
-  .top .wrap{height:68px}.brand img{height:36px}.brand span{font-size:18px}
-  .hero{padding:100px 0 56px}
-  .hero h1{font-size:46px}
-  .hero .lede{font-size:17px}
-  .area{margin-bottom:28px}
-  .list{transform:none;padding:20px 20px 16px}
-  .list li{font-size:15px;padding:9px 0}
-  .qc{padding:22px 18px}
-  .grid{grid-template-columns:1fr 1fr}.grid .f:first-child{grid-column:1/-1}
-  .grid.two{grid-template-columns:1fr}
-  .band-photo{height:280px}
-  .cmp{font-size:14px}.cmp th,.cmp td{padding:14px 8px}
-  .cmp tbody th{width:30%}
-  .promise{grid-template-columns:1fr;padding:24px 20px;gap:16px}.seal{width:56px;height:56px}
-  .steps{grid-template-columns:1fr}
-  .close{padding:80px 0}
-  .mbar{display:block;position:fixed;left:14px;right:14px;bottom:14px;z-index:50;transition:transform .25s}
+  .sec{padding:68px 0}
+  .top .wrap{height:64px}.brand img{height:38px}.brand span{font-size:17px;padding-left:10px}
+  .top nav a{display:none}
+  .hero-photo{height:150px}
+  .hero .wrap{padding-top:26px;gap:22px}
+  .hero .wrap>div:first-child{padding-top:0}
+  .hero h1{font-size:40px;margin-bottom:12px}
+  .facts{gap:6px 16px}.facts li,.facts li:first-child{padding:0 0 0 20px;border:none;position:relative}
+  .facts li::before{content:'';position:absolute;left:0;top:50%;width:12px;height:12px;margin-top:-6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%231F3D30' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3 3 7-7'/%3E%3C/svg%3E") center/contain no-repeat}
+  .area{margin-top:14px}
+  .hero .lede{font-size:16.5px;margin-bottom:18px}
+  .qc{padding:24px 18px;margin:0 -4px}
+  .needs{gap:7px}.need{font-size:14px;padding:11px 10px 11px 36px}.need::before{left:12px}
+  .team{grid-template-columns:1fr;gap:30px}.team img{aspect-ratio:16/10}
+  .cmp{font-size:14px}.cmp th,.cmp td{padding:14px 10px}.cmp tbody th{width:30%}
+  .promise{grid-template-columns:1fr;padding:24px 20px;gap:14px}
+  .steps{grid-template-columns:1fr;gap:22px}
+  .close{padding:76px 0}
+  .cc-fab{display:none}
+  .cc{right:0;left:0;bottom:0;width:auto;max-width:none;height:min(88vh,640px);border-radius:12px 12px 0 0}
+  .mbar{display:flex;gap:8px;position:fixed;left:14px;right:14px;bottom:14px;z-index:50;transition:transform .25s}
   .mbar.hide{transform:translateY(160%)}
-  .mbar .btn{box-shadow:0 12px 28px rgba(8,20,14,.35)}
+  .mbar .btn{box-shadow:0 12px 28px rgba(26,31,28,.28)}
+  .mbar .btn.chat{width:auto;flex:none;background:var(--paper);color:var(--ever);padding:0 18px}
   footer{padding-bottom:92px}
 }
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><img src="img/drc-logo.png" alt="DRC"><span>Home Services</span></div>
-    <a href="#qc" class="cta">See your price</a>
+    <a class="brand" href="#qc"><img src="img/drc-logo.png" alt="DRC"><span>Home Services</span></a>
+    <nav><button type="button" data-chat>Chat with us</button><a href="#qc">See your price</a></nav>
   </div>
 </header>
 
 <main>
 <section class="hero">
+  <div class="hero-photo" role="img" aria-label="A bright, freshly cleaned living room and open kitchen"></div>
   <div class="wrap">
     <div>
-      <h1>Your home, fully handled.</h1>
-      <p class="lede">Cleaning, laundry, organizing and repairs from one trusted team. The same background checked cleaner every visit.</p>
+      <h1><span>Your home,</span> <span>fully handled.</span></h1>
+      <p class="lede">Cleaning, laundry, organizing, repairs and yard care from one trusted team. Tell us what you need and we will take care of the rest.</p>
+      <ul class="facts"><li>Background checked professionals</li><li>Fully insured</li><li>No contracts</li></ul>
       <p class="area" id="kick">Serving Dallas, Denver, Nashville and Phoenix</p>
-      <div class="list" id="hlist" aria-label="Example household list">
-        <h3>This week <small id="areaTag">Handled by DRC</small></h3>
-        <ul>
-          <li><span class="box"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><span class="t">Kitchen and baths cleaned</span></li>
-          <li><span class="box"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><span class="t">Laundry folded and put away</span></li>
-          <li><span class="box"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><span class="t">Guest room ready with fresh linens</span></li>
-          <li><span class="box"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><span class="t">Dripping faucet fixed</span></li>
-        </ul>
-        <p class="by">Photos of every room sent when we finish.</p>
-      </div>
     </div>
 
     <div class="qc" id="qc">
       <form id="lp" novalidate>
+        <div class="stepw">
+          <div class="season" id="season"><span id="seasonTxt"></span></div>
+          <h2>What can we take care of?</h2>
+          <p class="sub">Choose everything you would like help with.</p>
+          <div class="needs" id="needs">
+            <button type="button" class="need" data-need="clean" aria-pressed="false">Home cleaning</button>
+            <button type="button" class="need" data-need="deep" aria-pressed="false">Deep cleaning</button>
+            <button type="button" class="need" data-need="laundry" aria-pressed="false">Laundry</button>
+            <button type="button" class="need" data-need="dishes" aria-pressed="false">Dishes and kitchen</button>
+            <button type="button" class="need" data-need="organizing" aria-pressed="false">Organizing</button>
+            <button type="button" class="need" data-need="repairs" aria-pressed="false">Repairs and maintenance</button>
+            <button type="button" class="need" data-need="yard" aria-pressed="false">Landscaping and yard</button>
+            <button type="button" class="need" data-need="move" aria-pressed="false">Move in or move out</button>
+          </div>
+          <div class="f" style="margin-bottom:14px"><label for="notes">Tell us in your own words <span class="opt">optional</span></label><textarea id="notes" name="notes" rows="2" placeholder="Weekly cleaning and laundry, plus a light fixture that needs replacing"></textarea></div>
+          <div class="f" style="margin-bottom:18px"><label for="zip">ZIP code</label><input id="zip" name="zip" inputmode="numeric" maxlength="5" autocomplete="postal-code" placeholder="76092"></div>
+          <button type="button" class="btn" id="goW">Continue</button>
+          <p class="fine">No commitment. Nothing to pay today.</p>
+          <p class="chatlink">Prefer to talk it through? <button type="button" class="link" data-chat>Chat with our concierge</button></p>
+        </div>
+
         <div class="stepa">
-          <div class="season" id="season"><i></i><span id="seasonTxt"></span></div>
-          <h2>See your price</h2>
-          <p class="sub">About a minute. Updates as you go.</p>
+          <h2>See your cleaning price</h2>
+          <p class="sub">Updates as you go.</p>
           <div class="seg">
             <div><input type="radio" name="service" id="sv_std" value="standard" checked><label for="sv_std">Essential Home Cleaning<small>Recurring or one time</small></label></div>
             <div><input type="radio" name="service" id="sv_deep" value="deep"><label for="sv_deep">Signature Deep Cleaning<small>Top to bottom reset</small></label></div>
           </div>
-          <div class="grid">
-            <div class="f"><label for="zip">ZIP code</label><input id="zip" name="zip" inputmode="numeric" maxlength="5" autocomplete="postal-code" placeholder="76092"></div>
+          <div class="grid two">
             <div class="f"><label for="bedrooms">Bedrooms</label><input id="bedrooms" name="bedrooms" type="number" inputmode="numeric" min="0" max="20" value="3"></div>
             <div class="f"><label for="bathrooms">Bathrooms</label><input id="bathrooms" name="bathrooms" type="number" inputmode="decimal" min="0" max="20" step="0.5" value="2"></div>
           </div>
@@ -310,8 +335,8 @@ footer a{color:rgba(246,247,244,.75);text-decoration:none}
 
         <div class="stepa">
           <button type="button" class="btn" id="go">Continue</button>
-          <p class="fine">No commitment. Nothing to pay today.</p>
-          <p class="limit" id="limit">To keep the same cleaner in every home, we welcome a limited number of new homes each month.</p>
+          <p class="limit" id="limit">To keep our standard high, we welcome a limited number of new homes each month.</p>
+          <p class="fine"><button type="button" class="link" id="backW">Back</button></p>
         </div>
 
         <div class="stepx">
@@ -330,8 +355,9 @@ footer a{color:rgba(246,247,244,.75);text-decoration:none}
         </div>
 
         <div class="stepb">
-          <h2>Where should we send it?</h2>
-          <p class="sub">Our team will reach out to confirm your schedule soon.</p>
+          <h2 id="bTitle">Where should we send your estimate?</h2>
+          <p class="sub" id="bSub">Our team will reach out to confirm your schedule soon.</p>
+          <div class="recap" id="recap" hidden></div>
           <div class="grid two">
             <div class="f"><label for="name">Name</label><input id="name" name="name" autocomplete="name"></div>
             <div class="f"><label for="phone">Mobile number</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
@@ -352,34 +378,32 @@ footer a{color:rgba(246,247,244,.75);text-decoration:none}
         </div>
         <div class="err" id="err" role="alert"></div>
       </form>
-      <div class="ok"><div class="tick">&#10003;</div><h3>Thank you.</h3><p id="okMsg">Our team will reach out to confirm your schedule soon.</p><p>A copy of your estimate is on its way to your email.</p></div>
+      <div class="ok"><div class="tick">&#10003;</div><h3>Thank you.</h3><p id="okMsg">Our team will reach out soon.</p><p id="okCopy">A copy is on its way to your email.</p></div>
     </div>
   </div>
 </section>
-
-<div class="band-photo" role="img" aria-label="A bright, freshly cleaned living room and open kitchen"></div>
 
 <section class="sec">
   <div class="wrap">
     <h2>One team for everything your home needs</h2>
-    <p class="lede">No more juggling a cleaner, a laundry service and a handyman. One trusted team, one point of contact, everything handled to the same standard.</p>
+    <p class="lede">No more juggling a cleaner, a laundry service and a handyman. One point of contact, everything handled to the same standard.</p>
     <div class="team">
-      <figure class="big"><img src="img/services/deep.jpg" alt="A cleaner wiping a marble shower to a shine" loading="lazy"><figcaption><b>Cleaning, done the same way every time</b><span>Your cleaner follows your saved checklist and sends photos of every room.</span></figcaption></figure>
-      <figure class="small"><img src="img/services/laundry.jpg" alt="Folded towels and linens beside a washer and dryer" loading="lazy"><figcaption><b>Laundry and linens</b><span>Washed, folded and put away. Beds made fresh.</span></figcaption></figure>
-      <figure class="small"><img src="img/services/repairs.jpg" alt="A technician repairing plumbing under a kitchen sink" loading="lazy"><figcaption><b>Repairs and upkeep</b><span>Your cleaner spots it, our maintenance team fixes it.</span></figcaption></figure>
+      <figure><img src="img/services/deep.jpg" alt="A professional wiping a marble shower to a shine" loading="lazy"><figcaption><b>Cleaning</b><span>Recurring or one time, following your saved checklist, with photos of every room.</span></figcaption></figure>
+      <figure><img src="img/services/laundry.jpg" alt="Folded towels and linens beside a washer and dryer" loading="lazy"><figcaption><b>Laundry and linens</b><span>Washed, folded and put away. Beds made fresh.</span></figcaption></figure>
+      <figure><img src="img/services/repairs.jpg" alt="A technician repairing plumbing under a kitchen sink" loading="lazy"><figcaption><b>Repairs and upkeep</b><span>Spotted during a visit, handled by our maintenance team.</span></figcaption></figure>
     </div>
-    <p class="also"><b>Also available</b><span>Closet and pantry organizing</span><span>Refrigerator resets</span><span>Carpet cleaning</span><span>Landscaping</span><span>Move in or move out</span></p>
+    <p class="also"><b>Also available</b>Closet and pantry organizing, refrigerator resets, dishes, carpet cleaning, landscaping, move in or move out.</p>
   </div>
 </section>
 
-<section class="sec cmpwrap">
+<section class="sec why">
   <div class="wrap">
     <h2>Why homeowners choose DRC</h2>
     <p class="lede">The care of a private housekeeper, with the backing of a full home maintenance company.</p>
     <table class="cmp">
       <thead><tr><th></th><th class="us">DRC Home Services</th><th>Many cleaning services</th></tr></thead>
       <tbody>
-        <tr><th>Your cleaner</th><td class="us">The same person every visit</td><td class="them">Whoever is available</td></tr>
+        <tr><th>Who you call</th><td class="us">One team for cleaning, laundry and repairs</td><td class="them">A different company for each</td></tr>
         <tr><th>Your preferences</th><td class="us">Saved and followed every visit</td><td class="them">Repeated each time</td></tr>
         <tr><th>Proof of work</th><td class="us">Photos of every room</td><td class="them">Rarely</td></tr>
         <tr><th>Something broken</th><td class="us">Our maintenance team handles it</td><td class="them">Find another company</td></tr>
@@ -388,7 +412,7 @@ footer a{color:rgba(246,247,244,.75);text-decoration:none}
     </table>
     <div class="promise">
       <span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
-      <div><h3>The DRC promise</h3><p>If anything is missed, tell us and we will come back to make it right. Every cleaner is background checked, and DRC is fully insured.</p></div>
+      <div><h3>The DRC promise</h3><p>If anything is missed, tell us and we will come back to make it right. Every professional is background checked, and DRC is fully insured.</p></div>
     </div>
     <div class="reviews" id="reviews" hidden></div>
   </div>
@@ -398,7 +422,7 @@ footer a{color:rgba(246,247,244,.75);text-decoration:none}
   <div class="wrap">
     <h2>How it works</h2>
     <ol class="steps">
-      <li><b>See your price</b><span>Online, in about a minute.</span></li>
+      <li><b>Tell us what you need</b><span>Choose it here or chat with our concierge.</span></li>
       <li><b>Confirm your day</b><span>We reach out by text, call or email and confirm your schedule.</span></li>
       <li><b>Pay securely</b><span>A Square link locks in your date. Nothing is charged before you approve.</span></li>
       <li><b>Come home to it</b><span>Everything on your list, handled. Photos sent when we finish.</span></li>
@@ -415,7 +439,7 @@ footer a{color:rgba(246,247,244,.75);text-decoration:none}
       <ul class="perks">
         <li><b>Member pricing</b><span>A lower rate on every recurring visit.</span></li>
         <li><b>Priority scheduling</b><span>First choice of dates, including the weeks before the holidays.</span></li>
-        <li><b>A checklist that remembers</b><span>Your products, priorities and rooms to skip, saved.</span></li>
+        <li><b>A checklist that remembers</b><span>Your products, priorities and rooms to skip, saved for every visit.</span></li>
         <li><b>First in line for repairs</b><span>Anything that needs attention is flagged and scheduled first.</span></li>
       </ul>
     </div>
@@ -426,9 +450,9 @@ footer a{color:rgba(246,247,244,.75);text-decoration:none}
   <div class="wrap">
     <h2>Questions</h2>
     <div class="faq">
-      <details><summary>Is my price final?</summary><p>Essential Home Cleaning prices are estimates based on your home's size. Signature Deep Cleaning shows a starting range, and we confirm your final quote after a quick review. Nothing is charged until you approve it.</p></details>
-      <details><summary>Will it be the same cleaner each time?</summary><p>Yes. Recurring clients keep the same cleaner, with your preferences saved for every visit.</p></details>
-      <details><summary>Can you handle laundry, organizing and repairs too?</summary><p>Yes. Add laundry and extras when you see your price, and tell us about organizing, carpet or repairs. We quote those for you separately.</p></details>
+      <details><summary>Is my price final?</summary><p>Home cleaning prices are estimates based on your home's size. Deep cleaning shows a starting range, and we confirm your final quote after a quick review. Laundry, organizing, repairs and yard care are quoted for you. Nothing is charged until you approve it.</p></details>
+      <details><summary>Who will be in my home?</summary><p>A background checked DRC professional. Your preferences are saved, so every visit is held to the same standard.</p></details>
+      <details><summary>Can you handle more than cleaning?</summary><p>Yes. Choose everything you need when you start, or tell us in your own words. We take care of laundry, dishes, organizing, repairs, landscaping and move in or move out.</p></details>
       <details><summary>Do I need to be home?</summary><p>No. Many clients share a lockbox or door code. You receive photos of every room when we finish.</p></details>
       <details><summary>Do you bring supplies?</summary><p>We bring ours or use yours. Organic and microplastic free options are available.</p></details>
     </div>
@@ -438,14 +462,21 @@ footer a{color:rgba(246,247,244,.75);text-decoration:none}
 <section class="close">
   <div class="wrap">
     <h2>Let us handle the house.</h2>
-    <p>See your price in about a minute. No commitment.</p>
-    <a href="#qc" class="btn light">See your price</a>
+    <p>Tell us what you need. No commitment.</p>
+    <div class="acts"><a href="#qc" class="btn">Get started</a><button type="button" class="btn ghost" data-chat>Chat with our concierge</button></div>
   </div>
 </section>
 </main>
 
 <footer><div class="wrap"><span>&copy; <span id="yr">2026</span> Dedicated Resource Center LLC</span><span><a href="privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="terms.html">Terms</a></span></div></footer>
-<div class="mbar" id="mbar"><a href="#qc" class="btn">See your price</a></div>
+
+<button type="button" class="cc-fab" id="ccFab" data-chat><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.6A8 8 0 1121 12z"/></svg></i>Chat with us</button>
+<div class="cc" id="cc" role="dialog" aria-label="Chat with the DRC concierge">
+  <div class="cc-top"><img src="img/drc-logo.png" alt=""><div><b>DRC Concierge</b><span>A real person follows up with you</span></div><button type="button" id="ccX" aria-label="Close chat">&times;</button></div>
+  <div class="cc-log" id="ccLog" aria-live="polite"></div>
+  <form class="cc-in" id="ccIn"><textarea id="ccTxt" rows="1" autocomplete="off" aria-label="Your message"></textarea><button>Send</button></form>
+</div>
+<div class="mbar" id="mbar"><a href="#qc" class="btn">Get started</a><button type="button" class="btn chat" data-chat>Chat</button></div>
 
 <script type="module">
 import { PRICING as P, estimate } from './cleaning-pricing.js';
@@ -470,7 +501,7 @@ const CITIES = { dallas: 'Dallas', denver: 'Denver', nashville: 'Nashville', pho
 const q = new URLSearchParams(location.search);
 const city = CITIES[(q.get('city') || '').toLowerCase()];
 if (city) { $('#kick').textContent = `Serving ${city} homeowners`; }
-if (q.get('service') === 'deep') { $('#sv_deep').checked = true; }
+
 const mo = new Date().getMonth();
 const season = mo >= 10 ? 'Holiday dates book first. Reserve yours before the calendar fills.'
   : mo === 0 ? 'January dates are filling. Start the new year with a reset.'
@@ -516,7 +547,7 @@ function update() {
   return r;
 }
 // Keep their answers if they wander off and come back (same browser tab session)
-const KEEP = ['zip', 'bedrooms', 'bathrooms', 'sqft', 'name', 'phone', 'email'];
+const KEEP = ['zip', 'notes', 'bedrooms', 'bathrooms', 'sqft', 'name', 'phone', 'email'];
 try { const sv = JSON.parse(sessionStorage.getItem('drc_lp') || '{}');
   KEEP.forEach(k => { if (sv[k]) $('#' + k).value = sv[k]; });
   if (sv.service && !q.get('service')) { const r0 = $(`input[name=service][value=${sv.service}]`); if (r0) r0.checked = true; }
@@ -540,9 +571,14 @@ update();
 })();
 
 const bad = (id, msg) => { $('#' + id).parentElement.classList.add('bad'); $('#' + id).focus(); err.textContent = msg; return false; };
+function checkW() {
+  form.querySelectorAll('.f.bad').forEach(f => f.classList.remove('bad')); err.textContent = '';
+  if (!needs.size && !$('#notes').value.trim()) { err.textContent = 'Choose what you would like help with, or tell us in your own words.'; return false; }
+  if (!/^\d{5}$/.test($('#zip').value.trim())) return bad('zip', 'Please add your 5 digit ZIP code.');
+  return true;
+}
 function checkA() {
   form.querySelectorAll('.f.bad').forEach(f => f.classList.remove('bad')); err.textContent = '';
-  if (!/^\d{5}$/.test($('#zip').value.trim())) return bad('zip', 'Add your 5 digit ZIP code.');
   if (!(+$('#sqft').value >= 300)) return bad('sqft', 'Please add your square footage.');
   return true;
 }
@@ -596,46 +632,126 @@ $('#qc').addEventListener('click', e => {
   else { on ? wants.add(id.slice(2)) : wants.delete(id.slice(2)); }
   update();
 });
-const toB = () => { qc.classList.remove('x'); qc.classList.add('b'); setTimeout(() => $('#name').focus(), 50); };
-$('#go').addEventListener('click', () => { if (!checkA()) return; $('#metro').value = metroFor($('#zip').value.trim()); drawX(); qc.classList.add('x'); qc.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+// Step one: they tell us everything they want. Cleaning gets a live price; everything else is quoted.
+const NEED = { clean: 'Home cleaning', deep: 'Deep cleaning', laundry: 'Laundry', dishes: 'Dishes and kitchen', organizing: 'Organizing', repairs: 'Repairs and maintenance', yard: 'Landscaping and yard', move: 'Move in or move out' };
+const needs = new Set();
+if (q.get('service') === 'deep') needs.add('deep');
+form.querySelectorAll('.need').forEach(b => { if (needs.has(b.dataset.need)) b.setAttribute('aria-pressed', 'true'); });
+$('#needs').addEventListener('click', e => {
+  const b = e.target.closest('.need'); if (!b) return;
+  const k = b.dataset.need, on = !needs.has(k);
+  on ? needs.add(k) : needs.delete(k); b.setAttribute('aria-pressed', on); err.textContent = '';
+});
+const cleaning = () => needs.has('clean') || needs.has('deep');
+const quoted = () => [...needs].filter(k => !['clean', 'deep'].includes(k) && !(cleaning() && ['laundry', 'dishes'].includes(k))).map(k => NEED[k]);
+const view = c => { qc.classList.remove('a', 'x', 'b'); if (c) qc.classList.add(c); err.textContent = ''; qc.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+function drawRecap() {
+  const r = cleaning() ? update() : null, list = [...new Set([...quoted(), ...wants])], note = $('#notes').value.trim();
+  const lines = [];
+  if (r && r.ok) lines.push(`<b>Your estimate</b>${P.services[val('service')].label}, ${val('service') === 'deep' ? 'from ' + money(r.low) : money(r.low) + ' to ' + money(r.high)}`);
+  if (list.length) lines.push(`<b>We will quote</b>${list.map(x => x.replace(/[<>&]/g, '')).join(', ')}`);
+  if (note) lines.push(`<b>In your words</b>${note.replace(/[<>&]/g, '').slice(0, 160)}${note.length > 160 ? '...' : ''}`);
+  $('#recap').innerHTML = lines.join('<div style="height:8px"></div>'); $('#recap').hidden = !lines.length;
+  $('#bTitle').textContent = cleaning() ? 'Where should we send your estimate?' : 'Where should we reach you?';
+  $('#bSub').textContent = cleaning() ? 'Our team will reach out to confirm your schedule soon.' : 'Our team will reach out soon with your quote.';
+  $('#send').textContent = cleaning() ? 'Send my estimate' : 'Send my request';
+}
+const toB = () => { drawRecap(); view('b'); setTimeout(() => $('#name').focus({ preventScroll: true }), 350); };
+$('#goW').addEventListener('click', () => {
+  if (!checkW()) return;
+  $('#metro').value = metroFor($('#zip').value.trim());
+  if (!cleaning()) return toB();
+  const only = needs.has('deep') && !needs.has('clean');
+  $(only ? '#sv_deep' : '#sv_std').checked = true;
+  if (needs.has('deep') && needs.has('clean')) wants.add('Signature Deep first visit');
+  if (needs.has('laundry') && !picked.laundry && !picked.laundryLarge) picked.laundry = 1;
+  if (needs.has('dishes')) picked.dishes = 1;
+  update(); view('a');
+});
+$('#go').addEventListener('click', () => { if (!checkA()) return; drawX(); view('x'); });
 $('#goB').addEventListener('click', toB);
-$('#backX').addEventListener('click', () => { qc.classList.remove('x'); err.textContent = ''; });
-$('#backA').addEventListener('click', () => { qc.classList.remove('b'); drawX(); qc.classList.add('x'); err.textContent = ''; });
+$('#backW').addEventListener('click', () => view(''));
+$('#backX').addEventListener('click', () => view('a'));
+$('#backA').addEventListener('click', () => { if (cleaning()) { drawX(); view('x'); } else view(''); });
 $('#send').addEventListener('click', async () => {
   if (!checkB()) return;
   const btn = $('#send'); btn.disabled = true; btn.textContent = 'Sending...';
   const fd = new FormData(form);
-  if (val('service') === 'deep') fd.set('frequency', 'once');
-  fd.set('addons', JSON.stringify(picked));
-  fd.set('interests', [...wants].join(', '));
+  if (!cleaning()) { fd.set('service', 'homecare'); fd.delete('frequency'); fd.delete('sqft'); }
+  else if (val('service') === 'deep') fd.set('frequency', 'once');
+  fd.set('addons', JSON.stringify(cleaning() ? picked : {}));
+  fd.set('interests', [...new Set([...quoted(), ...wants])].join(', '));
   const eventId = newEventId(); fd.set('event_id', eventId);
-  const est = update();
+  const est = cleaning() ? update() : null;
   try {
     const res = await fetch('/api/cleaning-quote', { method: 'POST', body: fd });
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.success) throw new Error(data.error || 'Something went wrong.');
     const first = $('#name').value.trim().split(' ')[0], pref = val('contact_pref');
-    $('#okMsg').textContent = `Thanks, ${first}. ${pref === 'Email' ? 'Watch your inbox.' : pref === 'Call' ? 'Expect a call soon.' : 'Watch for a text soon.'} Our team will reach out to confirm your schedule.`;
-    qc.classList.remove('b'); qc.classList.add('done');
-    track('Lead', { content_name: val('service') === 'deep' ? 'Signature Deep Cleaning' : 'Essential Home Cleaning', value: est && est.ok ? est.middle : 0, currency: 'USD' }, eventId);
+    $('#okMsg').textContent = `Thank you, ${first}. ${pref === 'Email' ? 'Watch your inbox.' : pref === 'Call' ? 'Expect a call soon.' : 'Watch for a text soon.'} Our team will reach out ${cleaning() ? 'to confirm your schedule' : 'with your quote'}.`;
+    $('#okCopy').textContent = cleaning() ? 'A copy of your estimate is on its way to your email.' : 'A copy of your request is on its way to your email.';
+    qc.classList.remove('a', 'x', 'b'); qc.classList.add('done');
+    track('Lead', { content_name: cleaning() ? (val('service') === 'deep' ? 'Signature Deep Cleaning' : 'Essential Home Cleaning') : 'Home care request', value: est && est.ok ? est.middle : 0, currency: 'USD' }, eventId);
     try { sessionStorage.removeItem('drc_lp'); } catch {}
   } catch (e) {
     err.textContent = (e.message || 'Something went wrong.') + ' Please try again.';
-  } finally { btn.disabled = false; btn.textContent = 'Send my estimate'; }
+  } finally { btn.disabled = false; btn.textContent = cleaning() ? 'Send my estimate' : 'Send my request'; }
 });
 
 // Mobile bar hides while the quote card is on screen
 const mbar = $('#mbar');
 new IntersectionObserver(es => es.forEach(e => mbar.classList.toggle('hide', e.isIntersecting))).observe(qc);
 
-// Signature moment: the household list checks itself off once, when it comes into view
+
+// Concierge chat: for anyone who would rather tell us in their own words. A real person follows up.
 (() => {
-  const list = $('#hlist'), items = [...list.querySelectorAll('li')];
-  const finish = () => { items.forEach(li => li.classList.add('done')); list.classList.add('finished'); };
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return finish();
-  const run = () => { items.forEach((li, i) => setTimeout(() => li.classList.add('done'), 500 + i * 650)); setTimeout(() => list.classList.add('finished'), 500 + items.length * 650); };
-  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); run(); } }, { threshold: .5 });
-  io.observe(list);
+  const box = $('#cc'), log = $('#ccLog'), inForm = $('#ccIn'), txt = $('#ccTxt');
+  const lead = { wants: [], notes: '', zip: '', name: '', phone: '', email: '', contactPref: '' };
+  let started = false, waiting = null;
+  const scroll = () => { log.scrollTop = log.scrollHeight; };
+  const say = (t, who = 'bot') => { const d = document.createElement('div'); d.className = 'cc-msg ' + who; d.textContent = t; log.appendChild(d); scroll(); };
+  const opts = (list, cb) => { const w = document.createElement('div'); w.className = 'cc-opts';
+    list.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.onclick = () => { w.remove(); inForm.classList.remove('on'); waiting = null; say(o, 'me'); cb(o); }; w.appendChild(b); });
+    log.appendChild(w); scroll(); };
+  const multi = (list, cb) => { const w = document.createElement('div'); w.className = 'cc-opts'; const on = new Set();
+    list.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.onclick = () => { on.has(o) ? on.delete(o) : on.add(o); b.classList.toggle('on'); }; w.appendChild(b); });
+    const d = document.createElement('button'); d.type = 'button'; d.className = 'done'; d.textContent = 'Done';
+    d.onclick = () => { if (!on.size) return; w.remove(); say([...on].join(', '), 'me'); cb([...on]); };
+    w.appendChild(d); log.appendChild(w); scroll(); };
+  const ask = (qs, ph, type, cb, skip) => { say(qs); txt.value = ''; txt.placeholder = ph; txt.inputMode = type; inForm.classList.add('on'); waiting = cb;
+    if (skip) opts([skip], () => cb('')); setTimeout(() => txt.focus(), 60); };
+  inForm.addEventListener('submit', e => { e.preventDefault(); const v = txt.value.trim(); if (!v || !waiting) return;
+    const last = log.lastElementChild; if (last && last.classList.contains('cc-opts')) last.remove();
+    say(v, 'me'); const cb = waiting; waiting = null; inForm.classList.remove('on'); cb(v); });
+  txt.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); inForm.requestSubmit(); } });
+
+  const send = async () => {
+    say('Sending...');
+    const eventId = newEventId();
+    let utm = {}; try { utm = JSON.parse(sessionStorage.getItem('drc_utm') || '{}'); } catch {}
+    try {
+      const r = await fetch('/api/cleaning-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ service: lead.wants.join(', '), notes: lead.notes, location: lead.zip ? 'ZIP ' + lead.zip + (metroFor(lead.zip) ? ', ' + metroFor(lead.zip) : '') : '',
+          name: lead.name, phone: lead.phone, email: lead.email, contactPref: lead.contactPref, event_id: eventId, ...utm, page: location.href }) });
+      log.lastChild.remove(); if (!r.ok) throw 0;
+      track('Lead', { content_name: 'Concierge chat', value: 0, currency: 'USD' }, eventId);
+      const how = lead.contactPref === 'Email' ? 'by email' : lead.contactPref === 'Call' ? 'with a call' : 'with a text';
+      say(`Thank you, ${lead.name.split(' ')[0]}. Our team will reach out ${how} soon to take care of everything.`);
+    } catch { if (log.lastChild && log.lastChild.textContent === 'Sending...') log.lastChild.remove(); say('That did not go through. Please try again.'); opts(['Try again'], () => send()); }
+  };
+  const pref = () => { say('How would you like us to reach you?'); opts(['Text me', 'Call me', 'Email me'], o => { lead.contactPref = o.split(' ')[0]; send(); }); };
+  const email = () => ask('And your email?', 'you@email.com', 'email', v => { if (!/^\S+@\S+\.\S+$/.test(v)) { say('That email does not look right. Could you check it?'); return email(); } lead.email = v; pref(); });
+  const phone = () => ask('What is the best mobile number for you?', 'Mobile number', 'tel', v => { if (v.replace(/\D/g, '').length < 10) { say('Please add a 10 digit mobile number.'); return phone(); } lead.phone = v; email(); });
+  const name = () => ask('Thank you. Who should we ask for?', 'Your name', 'text', v => { lead.name = v; phone(); });
+  const zip = () => ask('What ZIP code is the home in?', 'ZIP code', 'numeric', v => { if (!/^\d{5}$/.test(v)) { say('Please add a 5 digit ZIP code.'); return zip(); } lead.zip = v; name(); });
+  const more = () => ask('Tell us a little more, in your own words. Timing, rooms, anything that matters to you.', 'Type here', 'text', v => { lead.notes = v; zip(); }, 'That covers it');
+  const start = () => { started = true;
+    say('Hello, and welcome to DRC Home Services. What can we take care of for you? Choose all that apply.');
+    multi([...Object.values(NEED), 'Something else'], list => { lead.wants = list; more(); }); };
+  const open = () => { box.classList.add('open'); if (!started) start(); };
+  document.querySelectorAll('[data-chat]').forEach(b => b.addEventListener('click', open));
+  $('#ccX').addEventListener('click', () => box.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') box.classList.remove('open'); });
 })();
 </script>
 </body>

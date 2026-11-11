@@ -45,13 +45,14 @@ h2{font-size:clamp(32px,3.6vw,46px);margin-bottom:14px}
 /* hero: stone on the left, photograph on the right, the card sits across both */
 .hero{position:relative;background:var(--stone);overflow:hidden}
 .hero-photo{position:absolute;top:0;right:0;bottom:0;width:44%;background:url(img/clean-hero-listing.jpg) 38% center/cover}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1fr 460px;gap:64px;padding-top:84px;padding-bottom:84px;align-items:start}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 450px;gap:56px;padding-top:84px;padding-bottom:84px;align-items:start}
 .hero .wrap>div:first-child{padding-top:64px}
 .hero h1{font-size:clamp(46px,5.2vw,74px);margin-bottom:22px}
 .hero h1 span{display:block}
 .hero .lede{margin-bottom:28px}
-.facts{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px;max-width:560px;font-size:15px;line-height:1.4;color:var(--ink)}
-.facts li{border-top:1px solid #CFCDC4;padding-top:14px}
+.facts{list-style:none;display:flex;align-items:center;font-size:14.5px;line-height:1.4;color:var(--ink);white-space:nowrap}
+.facts li{padding:0 16px;border-left:1px solid #CFCDC4}
+.facts li:first-child{padding-left:0;border-left:none}
 .area{font-size:14.5px;color:var(--muted);margin-top:22px}
 
 /* quote card */
@@ -226,6 +227,12 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
 .cc-in button{border:none;background:var(--ever);color:#fff;border-radius:3px;padding:0 16px;font:600 14px var(--sans);cursor:pointer}
 
 .mbar{display:none}
+/* narrow desktops: the trust line stacks like on phones rather than wrapping awkwardly */
+@media(max-width:1185px) and (min-width:1061px){
+  .facts{display:block;white-space:normal;max-width:420px}
+  .facts li,.facts li:first-child{padding:10px 0;border-left:none;border-top:1px solid #CFCDC4}
+  .facts li:last-child{border-bottom:1px solid #CFCDC4}
+}
 @media(max-width:1060px){
   .hero-photo{position:relative;width:auto;height:260px;background-position:center 60%}
   .hero .wrap{grid-template-columns:1fr;gap:32px;padding-top:44px;padding-bottom:56px}
@@ -244,8 +251,8 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
   .hero .wrap{padding-top:26px;gap:22px}
   .hero .wrap>div:first-child{padding-top:0}
   .hero h1{font-size:40px;margin-bottom:12px}
-  .facts{grid-template-columns:1fr;gap:0}
-  .facts li{padding:11px 0}
+  .facts{display:block;white-space:normal}
+  .facts li,.facts li:first-child{padding:11px 0;border-left:none;border-top:1px solid #CFCDC4}
   .facts li:last-child{border-bottom:1px solid #CFCDC4}
   .area{margin-top:16px}
   .hero .lede{font-size:16.5px;margin-bottom:18px}
@@ -283,7 +290,7 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
     <div>
       <h1><span>Your home,</span> <span>fully handled.</span></h1>
       <p class="lede">Cleaning, laundry, organizing, repairs and yard care from one trusted team. Tell us what you need and we will take care of the rest.</p>
-      <ul class="facts"><li>Family owned</li><li>More than 30 years combined experience</li><li>Background checked and fully insured</li></ul>
+      <ul class="facts"><li>Family owned</li><li>30+ years combined experience</li><li>Insured and background checked</li></ul>
       <p class="area" id="kick">Serving Dallas, Denver, Nashville and Phoenix</p>
     </div>
 

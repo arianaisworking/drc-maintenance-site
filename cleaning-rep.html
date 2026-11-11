@@ -56,6 +56,7 @@ input[type=date]::-webkit-date-and-time-value{text-align:left}
     <div class="grid two">
       <div><label for="service">Service</label><select id="service"></select></div>
       <div><label for="frequency">How often</label><select id="frequency"></select></div>
+      <div><label for="newClient">New client</label><select id="newClient"><option value="yes">Yes, 10% off first visit</option><option value="no">No, returning client</option></select></div>
     </div>
     <div class="grid" style="margin-top:12px">
       <div><label for="sqft">Sq ft</label><input id="sqft" type="number" min="0"></div>
@@ -132,6 +133,7 @@ let last = null;
 function update() {
   const addons = {}; document.querySelectorAll('#addons input').forEach(i => { if (Number(i.value) > 0) addons[i.dataset.k] = Number(i.value); });
   const a = { service: $('#service').value, frequency: $('#frequency').value, sqft: $('#sqft').value, bedrooms: $('#bedrooms').value, bathrooms: $('#bathrooms').value, soil: $('#soil').value, pets: $('#pets').value, products: $('#products').value, addons };
+  a.newCustomer = $('#newClient').value === 'yes';
   const r = estimate(a); last = r;
   const svc = P.services[a.service].label;
   if (!r.ok) { $('#big').textContent = ''; $('#sub').textContent = r.reason; $('#lines').innerHTML = ''; $('#keep').textContent = ''; return; }
@@ -144,7 +146,8 @@ function update() {
     $('#sub').textContent = `Suggested ${money(r.middle)} · about ${r.laborHours} cleaner hours` + (r.carpetQuote ? ' · carpet NOT included, add your carpet quote' : '');
     const li = (k, v) => `<tr><td>${k}</td><td>${v}</td></tr>`;
     $('#lines').innerHTML = li('Labor', money(r.labor)) + r.addonLines.map(x => li(x.label + (x.qty > 1 ? ' x' + x.qty : ''), x.quote ? 'quote' : '+' + money(x.amount))).join('')
-      + (r.products ? li('Products', '+' + money(r.products)) : '') + (r.discount ? li('Membership savings', '−' + money(r.discount)) : '');
+      + (r.products ? li('Products', '+' + money(r.products)) : '') + (r.discount ? li(r.offerApplied ? 'New client 10%, first visit' : 'Membership savings', '−' + money(r.discount)) : '')
+      + (r.ongoing ? li('Each visit after', money(r.ongoing.low) + ' to ' + money(r.ongoing.high)) : '');
     const p20 = r.laborHours * 20, p25 = r.laborHours * 25;
     $('#keep').innerHTML = `Cleaner pay: <b>${money(p20)} to ${money(p25)}</b><br>DRC keeps at the suggested price: <b>${money(r.middle - p25)} to ${money(r.middle - p20)}</b> (${Math.round((r.middle - p25) / r.middle * 100)}% to ${Math.round((r.middle - p20) / r.middle * 100)}%)`;
   }

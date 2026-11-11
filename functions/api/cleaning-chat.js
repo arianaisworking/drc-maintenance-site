@@ -10,15 +10,19 @@ export async function onRequestPost({ request, env }) {
   let d; try { d = await request.json(); } catch { return json({ error: 'Bad request' }, 400); }
   const v = k => String(d[k] ?? '').trim().slice(0, 1000);
   const lead = { service: v('service'), size: v('size'), location: v('location'), notes: v('notes'), name: v('name'), email: v('email'), phone: v('phone'),
-    addons: (Array.isArray(d.addons) ? d.addons : []).map(a => String(a).slice(0, 60)).slice(0, 6) };
+    addons: (Array.isArray(d.addons) ? d.addons : []).map(a => String(a).slice(0, 60)).slice(0, 6),
+    contactPref: v('contactPref'), eventId: v('event_id'),
+    source: ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].map(v).filter(Boolean).join(' / '),
+    clickId: v('gclid') ? 'Google click' : v('fbclid') ? 'Meta click' : '' };
   if (!lead.name || !/^\S+@\S+\.\S+$/.test(lead.email)) return json({ error: 'Name and email needed' }, 400);
   lead.serviceKey = serviceKey(lead.service);
   if (!/sq ft/i.test(lead.size)) lead.bedrooms = bedsFromText(lead.size);
 
   const origin = new URL(request.url).origin;
   const rows = [
-    ['Cleaning', esc(lead.service)], ['Size', esc(lead.size)], ['City and state', esc(lead.location)],
-    ['Their notes', esc(lead.notes)], ['Also wants quotes for', lead.addons.length ? '<strong>' + esc(lead.addons.join(', ')) + '</strong>' : ''],
+    ['Wants help with', esc(lead.service)], ['Size', esc(lead.size)], ['Location', esc(lead.location)],
+    ['In their words', esc(lead.notes)], ['Reach them by', lead.contactPref ? '<strong>' + esc(lead.contactPref) + '</strong>' : ''],
+    ['Ad source', esc([lead.source, lead.clickId].filter(Boolean).join(' · '))], ['Also wants quotes for', lead.addons.length ? '<strong>' + esc(lead.addons.join(', ')) + '</strong>' : ''],
   ];
   const html = repEmail({ origin, lead, rows, est: null, source: 'website chat' });
   const r = await fetch('https://api.resend.com/emails', {

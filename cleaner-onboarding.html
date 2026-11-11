@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>DRC Home Services | Cleaner Onboarding</title>
+<meta name="description" content="Apply to clean with DRC Home Services. Pay, standards, safety, checklists and the onboarding test.">
+<link rel="icon" type="image/png" href="img/drc-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--paper:#fff;--stone:#F4F3EF;--line:#E2E1DA;--ever:#1F3D30;--ever-d:#162D23;--ever-t:#EEF3EF;--brass:#9C7A45;--ink:#1A1F1C;--muted:#5F6862;--err:#A3352A;--warn:#FBF3F1;
+  --serif:'Gilda Display',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--stone);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.top{background:var(--paper);border-bottom:1px solid var(--line)}
+.top .in{max-width:880px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;gap:14px}
+.top img{height:44px}.top span{font-family:var(--serif);font-size:19px;padding-left:14px;border-left:1px solid var(--line)}
+main{max-width:880px;margin:0 auto;padding:44px 24px 80px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;text-wrap:balance}
+h1{font-size:clamp(36px,5vw,52px);margin-bottom:12px}
+.lede{font-size:18px;color:var(--muted);max-width:60ch;text-wrap:pretty}
+.path{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:30px 0 8px;counter-reset:s}
+.path li{counter-increment:s;border-top:1px solid var(--ink);padding-top:12px;font-size:15px}
+.path li::before{content:counter(s) '.';display:block;font-size:13px;font-weight:600;color:var(--brass)}
+.path a{color:var(--ink);font-weight:600;text-decoration:none}
+section.card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:34px;margin-top:24px}
+section.card>h2{font-size:30px;margin-bottom:6px}
+section.card>.sub{color:var(--muted);margin-bottom:22px;max-width:64ch}
+h3{font-size:22px;margin:26px 0 10px}
+p+p{margin-top:10px}
+ul.list{padding-left:20px}ul.list li{margin:6px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid>*{min-width:0}
+.f label,.lbl{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.f input,.f select,.f textarea{width:100%;min-width:0;font:16px/1.4 var(--sans);padding:12px 13px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--ever);box-shadow:0 0 0 3px rgba(31,61,48,.10)}
+.f.bad input,.f.bad select{border-color:var(--err)}
+.wide{grid-column:1/-1}
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ck{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:3px;padding:11px 12px;cursor:pointer;font-size:15px}
+.ck input{margin-top:4px;accent-color:var(--ever);width:16px;height:16px;flex:none}
+.ck:has(input:checked){border-color:var(--ever);background:var(--ever-t)}
+table{width:100%;border-collapse:collapse;font-size:15.5px;margin-top:8px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13.5px;color:var(--muted);font-weight:600}
+td.r,th.r{text-align:right;white-space:nowrap}
+td b{font-weight:600}
+.pay{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:10px}
+.pay div{border:1px solid var(--line);border-radius:3px;padding:18px}
+.pay b{display:block;font-family:var(--serif);font-weight:400;font-size:40px;color:var(--ever);line-height:1.05}
+.pay span{color:var(--muted);font-size:14.5px}
+.note{font-size:14px;color:var(--muted);margin-top:12px}
+.alert{border-left:3px solid var(--err);background:var(--warn);padding:16px 18px;margin:14px 0}
+.alert b{color:var(--err)}
+.never{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.never div{border:1px solid #EBC9C2;border-radius:3px;padding:12px 14px;background:#fff;font-size:15px}
+.never b{display:block;color:var(--err);font-size:13px;margin-bottom:2px}
+details.cl{border-top:1px solid var(--line);padding:14px 0}
+details.cl:last-of-type{border-bottom:1px solid var(--line)}
+details.cl summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:600;font-size:17px}
+details.cl summary::-webkit-details-marker{display:none}
+details.cl summary::after{content:'+';font-size:22px;font-weight:400;color:var(--ever)}
+details.cl[open] summary::after{content:'\2212'}
+details.cl summary small{font-weight:400;color:var(--muted);font-size:14px}
+details.cl ul{margin-top:10px}
+.q{border-top:1px solid var(--line);padding:20px 0}
+.q:first-child{border-top:none;padding-top:0}
+.q p{font-weight:600;margin-bottom:10px}
+.q .tag{display:inline-block;font-size:12.5px;font-weight:600;color:var(--brass);margin-bottom:4px}
+.q label{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:1px solid var(--line);border-radius:3px;margin-bottom:7px;cursor:pointer;font-size:15px}
+.q label input{margin-top:4px;accent-color:var(--ever);flex:none}
+.q label:has(input:checked){border-color:var(--ever);background:var(--ever-t)}
+.q.miss{background:transparent}
+.agree{border:1px solid var(--line);border-radius:3px;padding:18px 20px;max-height:none}
+.agree li{margin:8px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:17px 26px;border-radius:3px;border:none;font:600 16px/1 var(--sans);cursor:pointer;background:var(--ever);color:#fff;margin-top:20px}
+.btn:hover{background:var(--ever-d)}.btn[disabled]{opacity:.6;cursor:wait}
+.err{color:var(--err);font-weight:600;font-size:15px;margin-top:10px;min-height:1.2em}
+.result{display:none;border-radius:4px;padding:26px;margin-top:20px}
+.result.pass{display:block;background:var(--ever-t);border:1px solid #CFE0D4}
+.result.fail{display:block;background:var(--warn);border:1px solid #EBC9C2}
+.result h3{margin:0 0 8px}
+.hp{position:absolute;left:-9999px}
+@media(max-width:640px){
+  .top .in{padding:0 16px;height:62px}.top img{height:36px}.top span{font-size:16px;padding-left:10px}
+  main{padding:30px 16px 60px}
+  .path{grid-template-columns:repeat(2,minmax(0,1fr))}
+  section.card{padding:24px 18px}
+  .grid,.checks,.pay,.never{grid-template-columns:minmax(0,1fr)}
+  table{font-size:14.5px}th,td{padding:10px 6px}
+}
+@media print{.top,.path,#apply,#test,#sign,.btn{display:none}body{background:#fff}section.card{border:none;padding:0}details.cl{display:block}details.cl>*{display:block}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><img src="img/drc-logo.png" alt="DRC"><span>Home Services</span></div></header>
+
+<main>
+  <h1>Clean with DRC Home Services</h1>
+  <p class="lede">Our clients trust us with their homes, so we hold every professional to a high standard. Read this guide, take the short test and sign our agreement. You need to pass the test and a background check before your first job.</p>
+  <ol class="path">
+    <li><a href="#apply">Tell us about you</a></li>
+    <li><a href="#pay">Read the guide</a></li>
+    <li><a href="#test">Take the test</a></li>
+    <li><a href="#sign">Sign and send</a></li>
+  </ol>
+
+  <form id="ob" novalidate>
+  <section class="card" id="apply">
+    <h2>Tell us about you</h2>
+    <p class="sub">This goes straight to our team.</p>
+    <div class="grid">
+      <div class="f"><label for="name">Full name</label><input id="name" autocomplete="name"></div>
+      <div class="f"><label for="phone">Mobile number</label><input id="phone" type="tel" autocomplete="tel"></div>
+      <div class="f"><label for="email">Email</label><input id="email" type="email" autocomplete="email"></div>
+      <div class="f"><label for="city">City</label><input id="city" autocomplete="address-level2"></div>
+      <div class="f"><label for="metro">Area</label><select id="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option></select></div>
+      <div class="f"><label for="years">Years of professional cleaning</label><select id="years"><option value="">Choose one</option><option>Less than 1 year</option><option>1 to 2 years</option><option>3 to 5 years</option><option>More than 5 years</option></select></div>
+      <div class="wide"><span class="lbl">What can you do?</span><div class="checks" id="svc">
+        <label class="ck"><input type="checkbox" value="Standard cleaning">Standard home cleaning</label>
+        <label class="ck"><input type="checkbox" value="Deep cleaning">Deep cleaning</label>
+        <label class="ck"><input type="checkbox" value="Move in or move out">Move in or move out</label>
+        <label class="ck"><input type="checkbox" value="Laundry and linens">Laundry and linens</label>
+        <label class="ck"><input type="checkbox" value="Inside appliances">Inside fridge and oven</label>
+        <label class="ck"><input type="checkbox" value="Organizing">Closet and pantry organizing</label>
+        <label class="ck"><input type="checkbox" value="Landscaping">Landscaping and yard</label>
+        <label class="ck"><input type="checkbox" value="Airbnb turnovers">Airbnb turnovers</label>
+      </div></div>
+      <div class="f"><label for="car">Reliable transportation?</label><select id="car"><option value="">Choose one</option><option>Yes</option><option>No</option></select></div>
+      <div class="f"><label for="supplies">Own cleaning supplies and vacuum?</label><select id="supplies"><option value="">Choose one</option><option>Yes, all of them</option><option>Some of them</option><option>No</option></select></div>
+      <div class="f"><label for="days">Days you can work</label><input id="days" placeholder="Monday to Friday, some Saturdays"></div>
+      <div class="f"><label for="heard">How did you hear about us?</label><input id="heard" placeholder="Craigslist, a friend, Indeed"></div>
+      <div class="f wide"><label for="notes">Anything else we should know? <span style="font-weight:400;color:var(--muted)">optional</span></label><textarea id="notes" rows="2"></textarea></div>
+    </div>
+    <div class="hp" aria-hidden="true"><label>Website <input id="company_site" tabindex="-1" autocomplete="off"></label></div>
+  </section>
+  </form>
+
+  <section class="card" id="pay">
+    <h2>Your pay</h2>
+    <p class="sub">DRC sets the pay for every job, so you never have to negotiate with a client.</p>
+    <div class="pay">
+      <div><b>$25 an hour</b><span>Our standard rate for cleaning work.</span></div>
+      <div><b>$20 an hour</b><span>Starting rate for some new cleaners, moving up to $25 after strong first jobs.</span></div>
+    </div>
+    <h3>Add ons</h3>
+    <p>You earn a flat amount for every add on the client books, on top of your hourly pay.</p>
+    <table><thead><tr><th>Add on</th><th class="r">You earn</th></tr></thead><tbody id="addonPay"></tbody></table>
+    <h3>Specialty jobs</h3>
+    <p>Carpet cleaning, organizing, landscaping, hoarder or debris cleanouts and some move outs are quoted job by job. DRC tells you the pay before you accept, and you can say no.</p>
+    <h3>When you are paid</h3>
+    <ul class="list">
+      <li>After your completion photos are in, every item on the checklist is done, and the client confirms they are happy.</li>
+      <li>No deposits or advances.</li>
+      <li>If a client reports something missed, you are paid once it is completed.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="standards">
+    <h2>Our standards</h2>
+    <p class="sub">These apply on every visit, in every home.</p>
+    <ul class="list">
+      <li><b>Arrive on time</b>, inside your arrival window. If you will be late, tell DRC before the window starts.</li>
+      <li><b>Check in and out</b> on the work order when you arrive and leave.</li>
+      <li><b>Follow the work order.</b> Client notes come first: products they want used, rooms to skip, pets, alarm and lock instructions.</li>
+      <li><b>Take before and after photos</b> of every room and every add on, and upload them to the work order.</li>
+      <li><b>Finish the full checklist.</b> If you cannot finish something, tell DRC before you leave.</li>
+      <li><b>Respect privacy.</b> Do not open private drawers, mail or documents unless the job requires it. Never photograph people or personal papers, and never post a client’s home online.</li>
+      <li><b>Come alone.</b> No guests, children or pets of your own. No smoking or vaping on the property.</li>
+      <li><b>Keep your phone away</b> except for the work order and DRC.</li>
+      <li><b>Talk to DRC, not around it.</b> Do not share your number with clients, discuss pay, or accept work from a DRC client directly.</li>
+      <li><b>Leave it secure.</b> Doors locked, alarm set if asked, lights as you found them, keys or codes kept private.</li>
+      <li><b>Report what you notice.</b> Leaks, broken fixtures or anything needing repair goes on the work order so our maintenance team can help the client.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="products">
+    <h2>Products and supplies</h2>
+    <p class="sub">Bring a full kit to every job unless the work order says to use the client’s products. Some clients ask for organic or microplastic free products, so keep those options in your kit too.</p>
+    <div class="grid">
+      <div><h3 style="margin-top:0">Tools</h3><ul class="list">
+        <li>Vacuum with attachments</li><li>Microfiber flat mop and pads</li><li>Microfiber cloths, separate colors for kitchen, bathroom, glass and dusting</li>
+        <li>Non scratch scrub sponges and a soft grout brush</li><li>Extendable duster and a squeegee</li><li>Gloves, trash bags and shoe covers</li></ul></div>
+      <div><h3 style="margin-top:0">Products</h3><ul class="list">
+        <li>All purpose cleaner</li><li>Ammonia free glass cleaner</li><li>pH neutral stone cleaner</li><li>Hardwood floor cleaner</li>
+        <li>Stainless steel cleaner</li><li>Bathroom cleaner and a disinfectant</li><li>Kitchen degreaser</li></ul></div>
+    </div>
+    <p class="note">Keep every product in its original or a properly labeled bottle. Never pour leftovers together.</p>
+  </section>
+
+  <section class="card" id="safety">
+    <h2>Chemical safety</h2>
+    <p class="sub">Some common cleaners create toxic gas when they mix. This is the most important part of the guide.</p>
+    <div class="alert"><b>Never mix cleaning products.</b> Use one product at a time, rinse the surface with water before switching, and keep the room ventilated.</div>
+    <div class="never">
+      <div><b>Never mix</b>Bleach with ammonia, including some glass cleaners</div>
+      <div><b>Never mix</b>Bleach with vinegar or acid based toilet and tile cleaners</div>
+      <div><b>Never mix</b>Bleach with rubbing alcohol</div>
+      <div><b>Never mix</b>Hydrogen peroxide with vinegar in the same bottle</div>
+      <div><b>Never mix</b>Two different drain cleaners</div>
+      <div><b>Never mix</b>Oven cleaner with any other product</div>
+    </div>
+    <h3>If something mixes by accident</h3>
+    <ul class="list">
+      <li>Leave the room right away and get fresh air. Open windows only if you can do it safely on the way out.</li>
+      <li>Call Poison Control at 1 800 222 1222, or 911 if anyone has trouble breathing.</li>
+      <li>Tell DRC as soon as you are safe. Do not go back in until the air clears.</li>
+    </ul>
+    <h3>Everyday safety</h3>
+    <ul class="list">
+      <li>Read the label before using any product you have not used before.</li>
+      <li>Wear gloves, and keep products away from children, pets and food.</li>
+      <li>Close every bottle and take your products with you when you leave.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="surfaces">
+    <h2>Special surfaces</h2>
+    <p class="sub">Luxury homes have finishes that are easy to damage. When in doubt, check the work order or ask DRC. If you cannot reach anyone, use water or mild soap only and test a hidden spot.</p>
+    <table><thead><tr><th>Surface</th><th>Use</th><th>Never use</th></tr></thead><tbody>
+      <tr><td><b>Marble, granite, travertine, limestone</b></td><td>pH neutral stone cleaner, soft cloth</td><td>Vinegar, lemon, bleach, ammonia, abrasive powder</td></tr>
+      <tr><td><b>Quartz</b></td><td>Mild soap and water, soft cloth</td><td>Bleach, oven cleaner, scrub pads</td></tr>
+      <tr><td><b>Hardwood</b></td><td>Damp, well wrung microfiber mop with wood floor cleaner</td><td>Steam mops, soaking, bleach, oil soaps unless the client uses them</td></tr>
+      <tr><td><b>Stainless steel</b></td><td>Stainless cleaner or mild soap, wipe with the grain, buff dry</td><td>Steel wool, bleach, abrasive powder</td></tr>
+      <tr><td><b>Glass cooktops</b></td><td>Cooktop cleaner and a non scratch pad. A razor scraper held flat for stuck on spots</td><td>Abrasive powder, scrub pads</td></tr>
+      <tr><td><b>Brass, matte black, bronze fixtures</b></td><td>Mild soap and water, soft cloth, dry right away</td><td>Lime removers, acids, scrub pads</td></tr>
+      <tr><td><b>Mirrors and glass</b></td><td>Ammonia free glass cleaner, microfiber or squeegee</td><td>Paper towels on tinted or treated glass</td></tr>
+      <tr><td><b>TVs and screens</b></td><td>Dry or barely damp microfiber</td><td>Any spray directly on the screen</td></tr>
+      <tr><td><b>Leather and fabric furniture</b></td><td>Vacuum and dust only</td><td>Water or cleaners unless the work order says so</td></tr>
+      <tr><td><b>Painted walls and doors</b></td><td>Barely damp cloth, gentle spot cleaning</td><td>Magic erasers on flat or matte paint</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="card" id="more">
+    <h2>Laundry, appliances and yard work</h2>
+    <p class="sub">Some clients book more than cleaning. Only do what the work order lists.</p>
+    <h3>Laundry and linens</h3>
+    <ul class="list">
+      <li>Check pockets and read care labels. Separate lights, darks and delicates.</li>
+      <li>Use cold water unless the label or client says otherwise.</li>
+      <li>Use bleach, fabric softener or scented products only if the client approved them.</li>
+      <li>Air dry anything labeled delicate or hang dry.</li>
+      <li>Fold neatly and put items away where the client asked. If you do not know, fold and leave them on the bed.</li>
+      <li>Fresh linens: strip, wash, and make the bed neatly with corners tucked and pillows arranged.</li>
+    </ul>
+    <h3>Inside appliances</h3>
+    <ul class="list">
+      <li>Fridge: remove items, wipe shelves and drawers with mild soap and water, dry, and return items in order. Never throw anything away unless the work order says to.</li>
+      <li>Oven: check if it is self cleaning. Follow the work order and the product label, ventilate, and wipe away all residue.</li>
+      <li>Microwave and dishwasher: wipe inside, door seals and controls.</li>
+    </ul>
+    <h3>Landscaping and yard</h3>
+    <ul class="list">
+      <li>Do only the tasks on the work order: mowing, edging, trimming, blowing walkways or bagging debris.</li>
+      <li>Never spray weed killer, fertilizer or pest control unless the work order specifically says so.</li>
+      <li>Watch for sprinkler heads, pets and children. Close every gate behind you.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="checklists">
+    <h2>Cleaning checklists</h2>
+    <p class="sub">Every work order includes the checklist for that job. These are the standards behind it.</p>
+    <details class="cl" open><summary><span>Essential Home Cleaning <small>every standard visit</small></span></summary>
+      <h3>Kitchen</h3><ul class="list">
+        <li>Counters and backsplash wiped and dried</li><li>Sink and faucet scrubbed and shined</li><li>Stovetop wiped, burner grates spot cleaned</li>
+        <li>Outside of fridge, oven, dishwasher and microwave wiped; inside of microwave wiped</li><li>Cabinet fronts and handles spot cleaned</li>
+        <li>Table and chairs wiped</li><li>Trash emptied and liner replaced</li><li>Floor vacuumed and mopped</li></ul>
+      <h3>Bathrooms</h3><ul class="list">
+        <li>Toilet cleaned inside, outside and at the base</li><li>Shower and tub scrubbed, glass doors cleaned</li><li>Sink, counter and faucet cleaned and shined</li>
+        <li>Mirrors streak free</li><li>Towels folded or hung neatly</li><li>Trash emptied</li><li>Floor vacuumed and mopped</li></ul>
+      <h3>Bedrooms and living areas</h3><ul class="list">
+        <li>All reachable surfaces dusted: furniture, shelves, decor, lamps, frames</li><li>Mirrors and glass tables cleaned</li>
+        <li>Beds made, with fresh linens if they are left out</li><li>Light switches and door handles wiped</li>
+        <li>Pillows and throws arranged</li><li>Floors vacuumed and mopped, including edges</li></ul>
+      <h3>Whole home</h3><ul class="list">
+        <li>Entry, stairs and railings</li><li>Reachable ceiling fans and cobwebs</li><li>Trash taken to the outdoor bin if the client asks</li></ul>
+      <h3>Before you leave</h3><ul class="list">
+        <li>After photos of every room uploaded</li><li>Anything broken or needing repair noted on the work order</li>
+        <li>Lights as you found them, doors locked, alarm set if asked</li></ul>
+    </details>
+    <details class="cl"><summary><span>Signature Deep Cleaning <small>everything above, plus</small></span></summary><ul class="list">
+      <li>Baseboards, door frames and doors hand wiped</li><li>Light switch and outlet plates wiped</li><li>Range hood and filter cleaned</li>
+      <li>Cabinet fronts fully wiped</li><li>Grout scrubbed and hard water or soap scum removed</li><li>Vents and returns dusted</li>
+      <li>Window sills and tracks cleaned</li><li>Blinds dusted</li><li>Under and behind furniture that moves easily</li><li>Lamp shades and ceiling fans fully dusted</li></ul></details>
+    <details class="cl"><summary><span>Move in or move out <small>an empty home, top to bottom</small></span></summary><ul class="list">
+      <li>Everything in Signature Deep Cleaning</li><li>Inside every cabinet, drawer and closet</li><li>Inside the fridge, oven, microwave and dishwasher</li>
+      <li>Shelves, closet rods and hooks wiped</li><li>All floors fully cleaned, including corners and edges</li><li>Garage swept if listed on the work order</li></ul></details>
+    <details class="cl"><summary><span>Add ons <small>only when listed on the work order</small></span></summary><ul class="list">
+      <li><b>Inside fridge:</b> remove items, wash shelves and drawers, dry, return items in order. Throw nothing away unless asked.</li>
+      <li><b>Inside oven:</b> racks soaked and scrubbed, interior and door glass cleaned, all residue wiped away.</li>
+      <li><b>Inside cabinets and drawers:</b> empty one section at a time, wipe, dry and return items as they were.</li>
+      <li><b>Interior windows and tracks:</b> glass streak free, sills and tracks vacuumed and wiped.</li>
+      <li><b>Hand wiped baseboards:</b> every baseboard in the listed rooms wiped by hand.</li>
+      <li><b>Blinds:</b> each slat dusted or wiped.</li>
+      <li><b>Laundry:</b> washed, dried, folded and put away, following the laundry standards above. Count standard and large loads on the work order.</li>
+      <li><b>Dishes:</b> washed, dried and put away, or loaded and run in the dishwasher.</li>
+      <li><b>Garage sweep out:</b> floor swept, cobwebs removed, debris bagged.</li>
+      <li><b>Patio or balcony:</b> swept, outdoor furniture wiped, glass doors and tracks cleaned.</li></ul></details>
+  </section>
+
+  <section class="card" id="responsible">
+    <h2>Your responsibilities</h2>
+    <p class="sub">We are serious about our clients. These terms are part of the agreement you sign below.</p>
+    <ul class="list">
+      <li><b>Missed or incomplete work.</b> If a client reports something missed or not done to our standard, you go back and complete it at no extra pay, at a time DRC schedules.</li>
+      <li><b>Damage.</b> If anything is damaged, stop, take photos and report it to DRC before you leave. You are responsible for damage caused by carelessness or by not following this guide, including the cost of repair or replacement. DRC may hold payment for that job until it is resolved.</li>
+      <li><b>Correct products.</b> You bring the right products for each surface, or use the client’s products when the work order says to.</li>
+      <li><b>Background check.</b> You agree to a background check before your first job.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="test">
+    <h2>Onboarding test</h2>
+    <p class="sub" id="testSub">20 questions. You need 85% or higher, and every chemical safety question must be correct. You can retake it.</p>
+    <div id="questions"><p class="note">Loading the test...</p></div>
+  </section>
+
+  <section class="card" id="sign">
+    <h2>Sign and send</h2>
+    <div class="agree"><p><b>DRC Home Services cleaner agreement</b></p><ul class="list">
+      <li>I have read this guide and will follow DRC’s standards and the checklist on every work order.</li>
+      <li>I will never mix cleaning products, and I will use the correct product for each surface.</li>
+      <li>If a client reports missed or incomplete work, I will go back and complete it at no extra pay, at a time DRC schedules.</li>
+      <li>I will report any damage with photos before I leave. I am responsible for damage caused by my carelessness or by not following this guide, including the cost of repair or replacement, and DRC may hold payment for that job until it is resolved.</li>
+      <li>I understand my pay is set by DRC and paid after my photos, the full checklist and the client’s confirmation are in.</li>
+      <li>I will keep client information private and will not accept work from DRC clients directly.</li>
+      <li>I agree to a background check before my first job.</li>
+    </ul></div>
+    <label class="ck" style="margin-top:16px"><input type="checkbox" id="agreed">I have read and agree to the DRC Home Services cleaner agreement.</label>
+    <div class="f" style="margin-top:14px"><label for="sigName">Type your full name as your signature</label><input id="sigName" autocomplete="name"></div>
+    <button type="button" class="btn" id="send">Submit my application and test</button>
+    <div class="err" id="err" role="alert"></div>
+    <div class="result" id="result" aria-live="polite"></div>
+  </section>
+</main>
+
+<script type="module">
+import { PRICING as P } from './cleaning-pricing.js';
+const $ = s => document.querySelector(s);
+const money = n => '$' + (Math.round(n * 100) / 100).toFixed(2);
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// Add on pay: 75% of the client price, pulled from the live pricing file
+const SHARE = 0.75;
+$('#addonPay').innerHTML = Object.values(P.addons).filter(a => !a.quote && a.add > 0)
+  .map(a => `<tr><td>${esc(a.label.replace(/\s*\(wash, fold and put away\)/, ''))}</td><td class="r"><b>${money(a.add * SHARE)}</b>${/laundry/i.test(a.label) ? ' a load' : ''}</td></tr>`).join('')
+  + `<tr><td>Carpet cleaning and area rugs</td><td class="r">Set per job</td></tr>`;
+
+// Test questions come from the server without answers
+let QS = [];
+(async () => {
+  try {
+    const r = await fetch('/api/cleaner-onboarding'); const d = await r.json(); QS = d.questions;
+    $('#testSub').textContent = `${QS.length} questions. You need ${d.passPercent}% or higher, and every chemical safety question must be correct. You can retake it.`;
+    $('#questions').innerHTML = QS.map((x, i) => `<div class="q" id="w_${x.id}"><span class="tag">${i + 1} of ${QS.length} · ${esc(x.topic)}</span><p>${esc(x.q)}</p>${x.a.map((o, j) => `<label><input type="radio" name="${x.id}" value="${j}">${esc(o)}</label>`).join('')}</div>`).join('');
+  } catch { $('#questions').innerHTML = '<p class="err">The test did not load. Please refresh the page.</p>'; }
+})();
+
+const bad = (id, msg) => { const el = $('#' + id); el.parentElement.classList.add('bad'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.focus({ preventScroll: true }); $('#err').textContent = msg; return false; };
+function check() {
+  document.querySelectorAll('.f.bad').forEach(f => f.classList.remove('bad')); $('#err').textContent = '';
+  if (!$('#name').value.trim()) return bad('name', 'Please add your full name at the top.');
+  if ($('#phone').value.replace(/\D/g, '').length < 10) return bad('phone', 'Please add a 10 digit mobile number at the top.');
+  if (!/^\S+@\S+\.\S+$/.test($('#email').value)) return bad('email', 'Please add your email at the top.');
+  if (!$('#metro').value) return bad('metro', 'Please choose your area at the top.');
+  const blank = QS.find(x => !document.querySelector(`input[name=${x.id}]:checked`));
+  if (blank) { document.getElementById('w_' + blank.id).scrollIntoView({ behavior: 'smooth', block: 'center' }); $('#err').textContent = 'Please answer every test question.'; return false; }
+  if (!$('#agreed').checked) { $('#err').textContent = 'Please check the box to agree.'; return false; }
+  if ($('#sigName').value.trim().length < 3) return bad('sigName', 'Please type your full name as your signature.');
+  return true;
+}
+$('#send').addEventListener('click', async () => {
+  if (!check()) return;
+  const btn = $('#send'); btn.disabled = true; btn.textContent = 'Sending...';
+  const answers = Object.fromEntries(QS.map(x => [x.id, +document.querySelector(`input[name=${x.id}]:checked`).value]));
+  const app = { name: $('#name').value.trim(), phone: $('#phone').value.trim(), email: $('#email').value.trim(), city: $('#city').value.trim(), metro: $('#metro').value,
+    years: $('#years').value, services: [...document.querySelectorAll('#svc input:checked')].map(i => i.value), car: $('#car').value, supplies: $('#supplies').value,
+    days: $('#days').value.trim(), heard: $('#heard').value.trim(), notes: $('#notes').value.trim() };
+  try {
+    const r = await fetch('/api/cleaner-onboarding', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ app, answers, signature: { name: $('#sigName').value.trim(), agreed: true }, company_site: $('#company_site').value }) });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || !d.success) throw new Error(d.error || 'Something went wrong.');
+    const res = $('#result');
+    if (d.passed) {
+      res.className = 'result pass';
+      res.innerHTML = `<h3>You passed. Thank you, ${esc(app.name.split(' ')[0])}.</h3><p>You scored ${d.score} of ${d.total}. Our team will reach out soon about your background check, which is required before your first job. A copy is on its way to your email.</p>`;
+      btn.hidden = true;
+    } else {
+      res.className = 'result fail';
+      res.innerHTML = `<h3>Not quite yet.</h3><p>You scored ${d.score} of ${d.total}${d.safetyMissed ? `, and missed ${d.safetyMissed} chemical safety question${d.safetyMissed > 1 ? 's' : ''}, which must all be correct` : ''}. Please review ${d.topics.map(esc).join(', ').replace(/, ([^,]*)$/, ' and $1')} in the guide above, then try again.</p>`;
+      btn.textContent = 'Retake and submit';
+    }
+    res.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (e) { $('#err').textContent = e.message + ' Please try again.'; }
+  finally { btn.disabled = false; if (!btn.hidden && btn.textContent === 'Sending...') btn.textContent = 'Submit my application and test'; }
+});
+</script>
+</body>
+</html>

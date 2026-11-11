@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>DRC Home Services | Your Home, Fully Handled</title>
-<meta name="description" content="Cleaning, laundry, organizing, repairs and yard care from one trusted team. Tell us what you need and see your price.">
+<meta name="description" content="Family owned, with more than 30 years combined experience. Cleaning, laundry, organizing, repairs and yard care from one trusted team. Tell us what you need and see your price.">
 <link rel="icon" type="image/png" href="img/drc-logo.png">
 <link rel="preload" as="image" href="img/clean-hero-listing.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@ img{max-width:100%;display:block}
 .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
 h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;line-height:1.08;text-wrap:balance}
 h2{font-size:clamp(32px,3.6vw,46px);margin-bottom:14px}
-.lede{font-size:18px;color:var(--muted);max-width:54ch}
+.lede{font-size:18px;color:var(--muted);max-width:54ch;text-wrap:pretty}
 .sec{padding:100px 0}
 .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:17px 26px;border-radius:3px;border:none;font:600 16px/1 var(--sans);letter-spacing:.01em;cursor:pointer;background:var(--ever);color:#fff;text-decoration:none;transition:background .2s}
 .btn:hover{background:var(--ever-d)}
@@ -45,13 +45,13 @@ h2{font-size:clamp(32px,3.6vw,46px);margin-bottom:14px}
 /* hero: stone on the left, photograph on the right, the card sits across both */
 .hero{position:relative;background:var(--stone);overflow:hidden}
 .hero-photo{position:absolute;top:0;right:0;bottom:0;width:44%;background:url(img/clean-hero-listing.jpg) 38% center/cover}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1fr 460px;gap:64px;padding-top:84px;padding-bottom:84px;align-items:start}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 450px;gap:56px;padding-top:84px;padding-bottom:84px;align-items:start}
 .hero .wrap>div:first-child{padding-top:64px}
 .hero h1{font-size:clamp(46px,5.2vw,74px);margin-bottom:22px}
 .hero h1 span{display:block}
 .hero .lede{margin-bottom:28px}
-.facts{list-style:none;display:flex;flex-wrap:wrap;gap:10px 0;font-size:14.5px;color:var(--ink)}
-.facts li{padding:0 18px;border-left:1px solid #CFCDC4}
+.facts{list-style:none;display:flex;align-items:center;font-size:14.5px;line-height:1.4;color:var(--ink);white-space:nowrap}
+.facts li{padding:0 16px;border-left:1px solid #CFCDC4}
 .facts li:first-child{padding-left:0;border-left:none}
 .area{font-size:14.5px;color:var(--muted);margin-top:22px}
 
@@ -227,6 +227,12 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
 .cc-in button{border:none;background:var(--ever);color:#fff;border-radius:3px;padding:0 16px;font:600 14px var(--sans);cursor:pointer}
 
 .mbar{display:none}
+/* narrow desktops: the trust line stacks like on phones rather than wrapping awkwardly */
+@media(max-width:1185px) and (min-width:1061px){
+  .facts{display:block;white-space:normal;max-width:420px}
+  .facts li,.facts li:first-child{padding:10px 0;border-left:none;border-top:1px solid #CFCDC4}
+  .facts li:last-child{border-bottom:1px solid #CFCDC4}
+}
 @media(max-width:1060px){
   .hero-photo{position:relative;width:auto;height:260px;background-position:center 60%}
   .hero .wrap{grid-template-columns:1fr;gap:32px;padding-top:44px;padding-bottom:56px}
@@ -245,9 +251,10 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
   .hero .wrap{padding-top:26px;gap:22px}
   .hero .wrap>div:first-child{padding-top:0}
   .hero h1{font-size:40px;margin-bottom:12px}
-  .facts{gap:6px 16px}.facts li,.facts li:first-child{padding:0 0 0 20px;border:none;position:relative}
-  .facts li::before{content:'';position:absolute;left:0;top:50%;width:12px;height:12px;margin-top:-6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%231F3D30' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3 3 7-7'/%3E%3C/svg%3E") center/contain no-repeat}
-  .area{margin-top:14px}
+  .facts{display:block;white-space:normal}
+  .facts li,.facts li:first-child{padding:11px 0;border-left:none;border-top:1px solid #CFCDC4}
+  .facts li:last-child{border-bottom:1px solid #CFCDC4}
+  .area{margin-top:16px}
   .hero .lede{font-size:16.5px;margin-bottom:18px}
   .qc{padding:24px 18px;margin:0 -4px}
   .needs{gap:7px}.need{font-size:14px;padding:11px 10px 11px 36px}.need::before{left:12px}
@@ -283,7 +290,7 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
     <div>
       <h1><span>Your home,</span> <span>fully handled.</span></h1>
       <p class="lede">Cleaning, laundry, organizing, repairs and yard care from one trusted team. Tell us what you need and we will take care of the rest.</p>
-      <ul class="facts"><li>Background checked professionals</li><li>Fully insured</li><li>No contracts</li></ul>
+      <ul class="facts"><li>Family owned</li><li>30+ years combined experience</li><li>Insured and background checked</li></ul>
       <p class="area" id="kick">Serving Dallas, Denver, Nashville and Phoenix</p>
     </div>
 
@@ -399,7 +406,7 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
 <section class="sec why">
   <div class="wrap">
     <h2>Why homeowners choose DRC</h2>
-    <p class="lede">The care of a private housekeeper, with the backing of a full home maintenance company.</p>
+    <p class="lede">DRC is family owned, and our founders bring more than 30 years of combined experience caring for homes and properties. You get the care of a private housekeeper, with the backing of a full home maintenance company.</p>
     <table class="cmp">
       <thead><tr><th></th><th class="us">DRC Home Services</th><th>Many cleaning services</th></tr></thead>
       <tbody>

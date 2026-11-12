@@ -146,7 +146,7 @@ function update() {
     $('#sub').textContent = `Suggested ${money(r.middle)} · about ${r.laborHours} cleaner hours` + (r.carpetQuote ? ' · carpet NOT included, add your carpet quote' : '');
     const li = (k, v) => `<tr><td>${k}</td><td>${v}</td></tr>`;
     $('#lines').innerHTML = li('Labor', money(r.labor)) + r.addonLines.map(x => li(x.label + (x.qty > 1 ? ' x' + x.qty : ''), x.quote ? 'quote' : '+' + money(x.amount))).join('')
-      + (r.products ? li('Products', '+' + money(r.products)) : '') + (r.discount ? li(r.offerApplied ? 'New client 10%, first visit' : 'Membership savings', '−' + money(r.discount)) : '')
+      + (r.products ? li('Products', '+' + money(r.products)) : '') + (r.discount ? li(r.offerApplied ? 'New client 10%, first visit' : 'Recurring savings', '−' + money(r.discount)) : '')
       + (r.ongoing ? li('Each visit after', money(r.ongoing.low) + ' to ' + money(r.ongoing.high)) : '');
     const p20 = r.laborHours * 20, p25 = r.laborHours * 25;
     $('#keep').innerHTML = `Cleaner pay: <b>${money(p20)} to ${money(p25)}</b><br>DRC keeps at the suggested price: <b>${money(r.middle - p25)} to ${money(r.middle - p20)}</b> (${Math.round((r.middle - p25) / r.middle * 100)}% to ${Math.round((r.middle - p20) / r.middle * 100)}%)`;

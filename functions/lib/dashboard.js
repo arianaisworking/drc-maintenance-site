@@ -24,6 +24,8 @@ export async function sendLeadToDashboard(env, lead, est, extraNotes = []) {
     isBid: true,
     bidStatus: 'Bid Request',
     jobType: 'Home Services lead',
+    division: 'home_services',
+    hsStage: 'New lead',
     clientName: 'Home Services: ' + (lead.name || 'Website lead'),
     address: [lead.address, lead.city, lead.zip ? 'ZIP ' + lead.zip : '', lead.metro].filter(Boolean).join(', ') || 'Not given',
     tenantName: lead.name || '',

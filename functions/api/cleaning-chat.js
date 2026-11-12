@@ -1,6 +1,8 @@
 // Website chat on /cleaning: emails the office a branded DRC Home Services lead
 // with rep coaching (add ons, follow up questions, call script, calculator link).
 // Uses the same Resend env vars as the other forms (RESEND_API_KEY, FROM_EMAIL, TO_EMAIL, CLEANING_TO_EMAIL).
+import { clientEmail } from '../lib/client-email.js';
+import { sendLeadToDashboard } from '../lib/dashboard.js';
 import { repEmail, serviceKey, bedsFromText } from '../lib/rep-email.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -33,5 +35,14 @@ export async function onRequestPost({ request, env }) {
       attachments: [{ filename: 'DRC-Home-Services-Cleaning-Price-Sheet.pdf', path: `${origin}/docs/drc-cleaning-price-sheet.pdf` }] }),
   });
   if (!r.ok) return json({ error: 'Could not send' }, 502);
+  const zip = (lead.location.match(/\d{5}/) || [''])[0];
+  await sendLeadToDashboard(env, { ...lead, zip, serviceLabel: lead.service || 'Home services (chat)' }, null, ['Came in through the website chat']);
+  try {
+    await fetch('https://api.resend.com/emails', { method: 'POST',
+      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from: env.FROM_EMAIL, to: lead.email, subject: 'We have your request',
+        html: clientEmail({ origin, name: lead.name, est: null, contactPref: lead.contactPref, phone: lead.phone,
+          quoteItems: lead.service ? lead.service.split(',').map(x => x.trim()).filter(Boolean) : [] }) }) });
+  } catch {}
   return json({ success: true });
 }

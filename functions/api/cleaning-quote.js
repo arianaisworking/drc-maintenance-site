@@ -10,6 +10,8 @@
 
 import { PRICING, estimate } from '../../cleaning-pricing.js';
 import { repEmail } from '../lib/rep-email.js';
+import { clientEmail } from '../lib/client-email.js';
+import { sendLeadToDashboard } from '../lib/dashboard.js';
 
 const MAX_PHOTOS = 8;
 const MAX_PHOTO_BYTES = 4 * 1024 * 1024;
@@ -29,8 +31,9 @@ export async function onRequestPost({ request, env }) {
   let form;
   try { form = await request.formData(); } catch { return json({ error: 'Could not read the form' }, 400); }
 
-  // Honeypot: real people never fill this.
-  if (form.get('company_site')) return json({ success: true });
+  // Spam trap. Browser autofill can fill it for real people, so we never drop
+  // the lead: it still goes to the office, flagged, and the client email is skipped.
+  const flagged = !!(form.get('company_site') || form.get('hp_check'));
 
   const g = k => String(form.get(k) ?? '').trim().slice(0, 2000);
   const all = k => form.getAll(k).map(v => String(v).trim()).filter(Boolean);
@@ -56,7 +59,8 @@ export async function onRequestPost({ request, env }) {
 
   let addons = {};
   try { addons = JSON.parse(g('addons') || '{}'); } catch {}
-  const est = estimate({ ...lead, addons });
+  // Website leads are treated as new clients unless the form says otherwise.
+  const est = estimate({ ...lead, addons, newCustomer: g('new_customer') !== 'no' });
 
   // Photos
   const attachments = [];
@@ -87,6 +91,7 @@ export async function onRequestPost({ request, env }) {
     ['Special surfaces', esc(lead.surfaces.join(', '))],
     ['Surface notes', esc(lead.surfaceNotes)],
     ['Home care wanted', lead.homecare.length ? '<strong>' + lead.homecare.map(esc).join('<br>') + '</strong><br><i>Send an itemized proposal. No price was shown online.</i>' : ''],
+    ['New client offer', est.offerApplied ? `<strong>10% off first visit (${money(est.offerAmount)}) included in the estimate</strong>` : ''],
     ['Add ons chosen', addonText],
     ['Also wants a quote for', lead.interests ? '<strong>' + esc(lead.interests) + '</strong><br><i>Offer these on the call. Not in the estimate.</i>' : ''],
     ['How often', esc(lead.frequency && lbl('frequency', lead.frequency))],
@@ -115,7 +120,7 @@ export async function onRequestPost({ request, env }) {
     from: env.FROM_EMAIL,
     to: env.CLEANING_TO_EMAIL || env.TO_EMAIL,
     reply_to: lead.email,
-    subject: `DRC Home Services lead: ${lead.name}, ${lbl('services', lead.service)}${lead.metro ? ', ' + lead.metro : lead.city ? ', ' + lead.city : ''}`,
+    subject: `${flagged ? '[Check: possible spam] ' : ''}DRC Home Services lead: ${lead.name}, ${lbl('services', lead.service)}${lead.metro ? ', ' + lead.metro : lead.city ? ', ' + lead.city : ''}`,
     html: officeHtml,
     attachments: [...attachments, { filename: 'DRC-Home-Services-Cleaning-Price-Sheet.pdf', path: `${origin}/docs/drc-cleaning-price-sheet.pdf` }],
   });
@@ -124,23 +129,20 @@ export async function onRequestPost({ request, env }) {
     return json({ success: false, error: 'We could not send your request. Please call or text us.', detail: err.slice(0, 300) }, 502);
   }
 
+  // Into DRC Dash as a bid, so leads and the new client offer are tracked there.
+  const dash = await sendLeadToDashboard(env, { ...lead, serviceLabel: lbl('services', lead.service) }, est,
+    [lead.interests ? 'Also wants a quote for: ' + lead.interests : '', lead.homecare.length ? 'Home care wanted: ' + lead.homecare.join(', ') : ''].filter(Boolean));
+
   // Client confirmation. A failure here doesn't fail the request.
-  const clientEst = est.ok && !est.quoteOnly
-    ? `<p>Your estimate: <strong>${money(est.low)} to ${money(est.high)}</strong>.</p>`
-    : '';
+  if (flagged) return json({ success: true, estimate: est });
+  const quoteItems = [...lead.homecare, ...(lead.interests ? lead.interests.split(',').map(x => x.trim()).filter(Boolean) : [])];
   try {
     await send({
       from: env.FROM_EMAIL,
       to: lead.email,
-      subject: 'We got your cleaning request',
-      html: `<div style="font-family:Arial,sans-serif;font-size:15px;color:#1a1a14;line-height:1.6">
-        <p>Hi ${esc(lead.name.split(' ')[0])},</p>
-        <p>Thanks for reaching out to DRC Home Services. We received your request for a ${esc(lbl('services', lead.service).toLowerCase())}.</p>
-        ${clientEst}
-        ${lead.service === 'homecare'
-          ? `<p>We've received your selections. A DRC home care specialist will review your needs and send you a personalized, itemized quote before scheduling.</p>`
-          : `<p>Our team will reach out ${lead.contactPref === 'Email' ? 'by email' : lead.contactPref === 'Call' ? 'with a call at ' + esc(lead.phone) : 'with a text at ' + esc(lead.phone)} soon to confirm your price, answer any questions and confirm your schedule. Once you approve the price, we'll email a secure Square payment link, and your date is locked in when payment comes through.</p>`}
-        <p>Talk soon,<br>DRC Home Services<br>Dedicated Resource Center LLC</p></div>`,
+      subject: est.ok && !est.quoteOnly ? 'Your DRC Home Services estimate' : 'We have your request',
+      html: clientEmail({ origin, name: lead.name, serviceLabel: lbl('services', lead.service), est, contactPref: lead.contactPref, phone: lead.phone,
+        quoteItems: [...new Set(quoteItems)], frequencyLabel: lead.frequency && P.frequency[lead.frequency] ? P.frequency[lead.frequency].label : '' }),
     });
   } catch {}
 

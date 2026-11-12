@@ -89,6 +89,9 @@ h2{font-size:clamp(32px,3.6vw,46px);margin-bottom:14px}
 .price{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 2px;margin-bottom:16px;min-height:76px}
 .price span{font-size:13px;color:var(--muted);line-height:1.45}
 .price b{font-family:var(--serif);font-weight:400;font-size:32px;color:var(--ever);white-space:nowrap;line-height:1}
+@media(max-width:560px){.price{flex-direction:column-reverse;align-items:flex-start;gap:8px}}
+.pfine{font-size:13px;color:var(--muted);line-height:1.55;margin:-6px 2px 18px}
+.qc:not(.a) .pfine{display:none}
 .price.empty b{font-family:var(--sans);font-size:15px;color:var(--muted);font-weight:500}
 .recap{border:1px solid var(--line);background:var(--stone);border-radius:3px;padding:12px 14px;margin-bottom:18px;font-size:14px;line-height:1.5}
 .recap b{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:2px}
@@ -308,6 +311,7 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
             <button type="button" class="need" data-need="organizing" aria-pressed="false">Organizing</button>
             <button type="button" class="need" data-need="repairs" aria-pressed="false">Repairs and maintenance</button>
             <button type="button" class="need" data-need="yard" aria-pressed="false">Landscaping and yard</button>
+            <button type="button" class="need" data-need="lights" aria-pressed="false">Holiday lights</button>
             <button type="button" class="need" data-need="move" aria-pressed="false">Move in or move out</button>
           </div>
           <div class="f" style="margin-bottom:14px"><label for="notes">Tell us in your own words <span class="opt">optional</span></label><textarea id="notes" name="notes" rows="2" placeholder="Weekly cleaning and laundry, plus a light fixture that needs replacing"></textarea></div>
@@ -339,6 +343,7 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
         </div>
 
         <div class="price empty" id="price"><span id="pLbl">Your estimate</span><b id="pVal">Add your square footage</b></div>
+        <p class="pfine" id="pFine" hidden>Your estimate is based on what you have shared. We confirm your final price with you by phone once we have reviewed the details together.</p>
 
         <div class="stepa">
           <button type="button" class="btn" id="go">Continue</button>
@@ -379,7 +384,7 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
           <input type="hidden" name="metro" id="metro"><input type="hidden" name="products" value="client"><input type="hidden" name="soil" value="average"><input type="hidden" name="pets" value="none">
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="landing">
           <input type="hidden" name="heard" id="heard"><input type="hidden" name="interests" id="interests">
-          <div class="hp" aria-hidden="true"><label>Website <input name="company_site" tabindex="-1" autocomplete="off"></label></div>
+          <div class="hp" aria-hidden="true"><label>Leave blank <input name="hp_check" tabindex="-1" autocomplete="one-time-code" aria-hidden="true"></label></div>
           <button type="button" class="btn" id="send">Send my estimate</button>
           <p class="fine"><button type="button" class="link" id="backA">Change my details</button></p>
         </div>
@@ -430,7 +435,7 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
     <h2>How it works</h2>
     <ol class="steps">
       <li><b>Tell us what you need</b><span>Choose it here or chat with our concierge.</span></li>
-      <li><b>Confirm your day</b><span>We reach out by text, call or email and confirm your schedule.</span></li>
+      <li><b>Confirm your price and day</b><span>We call to review the details with you, confirm your final price and set your schedule.</span></li>
       <li><b>Pay securely</b><span>A Square link locks in your date. Nothing is charged before you approve.</span></li>
       <li><b>Come home to it</b><span>Everything on your list, handled. Photos sent when we finish.</span></li>
     </ol>
@@ -438,26 +443,10 @@ footer a{color:rgba(255,255,255,.8);text-decoration:none}
 </section>
 
 <section class="sec" style="padding-top:0">
-  <div class="wrap member">
-    <img src="img/services/homecare.jpg" alt="A serene bedroom with a freshly made bed and an organized closet" loading="lazy">
-    <div>
-      <h2>Membership, with privileges</h2>
-      <p class="lede">Weekly, every 2 weeks or monthly. No contracts, pause any time.</p>
-      <ul class="perks">
-        <li><b>Member pricing</b><span>A lower rate on every recurring visit.</span></li>
-        <li><b>Priority scheduling</b><span>First choice of dates, including the weeks before the holidays.</span></li>
-        <li><b>A checklist that remembers</b><span>Your products, priorities and rooms to skip, saved for every visit.</span></li>
-        <li><b>First in line for repairs</b><span>Anything that needs attention is flagged and scheduled first.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="sec" style="padding-top:0">
   <div class="wrap">
     <h2>Questions</h2>
     <div class="faq">
-      <details><summary>Is my price final?</summary><p>Home cleaning prices are estimates based on your home's size. Deep cleaning shows a starting range, and we confirm your final quote after a quick review. Laundry, organizing, repairs and yard care are quoted for you. Nothing is charged until you approve it.</p></details>
+      <details><summary>Is my price final?</summary><p>The price you see is an estimate based on what you share. We confirm your final price with you by phone once we have reviewed the details together. New clients receive 10% off their first visit. Laundry, organizing, repairs and yard care are quoted for you. Nothing is charged until you approve it.</p></details>
       <details><summary>Who will be in my home?</summary><p>A background checked DRC professional. Your preferences are saved, so every visit is held to the same standard.</p></details>
       <details><summary>Can you handle more than cleaning?</summary><p>Yes. Choose everything you need when you start, or tell us in your own words. We take care of laundry, dishes, organizing, repairs, landscaping and move in or move out.</p></details>
       <details><summary>Do I need to be home?</summary><p>No. Many clients share a lockbox or door code. You receive photos of every room when we finish.</p></details>
@@ -494,7 +483,7 @@ initTracking();
 // Example: { text: 'Our home has never looked better.', name: 'Jennifer M.', area: 'Southlake' }
 const REVIEWS = [];
 
-// Only claims we can stand behind: holiday and spring demand is real, and members do get priority scheduling.
+// Only claims we can stand behind: holiday and spring demand is real.
 // Set LIMITED_OPENINGS to false if new client capacity is ever wide open.
 const LIMITED_OPENINGS = true;
 const $ = s => document.querySelector(s);
@@ -510,9 +499,9 @@ const city = CITIES[(q.get('city') || '').toLowerCase()];
 if (city) { $('#kick').textContent = `Serving ${city} homeowners`; }
 
 const mo = new Date().getMonth();
-const season = mo >= 10 ? 'Holiday dates book first. Reserve yours before the calendar fills.'
-  : mo === 0 ? 'January dates are filling. Start the new year with a reset.'
-  : mo >= 2 && mo <= 4 ? 'Spring refresh season. Dates are booking quickly.' : '';
+const season = mo >= 10 ? 'Holiday cleaning and holiday light installs book first. New clients receive 10% off their first visit.'
+  : mo === 0 ? 'January dates are filling. New clients receive 10% off their first visit.'
+  : 'New clients receive 10% off their first visit.';
 if (season) { $('#seasonTxt').textContent = season; $('#season').classList.add('on'); }
 if (!LIMITED_OPENINGS) $('#limit').remove();
 if (REVIEWS.length) {
@@ -536,7 +525,7 @@ const wants = new Set();    // services and ideas we quote, never priced online
 
 function answers() {
   return { service: val('service'), frequency: val('service') === 'deep' ? 'once' : val('frequency'), soil: 'average', pets: 'none', products: 'client',
-    sqft: $('#sqft').value, bedrooms: $('#bedrooms').value, bathrooms: $('#bathrooms').value, addons: picked };
+    sqft: $('#sqft').value, bedrooms: $('#bedrooms').value, bathrooms: $('#bathrooms').value, addons: picked, newCustomer: true };
 }
 function update() {
   const a = answers(), deep = a.service === 'deep';
@@ -544,13 +533,15 @@ function update() {
   const r = +a.sqft >= 300 ? estimate(a) : { ok: false };
   $('#freq').style.display = $('#freqLbl').style.display = deep ? 'none' : '';
   const box = $('#price');
-  if (!r.ok) { box.classList.add('empty'); $('#pVal').textContent = 'Add your square footage'; $('#pLbl').textContent = 'Your estimate'; return r; }
-  box.classList.remove('empty');
+  if (!r.ok) { box.classList.add('empty'); $('#pVal').textContent = 'Add your square footage'; $('#pLbl').textContent = 'Your estimate'; $('#pFine').hidden = true; return r; }
+  box.classList.remove('empty'); $('#pFine').hidden = false;
   $('#pVal').textContent = deep ? `From ${money(r.low)}` : `${money(r.low)} to ${money(r.high)}`;
   trackPriceSeen({ content_category: a.service, value: r.middle, currency: 'USD' });
   const extra = (r.addonLines || []).filter(x => !x.quote).reduce((t, x) => t + x.amount, 0);
   const note = extra ? `<br>Includes ${money(extra)} in extras` : wants.size ? `<br>Plus ${wants.size} item${wants.size > 1 ? 's' : ''} we will quote` : '';
-  $('#pLbl').innerHTML = (deep ? 'Starting range<br>Final quote after a quick review' : `Per visit, ${P.frequency[a.frequency].label.toLowerCase()}<br>About ${r.laborHours} cleaner hours`) + note;
+  const gift = r.offerApplied ? 'First visit, 10% new client savings included' : 'First visit';
+  const after = r.ongoing ? `<br>Then ${money(r.ongoing.low)} to ${money(r.ongoing.high)} ${P.frequency[a.frequency].label.toLowerCase()}` : '';
+  $('#pLbl').innerHTML = gift + (deep ? '' : after) + note;
   return r;
 }
 // Keep their answers if they wander off and come back (same browser tab session)
@@ -640,7 +631,7 @@ $('#qc').addEventListener('click', e => {
   update();
 });
 // Step one: they tell us everything they want. Cleaning gets a live price; everything else is quoted.
-const NEED = { clean: 'Home cleaning', deep: 'Deep cleaning', laundry: 'Laundry', dishes: 'Dishes and kitchen', organizing: 'Organizing', repairs: 'Repairs and maintenance', yard: 'Landscaping and yard', move: 'Move in or move out' };
+const NEED = { clean: 'Home cleaning', deep: 'Deep cleaning', laundry: 'Laundry', dishes: 'Dishes and kitchen', organizing: 'Organizing', repairs: 'Repairs and maintenance', yard: 'Landscaping and yard', lights: 'Holiday light installation', move: 'Move in or move out' };
 const needs = new Set();
 if (q.get('service') === 'deep') needs.add('deep');
 form.querySelectorAll('.need').forEach(b => { if (needs.has(b.dataset.need)) b.setAttribute('aria-pressed', 'true'); });
@@ -655,12 +646,12 @@ const view = c => { qc.classList.remove('a', 'x', 'b'); if (c) qc.classList.add(
 function drawRecap() {
   const r = cleaning() ? update() : null, list = [...new Set([...quoted(), ...wants])], note = $('#notes').value.trim();
   const lines = [];
-  if (r && r.ok) lines.push(`<b>Your estimate</b>${P.services[val('service')].label}, ${val('service') === 'deep' ? 'from ' + money(r.low) : money(r.low) + ' to ' + money(r.high)}`);
+  if (r && r.ok) lines.push(`<b>Your estimate</b>${P.services[val('service')].label}, ${val('service') === 'deep' ? 'from ' + money(r.low) : money(r.low) + ' to ' + money(r.high)}${r.offerApplied ? ' for your first visit, with 10% new client savings' : ''}. We confirm your final price by phone.`);
   if (list.length) lines.push(`<b>We will quote</b>${list.map(x => x.replace(/[<>&]/g, '')).join(', ')}`);
   if (note) lines.push(`<b>In your words</b>${note.replace(/[<>&]/g, '').slice(0, 160)}${note.length > 160 ? '...' : ''}`);
   $('#recap').innerHTML = lines.join('<div style="height:8px"></div>'); $('#recap').hidden = !lines.length;
   $('#bTitle').textContent = cleaning() ? 'Where should we send your estimate?' : 'Where should we reach you?';
-  $('#bSub').textContent = cleaning() ? 'Our team will reach out to confirm your schedule soon.' : 'Our team will reach out soon with your quote.';
+  $('#bSub').textContent = cleaning() ? 'We will call to confirm your final price and schedule.' : 'Our team will reach out soon with your quote.';
   $('#send').textContent = cleaning() ? 'Send my estimate' : 'Send my request';
 }
 const toB = () => { drawRecap(); view('b'); setTimeout(() => $('#name').focus({ preventScroll: true }), 350); };
@@ -695,7 +686,7 @@ $('#send').addEventListener('click', async () => {
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.success) throw new Error(data.error || 'Something went wrong.');
     const first = $('#name').value.trim().split(' ')[0], pref = val('contact_pref');
-    $('#okMsg').textContent = `Thank you, ${first}. ${pref === 'Email' ? 'Watch your inbox.' : pref === 'Call' ? 'Expect a call soon.' : 'Watch for a text soon.'} Our team will reach out ${cleaning() ? 'to confirm your schedule' : 'with your quote'}.`;
+    $('#okMsg').textContent = `Thank you, ${first}. ${pref === 'Email' ? 'Watch your inbox.' : pref === 'Call' ? 'Expect a call soon.' : 'Watch for a text soon.'} Our team will reach out ${cleaning() ? 'to confirm your final price and schedule' : 'with your quote'}.`;
     $('#okCopy').textContent = cleaning() ? 'A copy of your estimate is on its way to your email.' : 'A copy of your request is on its way to your email.';
     qc.classList.remove('a', 'x', 'b'); qc.classList.add('done');
     track('Lead', { content_name: cleaning() ? (val('service') === 'deep' ? 'Signature Deep Cleaning' : 'Essential Home Cleaning') : 'Home care request', value: est && est.ok ? est.middle : 0, currency: 'USD' }, eventId);

@@ -18,6 +18,9 @@ export const PRICING = {
   CARPET_MINIMUM: 120,    // smallest carpet-only job
   RANGE_LOW: 0.9,         // range shown = middle x 0.9 ...
   RANGE_HIGH: 1.15,       // ... up to middle x 1.15
+  // New customers: 10% off the first visit. It does not stack with the recurring
+  // discount; the first visit gets whichever saves them more.
+  NEW_CUSTOMER_PCT: 0.10,
 
   hours: {
     // Tuned Nov 2026 to real cleaner time and market prices per sq ft (regular about $0.10 to $0.15, deep about $0.18 to $0.23)
@@ -102,7 +105,9 @@ export const PRICING = {
 const roundTo5 = n => Math.round(n / 5) * 5;
 const num = (v, d = 0) => { const n = Number(v); return Number.isFinite(n) && n >= 0 ? n : d; };
 
-// answers: { service, sqft, bedrooms, bathrooms, soil, pets, products, addons:{key:qty}, frequency }
+// answers: { service, sqft, bedrooms, bathrooms, soil, pets, products, addons:{key:qty}, frequency, newCustomer }
+// With newCustomer, low/high/middle are the FIRST visit price and `ongoing` holds the
+// price of each recurring visit after it.
 export function estimate(answers = {}, P = PRICING) {
   const svc = P.services[answers.service];
   if (!svc) return { ok: false, reason: 'Pick a service' };
@@ -151,8 +156,18 @@ export function estimate(answers = {}, P = PRICING) {
     addonLines.push({ label: a.label, qty: q, amount: a.add * q, quote: !!a.quote });
   }
 
-  const middle = Math.max(P.MINIMUM, labor + addons + prod.add - freq.off);
+  const subtotal = labor + addons + prod.add;
+  const welcome = answers.newCustomer ? Math.round(subtotal * P.NEW_CUSTOMER_PCT) : 0;
+  const firstOff = Math.max(welcome, freq.off);
+  const offerApplied = welcome > freq.off;
+  const middle = Math.max(P.MINIMUM, subtotal - firstOff);
+  const range = m => ({ low: Math.max(P.MINIMUM, roundTo5(m * P.RANGE_LOW)), high: roundTo5(m * P.RANGE_HIGH), middle: roundTo5(m) });
+  const recurring = freq.off > 0;
   return {
+    newCustomer: !!answers.newCustomer,
+    offerApplied,                       // true when the 10% welcome beat the recurring discount
+    offerAmount: offerApplied ? welcome : 0,
+    ongoing: answers.newCustomer && recurring ? range(Math.max(P.MINIMUM, subtotal - freq.off)) : null,
     ok: true,
     quoteOnly: false,
     service: svc.label,
@@ -161,10 +176,8 @@ export function estimate(answers = {}, P = PRICING) {
     addons,
     addonLines,
     products: prod.add,
-    discount: freq.off,
-    low: Math.max(P.MINIMUM, roundTo5(middle * P.RANGE_LOW)),
-    high: roundTo5(middle * P.RANGE_HIGH),
-    middle: roundTo5(middle),
+    discount: firstOff,
+    ...range(middle),
     carpetQuote: addonLines.some(l => l.quote),
   };
 }

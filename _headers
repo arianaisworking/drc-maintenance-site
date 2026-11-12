@@ -7,3 +7,9 @@
   X-Robots-Tag: noindex, nofollow, noarchive
 /home-cleaning.html
   X-Robots-Tag: noindex, nofollow, noarchive
+
+# Cleaner onboarding: shared by link only
+/cleaner-onboarding
+  X-Robots-Tag: noindex, nofollow, noarchive
+/cleaner-onboarding.html
+  X-Robots-Tag: noindex, nofollow, noarchive

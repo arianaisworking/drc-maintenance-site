@@ -67,7 +67,7 @@ async function toDash(env, app, summary) {
     const out = await call('add_vendor', { fields: {
       name: app.name, company: app.company || 'DRC Home Services applicant', email: app.email, phone: app.phone,
       trade: 'Home Services: ' + app.roles.map(r => ROLE_LABELS[r]).join(', '),
-      state: STATE[app.metro] || '', coverageArea: [app.city, app.metro].filter(Boolean).join(', '),
+      state: app.state || STATE[app.metro] || '', coverageArea: [[app.city, app.state].filter(Boolean).join(', '), app.areas, app.metro].filter(Boolean).join('; '),
       onboardStatus: 'interested', notes: summary } });
     return { ok: !out.error };
   } catch (e) { return { ok: false }; }
@@ -83,7 +83,7 @@ export function onRequestGet() {
 export async function onRequestPost({ request, env }) {
   let d; try { d = await request.json(); } catch { return json({ error: 'Bad request' }, 400); }
   const v = k => String((d.app || {})[k] ?? '').trim().slice(0, 600);
-  const app = { name: v('name'), phone: v('phone'), email: v('email'), city: v('city'), metro: v('metro'), years: v('years'),
+  const app = { name: v('name'), phone: v('phone'), email: v('email'), city: v('city'), state: v('state').slice(0, 2).toUpperCase(), areas: v('areas'), metro: v('metro'), years: v('years'),
     services: (Array.isArray(d.app?.services) ? d.app.services : []).map(s => String(s).slice(0, 60)).slice(0, 12),
     car: v('car'), supplies: v('supplies'), days: v('days'), heard: v('heard'), notes: v('notes'),
     company: v('company'), insurance: v('insurance'), team: v('team'), ladders: v('ladders'), roof: v('roof'), seasons: v('seasons'),
@@ -114,7 +114,7 @@ export async function onRequestPost({ request, env }) {
     <table style="border-collapse:collapse">${[
       tr('Business', esc(app.company)), tr('Mobile', esc(app.phone)), tr('Email', esc(app.email)),
       tr('Insurance (GL)', esc(app.insurance)), tr('Crew', esc(app.team)), tr('Ladders and vehicle', esc(app.ladders)), tr('Roof work', esc(app.roof)),
-      tr('Lighting seasons', esc(app.seasons)), tr('Supplies lights', esc(app.lightSupply)), tr('Ad source', esc(app.source)), tr('Area', esc([app.city, app.metro].filter(Boolean).join(', '))),
+      tr('Lighting seasons', esc(app.seasons)), tr('Supplies lights', esc(app.lightSupply)), tr('Ad source', esc(app.source)), tr('Location', esc([app.city, app.state || app.metro].filter(Boolean).join(', '))), tr('Will travel to', esc(app.areas)),
       tr('Experience', esc(app.years)), tr('Can do', esc(app.services.join(', '))), tr('Own transportation', esc(app.car)),
       tr('Own supplies', esc(app.supplies)), tr('Available', esc(app.days)), tr('Heard about us', esc(app.heard)), tr('Notes', esc(app.notes)),
       tr('Signed agreement', `${esc(sig.name)} on ${new Date().toLocaleDateString('en-US', { timeZone: 'America/Chicago' })}`),
@@ -125,7 +125,7 @@ export async function onRequestPost({ request, env }) {
   const send = body => fetch('https://api.resend.com/emails', { method: 'POST',
     headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   const r = await send({ from: env.FROM_EMAIL, to: env.CLEANING_TO_EMAIL || env.TO_EMAIL, reply_to: app.email,
-    subject: `Home Services application${tested ? (passed ? ' PASSED' : ' not passed') : ''}: ${app.name}${app.metro ? ', ' + app.metro : ''} (${roleText}${tested ? ', ' + percent + '%' : ''})`, html });
+    subject: `Home Services application${tested ? (passed ? ' PASSED' : ' not passed') : ''}: ${app.name}${app.city ? ', ' + [app.city, app.state || app.metro].filter(Boolean).join(' ') : ''} (${roleText}${tested ? ', ' + percent + '%' : ''})`, html });
   if (!r.ok) return json({ error: 'We could not send your application. Please try again in a minute.' }, 502);
   if (passed) {
     const summary = [`${new Date().toLocaleDateString('en-US', { timeZone: 'America/Chicago' })}: applied on the Home Services application (drcmaintenance.com/cleaner-onboarding). Wants: ${roleText}.`,

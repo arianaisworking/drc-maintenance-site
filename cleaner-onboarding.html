@@ -49,7 +49,7 @@ th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vert
 th{font-size:13.5px;color:var(--muted);font-weight:600}
 td.r,th.r{text-align:right;white-space:nowrap}
 td b{font-weight:600}
-.pay{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:10px}
+.pay{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-bottom:10px;max-width:420px}
 .pay div{border:1px solid var(--line);border-radius:3px;padding:18px}
 .pay b{display:block;font-family:var(--serif);font-weight:400;font-size:40px;color:var(--ever);line-height:1.05}
 .pay span{color:var(--muted);font-size:14.5px}
@@ -88,6 +88,7 @@ details.cl ul{margin-top:10px}
 .for-clean,.for-organize,.for-lights,.for-other{display:none}
 body.r-clean .for-clean,body.r-organize .for-organize,body.r-lights .for-lights,body.r-other .for-other{display:block}
 body.r-clean div.f.for-clean,body.r-lights div.f.for-lights{display:block}
+body.r-clean li.for-clean,body.r-organize li.for-organize,body.r-lights li.for-lights,body.r-other li.for-other{display:list-item}
 @media(max-width:640px){
   .top .in{padding:0 16px;height:62px}.top img{height:36px}.top span{font-size:16px;padding-left:10px}
   main{padding:30px 16px 60px}
@@ -129,8 +130,9 @@ body.r-clean div.f.for-clean,body.r-lights div.f.for-lights{display:block}
       <div class="f"><label for="company">Business name <span style="font-weight:400;color:var(--muted)">optional</span></label><input id="company" autocomplete="organization"></div>
       <div class="f"><label for="phone">Mobile number</label><input id="phone" type="tel" autocomplete="tel"></div>
       <div class="f"><label for="email">Email</label><input id="email" type="email" autocomplete="email"></div>
-      <div class="f"><label for="city">City</label><input id="city" autocomplete="address-level2"></div>
-      <div class="f"><label for="metro">Area</label><select id="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Austin area</option><option>San Antonio area</option><option>Kansas City area</option><option>Other area</option></select></div>
+      <div class="f"><label for="city">City</label><input id="city" autocomplete="address-level2" placeholder="McKinney"></div>
+      <div class="f"><label for="st">State</label><select id="st" autocomplete="address-level1"><option value="">Choose one</option></select></div>
+      <div class="f wide"><label for="areas">Cities or areas you will travel to <span style="font-weight:400;color:var(--muted)">optional</span></label><input id="areas" placeholder="Frisco, Plano, Allen, Prosper"></div>
       <div class="f"><label for="years">Years of professional experience</label><select id="years"><option value="">Choose one</option><option>Less than 1 year</option><option>1 to 2 years</option><option>3 to 5 years</option><option>More than 5 years</option></select></div>
       <div class="f"><label for="ins">Do you carry general liability insurance?</label><select id="ins"><option value="">Choose one</option><option>Yes</option><option>Getting it now</option><option>No</option></select></div>
       <div class="f"><label for="team">Do you work alone or with a crew?</label><select id="team"><option value="">Choose one</option><option>Alone</option><option>With 1 or 2 helpers</option><option>Crew of 3 or more</option></select></div>
@@ -162,12 +164,9 @@ body.r-clean div.f.for-clean,body.r-lights div.f.for-lights{display:block}
     <h2>Your pay</h2>
     <p class="sub">DRC sets the pay for every job, so you never have to negotiate with a client.</p>
     <div class="pay">
-      <div><b>$25 an hour</b><span>Our standard rate for cleaning work.</span></div>
-      <div><b>$20 an hour</b><span>Starting rate for some new cleaners, moving up to $25 after strong first jobs.</span></div>
+      <div><b>$25 an hour</b><span>For all cleaning work, including deep cleans, move outs and add ons on the work order.</span></div>
     </div>
-    <h3>Add ons</h3>
-    <p>You earn a flat amount for every add on the client books, on top of your hourly pay.</p>
-    <table><thead><tr><th>Add on</th><th class="r">You earn</th></tr></thead><tbody id="addonPay"></tbody></table>
+    <p>Add ons like inside the fridge, oven, cabinets or windows are part of the job time and the checklist, so your hourly rate covers them.</p>
     <h3>Specialty jobs</h3>
     <p>Carpet cleaning, organizing, landscaping, hoarder or debris cleanouts and some move outs are quoted job by job. DRC tells you the pay before you accept, and you can say no.</p>
     <h3>When you are paid</h3>
@@ -180,19 +179,23 @@ body.r-clean div.f.for-clean,body.r-lights div.f.for-lights{display:block}
 
   <section class="card" id="standards">
     <h2>Our standards</h2>
-    <p class="sub">These apply on every visit, in every home.</p>
+    <p class="sub">These apply on every job. The ones for your type of work are listed too.</p>
     <ul class="list">
       <li><b>Arrive on time</b>, inside your arrival window. If you will be late, tell DRC before the window starts.</li>
       <li><b>Check in and out</b> on the work order when you arrive and leave.</li>
-      <li><b>Follow the work order.</b> Client notes come first: products they want used, rooms to skip, pets, alarm and lock instructions.</li>
-      <li><b>Take before and after photos</b> of every room and every add on, and upload them to the work order.</li>
-      <li><b>Finish the full checklist.</b> If you cannot finish something, tell DRC before you leave.</li>
-      <li><b>Respect privacy.</b> Do not open private drawers, mail or documents unless the job requires it. Never photograph people or personal papers, and never post a client’s home online.</li>
-      <li><b>Come alone.</b> No guests, children or pets of your own. No smoking or vaping on the property.</li>
-      <li><b>Keep your phone away</b> except for the work order and DRC.</li>
+      <li><b>Follow the work order.</b> Client notes come first: pets, gate, alarm and lock instructions, and anything to skip.</li>
+      <li><b>Take before and after photos</b> of your work and upload them to the work order.</li>
+      <li><b>Respect privacy.</b> Never photograph people or personal papers, and never post a client’s home online.</li>
+      <li><b>Bring only your approved crew.</b> No guests, children or pets of your own. No smoking or vaping on the property.</li>
       <li><b>Talk to DRC, not around it.</b> Do not share your number with clients, discuss pay, or accept work from a DRC client directly.</li>
-      <li><b>Leave it secure.</b> Doors locked, alarm set if asked, lights as you found them, keys or codes kept private.</li>
+      <li><b>Leave it secure.</b> Gates closed, doors locked, alarm set if asked, keys or codes kept private.</li>
       <li><b>Report what you notice.</b> Leaks, broken fixtures or anything needing repair goes on the work order so our maintenance team can help the client.</li>
+      <li class="for-clean"><b>Cleaning:</b> finish the full checklist, and tell DRC before you leave if anything could not be done. Do not open private drawers, mail or documents unless the job requires it. Keep your phone away except for the work order.</li>
+      <li class="for-clean"><b>Cleaning:</b> use the client’s own products when the work order says so.</li>
+      <li class="for-organize"><b>Organizing:</b> nothing leaves the home without the client’s approval, and personal papers and medicine are set aside, never read.</li>
+      <li class="for-lights"><b>Lighting:</b> check the weather before you go. No ladder or roof work in rain, ice or high wind, and never work a two story roof without a second person on site.</li>
+      <li class="for-lights"><b>Lighting:</b> work outside only unless the work order says otherwise. Protect shrubs, gutters and the roofline, and leave every outlet cover closed.</li>
+      <li class="for-other"><b>Carpet, washing and handyman:</b> protect floors and furniture, confirm the scope before you start, and get DRC’s OK before any extra work.</li>
     </ul>
   </section>
 
@@ -241,7 +244,13 @@ body.r-clean div.f.for-clean,body.r-lights div.f.for-lights{display:block}
 
   <section class="card for-clean" id="products">
     <h2>Products and supplies</h2>
-    <p class="sub">Bring a full kit to every job unless the work order says to use the client’s products. Some clients ask for organic or microplastic free products, so keep those options in your kit too.</p>
+    <p class="sub">Every client is different, and we profile each one as best we can so you bring the right kit.</p>
+    <ul class="list" style="margin-bottom:18px">
+      <li><b>Their own products.</b> Some clients want us to use what they have and are comfortable with.</li>
+      <li><b>Organic and microplastic free.</b> Some clients want natural, unscented products and no microfiber shedding.</li>
+      <li><b>The works.</b> Some clients want it all, scents included.</li>
+    </ul>
+    <p>The work order tells you which kit to bring. If it does not say, bring your standard kit below.</p>
     <div class="grid">
       <div><h3 style="margin-top:0">Tools</h3><ul class="list">
         <li>Vacuum with attachments</li><li>Microfiber flat mop and pads</li><li>Microfiber cloths, separate colors for kitchen, bathroom, glass and dusting</li>
@@ -277,6 +286,7 @@ body.r-clean div.f.for-clean,body.r-lights div.f.for-lights{display:block}
       <li>Wear gloves, and keep products away from children, pets and food.</li>
       <li>Close every bottle and take your products with you when you leave.</li>
     </ul>
+      <p class="note" style="font-size:12.5px;margin-top:20px">This guide is general safety information, not professional or medical advice, and it does not replace product labels or Safety Data Sheets. As an independent contractor you are responsible for reading labels, using products as directed and working safely. DRC Home Services is not responsible for injury, illness or damage caused by the misuse or mixing of products.</p>
   </section>
 
   <section class="card for-clean" id="surfaces">
@@ -407,7 +417,7 @@ const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 
 // Add on pay: 75% of the client price, pulled from the live pricing file
 const SHARE = 0.75;
-$('#addonPay').innerHTML = Object.values(P.addons).filter(a => !a.quote && a.add > 0)
+if ($('#addonPay')) $('#addonPay').innerHTML = Object.values(P.addons).filter(a => !a.quote && a.add > 0)
   .map(a => `<tr><td>${esc(a.label.replace(/\s*\(wash, fold and put away\)/, ''))}</td><td class="r"><b>${money(a.add * SHARE)}</b>${/laundry/i.test(a.label) ? ' a load' : ''}</td></tr>`).join('')
   + `<tr><td>Carpet cleaning and area rugs</td><td class="r">Set per job</td></tr>`;
 
@@ -420,6 +430,9 @@ let QS = [];
     $('#questions').innerHTML = QS.map((x, i) => `<div class="q" id="w_${x.id}"><span class="tag">${i + 1} of ${QS.length} · ${esc(x.topic)}</span><p>${esc(x.q)}</p>${x.a.map((o, j) => `<label><input type="radio" name="${x.id}" value="${j}">${esc(o)}</label>`).join('')}</div>`).join('');
   } catch { $('#questions').innerHTML = '<p class="err">The test did not load. Please refresh the page.</p>'; }
 })();
+
+// States for the State field
+$('#st').insertAdjacentHTML('beforeend', 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY'.split(' ').map(x => `<option>${x}</option>`).join(''));
 
 // Show only the guide sections for the work they chose
 const roles = () => [...document.querySelectorAll('#roles input:checked')].map(i => i.value);
@@ -438,7 +451,8 @@ function check() {
   if (!$('#name').value.trim()) return bad('name', 'Please add your full name at the top.');
   if ($('#phone').value.replace(/\D/g, '').length < 10) return bad('phone', 'Please add a 10 digit mobile number at the top.');
   if (!/^\S+@\S+\.\S+$/.test($('#email').value)) return bad('email', 'Please add your email at the top.');
-  if (!$('#metro').value) return bad('metro', 'Please choose your area at the top.');
+  if (!$('#city').value.trim()) return bad('city', 'Please add your city at the top.');
+  if (!$('#st').value) return bad('st', 'Please choose your state at the top.');
   if (!roles().length) { $('#rolesF').scrollIntoView({ behavior: 'smooth', block: 'center' }); $('#err').textContent = 'Please choose the work you want at the top.'; return false; }
   if (!roles().includes('clean')) return checkSign();
   const blank = QS.find(x => !document.querySelector(`input[name=${x.id}]:checked`));
@@ -454,7 +468,7 @@ $('#send').addEventListener('click', async () => {
   if (!check()) return;
   const btn = $('#send'); btn.disabled = true; btn.textContent = 'Sending...';
   const answers = roles().includes('clean') ? Object.fromEntries(QS.map(x => [x.id, +document.querySelector(`input[name=${x.id}]:checked`).value])) : {};
-  const app = { name: $('#name').value.trim(), phone: $('#phone').value.trim(), email: $('#email').value.trim(), city: $('#city').value.trim(), metro: $('#metro').value,
+  const app = { name: $('#name').value.trim(), phone: $('#phone').value.trim(), email: $('#email').value.trim(), city: $('#city').value.trim(), state: $('#st').value, areas: $('#areas').value.trim(),
     years: $('#years').value, services: [...document.querySelectorAll('#svc input:checked')].map(i => i.value), car: $('#car').value, supplies: $('#supplies').value,
     days: $('#days').value.trim(), heard: $('#heard').value.trim(), notes: $('#notes').value.trim(),
     roles: roles(), company: $('#company').value.trim(), insurance: $('#ins').value, team: $('#team').value,

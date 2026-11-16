@@ -87,7 +87,7 @@ export async function onRequestPost({ request, env }) {
     services: (Array.isArray(d.app?.services) ? d.app.services : []).map(s => String(s).slice(0, 60)).slice(0, 12),
     car: v('car'), supplies: v('supplies'), days: v('days'), heard: v('heard'), notes: v('notes'),
     company: v('company'), insurance: v('insurance'), team: v('team'), ladders: v('ladders'), roof: v('roof'), seasons: v('seasons'),
-    lightSupply: v('lightSupply'), source: v('source').slice(0, 80),
+    lightSupply: v('lightSupply'), carpetEq: v('carpetEq'), washEq: v('washEq'), crewBg: v('crewBg'), source: v('source').slice(0, 80),
     roles: (Array.isArray(d.app?.roles) ? d.app.roles : []).map(s => String(s)).filter(s => ROLE_LABELS[s]) };
   if (!app.roles.length) app.roles = ['clean']; // older form: cleaning only
   const tested = app.roles.includes('clean');
@@ -114,7 +114,7 @@ export async function onRequestPost({ request, env }) {
     <table style="border-collapse:collapse">${[
       tr('Business', esc(app.company)), tr('Mobile', esc(app.phone)), tr('Email', esc(app.email)),
       tr('Insurance (GL)', esc(app.insurance)), tr('Crew', esc(app.team)), tr('Ladders and vehicle', esc(app.ladders)), tr('Roof work', esc(app.roof)),
-      tr('Lighting seasons', esc(app.seasons)), tr('Supplies lights', esc(app.lightSupply)), tr('Ad source', esc(app.source)), tr('Location', esc([app.city, app.state || app.metro].filter(Boolean).join(', '))), tr('Will travel to', esc(app.areas)),
+      tr('Lighting seasons', esc(app.seasons)), tr('Supplies lights', esc(app.lightSupply)), tr('Carpet equipment', esc(app.carpetEq) + (/rental/i.test(app.carpetEq) ? ' <b style="color:#A3352A">(not accepted)</b>' : '')), tr('Washing equipment', esc(app.washEq)), tr('Crew background checks', esc(app.crewBg)), tr('Ad source', esc(app.source)), tr('Location', esc([app.city, app.state || app.metro].filter(Boolean).join(', '))), tr('Will travel to', esc(app.areas)),
       tr('Experience', esc(app.years)), tr('Can do', esc(app.services.join(', '))), tr('Own transportation', esc(app.car)),
       tr('Own supplies', esc(app.supplies)), tr('Available', esc(app.days)), tr('Heard about us', esc(app.heard)), tr('Notes', esc(app.notes)),
       tr('Signed agreement', `${esc(sig.name)} on ${new Date().toLocaleDateString('en-US', { timeZone: 'America/Chicago' })}`),
@@ -131,6 +131,7 @@ export async function onRequestPost({ request, env }) {
     const summary = [`${new Date().toLocaleDateString('en-US', { timeZone: 'America/Chicago' })}: applied on the Home Services application (drcmaintenance.com/cleaner-onboarding). Wants: ${roleText}.`,
       tested ? `Cleaning test passed ${score}/${QUESTIONS.length}.` : '', app.years ? 'Experience: ' + app.years + '.' : '', app.insurance ? 'GL insurance: ' + app.insurance + '.' : '',
       app.team ? 'Crew: ' + app.team + '.' : '', app.roles.includes('lights') ? `Lights: ladders ${app.ladders || '?'}, roof ${app.roof || '?'}, seasons ${app.seasons || '?'}, supplies ${app.lightSupply || '?'}.` : '',
+      app.carpetEq ? 'Carpet equipment: ' + app.carpetEq + '.' : '', app.washEq ? 'Washing equipment: ' + app.washEq + '.' : '', app.crewBg ? 'Crew background checks: ' + app.crewBg + '.' : '',
       app.days ? 'Available: ' + app.days + '.' : '', app.source ? 'Ad source: ' + app.source + '.' : '', app.heard ? 'Heard via: ' + app.heard + '.' : '',
       'Signed the professional agreement. Next: COI naming DRC + background check.'].filter(Boolean).join(' ');
     await toDash(env, app, summary);

@@ -85,10 +85,10 @@ details.cl ul{margin-top:10px}
 .result.fail{display:block;background:var(--warn);border:1px solid #EBC9C2}
 .result h3{margin:0 0 8px}
 .hp{position:absolute;left:-9999px}
-.for-clean,.for-organize,.for-lights,.for-other{display:none}
-body.r-clean .for-clean,body.r-organize .for-organize,body.r-lights .for-lights,body.r-other .for-other{display:block}
-body.r-clean div.f.for-clean,body.r-lights div.f.for-lights{display:block}
-body.r-clean li.for-clean,body.r-organize li.for-organize,body.r-lights li.for-lights,body.r-other li.for-other{display:list-item}
+.for-clean,.for-organize,.for-lights,.for-carpet,.for-wash,.for-handy{display:none}
+body.r-clean .for-clean,body.r-organize .for-organize,body.r-lights .for-lights,body.r-carpet .for-carpet,body.r-wash .for-wash,body.r-handy .for-handy{display:block}
+body.r-clean div.f.for-clean,body.r-organize div.f.for-organize,body.r-lights div.f.for-lights,body.r-carpet div.f.for-carpet,body.r-wash div.f.for-wash,body.r-handy div.f.for-handy{display:block}
+body.r-clean li.for-clean,body.r-organize li.for-organize,body.r-lights li.for-lights,body.r-carpet li.for-carpet,body.r-wash li.for-wash,body.r-handy li.for-handy{display:list-item}
 @media(max-width:640px){
   .top .in{padding:0 16px;height:62px}.top img{height:36px}.top span{font-size:16px;padding-left:10px}
   main{padding:30px 16px 60px}
@@ -151,6 +151,9 @@ body.r-clean li.for-clean,body.r-organize li.for-organize,body.r-lights li.for-l
       <div class="f for-lights"><label for="roof">Comfortable working on roofs and two story homes?</label><select id="roof"><option value="">Choose one</option><option>Yes, one and two story</option><option>One story only</option><option>Ground level only</option></select></div>
       <div class="f for-lights"><label for="seasons">Holiday seasons you have installed lights</label><select id="seasons"><option value="">Choose one</option><option>This would be my first</option><option>1 or 2 seasons</option><option>3 or more seasons</option></select></div>
       <div class="f for-lights"><label for="supply">Can you supply lights and clips if a client wants a lease or purchase package?</label><select id="supply"><option value="">Choose one</option><option>Yes</option><option>Install only</option></select></div>
+      <div class="f for-carpet"><label for="carpetEq">Carpet cleaning equipment</label><select id="carpetEq"><option value="">Choose one</option><option>Truck mounted system</option><option>Commercial portable extractor</option><option>Rental or home machine</option></select></div>
+      <div class="f for-wash"><label for="washEq">Pressure washing equipment</label><select id="washEq"><option value="">Choose one</option><option>Pressure washer and soft wash system</option><option>Pressure washer only</option><option>Window cleaning only</option></select></div>
+      <div class="f for-handy"><label for="crewBg">Has everyone on your crew passed a background check?</label><select id="crewBg"><option value="">Choose one</option><option>Yes</option><option>Some of them</option><option>Not yet</option></select></div>
       <div class="f for-clean"><label for="supplies">Own cleaning supplies and vacuum?</label><select id="supplies"><option value="">Choose one</option><option>Yes, all of them</option><option>Some of them</option><option>No</option></select></div>
       <div class="f"><label for="days">Days you can work</label><input id="days" placeholder="Monday to Friday, some Saturdays"></div>
       <div class="f"><label for="heard">How did you hear about us?</label><input id="heard" placeholder="Craigslist, a friend, Indeed"></div>
@@ -195,7 +198,10 @@ body.r-clean li.for-clean,body.r-organize li.for-organize,body.r-lights li.for-l
       <li class="for-organize"><b>Organizing:</b> nothing leaves the home without the client’s approval, and personal papers and medicine are set aside, never read.</li>
       <li class="for-lights"><b>Lighting:</b> check the weather before you go. No ladder or roof work in rain, ice or high wind, and never work a two story roof without a second person on site.</li>
       <li class="for-lights"><b>Lighting:</b> work outside only unless the work order says otherwise. Protect shrubs, gutters and the roofline, and leave every outlet cover closed.</li>
-      <li class="for-other"><b>Carpet, washing and handyman:</b> protect floors and furniture, confirm the scope before you start, and get DRC’s OK before any extra work.</li>
+      <li class="for-carpet"><b>Carpet:</b> move furniture only with the client’s OK, protect walls and door frames from hoses, and never leave carpets soaking wet.</li>
+      <li class="for-wash"><b>Washing:</b> test a hidden spot first, cover plants, outlets and lights, and never point a high pressure tip at windows, siding seams, wood or people.</li>
+      <li class="for-handy"><b>Handyman:</b> never enter a home unless an adult is there, confirm the scope before you start, and get DRC’s OK before any extra work.</li>
+      <li><b>Background checks.</b> You need one before your first job, and we prefer every person on your crew to have one too.</li>
     </ul>
   </section>
 
@@ -231,14 +237,48 @@ body.r-clean li.for-clean,body.r-organize li.for-organize,body.r-lights li.for-l
     </ul>
   </section>
 
-  <section class="card for-other" id="trades">
-    <h2>Carpet, washing and handyman work</h2>
-    <p class="sub">These jobs are quoted one by one. DRC tells you the pay before you accept, and you can say no.</p>
+  <section class="card for-carpet" id="carpet">
+    <h2>Carpet and upholstery cleaning</h2>
+    <p class="sub">Carpet jobs are quoted one by one. DRC tells you the pay before you accept, and you can say no.</p>
+    <div class="alert"><b>Professional equipment only.</b> Carpet cleaning companies must use a truck mounted system or a commercial grade portable extractor. Rental machines from a hardware store are not accepted.</div>
     <ul class="list">
-      <li>Before, during and after photos on every work order.</li>
+      <li><b>Inspect first.</b> Photograph stains, wear, pet damage and loose seams before you start, and note anything that may not come out.</li>
+      <li><b>Pretreat and test.</b> Check fiber type and colorfastness on a hidden spot before using any product.</li>
+      <li><b>Protect the home.</b> Corner guards on walls and door frames, hoses kept off finished floors, and the door closed on hot days.</li>
+      <li><b>Dry fast.</b> Extract thoroughly, set fans if needed, and put tabs or blocks under furniture legs you move back.</li>
+      <li><b>Tell the client</b> how long to stay off the carpet, and upload before and after photos to the work order.</li>
+    </ul>
+  </section>
+
+  <section class="card for-wash" id="wash">
+    <h2>Window and pressure washing</h2>
+    <p class="sub">Pressure washing can damage a home quickly. Follow these rules on every job. DRC sets the pay per job and tells you before you accept.</p>
+    <div class="alert"><b>Wrong pressure ruins surfaces.</b> Use the lowest pressure that does the job, keep the tip moving, and soft wash anything that is not concrete.</div>
+    <table><thead><tr><th>Surface</th><th>Do</th><th>Never</th></tr></thead><tbody>
+      <tr><td><b>Concrete driveways and walks</b></td><td>Surface cleaner or a 15 to 25 degree tip, held at a steady distance</td><td>A zero degree tip, or stopping in one spot</td></tr>
+      <tr><td><b>Siding and stucco</b></td><td>Soft wash with low pressure, rinse from the top down</td><td>Spray up under siding laps or into seams and vents</td></tr>
+      <tr><td><b>Wood decks and fences</b></td><td>Low pressure with a wide tip, with the grain</td><td>High pressure that lifts or furs the wood</td></tr>
+      <tr><td><b>Roofs</b></td><td>Soft wash only, and only if the work order lists it</td><td>Pressure wash shingles</td></tr>
+      <tr><td><b>Windows and screens</b></td><td>Hand wash or a water fed pole, remove screens carefully</td><td>Pressure on glass, seals or screens</td></tr>
+    </tbody></table>
+    <h3>Every job</h3>
+    <ul class="list">
+      <li>Walk the property and photograph cracks, loose paint and damage before you start.</li>
+      <li>Cover plants, outdoor outlets, light fixtures and the AC unit. Close every window and door.</li>
+      <li>Use only house safe detergents, rinse plants before and after, and keep runoff out of storm drains where the city requires it.</li>
+      <li>Upload before and after photos, including a wide shot of each side of the home.</li>
+    </ul>
+  </section>
+
+  <section class="card for-handy" id="handy">
+    <h2>Handyman and furniture assembly</h2>
+    <p class="sub">These jobs are quoted one by one. DRC tells you the pay before you accept, and you can say no.</p>
+    <div class="alert"><b>Never enter a home unless an adult is there.</b> If no adult answers the door, do not go in. Call DRC from outside.</div>
+    <ul class="list">
       <li>Do only what the work order lists. If you find more, photograph it and tell DRC before doing extra work.</li>
-      <li>Protect floors and furniture, and clean up completely before you leave.</li>
-      <li>Pay is released after your photos are in and the client confirms the work is done.</li>
+      <li>Turn off power or water before working on fixtures, and never do licensed electrical, gas or major plumbing work unless DRC has confirmed your license.</li>
+      <li>Protect floors and furniture, and clean up completely before you leave, including boxes from assembly.</li>
+      <li>Before, during and after photos on every work order. Pay is released after your photos are in and the client confirms the work is done.</li>
     </ul>
   </section>
 
@@ -441,7 +481,7 @@ if (ROLE_PARAM) ROLE_PARAM.split(',').forEach(r => { const i = document.querySel
 function showRoles() {
   const r = roles(), b = document.body.classList;
   b.toggle('r-clean', r.includes('clean')); b.toggle('r-organize', r.includes('organize')); b.toggle('r-lights', r.includes('lights'));
-  b.toggle('r-other', r.some(x => ['carpet', 'wash', 'handy'].includes(x)));
+  ['carpet', 'wash', 'handy'].forEach(x => b.toggle('r-' + x, r.includes(x)));
 }
 document.querySelectorAll('#roles input').forEach(i => i.addEventListener('change', showRoles)); showRoles();
 
@@ -472,7 +512,7 @@ $('#send').addEventListener('click', async () => {
     years: $('#years').value, services: [...document.querySelectorAll('#svc input:checked')].map(i => i.value), car: $('#car').value, supplies: $('#supplies').value,
     days: $('#days').value.trim(), heard: $('#heard').value.trim(), notes: $('#notes').value.trim(),
     roles: roles(), company: $('#company').value.trim(), insurance: $('#ins').value, team: $('#team').value,
-    ladders: $('#ladders').value, roof: $('#roof').value, seasons: $('#seasons').value, lightSupply: $('#supply').value, source: new URLSearchParams(location.search).get('src') || '' };
+    ladders: $('#ladders').value, roof: $('#roof').value, seasons: $('#seasons').value, lightSupply: $('#supply').value, carpetEq: $('#carpetEq').value, washEq: $('#washEq').value, crewBg: $('#crewBg').value, source: new URLSearchParams(location.search).get('src') || '' };
   try {
     const r = await fetch('/api/cleaner-onboarding', { method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ app, answers, signature: { name: $('#sigName').value.trim(), agreed: true }, company_site: $('#company_site').value }) });

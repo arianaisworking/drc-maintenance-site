@@ -1,4 +1,5 @@
-// Cleaner onboarding for DRC Home Services (/cleaner-onboarding).
+// Home Services professional application (/cleaner-onboarding): cleaners, organizers, holiday lighting and other trades.
+// Cleaners take the graded test; every passed application is added to DRC Dash as an interested vendor.
 // GET  returns the test questions without answers.
 // POST grades the test here on the server (the answer key never reaches the browser),
 //      emails the office every attempt, and emails the applicant when they pass.
@@ -48,6 +49,29 @@ export const QUESTIONS = [
     a: ['Before the job', 'When you arrive', 'After your completion photos, the full checklist and the client’s confirmation are in', 'Whenever you ask'], key: 2 },
 ];
 export const PASS_PERCENT = 85;
+const ROLE_LABELS = { clean: 'House cleaning', organize: 'Home organizing', lights: 'Christmas and holiday lighting',
+  carpet: 'Carpet and upholstery cleaning', wash: 'Window and pressure washing', handy: 'Handyman and furniture assembly' };
+const STATE = { 'Dallas area': 'TX', 'Austin area': 'TX', 'San Antonio area': 'TX', 'Denver area': 'CO', 'Nashville area': 'TN', 'Phoenix area': 'AZ', 'Kansas City area': 'MO' };
+
+// Every application becomes a vendor in DRC Dash (status interested) so nobody falls through the cracks.
+// Never throws: a dashboard problem must not lose the application email.
+async function toDash(env, app, summary) {
+  if (!env.DRC_DASH_MCP_URL) return { skipped: true };
+  const call = (name, args) => fetch(env.DRC_DASH_MCP_URL, { method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json, text/event-stream' },
+    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name, arguments: args } }) }).then(r => r.json()).catch(() => ({}));
+  try {
+    const found = await call('find_vendors', { query: app.email, limit: 1 });
+    const txt = JSON.stringify(found);
+    if (txt.toLowerCase().includes(app.email.toLowerCase())) return { existing: true };
+    const out = await call('add_vendor', { fields: {
+      name: app.name, company: app.company || 'DRC Home Services applicant', email: app.email, phone: app.phone,
+      trade: 'Home Services: ' + app.roles.map(r => ROLE_LABELS[r]).join(', '),
+      state: STATE[app.metro] || '', coverageArea: [app.city, app.metro].filter(Boolean).join(', '),
+      onboardStatus: 'interested', notes: summary } });
+    return { ok: !out.error };
+  } catch (e) { return { ok: false }; }
+}
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const json = (b, status = 200) => new Response(JSON.stringify(b), { status, headers: { 'Content-Type': 'application/json' } });
@@ -61,42 +85,57 @@ export async function onRequestPost({ request, env }) {
   const v = k => String((d.app || {})[k] ?? '').trim().slice(0, 600);
   const app = { name: v('name'), phone: v('phone'), email: v('email'), city: v('city'), metro: v('metro'), years: v('years'),
     services: (Array.isArray(d.app?.services) ? d.app.services : []).map(s => String(s).slice(0, 60)).slice(0, 12),
-    car: v('car'), supplies: v('supplies'), days: v('days'), heard: v('heard'), notes: v('notes') };
+    car: v('car'), supplies: v('supplies'), days: v('days'), heard: v('heard'), notes: v('notes'),
+    company: v('company'), insurance: v('insurance'), team: v('team'), ladders: v('ladders'), roof: v('roof'), seasons: v('seasons'),
+    lightSupply: v('lightSupply'), source: v('source').slice(0, 80),
+    roles: (Array.isArray(d.app?.roles) ? d.app.roles : []).map(s => String(s)).filter(s => ROLE_LABELS[s]) };
+  if (!app.roles.length) app.roles = ['clean']; // older form: cleaning only
+  const tested = app.roles.includes('clean');
+  const roleText = app.roles.map(r => ROLE_LABELS[r]).join(', ');
   const sig = { name: String(d.signature?.name ?? '').trim().slice(0, 120), agreed: !!d.signature?.agreed };
   if (!app.name || !app.phone || !/^\S+@\S+\.\S+$/.test(app.email)) return json({ error: 'Please add your name, mobile number and email.' }, 400);
   if (!sig.agreed || !sig.name) return json({ error: 'Please read the agreement, check the box and type your full name.' }, 400);
   if (d.company_site) return json({ success: true, passed: false }); // honeypot
 
   const answers = d.answers || {};
-  const wrong = QUESTIONS.filter(x => Number(answers[x.id]) !== x.key);
+  const wrong = tested ? QUESTIONS.filter(x => Number(answers[x.id]) !== x.key) : [];
   const score = QUESTIONS.length - wrong.length;
   const percent = Math.round(score / QUESTIONS.length * 100);
   const safetyMissed = wrong.filter(x => x.safety);
-  const passed = percent >= PASS_PERCENT && !safetyMissed.length;
+  const passed = !tested || (percent >= PASS_PERCENT && !safetyMissed.length);
   const topics = [...new Set(wrong.map(x => x.topic))];
 
   const tr = (k, val) => val ? `<tr><td style="padding:6px 14px 6px 0;color:#5F6862;font-size:13px;vertical-align:top;white-space:nowrap">${esc(k)}</td><td style="padding:6px 0;font-size:14px;color:#1A1F1C">${val}</td></tr>` : '';
   const wrongHtml = wrong.length ? wrong.map(x => `<li style="margin-bottom:6px">${x.safety ? '<b style="color:#A3352A">Safety:</b> ' : ''}${esc(x.q)}<br><span style="color:#5F6862">They chose: ${esc(x.a[Number(answers[x.id])] ?? 'no answer')}</span></li>`).join('') : '<li>None</li>';
   const html = `<div style="font-family:Arial,sans-serif;max-width:640px;margin:auto;color:#1A1F1C">
-    <h2 style="font-weight:400;margin:0 0 4px">New cleaner application: ${esc(app.name)}</h2>
-    <p style="margin:0 0 16px;font-size:16px;font-weight:700;color:${passed ? '#1F3D30' : '#A3352A'}">${passed ? 'PASSED' : 'DID NOT PASS'} the onboarding test: ${score} of ${QUESTIONS.length} (${percent}%)${safetyMissed.length ? `, missed ${safetyMissed.length} chemical safety question${safetyMissed.length > 1 ? 's' : ''}` : ''}</p>
+    <h2 style="font-weight:400;margin:0 0 4px">New Home Services application: ${esc(app.name)}</h2>
+    <p style="margin:0 0 6px;font-size:15px"><b>Wants:</b> ${esc(roleText)}</p>
+    <p style="margin:0 0 16px;font-size:16px;font-weight:700;color:${passed ? '#1F3D30' : '#A3352A'}">${tested ? `${passed ? 'PASSED' : 'DID NOT PASS'} the cleaning test: ${score} of ${QUESTIONS.length} (${percent}%)${safetyMissed.length ? `, missed ${safetyMissed.length} chemical safety question${safetyMissed.length > 1 ? 's' : ''}` : ''}` : 'No cleaning test needed for this work'}</p>
     <table style="border-collapse:collapse">${[
-      tr('Mobile', esc(app.phone)), tr('Email', esc(app.email)), tr('Area', esc([app.city, app.metro].filter(Boolean).join(', '))),
+      tr('Business', esc(app.company)), tr('Mobile', esc(app.phone)), tr('Email', esc(app.email)),
+      tr('Insurance (GL)', esc(app.insurance)), tr('Crew', esc(app.team)), tr('Ladders and vehicle', esc(app.ladders)), tr('Roof work', esc(app.roof)),
+      tr('Lighting seasons', esc(app.seasons)), tr('Supplies lights', esc(app.lightSupply)), tr('Ad source', esc(app.source)), tr('Area', esc([app.city, app.metro].filter(Boolean).join(', '))),
       tr('Experience', esc(app.years)), tr('Can do', esc(app.services.join(', '))), tr('Own transportation', esc(app.car)),
       tr('Own supplies', esc(app.supplies)), tr('Available', esc(app.days)), tr('Heard about us', esc(app.heard)), tr('Notes', esc(app.notes)),
       tr('Signed agreement', `${esc(sig.name)} on ${new Date().toLocaleDateString('en-US', { timeZone: 'America/Chicago' })}`),
     ].join('')}</table>
-    <h3 style="font-size:14px;margin:20px 0 6px">Questions missed</h3><ul style="padding-left:18px;font-size:14px">${wrongHtml}</ul>
-    <p style="font-size:13px;color:#5F6862">${passed ? 'Next: run the background check before assigning any job. DRC sets pay; never ask the cleaner their price.' : 'They were asked to review the guide and retake the test.'}</p></div>`;
+    ${tested ? `<h3 style="font-size:14px;margin:20px 0 6px">Questions missed</h3><ul style="padding-left:18px;font-size:14px">${wrongHtml}</ul>` : ''}
+    <p style="font-size:13px;color:#5F6862">${passed ? 'Added to DRC Dash as interested. Next: COI naming DRC and the background check before assigning any job. DRC sets pay; never ask for their price.' : 'They were asked to review the guide and retake the test.'}</p></div>`;
 
   const send = body => fetch('https://api.resend.com/emails', { method: 'POST',
     headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   const r = await send({ from: env.FROM_EMAIL, to: env.CLEANING_TO_EMAIL || env.TO_EMAIL, reply_to: app.email,
-    subject: `Cleaner application ${passed ? 'PASSED' : 'not passed'}: ${app.name}${app.metro ? ', ' + app.metro : ''} (${percent}%)`, html });
+    subject: `Home Services application${tested ? (passed ? ' PASSED' : ' not passed') : ''}: ${app.name}${app.metro ? ', ' + app.metro : ''} (${roleText}${tested ? ', ' + percent + '%' : ''})`, html });
   if (!r.ok) return json({ error: 'We could not send your application. Please try again in a minute.' }, 502);
   if (passed) {
+    const summary = [`${new Date().toLocaleDateString('en-US', { timeZone: 'America/Chicago' })}: applied on the Home Services application (drcmaintenance.com/cleaner-onboarding). Wants: ${roleText}.`,
+      tested ? `Cleaning test passed ${score}/${QUESTIONS.length}.` : '', app.years ? 'Experience: ' + app.years + '.' : '', app.insurance ? 'GL insurance: ' + app.insurance + '.' : '',
+      app.team ? 'Crew: ' + app.team + '.' : '', app.roles.includes('lights') ? `Lights: ladders ${app.ladders || '?'}, roof ${app.roof || '?'}, seasons ${app.seasons || '?'}, supplies ${app.lightSupply || '?'}.` : '',
+      app.days ? 'Available: ' + app.days + '.' : '', app.source ? 'Ad source: ' + app.source + '.' : '', app.heard ? 'Heard via: ' + app.heard + '.' : '',
+      'Signed the professional agreement. Next: COI naming DRC + background check.'].filter(Boolean).join(' ');
+    await toDash(env, app, summary);
     await send({ from: env.FROM_EMAIL, to: app.email, subject: 'DRC Home Services: application received',
-      html: `<div style="font-family:Arial,sans-serif;max-width:560px;color:#1A1F1C"><p>Hello ${esc(app.name.split(' ')[0])},</p><p>Thank you for applying with DRC Home Services. You passed the onboarding test. Our team will reach out soon about your background check, which is required before your first job.</p><p>Please keep the onboarding guide handy: drcmaintenance.com/cleaner-onboarding</p><p>DRC Home Services</p></div>` }).catch(() => {});
+      html: `<div style="font-family:Arial,sans-serif;max-width:560px;color:#1A1F1C"><p>Hello ${esc(app.name.split(' ')[0])},</p><p>Thank you for applying with DRC Home Services${tested ? ' and passing the onboarding test' : ''}. Our team will reach out soon about your insurance and background check, which are required before your first job.</p><p>Please keep the onboarding guide handy: drcmaintenance.com/cleaner-onboarding</p><p>DRC Home Services</p></div>` }).catch(() => {});
   }
-  return json({ success: true, passed, score, total: QUESTIONS.length, percent, passPercent: PASS_PERCENT, safetyMissed: safetyMissed.length, topics });
+  return json({ success: true, passed, tested, score, total: QUESTIONS.length, percent, passPercent: PASS_PERCENT, safetyMissed: safetyMissed.length, topics });
 }

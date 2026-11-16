@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>DRC Home Services | Cleaner Onboarding</title>
-<meta name="description" content="Apply to clean with DRC Home Services. Pay, standards, safety, checklists and the onboarding test.">
+<title>DRC Home Services | Join Our Team</title>
+<meta name="description" content="Apply to work with DRC Home Services: house cleaning, home organizing, holiday lighting and more.">
 <link rel="icon" type="image/png" href="img/drc-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -85,6 +85,9 @@ details.cl ul{margin-top:10px}
 .result.fail{display:block;background:var(--warn);border:1px solid #EBC9C2}
 .result h3{margin:0 0 8px}
 .hp{position:absolute;left:-9999px}
+.for-clean,.for-organize,.for-lights,.for-other{display:none}
+body.r-clean .for-clean,body.r-organize .for-organize,body.r-lights .for-lights,body.r-other .for-other{display:block}
+body.r-clean div.f.for-clean,body.r-lights div.f.for-lights{display:block}
 @media(max-width:640px){
   .top .in{padding:0 16px;height:62px}.top img{height:36px}.top span{font-size:16px;padding-left:10px}
   main{padding:30px 16px 60px}
@@ -100,12 +103,12 @@ details.cl ul{margin-top:10px}
 <header class="top"><div class="in"><img src="img/drc-logo.png" alt="DRC"><span>Home Services</span></div></header>
 
 <main>
-  <h1>Clean with DRC Home Services</h1>
-  <p class="lede">Our clients trust us with their homes, so we hold every professional to a high standard. Read this guide, take the short test and sign our agreement. You need to pass the test and a background check before your first job.</p>
+  <h1>Work with DRC Home Services</h1>
+  <p class="lede">We are hiring house cleaners, home organizers, holiday lighting installers and other home service pros. Our clients trust us with their homes, so we hold every professional to a high standard. Tell us what you do, read the guide for your work and sign our agreement. Everyone needs a background check before their first job.</p>
   <ol class="path">
     <li><a href="#apply">Tell us about you</a></li>
-    <li><a href="#pay">Read the guide</a></li>
-    <li><a href="#test">Take the test</a></li>
+    <li><a href="#apply">Read your guide</a></li>
+    <li><a href="#apply">Cleaners take the test</a></li>
     <li><a href="#sign">Sign and send</a></li>
   </ol>
 
@@ -113,14 +116,25 @@ details.cl ul{margin-top:10px}
   <section class="card" id="apply">
     <h2>Tell us about you</h2>
     <p class="sub">This goes straight to our team.</p>
+    <div class="wide" id="rolesF" style="margin-bottom:18px"><span class="lbl">What work do you want? Choose all that fit.</span><div class="checks" id="roles">
+      <label class="ck"><input type="checkbox" value="clean">House cleaning</label>
+      <label class="ck"><input type="checkbox" value="organize">Home organizing</label>
+      <label class="ck"><input type="checkbox" value="lights">Christmas and holiday lighting</label>
+      <label class="ck"><input type="checkbox" value="carpet">Carpet and upholstery cleaning</label>
+      <label class="ck"><input type="checkbox" value="wash">Window and pressure washing</label>
+      <label class="ck"><input type="checkbox" value="handy">Handyman and furniture assembly</label>
+    </div></div>
     <div class="grid">
       <div class="f"><label for="name">Full name</label><input id="name" autocomplete="name"></div>
+      <div class="f"><label for="company">Business name <span style="font-weight:400;color:var(--muted)">optional</span></label><input id="company" autocomplete="organization"></div>
       <div class="f"><label for="phone">Mobile number</label><input id="phone" type="tel" autocomplete="tel"></div>
       <div class="f"><label for="email">Email</label><input id="email" type="email" autocomplete="email"></div>
       <div class="f"><label for="city">City</label><input id="city" autocomplete="address-level2"></div>
-      <div class="f"><label for="metro">Area</label><select id="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option></select></div>
-      <div class="f"><label for="years">Years of professional cleaning</label><select id="years"><option value="">Choose one</option><option>Less than 1 year</option><option>1 to 2 years</option><option>3 to 5 years</option><option>More than 5 years</option></select></div>
-      <div class="wide"><span class="lbl">What can you do?</span><div class="checks" id="svc">
+      <div class="f"><label for="metro">Area</label><select id="metro"><option value="">Choose one</option><option>Dallas area</option><option>Denver area</option><option>Nashville area</option><option>Phoenix area</option><option>Austin area</option><option>San Antonio area</option><option>Kansas City area</option><option>Other area</option></select></div>
+      <div class="f"><label for="years">Years of professional experience</label><select id="years"><option value="">Choose one</option><option>Less than 1 year</option><option>1 to 2 years</option><option>3 to 5 years</option><option>More than 5 years</option></select></div>
+      <div class="f"><label for="ins">Do you carry general liability insurance?</label><select id="ins"><option value="">Choose one</option><option>Yes</option><option>Getting it now</option><option>No</option></select></div>
+      <div class="f"><label for="team">Do you work alone or with a crew?</label><select id="team"><option value="">Choose one</option><option>Alone</option><option>With 1 or 2 helpers</option><option>Crew of 3 or more</option></select></div>
+      <div class="wide for-clean"><span class="lbl">What cleaning can you do?</span><div class="checks" id="svc">
         <label class="ck"><input type="checkbox" value="Standard cleaning">Standard home cleaning</label>
         <label class="ck"><input type="checkbox" value="Deep cleaning">Deep cleaning</label>
         <label class="ck"><input type="checkbox" value="Move in or move out">Move in or move out</label>
@@ -131,7 +145,11 @@ details.cl ul{margin-top:10px}
         <label class="ck"><input type="checkbox" value="Airbnb turnovers">Airbnb turnovers</label>
       </div></div>
       <div class="f"><label for="car">Reliable transportation?</label><select id="car"><option value="">Choose one</option><option>Yes</option><option>No</option></select></div>
-      <div class="f"><label for="supplies">Own cleaning supplies and vacuum?</label><select id="supplies"><option value="">Choose one</option><option>Yes, all of them</option><option>Some of them</option><option>No</option></select></div>
+      <div class="f for-lights"><label for="ladders">Own extension ladders and a vehicle that can carry them?</label><select id="ladders"><option value="">Choose one</option><option>Yes</option><option>Ladders only</option><option>No</option></select></div>
+      <div class="f for-lights"><label for="roof">Comfortable working on roofs and two story homes?</label><select id="roof"><option value="">Choose one</option><option>Yes, one and two story</option><option>One story only</option><option>Ground level only</option></select></div>
+      <div class="f for-lights"><label for="seasons">Holiday seasons you have installed lights</label><select id="seasons"><option value="">Choose one</option><option>This would be my first</option><option>1 or 2 seasons</option><option>3 or more seasons</option></select></div>
+      <div class="f for-lights"><label for="supply">Can you supply lights and clips if a client wants a lease or purchase package?</label><select id="supply"><option value="">Choose one</option><option>Yes</option><option>Install only</option></select></div>
+      <div class="f for-clean"><label for="supplies">Own cleaning supplies and vacuum?</label><select id="supplies"><option value="">Choose one</option><option>Yes, all of them</option><option>Some of them</option><option>No</option></select></div>
       <div class="f"><label for="days">Days you can work</label><input id="days" placeholder="Monday to Friday, some Saturdays"></div>
       <div class="f"><label for="heard">How did you hear about us?</label><input id="heard" placeholder="Craigslist, a friend, Indeed"></div>
       <div class="f wide"><label for="notes">Anything else we should know? <span style="font-weight:400;color:var(--muted)">optional</span></label><textarea id="notes" rows="2"></textarea></div>
@@ -140,7 +158,7 @@ details.cl ul{margin-top:10px}
   </section>
   </form>
 
-  <section class="card" id="pay">
+  <section class="card for-clean" id="pay">
     <h2>Your pay</h2>
     <p class="sub">DRC sets the pay for every job, so you never have to negotiate with a client.</p>
     <div class="pay">
@@ -178,7 +196,50 @@ details.cl ul{margin-top:10px}
     </ul>
   </section>
 
-  <section class="card" id="products">
+  <section class="card for-organize" id="organize">
+    <h2>Home organizing</h2>
+    <p class="sub">Closets, pantries, garages, kitchens and kids rooms. Organizing jobs are quoted per project, and DRC tells you the pay before you accept.</p>
+    <ul class="list">
+      <li><b>Take before photos</b> of every space first, then after photos of the finished space and labels.</li>
+      <li><b>Nothing leaves the home</b> without the client saying so. Set donate, trash and keep piles and have the client approve them.</li>
+      <li><b>Group by category</b>, put everyday items within reach, and label containers clearly.</li>
+      <li><b>Only buy products the client approved.</b> Keep receipts and upload them to the work order.</li>
+      <li><b>Respect privacy.</b> Papers, mail, medicine and personal items are set aside for the client, never read or photographed.</li>
+      <li><b>Leave it clean.</b> Wipe shelves before restocking, and haul off only the approved trash.</li>
+    </ul>
+  </section>
+
+  <section class="card for-lights" id="lights">
+    <h2>Christmas and holiday lighting</h2>
+    <p class="sub">Installs, takedowns and storage for homes. DRC sets the pay per job from the design and the home, and tells you before you accept.</p>
+    <h3>Safety first</h3>
+    <ul class="list">
+      <li><b>Ladders:</b> three points of contact, set on firm level ground, a spotter on every two story job, and never work in rain, ice or high wind.</li>
+      <li><b>Roofs:</b> no roof work on wet or frosted shingles, and use fall protection on steep pitches.</li>
+      <li><b>Power:</b> outdoor rated lights, cords and timers only, plugged into GFCI outlets. Never overload a circuit or run cords through windows or doors that pinch them.</li>
+      <li><b>No damage:</b> use clips only. Never nail, staple or screw into shingles, gutters, siding or trim.</li>
+    </ul>
+    <h3>Every job</h3>
+    <ul class="list">
+      <li>Before photos of the home, then a night photo of the lit home uploaded to the work order.</li>
+      <li>Test every strand before it goes up, and leave the timer set the way the client asked.</li>
+      <li>Takedowns in January: remove every clip, coil and label the lights, and leave them where the client asked.</li>
+      <li>Leave the yard clean: no clips, packaging or zip ties left behind.</li>
+    </ul>
+  </section>
+
+  <section class="card for-other" id="trades">
+    <h2>Carpet, washing and handyman work</h2>
+    <p class="sub">These jobs are quoted one by one. DRC tells you the pay before you accept, and you can say no.</p>
+    <ul class="list">
+      <li>Before, during and after photos on every work order.</li>
+      <li>Do only what the work order lists. If you find more, photograph it and tell DRC before doing extra work.</li>
+      <li>Protect floors and furniture, and clean up completely before you leave.</li>
+      <li>Pay is released after your photos are in and the client confirms the work is done.</li>
+    </ul>
+  </section>
+
+  <section class="card for-clean" id="products">
     <h2>Products and supplies</h2>
     <p class="sub">Bring a full kit to every job unless the work order says to use the client’s products. Some clients ask for organic or microplastic free products, so keep those options in your kit too.</p>
     <div class="grid">
@@ -192,7 +253,7 @@ details.cl ul{margin-top:10px}
     <p class="note">Keep every product in its original or a properly labeled bottle. Never pour leftovers together.</p>
   </section>
 
-  <section class="card" id="safety">
+  <section class="card for-clean" id="safety">
     <h2>Chemical safety</h2>
     <p class="sub">Some common cleaners create toxic gas when they mix. This is the most important part of the guide.</p>
     <div class="alert"><b>Never mix cleaning products.</b> Use one product at a time, rinse the surface with water before switching, and keep the room ventilated.</div>
@@ -218,7 +279,7 @@ details.cl ul{margin-top:10px}
     </ul>
   </section>
 
-  <section class="card" id="surfaces">
+  <section class="card for-clean" id="surfaces">
     <h2>Special surfaces</h2>
     <p class="sub">Luxury homes have finishes that are easy to damage. When in doubt, check the work order or ask DRC. If you cannot reach anyone, use water or mild soap only and test a hidden spot.</p>
     <table><thead><tr><th>Surface</th><th>Use</th><th>Never use</th></tr></thead><tbody>
@@ -235,7 +296,7 @@ details.cl ul{margin-top:10px}
     </tbody></table>
   </section>
 
-  <section class="card" id="more">
+  <section class="card for-clean" id="more">
     <h2>Laundry, appliances and yard work</h2>
     <p class="sub">Some clients book more than cleaning. Only do what the work order lists.</p>
     <h3>Laundry and linens</h3>
@@ -261,7 +322,7 @@ details.cl ul{margin-top:10px}
     </ul>
   </section>
 
-  <section class="card" id="checklists">
+  <section class="card for-clean" id="checklists">
     <h2>Cleaning checklists</h2>
     <p class="sub">Every work order includes the checklist for that job. These are the standards behind it.</p>
     <details class="cl" open><summary><span>Essential Home Cleaning <small>every standard visit</small></span></summary>
@@ -308,12 +369,12 @@ details.cl ul{margin-top:10px}
     <ul class="list">
       <li><b>Missed or incomplete work.</b> If a client reports something missed or not done to our standard, you go back and complete it at no extra pay, at a time DRC schedules.</li>
       <li><b>Damage.</b> If anything is damaged, stop, take photos and report it to DRC before you leave. You are responsible for damage caused by carelessness or by not following this guide, including the cost of repair or replacement. DRC may hold payment for that job until it is resolved.</li>
-      <li><b>Correct products.</b> You bring the right products for each surface, or use the client’s products when the work order says to.</li>
+      <li><b>Correct products and safe work.</b> Cleaners bring the right products for each surface. Everyone follows the safety rules for their work.</li>
       <li><b>Background check.</b> You agree to a background check before your first job.</li>
     </ul>
   </section>
 
-  <section class="card" id="test">
+  <section class="card for-clean" id="test">
     <h2>Onboarding test</h2>
     <p class="sub" id="testSub">20 questions. You need 85% or higher, and every chemical safety question must be correct. You can retake it.</p>
     <div id="questions"><p class="note">Loading the test...</p></div>
@@ -321,18 +382,18 @@ details.cl ul{margin-top:10px}
 
   <section class="card" id="sign">
     <h2>Sign and send</h2>
-    <div class="agree"><p><b>DRC Home Services cleaner agreement</b></p><ul class="list">
-      <li>I have read this guide and will follow DRC’s standards and the checklist on every work order.</li>
-      <li>I will never mix cleaning products, and I will use the correct product for each surface.</li>
+    <div class="agree"><p><b>DRC Home Services professional agreement</b></p><ul class="list">
+      <li>I have read the guide for my work and will follow DRC’s standards and the checklist on every work order.</li>
+      <li>If I clean, I will never mix cleaning products and I will use the correct product for each surface. If I install lights or work on ladders, I will follow the safety rules above.</li>
       <li>If a client reports missed or incomplete work, I will go back and complete it at no extra pay, at a time DRC schedules.</li>
       <li>I will report any damage with photos before I leave. I am responsible for damage caused by my carelessness or by not following this guide, including the cost of repair or replacement, and DRC may hold payment for that job until it is resolved.</li>
-      <li>I understand my pay is set by DRC and paid after my photos, the full checklist and the client’s confirmation are in.</li>
+      <li>I understand my pay is set by DRC, shown before I accept a job, and paid after my photos, the full checklist and the client’s confirmation are in.</li>
       <li>I will keep client information private and will not accept work from DRC clients directly.</li>
       <li>I agree to a background check before my first job.</li>
     </ul></div>
-    <label class="ck" style="margin-top:16px"><input type="checkbox" id="agreed">I have read and agree to the DRC Home Services cleaner agreement.</label>
+    <label class="ck" style="margin-top:16px"><input type="checkbox" id="agreed">I have read and agree to the DRC Home Services professional agreement.</label>
     <div class="f" style="margin-top:14px"><label for="sigName">Type your full name as your signature</label><input id="sigName" autocomplete="name"></div>
-    <button type="button" class="btn" id="send">Submit my application and test</button>
+    <button type="button" class="btn" id="send">Submit my application</button>
     <div class="err" id="err" role="alert"></div>
     <div class="result" id="result" aria-live="polite"></div>
   </section>
@@ -360,6 +421,17 @@ let QS = [];
   } catch { $('#questions').innerHTML = '<p class="err">The test did not load. Please refresh the page.</p>'; }
 })();
 
+// Show only the guide sections for the work they chose
+const roles = () => [...document.querySelectorAll('#roles input:checked')].map(i => i.value);
+const ROLE_PARAM = new URLSearchParams(location.search).get('role');
+if (ROLE_PARAM) ROLE_PARAM.split(',').forEach(r => { const i = document.querySelector(`#roles input[value="${CSS.escape(r)}"]`); if (i) i.checked = true; });
+function showRoles() {
+  const r = roles(), b = document.body.classList;
+  b.toggle('r-clean', r.includes('clean')); b.toggle('r-organize', r.includes('organize')); b.toggle('r-lights', r.includes('lights'));
+  b.toggle('r-other', r.some(x => ['carpet', 'wash', 'handy'].includes(x)));
+}
+document.querySelectorAll('#roles input').forEach(i => i.addEventListener('change', showRoles)); showRoles();
+
 const bad = (id, msg) => { const el = $('#' + id); el.parentElement.classList.add('bad'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.focus({ preventScroll: true }); $('#err').textContent = msg; return false; };
 function check() {
   document.querySelectorAll('.f.bad').forEach(f => f.classList.remove('bad')); $('#err').textContent = '';
@@ -367,8 +439,13 @@ function check() {
   if ($('#phone').value.replace(/\D/g, '').length < 10) return bad('phone', 'Please add a 10 digit mobile number at the top.');
   if (!/^\S+@\S+\.\S+$/.test($('#email').value)) return bad('email', 'Please add your email at the top.');
   if (!$('#metro').value) return bad('metro', 'Please choose your area at the top.');
+  if (!roles().length) { $('#rolesF').scrollIntoView({ behavior: 'smooth', block: 'center' }); $('#err').textContent = 'Please choose the work you want at the top.'; return false; }
+  if (!roles().includes('clean')) return checkSign();
   const blank = QS.find(x => !document.querySelector(`input[name=${x.id}]:checked`));
   if (blank) { document.getElementById('w_' + blank.id).scrollIntoView({ behavior: 'smooth', block: 'center' }); $('#err').textContent = 'Please answer every test question.'; return false; }
+  return checkSign();
+}
+function checkSign() {
   if (!$('#agreed').checked) { $('#err').textContent = 'Please check the box to agree.'; return false; }
   if ($('#sigName').value.trim().length < 3) return bad('sigName', 'Please type your full name as your signature.');
   return true;
@@ -376,17 +453,23 @@ function check() {
 $('#send').addEventListener('click', async () => {
   if (!check()) return;
   const btn = $('#send'); btn.disabled = true; btn.textContent = 'Sending...';
-  const answers = Object.fromEntries(QS.map(x => [x.id, +document.querySelector(`input[name=${x.id}]:checked`).value]));
+  const answers = roles().includes('clean') ? Object.fromEntries(QS.map(x => [x.id, +document.querySelector(`input[name=${x.id}]:checked`).value])) : {};
   const app = { name: $('#name').value.trim(), phone: $('#phone').value.trim(), email: $('#email').value.trim(), city: $('#city').value.trim(), metro: $('#metro').value,
     years: $('#years').value, services: [...document.querySelectorAll('#svc input:checked')].map(i => i.value), car: $('#car').value, supplies: $('#supplies').value,
-    days: $('#days').value.trim(), heard: $('#heard').value.trim(), notes: $('#notes').value.trim() };
+    days: $('#days').value.trim(), heard: $('#heard').value.trim(), notes: $('#notes').value.trim(),
+    roles: roles(), company: $('#company').value.trim(), insurance: $('#ins').value, team: $('#team').value,
+    ladders: $('#ladders').value, roof: $('#roof').value, seasons: $('#seasons').value, lightSupply: $('#supply').value, source: new URLSearchParams(location.search).get('src') || '' };
   try {
     const r = await fetch('/api/cleaner-onboarding', { method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ app, answers, signature: { name: $('#sigName').value.trim(), agreed: true }, company_site: $('#company_site').value }) });
     const d = await r.json().catch(() => ({}));
     if (!r.ok || !d.success) throw new Error(d.error || 'Something went wrong.');
     const res = $('#result');
-    if (d.passed) {
+    if (d.passed && !d.tested) {
+      res.className = 'result pass';
+      res.innerHTML = `<h3>Thank you, ${esc(app.name.split(' ')[0])}. Your application is in.</h3><p>Our team will reach out soon about your insurance and background check, which are required before your first job. A copy is on its way to your email.</p>`;
+      btn.hidden = true;
+    } else if (d.passed) {
       res.className = 'result pass';
       res.innerHTML = `<h3>You passed. Thank you, ${esc(app.name.split(' ')[0])}.</h3><p>You scored ${d.score} of ${d.total}. Our team will reach out soon about your background check, which is required before your first job. A copy is on its way to your email.</p>`;
       btn.hidden = true;

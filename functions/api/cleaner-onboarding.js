@@ -55,9 +55,13 @@ const STATE = { 'Dallas area': 'TX', 'Austin area': 'TX', 'San Antonio area': 'T
 
 // Every application becomes a vendor in DRC Dash (status interested) so nobody falls through the cracks.
 // Never throws: a dashboard problem must not lose the application email.
+// Applicants go to the Home Services side of DRC Dash (/mcp-connector/<key>/hs),
+// which starts their Home Services onboarding (agreement, COI, background check).
 async function toDash(env, app, summary) {
-  if (!env.DRC_DASH_MCP_URL) return { skipped: true };
-  const call = (name, args) => fetch(env.DRC_DASH_MCP_URL, { method: 'POST',
+  const base = String(env.DRC_DASH_MCP_URL || '').replace(/\/+$/, '');
+  const url = env.DRC_DASH_HS_MCP_URL || (base ? base + '/hs' : '');
+  if (!url) return { skipped: true };
+  const call = (name, args) => fetch(url, { method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json, text/event-stream' },
     body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name, arguments: args } }) }).then(r => r.json()).catch(() => ({}));
   try {
@@ -68,7 +72,7 @@ async function toDash(env, app, summary) {
       name: app.name, company: app.company || 'DRC Home Services applicant', email: app.email, phone: app.phone,
       trade: 'Home Services: ' + app.roles.map(r => ROLE_LABELS[r]).join(', '),
       state: app.state || STATE[app.metro] || '', coverageArea: [[app.city, app.state].filter(Boolean).join(', '), app.areas, app.metro].filter(Boolean).join('; '),
-      onboardStatus: 'interested', notes: summary } });
+      onboardStatus: 'interested', divisions: ['home_services'], hsStatus: 'Applied', hsAppliedAt: new Date().toISOString().slice(0, 10), notes: summary } });
     return { ok: !out.error };
   } catch (e) { return { ok: false }; }
 }

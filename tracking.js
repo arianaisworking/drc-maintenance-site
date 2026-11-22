@@ -1,8 +1,8 @@
-// Ad tracking for DRC Home Services pages (/cleaning and /home-cleaning).
+// Meta Pixel and ad tracking for drcmaintenance.com. Every customer facing page loads it.
 //
 // META PIXEL: paste the Pixel (Dataset) ID from Meta Events Manager between the quotes.
 // While it is empty, nothing loads and nothing is tracked.
-export const META_PIXEL_ID = '';
+export const META_PIXEL_ID = '933114496428546';
 
 // Events sent:
 //   PageView     when the page opens

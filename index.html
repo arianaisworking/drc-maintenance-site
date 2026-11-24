@@ -728,6 +728,7 @@ async function submitForm(){
     if(!res.ok) throw new Error('Request failed');
     document.getElementById('formInner').style.display='none';
     document.getElementById('formOk').style.display='block';
+    try { window.fbq && window.fbq('track', 'Lead', { content_name: 'Quote request: ' + (payload.service || 'Home page'), value: 0, currency: 'USD' }, { eventID: 'lead_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8) }); } catch (_) {}
   } catch(err) {
     alert('Something went wrong sending your request. Please try again or call us directly.');
     btn.textContent = originalText;

@@ -126,6 +126,7 @@ $('#lf').addEventListener('submit', async e => {
     r = await fetch('/api/cleaning-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ service: "Refrigerator organizing", size: v('sz'), location: 'ZIP ' + v('z'), notes: v('m'), name: v('n'), email: v('e'), phone: v('p'), page: location.href }) });
     if (!r.ok) throw 0;
     $('#lf').style.display = 'none'; $('#ok').style.display = 'block';
+    try { window.fbq && window.fbq('track', 'Lead', { content_name: document.title.split('|')[0].trim(), value: 0, currency: 'USD' }, { eventID: 'lead_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8) }); } catch (_) {}
   } catch { er.textContent = 'Something went wrong. Please try again.'; btn.disabled = false; btn.textContent = 'Send my request'; }
 });
 </script>

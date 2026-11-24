@@ -127,6 +127,7 @@ $('#lf').addEventListener('submit', async e => {
     r = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ firstName, lastName: rest.join(' '), email: v('e'), phone: v('p'), propertyType: 'Private home (Landscaping and yard page)', service: "Landscaping, lawn and yard care", message: v('m') + '\n\nZIP: ' + v('z') + '\nPage: ' + location.href + '\n\nPlease call the client.' }) });
     if (!r.ok) throw 0;
     $('#lf').style.display = 'none'; $('#ok').style.display = 'block';
+    try { window.fbq && window.fbq('track', 'Lead', { content_name: document.title.split('|')[0].trim(), value: 0, currency: 'USD' }, { eventID: 'lead_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8) }); } catch (_) {}
   } catch { er.textContent = 'Something went wrong. Please try again.'; btn.disabled = false; btn.textContent = 'Send my request'; }
 });
 </script>

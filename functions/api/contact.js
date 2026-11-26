@@ -1,3 +1,5 @@
+import { sendLeadAlert } from '../lib/lead-alert.js';
+
 export async function onRequestPost({ request, env }) {
   try {
     const data = await request.json();
@@ -48,6 +50,9 @@ export async function onRequestPost({ request, env }) {
     });
 
     const resendData = await resendResponse.json();
+
+    await sendLeadAlert(env, { source: 'website quote form', name: `${firstName} ${lastName}`, phone, email,
+      service, where: [company, propertyType].filter(Boolean).join(', '), note: message });
 
     if (!resendResponse.ok) {
       // Return 200 so Cloudflare doesn't swallow the body, but include error details

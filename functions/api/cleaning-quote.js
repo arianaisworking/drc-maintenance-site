@@ -12,6 +12,7 @@ import { PRICING, estimate } from '../../cleaning-pricing.js';
 import { repEmail } from '../lib/rep-email.js';
 import { clientEmail } from '../lib/client-email.js';
 import { sendLeadToDashboard } from '../lib/dashboard.js';
+import { sendLeadAlert } from '../lib/lead-alert.js';
 
 const MAX_PHOTOS = 8;
 const MAX_PHOTO_BYTES = 4 * 1024 * 1024;
@@ -124,6 +125,8 @@ export async function onRequestPost({ request, env }) {
     html: officeHtml,
     attachments: [...attachments, { filename: 'DRC-Home-Services-Cleaning-Price-Sheet.pdf', path: `${origin}/docs/drc-cleaning-price-sheet.pdf` }],
   });
+  if (!flagged) await sendLeadAlert(env, { source: 'website estimate', name: lead.name, phone: lead.phone, email: lead.email,
+    service: lbl('services', lead.service), where: lead.metro || lead.city || lead.zip, note: lead.notes });
   if (!office.ok) {
     const err = await office.text();
     return json({ success: false, error: 'We could not send your request. Please call or text us.', detail: err.slice(0, 300) }, 502);

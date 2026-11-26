@@ -4,6 +4,7 @@
 import { clientEmail } from '../lib/client-email.js';
 import { sendLeadToDashboard } from '../lib/dashboard.js';
 import { repEmail, serviceKey, bedsFromText } from '../lib/rep-email.js';
+import { sendLeadAlert } from '../lib/lead-alert.js';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const json = (b, status = 200) => new Response(JSON.stringify(b), { status, headers: { 'Content-Type': 'application/json' } });
@@ -34,6 +35,7 @@ export async function onRequestPost({ request, env }) {
       subject: `DRC Home Services lead: ${lead.name}, ${lead.service || 'cleaning'}${lead.location ? ', ' + lead.location : ''}`, html,
       attachments: [{ filename: 'DRC-Home-Services-Cleaning-Price-Sheet.pdf', path: `${origin}/docs/drc-cleaning-price-sheet.pdf` }] }),
   });
+  await sendLeadAlert(env, { source: 'website chat', name: lead.name, phone: lead.phone, email: lead.email, service: lead.service, where: lead.location, note: lead.notes });
   if (!r.ok) return json({ error: 'Could not send' }, 502);
   const zip = (lead.location.match(/\d{5}/) || [''])[0];
   await sendLeadToDashboard(env, { ...lead, zip, serviceLabel: lead.service || 'Home services (chat)' }, null, ['Came in through the website chat']);
